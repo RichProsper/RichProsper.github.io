@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Coming Soon</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            color: #f0f0f0;
+        }
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url(future-bg.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            font-size: 40px;
+        }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .center h3 {
+            font-size: 50px;
+            padding-bottom: 10px;
+        }
+        .center #countdown {
+            font-size: 30px;
+            padding-top: 10px;
+        }
+        .text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 15px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <p>RP</p>
+        </div>
+
+        <div class="center">
+            <h3>Coming Soon</h3>
+            <hr>
+            <div id="countdown">dd hh mm ss</div>
+        </div>
+
+        <div class="text">
+            <p>Prepare to enter the future</p>
+        </div>
+    </div>
+
+    <script>
+        const countDownDate = new Date("Jan 31, 2021 08:30:00").getTime()
+        const countDownElem = document.getElementById("countdown")
+        
+        const countdownfunction = setInterval(function() {
+            const now = new Date().getTime()
+            const distance = countDownDate - now
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+            
+            countDownElem.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s "
+            
+            if (distance < 0) {
+                clearInterval(countdownfunction)
+                countDownElem.innerHTML = "EXPIRED"
+            }
+        }, 1000)
+    </script>
+</body>
+</html>
