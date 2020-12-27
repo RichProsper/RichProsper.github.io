@@ -81,8 +81,8 @@
     <script>
         const countDownDate = new Date("Jan 31, 2021 08:30:00").getTime()
         const countDownElem = document.getElementById("countdown")
-        
-        const countdownfunction = setInterval(function() {
+
+        const countDown = () => {
             const now = new Date().getTime()
             const distance = countDownDate - now
             
@@ -92,9 +92,16 @@
             const seconds = Math.floor((distance % (1000 * 60)) / 1000)
             
             countDownElem.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s "
+            return distance
+        }
+
+        const d = countDown()
+        
+        const countDownInterval = setInterval(function() {
+            const distance = countDown()
             
             if (distance < 0) {
-                clearInterval(countdownfunction)
+                clearInterval(countDownInterval)
                 countDownElem.innerHTML = "EXPIRED"
             }
         }, 1000)
