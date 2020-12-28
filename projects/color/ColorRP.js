@@ -1,18 +1,17 @@
 class Color {
-    constructor() {
-        this.copy = document.getElementsByClassName('copy')[0]
-        this.color = document.getElementById('color')
-        this.colorResult = document.getElementById('colorResult')
-        this.colorResultDisplay = document.getElementsByClassName('color-result-display')[0]
+    /**
+     * @param {String} anchorId - Anchor element's ID
+     */
+    constructor(anchorId) {
+        this.prefix = 'color-'
+        this.anchorId = anchorId || 'color-anchor'
         this.init()
     }
 
     init = () => {
-        this.copy.addEventListener('click', this.copyTextToClipboard)
-        this.color.addEventListener('change', this.processColor)
+        this.setupElements()
 
         let arr = []
-
         for (let i = 0; i < 10; i++) {
             arr.push(i)
         }
@@ -34,13 +33,71 @@ class Color {
         this.rgbCodes = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f']
     } // func init
 
+    setupElements = () => {
+        this.setupAnchorElement()
+
+        this.colorInput = document.createElement('input')
+        this.colorInput.type = 'color'
+        this.anchorElem.appendChild(this.colorInput)
+
+        this.boxDiv = document.createElement('div')
+        this.boxDiv.className = this.prefix + 'box'
+        this.anchorElem.appendChild(this.boxDiv)
+
+        this.resultDisplayDiv = document.createElement('div')
+        this.resultDisplayDiv.className = this.prefix + 'result-display'
+        this.boxDiv.appendChild(this.resultDisplayDiv)
+
+        this.labelBoxDiv = document.createElement('div')
+        this.labelBoxDiv.className = this.prefix + 'label-box'
+        this.boxDiv.appendChild(this.labelBoxDiv)
+
+        this.labelDiv = document.createElement('div')
+        this.labelDiv.className = this.prefix + 'label'
+        this.labelBoxDiv.appendChild(this.labelDiv)
+
+        this.resultInput = document.createElement('input')
+        this.resultInput.type = 'text'
+        this.resultInput.value = '#000000'
+        this.resultInput.setAttribute('readonly', '')
+        this.labelDiv.appendChild(this.resultInput)
+
+        this.copySpan = document.createElement('span')
+        this.copySpan.className = this.prefix + 'copy'
+        const iTag = document.createElement('i')
+        iTag.className = 'fa fa-clipboard'
+        this.copySpan.appendChild(iTag)
+        this.labelBoxDiv.appendChild(this.copySpan)
+
+        this.copySpan.addEventListener('click', this.copyTextToClipboard)
+        this.colorInput.addEventListener('change', this.processColor)
+    }
+
+    setupAnchorElement = () => {
+        const id = this.anchorId
+        delete this.anchorId
+
+        const anchor = document.getElementById(id)
+        if (anchor) {
+            this.anchorElem = anchor
+        }
+        // If the anchor element doesn't exist create it
+        else {
+            this.anchorElem = document.createElement('div')
+            document.body.appendChild(this.anchorElem)
+        }
+
+        this.anchorElem.innerHTML = null    // Empty the anchor element of any possible children elements
+        this.anchorElem.classList.add(this.prefix + 'wrapper')
+    }
+
     /**
      * Copies text to clipboard
      * @param {Object} this_ - refers to 'this' of the class Color
      */
     copyTextToClipboard = () => {
-        this.colorResult.select()
-        this.colorResult.setSelectionRange(0, 99999)
+        this.resultInput.select()
+        this.resultInput.setSelectionRange(0, 99999)
         document.execCommand('copy')
     }
 
@@ -50,8 +107,8 @@ class Color {
      * @param {String} hexColor
      */
     changeColor = hexColor => {
-        this.colorResultDisplay.style.backgroundColor = hexColor
-        this.colorResult.value = hexColor
+        this.resultDisplayDiv.style.backgroundColor = hexColor
+        this.resultInput.value = hexColor
     }
 
     /**
@@ -92,7 +149,7 @@ class Color {
      * * Only supports hex colors in the six digit format i.e. #123456
      */
     processColor = () => {
-        const hexColor = this.color.value
+        const hexColor = this.colorInput.value
 
         if (hexColor[0] !== '#') return
         if (hexColor.length !== 7) return

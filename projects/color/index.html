@@ -11,21 +11,12 @@
 </head>
 <body>
     <div class="container">
-        <div class="wrapper">
-            <input type="color" name="color" id="color">
-            <div class="color-box">
-                <div class="color-result-display"></div>
-                <div class="label-box">
-                    <div class="color-label"><input type="text" id="colorResult" value="#000000" readonly></div>
-                    <span class="copy"><i class="fa fa-clipboard"></i></span>
-                </div>
-            </div>
-        </div>
+        <div id="color"></div>
     </div>
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            window.color = new Color()
+            window.color = new Color('color')
         })
     </script>
 </body>

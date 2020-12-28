@@ -1,12 +1,12 @@
-.wrapper {
+.color-wrapper {
     position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.wrapper input,
-.wrapper button,
-.wrapper .color-box {
+.color-wrapper input,
+.color-wrapper button,
+.color-wrapper .color-box {
     position: relative;
     width: 144px;
     height: 86.4px;
@@ -15,37 +15,37 @@
     font-weight: bold;
     letter-spacing: 1px;
 }
-.wrapper .color-box {
+.color-wrapper .color-box {
     display: flex;
     flex-direction: column;
     border: 2px solid #111;
 }
-.wrapper .color-box .color-result-display {
+.color-wrapper .color-box .color-result-display {
     width: 100%;
     height: calc(100% - 25px);
     background-color: #000;
 }
-.wrapper .color-box .label-box {
+.color-wrapper .color-box .color-label-box {
     position: relative;
     width: 100%;
     height: 25px;
     display: flex;
     font-size: 16px;
 }
-.wrapper .color-box .label-box .copy {
+.color-wrapper .color-box .color-label-box .color-copy {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.wrapper .color-box .label-box .color-label {
+.color-wrapper .color-box .color-label-box .color-label {
     position: relative;
     width: calc(100% - 25px);
     height: 100%;
     color: #111;
     background-color: #eee;
 }
-.wrapper .color-box .label-box .color-label input {
+.color-wrapper .color-box .color-label-box .color-label input {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -53,7 +53,7 @@
     outline: none;
     padding-left: 18px;
 }
-.wrapper .color-box .label-box .copy {
+.color-wrapper .color-box .color-label-box .color-copy {
     width: 25px;
     height: 100%;
     color: #eee;
@@ -61,6 +61,6 @@
     cursor: pointer;
     transition: 0.2s;
 }
-.wrapper .color-box .label-box .copy:hover {
+.color-wrapper .color-box .color-label-box .color-copy:hover {
     background-color: royalblue;
 }
