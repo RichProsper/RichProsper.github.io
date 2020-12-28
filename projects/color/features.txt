@@ -1,0 +1,8 @@
+Color Arithmetic
+    - Addition
+    - Subtraction
+    - Multiplication
+    - Division
+    - Modulus
+    - Exponentiation
+    - Roots (e.g. square root, cube root, nth root)

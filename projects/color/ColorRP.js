@@ -36,41 +36,56 @@ class Color {
     setupElements = () => {
         this.setupAnchorElement()
 
-        this.colorInput = document.createElement('input')
-        this.colorInput.type = 'color'
-        this.anchorElem.appendChild(this.colorInput)
+        this.colorInputA = document.createElement('input')
+        this.colorInputA.type = 'color'
+        this.anchorElem.appendChild(this.colorInputA)
 
-        this.boxDiv = document.createElement('div')
-        this.boxDiv.className = this.prefix + 'box'
-        this.anchorElem.appendChild(this.boxDiv)
+        const minusDiv = document.createElement('div')
+        minusDiv.innerHTML = 'Minus'
+        minusDiv.style.color = '#f0f0f0'
+        this.anchorElem.appendChild(minusDiv)
+
+        this.colorInputB = document.createElement('input')
+        this.colorInputB.type = 'color'
+        this.anchorElem.appendChild(this.colorInputB)
+
+        const equlasDiv = document.createElement('div')
+        equlasDiv.innerHTML = 'Equals'
+        equlasDiv.style.color = '#f0f0f0'
+        this.anchorElem.appendChild(equlasDiv)
+
+        const boxDiv = document.createElement('div')
+        boxDiv.className = this.prefix + 'box'
+        this.anchorElem.appendChild(boxDiv)
 
         this.resultDisplayDiv = document.createElement('div')
         this.resultDisplayDiv.className = this.prefix + 'result-display'
-        this.boxDiv.appendChild(this.resultDisplayDiv)
+        boxDiv.appendChild(this.resultDisplayDiv)
 
-        this.labelBoxDiv = document.createElement('div')
-        this.labelBoxDiv.className = this.prefix + 'label-box'
-        this.boxDiv.appendChild(this.labelBoxDiv)
+        const labelBoxDiv = document.createElement('div')
+        labelBoxDiv.className = this.prefix + 'label-box'
+        boxDiv.appendChild(labelBoxDiv)
 
-        this.labelDiv = document.createElement('div')
-        this.labelDiv.className = this.prefix + 'label'
-        this.labelBoxDiv.appendChild(this.labelDiv)
+        const labelDiv = document.createElement('div')
+        labelDiv.className = this.prefix + 'label'
+        labelBoxDiv.appendChild(labelDiv)
 
         this.resultInput = document.createElement('input')
         this.resultInput.type = 'text'
         this.resultInput.value = '#000000'
         this.resultInput.setAttribute('readonly', '')
-        this.labelDiv.appendChild(this.resultInput)
+        labelDiv.appendChild(this.resultInput)
 
         this.copySpan = document.createElement('span')
         this.copySpan.className = this.prefix + 'copy'
         const iTag = document.createElement('i')
         iTag.className = 'fa fa-clipboard'
         this.copySpan.appendChild(iTag)
-        this.labelBoxDiv.appendChild(this.copySpan)
+        labelBoxDiv.appendChild(this.copySpan)
 
         this.copySpan.addEventListener('click', this.copyTextToClipboard)
-        this.colorInput.addEventListener('change', this.processColor)
+        this.colorInputA.addEventListener('change', this.subtractColors)
+        this.colorInputB.addEventListener('change', this.subtractColors)
     }
 
     setupAnchorElement = () => {
@@ -148,18 +163,29 @@ class Color {
      * Process a color
      * * Only supports hex colors in the six digit format i.e. #123456
      */
-    processColor = () => {
-        const hexColor = this.colorInput.value
+    subtractColors = () => {
+        const hexColorA = this.colorInputA.value
+        const hexColorB = this.colorInputB.value
 
-        if (hexColor[0] !== '#') return
-        if (hexColor.length !== 7) return
+        if (!this.colorCheck(hexColorA) || !this.colorCheck(hexColorB)) return
 
-        let rgb = this.hexToRGB(hexColor)
+        const rgbA = this.hexToRGB(hexColorA)
+        const rgbB = this.hexToRGB(hexColorB)
 
-        rgb.red = Math.round(rgb.red * 0.9)
-        rgb.green = Math.round(rgb.green * 0.9)
-        rgb.blue = Math.round(rgb.blue * 0.9)
+        rgbA.red = Math.abs(rgbA.red - rgbB.red)
+        rgbA.green = Math.abs(rgbA.green - rgbB.green)
+        rgbA.blue = Math.abs(rgbA.blue - rgbB.blue)
 
-        this.changeColor(this.rgbToHex(rgb))
+        this.changeColor(this.rgbToHex(rgbA))
+    }
+
+    /**
+     * Verifies that color is in the form #123456
+     * @param {String} hexColor
+     */
+    colorCheck = hexColor => {
+        if (hexColor[0] !== '#') return false
+        if (hexColor.length !== 7) return false
+        return true
     }
 } // class Color
