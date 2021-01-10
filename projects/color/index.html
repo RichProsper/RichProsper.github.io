@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Stuff</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div id="color" class="color-wrapper"></div>
-    </div>
+    <header>
+        <div class="btn"><span class="plus">+</span> New Arithmetic Calculation</div>
+        <div class="btn"><span class="plus">+</span> New Algebraic Calculation</div>
+    </header>
+
+    <section class="container">
+        <div class="calculation">
+            <div id="color" class="color-wrapper"></div>
+        </div>
+    </section>
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
