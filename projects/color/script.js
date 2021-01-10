@@ -2,9 +2,9 @@ class Color {
     /**
      * @param {String} anchorId - Anchor element's ID
      */
-    constructor(anchorId) {
+    constructor() {
         this.prefix = 'color-'
-        this.anchorId = anchorId || 'color-anchor'
+        this.anchorElem = document.getElementById('color')
         this.init()
     }
 
@@ -34,8 +34,6 @@ class Color {
     } // func init
 
     setupElements = () => {
-        this.setupAnchorElement()
-
         this.colorInputA = document.createElement('input')
         this.colorInputA.type = 'color'
         this.anchorElem.appendChild(this.colorInputA)
@@ -88,24 +86,6 @@ class Color {
         this.colorInputB.addEventListener('change', this.subtractColors)
     }
 
-    setupAnchorElement = () => {
-        const id = this.anchorId
-        delete this.anchorId
-
-        const anchor = document.getElementById(id)
-        if (anchor) {
-            this.anchorElem = anchor
-        }
-        // If the anchor element doesn't exist create it
-        else {
-            this.anchorElem = document.createElement('div')
-            document.body.appendChild(this.anchorElem)
-        }
-
-        this.anchorElem.innerHTML = null    // Empty the anchor element of any possible children elements
-        this.anchorElem.classList.add(this.prefix + 'wrapper')
-    }
-
     /**
      * Copies text to clipboard
      * @param {Object} this_ - refers to 'this' of the class Color
@@ -135,9 +115,9 @@ class Color {
         const g = [hexColor[3], hexColor[4]]
         const b = [hexColor[5], hexColor[6]]
 
-        let red = (this.hexCodes[r[0]] * 16) + (this.hexCodes[r[1]])
-        let green = (this.hexCodes[g[0]] * 16) + (this.hexCodes[g[1]])
-        let blue = (this.hexCodes[b[0]] * 16) + (this.hexCodes[b[1]])
+        const red = (this.hexCodes[r[0]] * 16) + (this.hexCodes[r[1]])
+        const green = (this.hexCodes[g[0]] * 16) + (this.hexCodes[g[1]])
+        const blue = (this.hexCodes[b[0]] * 16) + (this.hexCodes[b[1]])
 
         return {red, green, blue}
     }

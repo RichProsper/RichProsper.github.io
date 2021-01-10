@@ -95,9 +95,9 @@
             return distance
         }
 
-        const d = countDown()
+        countDown()
         
-        const countDownInterval = setInterval(function() {
+        const countDownInterval = setInterval(() => {
             const distance = countDown()
             
             if (distance < 0) {

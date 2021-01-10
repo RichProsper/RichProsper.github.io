@@ -6,17 +6,16 @@
     <title>Color Stuff</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="ColorRP.css">
-    <script src="ColorRP.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="container">
-        <div id="color"></div>
+        <div id="color" class="color-wrapper"></div>
     </div>
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            window.color = new Color('color')
+            window.Color = new Color('color')
         })
     </script>
 </body>
