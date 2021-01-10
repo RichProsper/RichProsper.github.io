@@ -4,6 +4,8 @@ class Color {
      */
     constructor() {
         this.prefix = 'color-'
+        this.newArithmeticCalc = document.getElementById('nArC')
+        this.newAlgebraicCalc = document.getElementById('nAlC')
         this.anchorElem = document.getElementById('color')
         this.init()
     }
@@ -11,7 +13,7 @@ class Color {
     init = () => {
         this.setupElements()
 
-        let arr = []
+        const arr = []
         for (let i = 0; i < 10; i++) {
             arr.push(i)
         }
