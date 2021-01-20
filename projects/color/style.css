@@ -68,98 +68,14 @@ header .btn:hover .plus {
 
 .calculation {
     position: relative;
-}
-.calculation .dropdown {
-    position: relative;
-}
-.calculation .dropdown .drop-content {
-    position: absolute;
-    min-width: 160px;
-    display: none;
-    flex-direction: column;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-.calculation .dropdown:hover .drop-content {
-    display: flex;
-}
-.calculation .dropdown .drop-content span {
-    color: #333;
-    font-weight: bold;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-.calculation .dropdown .drop-content span:hover {
-    color: #000;
-    letter-spacing: 1px;
-    background-color: #eee;
+    width: 100%;
+    height: 100px;
 }
 
-.color-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.calculation.arithmetic {
+    background-color: #e91e63;
 }
-.color-wrapper input,
-.color-wrapper button,
-.color-wrapper .color-box {
-    position: relative;
-    width: 144px;
-    height: 86.4px;
-    margin: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-.color-wrapper .color-box {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #111;
-}
-.color-wrapper .color-box .color-result-display {
-    width: 100%;
-    height: calc(100% - 25px);
-    background-color: #000;
-}
-.color-wrapper .color-box .color-label-box {
-    position: relative;
-    width: 100%;
-    height: 25px;
-    display: flex;
-    font-size: 16px;
-}
-.color-wrapper .color-box .color-label-box .color-copy {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.color-wrapper .color-box .color-label-box .color-label {
-    position: relative;
-    width: calc(100% - 25px);
-    height: 100%;
-    color: #111;
-    background-color: #eee;
-}
-.color-wrapper .color-box .color-label-box .color-label input {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border: none;
-    outline: none;
-    padding-left: 18px;
-}
-.color-wrapper .color-box .color-label-box .color-copy {
-    width: 25px;
-    height: 100%;
-    color: #eee;
-    background-color: dodgerblue;
-    cursor: pointer;
-    transition: 0.2s;
-}
-.color-wrapper .color-box .color-label-box .color-copy:hover {
-    background-color: royalblue;
+
+.calculation.algebraic {
+    background-color: #9c27b0;
 }

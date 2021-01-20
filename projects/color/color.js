@@ -1,17 +1,16 @@
 class Color {
-    /**
-     * @param {String} anchorId - Anchor element's ID
-     */
     constructor() {
-        this.prefix = 'color-'
         this.newArithmeticCalc = document.getElementById('nArC')
         this.newAlgebraicCalc = document.getElementById('nAlC')
-        this.anchorElem = document.getElementById('color')
+        this.container = document.getElementsByClassName('container')[0]
         this.init()
     }
 
     init = () => {
-        this.setupElements()
+        this.ArithmeticCalcs = []
+        this.AlgebraicCalcs = []
+        this.newArithmeticCalc.addEventListener('click', this.addNewArithmeticCalc)
+        this.newAlgebraicCalc.addEventListener('click', this.addNewAlgebraicCalc)
 
         const arr = []
         for (let i = 0; i < 10; i++) {
@@ -35,57 +34,12 @@ class Color {
         this.rgbCodes = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f']
     } // func init
 
-    setupElements = () => {
-        this.colorInputA = document.createElement('input')
-        this.colorInputA.type = 'color'
-        this.anchorElem.appendChild(this.colorInputA)
+    addNewArithmeticCalc = () => {
+        this.ArithmeticCalcs.push(new ArithmeticCalc(this.container))
+    }
 
-        const minusDiv = document.createElement('div')
-        minusDiv.innerHTML = 'Minus'
-        minusDiv.style.color = '#f0f0f0'
-        this.anchorElem.appendChild(minusDiv)
-
-        this.colorInputB = document.createElement('input')
-        this.colorInputB.type = 'color'
-        this.anchorElem.appendChild(this.colorInputB)
-
-        const equlasDiv = document.createElement('div')
-        equlasDiv.innerHTML = 'Equals'
-        equlasDiv.style.color = '#f0f0f0'
-        this.anchorElem.appendChild(equlasDiv)
-
-        const boxDiv = document.createElement('div')
-        boxDiv.className = this.prefix + 'box'
-        this.anchorElem.appendChild(boxDiv)
-
-        this.resultDisplayDiv = document.createElement('div')
-        this.resultDisplayDiv.className = this.prefix + 'result-display'
-        boxDiv.appendChild(this.resultDisplayDiv)
-
-        const labelBoxDiv = document.createElement('div')
-        labelBoxDiv.className = this.prefix + 'label-box'
-        boxDiv.appendChild(labelBoxDiv)
-
-        const labelDiv = document.createElement('div')
-        labelDiv.className = this.prefix + 'label'
-        labelBoxDiv.appendChild(labelDiv)
-
-        this.resultInput = document.createElement('input')
-        this.resultInput.type = 'text'
-        this.resultInput.value = '#000000'
-        this.resultInput.setAttribute('readonly', '')
-        labelDiv.appendChild(this.resultInput)
-
-        this.copySpan = document.createElement('span')
-        this.copySpan.className = this.prefix + 'copy'
-        const iTag = document.createElement('i')
-        iTag.className = 'fa fa-clipboard'
-        this.copySpan.appendChild(iTag)
-        labelBoxDiv.appendChild(this.copySpan)
-
-        this.copySpan.addEventListener('click', this.copyTextToClipboard)
-        this.colorInputA.addEventListener('change', this.subtractColors)
-        this.colorInputB.addEventListener('change', this.subtractColors)
+    addNewAlgebraicCalc = () => {
+        this.AlgebraicCalcs.push(new AlgebraicCalc(this.container))
     }
 
     /**
