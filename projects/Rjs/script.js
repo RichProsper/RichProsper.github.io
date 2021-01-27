@@ -10,4 +10,4 @@ R('#id').css({
     backgroundColor: 'red',
     transform: 'skewY(-3deg)',
     transformOrigin: 'top left'
-}).addClass('a ab abc def g')
+}).addCls('a ab abc def g').remCls('def g')

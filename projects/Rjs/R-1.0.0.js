@@ -60,48 +60,90 @@ class RDOM {
 
     /**
      * Adds 1 or more classes
-     * @param {String} classRef - Holds 1 or more classes separated by spaces
+     * @param {String} clsStr - Holds 1 or more classes separated by spaces
      */
-    addClass = classesStr => {
+    addCls = clsStr => {
         if (this.isValidElemRef()) {
-            if (typeof classesStr === 'string') {
-                if (classesStr) {
+            if (typeof clsStr === 'string') {
+                if (clsStr) {
                     /**
                      * @param {HTMLElement} elem 
-                     * @param {String} classesString 
+                     * @param {String} classesStr 
                      */
-                    const addClassHelper = (elem, classesString) => {
-                        const classesArr = classesString.split(' ')
+                    const addClass = (elem, classesStr) => {
+                        const classesArr = classesStr.split(' ')
                         for (let cls of classesArr) elem.classList.add(cls)
                     }
 
-                    if (this.elemRef instanceof HTMLElement) addClassHelper(this.elemRef, classesStr)
+                    if (this.elemRef instanceof HTMLElement) addClass(this.elemRef, clsStr)
                     else {
                         for (let i = 0; i < this.elemRef.length; i++) {
-                            addClassHelper(this.elemRef[i], classesStr)
+                            addClass(this.elemRef[i], clsStr)
                         }
                     }
                 }
                 else console.error('Empty classes string...')
             }
             else {
-                const classesType = typeof classesStr
+                const classesType = typeof clsStr
                 console.error(
                     'Invalid class(es) provided:',
-                    classesStr,
+                    clsStr,
                     `\nExpecting a string instead a(n) ${classesType} was provided.`
                 )
             }
-        }
+        } // if
 
         return this
-    }
+    } // func addCls
+
+    /**
+     * Removes 1 or more classes
+     * @param {String} clsStr - Holds 1 or more classes separated by spaces
+     */
+    remCls = clsStr => {
+        if (this.isValidElemRef()) {
+            if (typeof clsStr === 'string') {
+                if (clsStr) {
+                    /**
+                     * @param {HTMLElement} elem 
+                     * @param {String} classesStr 
+                     */
+                    const remClass = (elem, classesStr) => {
+                        const classesArr = classesStr.split(' ')
+                        for (let cls of classesArr) elem.classList.remove(cls)
+                    }
+
+                    if (this.elemRef instanceof HTMLElement) remClass(this.elemRef, clsStr)
+                    else {
+                        for (let i = 0; i < this.elemRef.length; i++) {
+                            remClass(this.elemRef[i], clsStr)
+                        }
+                    }
+                }
+                else console.error('Empty classes string...')
+            }
+            else {
+                const classesType = typeof clsStr
+                console.error(
+                    'Invalid class(es) provided:',
+                    clsStr,
+                    `\nExpecting a string instead a(n) ${classesType} was provided.`
+                )
+            }
+        } // if
+
+        return this
+    } // func remCls
+
+    // hasCls
+
 } // class RDOM
 
 /**
  * Retrieves HTMLElement(s)
  * @param {HTMLElement | HTMLCollection | NodeList | String} elemRef
- * @param {Boolean} firstMatch
+ * @param {Boolean} firstMatch - If true, returns the first HTMLElement found
  */
 const R = (elemRef, firstMatch=false) => {
     if (elemRef instanceof HTMLElement) return new RDOM(elemRef)
@@ -150,6 +192,12 @@ const R = (elemRef, firstMatch=false) => {
             return 0
         }
     } // if
+
+    console.error(
+        'Invalid Element Reference:',
+        elemRef,
+        '\nExpecting HTMLElement, HTMLCollection, NodeList or String'
+    )
     
     return 0
 } // func R
