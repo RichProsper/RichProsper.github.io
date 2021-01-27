@@ -1,4 +1,9 @@
-CSS
+* CSS 
 Classes
+    - * Add - 1 or more classes
+    - Remove - 1 or more classes
+    - Toggle - 1 or more classes
+    - Contains - 1 or more classes
+    - ToggleBetweenClasses - 1 or more classes
 Attributes
 EventListeners

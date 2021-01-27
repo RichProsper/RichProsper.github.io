@@ -16,9 +16,9 @@ class RDOM {
             this.elemRef instanceof HTMLElement ||
             this.elemRef instanceof HTMLCollection ||
             this.elemRef instanceof NodeList
-        )  return true
+        ) return true
         else {
-            console.error('Not an HTML Element nor an HTML Collection...')
+            console.error('Not an HTML Element / HTML Collection / Node List...')
             return false
         }
     }
@@ -30,6 +30,10 @@ class RDOM {
     css = stylesObj => {
         if (this.isValidElemRef()) {
             if (typeof stylesObj === 'object') {
+                /**
+                 * @param {HTMLElement} elem 
+                 * @param {Object} stylesObject 
+                 */
                 const applyStyles = (elem, stylesObject) => {
                     for (let style in stylesObject) elem.style[style] = stylesObject[style]
                 }
@@ -41,11 +45,56 @@ class RDOM {
                     }
                 }
             }
-            else console.error('Invalid Styles provided...')
-
-            return this
+            else {
+                const stylesType = typeof stylesObj
+                console.error(
+                    'Invalid Styles provided:',
+                    stylesObj,
+                    `\nExpecting an object instead a(n) ${stylesType} was provided.`
+                )
+            }
         }
-        return 0
+
+        return this
+    } // func css
+
+    /**
+     * Adds 1 or more classes
+     * @param {String} classRef - Holds 1 or more classes separated by spaces
+     */
+    addClass = classesStr => {
+        if (this.isValidElemRef()) {
+            if (typeof classesStr === 'string') {
+                if (classesStr) {
+                    /**
+                     * @param {HTMLElement} elem 
+                     * @param {String} classesString 
+                     */
+                    const addClassHelper = (elem, classesString) => {
+                        const classesArr = classesString.split(' ')
+                        for (let cls of classesArr) elem.classList.add(cls)
+                    }
+
+                    if (this.elemRef instanceof HTMLElement) addClassHelper(this.elemRef, classesStr)
+                    else {
+                        for (let i = 0; i < this.elemRef.length; i++) {
+                            addClassHelper(this.elemRef[i], classesStr)
+                        }
+                    }
+                }
+                else console.error('Empty classes string...')
+            }
+            else {
+                const classesType = typeof classesStr
+                console.error(
+                    'Invalid class(es) provided:',
+                    classesStr,
+                    `\nExpecting a string instead a(n) ${classesType} was provided.`
+                )
+            }
+        }
+
+        return this
     }
 } // class RDOM
 
@@ -60,7 +109,7 @@ const R = (elemRef, firstMatch=false) => {
     if (elemRef instanceof NodeList || elemRef instanceof HTMLCollection) {
         if (elemRef.length > 0) return new RDOM(elemRef)
         else {
-            console.error('Empty HTML Collection provided...')
+            console.error('Empty HTML Collection / Node List provided...')
             return 0
         }
     }

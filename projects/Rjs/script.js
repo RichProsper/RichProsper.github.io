@@ -1,16 +1,13 @@
-// console.log( R('.a') )
+R(document.body).css({
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box'
+})
 
-// console.log(document.querySelectorAll('a'))
-
-// console.log(new RDOM(document.body))
-
-// console.log(typeof {a: 'a', b: 'b'})
-
-// console.log(document.querySelectorAll('#id'))
-
-console.log(R(document.querySelectorAll('#id + .a')).css({
+R('#id').css({
     height: '100px',
-    backgroundColor: 'red'
-}))
-
-// console.log(document.getElementsByClassName('a'))
+    padding: '10px',
+    backgroundColor: 'red',
+    transform: 'skewY(-3deg)',
+    transformOrigin: 'top left'
+}).addClass('a ab abc def g')
