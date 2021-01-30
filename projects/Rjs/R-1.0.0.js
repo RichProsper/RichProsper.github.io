@@ -136,7 +136,108 @@ class RDOM {
         return this
     } // func remCls
 
-    // hasCls
+    /**
+     * Checks whether the Element(s) contains the class(es)
+     * @param {String} clsStr - Holds 1 or more classes separated by spaces
+     * @param {Boolean} verbose - Determines how detailed the results will be
+     */
+    hasCls = (clsStr, verbose=false) => {
+        if (this.isValidElemRef()) {
+            if (typeof clsStr === 'string') {
+                if (clsStr) {
+                    /**
+                     * @param {HTMLElement} elem 
+                     * @param {String} classesStr 
+                     * @param {Boolean} verboseOutput 
+                     */
+                    const hasClass = (elem, classesStr, verboseOutput) => {
+                        const classesArr = classesStr.split(' ')
+                        if (verboseOutput) {
+                            let output = {
+                                numClasses: classesArr.length,
+                                numFound: 0,
+                                foundList: '',
+                                notFoundList: '',
+                                foundAll: false
+                            }
+
+                            for (let cls of classesArr) {
+                                if (elem.classList.contains(cls)) {
+                                    output.numFound++
+                                    output.foundList += `${cls} `
+                                }
+                                else output.notFoundList += `${cls} `
+                            }
+
+                            output.foundList = output.foundList.trim()
+                            output.notFoundList = output.notFoundList.trim()
+
+                            if (output.numClasses === output.numFound) output.foundAll = true
+
+                            return output
+                        }
+                        else {
+                            let classFound = true
+
+                            for (let cls of classesArr) {
+                                if (!elem.classList.contains(cls)) classFound = false
+                            }
+
+                            return classFound
+                        }
+                    } // func hasClass
+
+                    if (this.elemRef instanceof HTMLElement) return hasClass(this.elemRef, clsStr, verbose)
+                    else {
+                        if (verbose) {
+                            let result = {
+                                numElems: this.elemRef.length,
+                                numPassed: 0,
+                                passedList: [],
+                                failedList: [],
+                                didAllPass: false
+                            }
+
+                            for (let i = 0; i < this.elemRef.length; i++) {
+                                const output = hasClass(this.elemRef[i], clsStr, true)
+                                output.element = this.elemRef[i]
+
+                                if (output.foundAll) {
+                                    result.numPassed++
+                                    result.passedList.push(output)
+                                }
+                                else result.failedList.push(output)
+                            }
+
+                            if (result.numPassed === result.numElems) result.didAllPass = true
+
+                            return result
+                        } // if
+                        else {
+                            let classFoundForAllElements = true
+
+                            for (let i = 0; i < this.elemRef.length; i++) {
+                                if ( !hasClass(this.elemRef[i], clsStr, false) ) classFoundForAllElements = false
+                            }
+
+                            return classFoundForAllElements
+                        }
+                    } // else
+                }
+                else console.error('Empty classes string...')
+            }
+            else {
+                const classesType = typeof clsStr
+                console.error(
+                    'Invalid class(es) provided:',
+                    clsStr,
+                    `\nExpecting a string instead a(n) ${classesType} was provided.`
+                )
+            }
+        } // if
+
+        return false
+    } // func hasCls
 
 } // class RDOM
 
