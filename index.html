@@ -3,108 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Coming Soon</title>
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', Arial, Helvetica, sans-serif;
-            color: #f0f0f0;
-        }
-        html, body {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            background-image: url(future-bg.jpg);
-            background-position: center;
-            background-size: cover;
-        }
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .logo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding: 20px;
-            font-size: 40px;
-        }
-        .center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-        .center h3 {
-            font-size: 50px;
-            padding-bottom: 10px;
-        }
-        .center #countdown {
-            font-size: 30px;
-            padding-top: 10px;
-        }
-        .text {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            padding: 15px;
-            font-size: 20px;
-        }
-        @media screen and (min-width: 450px) {
-            .text { font-size: 25px; }
-        }
-    </style>
+    <title>Rich Prosper | Full Stack Developer</title>
+    <link rel="icon" href="images/logo/favicon.ico" type="image/x-icon">
+    <link href='utils/Poppins/Poppins.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="src/style.css">
 </head>
-<body>
-    <div class="container">
-        <div class="logo">
-            <p>RP</p>
+<body>    
+    <!-- Header -->
+    <header id="header">
+        <span class="logo">RP</span>
+        <ul>
+            <li><a href="#home" onclick="toggle()">Home</a></li>
+            <li><a href="#about" onclick="toggle()">About</a></li>
+            <!-- <li><a href="#portfolio" onclick="toggle()">Portfolio</a></li> -->
+            <!-- <li><a href="#projects" onclick="toggle()">Projects</a></li> -->
+            <!-- <li><a href="#contact" onclick="toggle()">Contact</a></li> -->
+        </ul>
+        <div class="toggle" onclick="toggle()"></div>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner" id="home">
+        <h2>Hi, I'm <span>Rich</span>.<br>I Build<span> Responsive</span> Websites</h2>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="content">
+            <div class="max-width-800px">
+                <h3>Who I Am</h3>
+                <p>
+                    I'm a Full Stack Web Developer who graduated from the University of the West Indies (UWI) in 2019
+                    with a Bachelor's Degree in Computer Science. I've accrued three years of experience developing
+                    internal websites for various companies during my internships.<br><br>
+                    My languages are: HTML, CSS, JS, PHP, MySQL 
+                </p>
+                <a href="#" class="btn">See Resume</a>
+            </div>
         </div>
+    </section>
 
-        <div class="center">
-            <h3>Coming Soon</h3>
-            <hr>
-            <div id="countdown">dd hh mm ss</div>
+    <!-- Portfolio -->
+    <!-- <section class="section portfolio" id="portfolio">
+
+    </section> -->
+
+    <!-- Contact -->
+    <!-- <section class="section contact" id="contact">
+        <div class="content">
+            <div class="max-width-800px"><h3>Send Me A Message</h3></div>
+            <div class="contact-form">
+                <form>
+                    <div class="row-100">
+                        <div class="input-Bx50">
+                            <input type="text" name="fname" id="fname" placeholder="First Name">
+                        </div>
+                        <div class="input-Bx50">
+                            <input type="text" name="lname" id="lname" placeholder="Last Name">
+                        </div>
+                        <div class="input-Bx50">
+                            <input type="text" name="email" id="email" placeholder="Email Address">
+                        </div>
+                    </div>
+                    <div class="row-100">
+                        <div class="input-Bx100">
+                            <textarea name="message" id="message" placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="row-100">
+                        <div class="input-Bx100"><input type="submit" value="Send"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="social-media-links">
+                <ul>
+                    <li><a href="#"><img src="images/twitter.png"></a></li>
+                    <li><a href="#"><img src="images/linkedin.png"></a></li>
+                </ul>
+            </div>
+            <p class="copyright">Developed By Rich Prosper</p>
         </div>
+    </section> -->
 
-        <div class="text">
-            <p>Prepare to enter the future</p>
-        </div>
-    </div>
+    <script type="text/javascript">
+        const header = document.getElementById('header')
 
-    <script>
-        const countDownDate = new Date("Jan 31, 2021 23:59:59").getTime()
-        const countDownElem = document.getElementById("countdown")
+        window.addEventListener('scroll', () => {
+            // Add/remove sticky, depending on test conditional, scrollY greater than 0
+            header.classList.toggle('sticky', window.scrollY > 0)
+        })
 
-        const countDown = () => {
-            const now = new Date().getTime()
-            const distance = countDownDate - now
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000)
-            
-            countDownElem.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s "
-            return distance
+        const toggle = () => {
+            header.classList.toggle('active')
         }
-
-        countDown()
-        
-        const countDownInterval = setInterval(() => {
-            const distance = countDown()
-            
-            if (distance < 0) {
-                clearInterval(countDownInterval)
-                countDownElem.innerHTML = "EXPIRED"
-            }
-        }, 1000)
     </script>
 </body>
 </html>
