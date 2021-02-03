@@ -1,0 +1,51 @@
+.section {
+    background-color: #F2F2F2;
+    padding: 100px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section .content {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+.section .content h3 {
+    font-size: 40px;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    margin-bottom: 10px;
+}
+.section .content p {
+    position: relative;
+    text-align: justify;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+.section .content .btn {
+    position: relative;
+    display: inline-block;    
+    padding: 10px 30px;
+    text-decoration: none;
+    background-color: #111;
+    color: #FFF;
+}
+.max-width-800px {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Apply styles if screen width is 992px or less */
+@media screen and (max-width: 992px) {
+    .section {
+        padding: 100px 50px 50px 50px;
+    }
+    h3 {
+        font-size: 36px;
+    }
+}

@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta 
+        name="description"
+        content="Rich Prosper is a Full Stack Developer with 3 years experience creating websites and is open
+                 to freelance jobs and projects."
+    >
     <title>Rich Prosper | Full Stack Developer</title>
     <link rel="icon" href="images/logo/favicon.ico" type="image/x-icon">
     <link href='utils/Poppins/Poppins.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="utils/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="src/body.css">
+    <link rel="stylesheet" href="src/header.css">
+    <link rel="stylesheet" href="src/banner.css">
+    <link rel="stylesheet" href="src/section.css">
+    <link rel="stylesheet" href="src/contact.css">
+    <link rel="stylesheet" href="src/scrollbar.css">
+    <!-- JS -->
+    <script defer src="src/header.js"></script>
 </head>
 <body>    
     <!-- Header -->
@@ -19,7 +33,7 @@
             <!-- <li><a href="#projects" onclick="toggle()">Projects</a></li> -->
             <!-- <li><a href="#contact" onclick="toggle()">Contact</a></li> -->
         </ul>
-        <div class="toggle" onclick="toggle()"></div>
+        <div class="toggle" onclick="toggle()"><i class="fas fa-bars"></i></div>
     </header>
 
     <!-- Banner -->
@@ -84,18 +98,5 @@
             <p class="copyright">Developed By Rich Prosper</p>
         </div>
     </section> -->
-
-    <script type="text/javascript">
-        const header = document.getElementById('header')
-
-        window.addEventListener('scroll', () => {
-            // Add/remove sticky, depending on test conditional, scrollY greater than 0
-            header.classList.toggle('sticky', window.scrollY > 0)
-        })
-
-        const toggle = () => {
-            header.classList.toggle('active')
-        }
-    </script>
 </body>
 </html>

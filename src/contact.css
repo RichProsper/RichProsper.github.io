@@ -1,0 +1,99 @@
+.contact {
+    background-color: #111;
+}
+.contact h3, .contact p {
+    color: #F2F2F2;
+}
+.contact-form {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+}
+.contact-form form {
+    width: 100%;
+}
+.contact-form .row-100 {
+    display: flex;
+    width: 100%;
+}
+.contact-form .row-100 .input-Bx50 {
+    width: 50%;
+    margin: 0px 20px;
+}
+.contact-form .row-100 .input-Bx100 {
+    width: 100%;
+    margin: 0px 20px;
+}
+.contact-form .row-100 input, .contact-form .row-100 textarea {
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #F2F2F2;
+    color: #F2F2F2;
+    background-color: transparent;
+    width: 100%;
+    padding: 10px 0px;
+    outline: none;
+    font-size: 18px;
+    margin: 20px 0px;
+    resize: none;
+}
+.contact-form .row-100 textarea {
+    height: 100px;
+}
+.contact-form .row-100 input::placeholder,
+.contact-form .row-100 textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+.contact-form .row-100 input[type="submit"] {
+    background-color: #F2F2F2;
+    color: #111;
+    max-width: 100px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-weight: 700;
+}
+.social-media-links {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0px;
+}
+.social-media-links ul {
+    list-style: none;
+    display: flex;
+}
+.social-media-links ul li a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 30px;
+}
+.social-media-links ul li a img {
+    filter: invert(1);
+    max-width: 40px;
+    transition: 0.3s;
+}
+.social-media-links ul li a:hover img {
+    opacity: 0.5;
+}
+.copyright {
+    display: flex;
+    justify-content: center;
+}
+
+/* Apply styles if screen width is 992px or less */
+@media screen and (max-width: 992px) {
+    .row-100 {
+        flex-direction: column;
+    }
+    .contact-form .row-100 .input-Bx50,
+    .contact-form .row-100 .input-Bx100 {
+        width: 100%;
+        margin: 0;
+    }
+    .social-media-links {
+        margin: 20px;
+    }
+}

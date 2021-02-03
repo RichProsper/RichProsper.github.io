@@ -1,0 +1,33 @@
+.banner {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner h2 {
+    color: #FFF;
+    font-size: 80px;
+    text-align: center;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    line-height: 1.5em;
+}
+.banner h2 span {
+    color: #39BE89;
+}
+
+/* Apply styles if screen width is 992px or less */
+@media screen and (max-width: 992px) {
+    .banner {
+        background-position: center;
+    }
+    .banner h2 {
+        font-size: 60px;
+        padding: 0px 50px
+    }
+}
