@@ -1,0 +1,44 @@
+.menu-close {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+}
+.menu-close .bar {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #000;
+    transition: 0.2s;
+}
+.menu-close .bar.a {
+    top: 0;
+    left: 0;
+}
+.menu-close .bar.b {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+.menu-close .bar.c {
+    bottom: 0;
+    left: 0;
+}
+.menu-close.close {
+    width: 21.213px;
+    height: 21.213px;
+}
+.menu-close.close .bar {
+    top: 50%;
+}
+.menu-close.close .bar.a {
+    transform: translate(-4px, -50%) rotate(45deg);
+}
+.menu-close.close .bar.b {
+    visibility: hidden;
+    opacity: 0;
+}
+.menu-close.close .bar.c {
+    transform: translate(-4px, -50%) rotate(-45deg);
+}

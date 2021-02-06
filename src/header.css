@@ -56,55 +56,6 @@ header.active ul li a {
     font-size: 20px;
 }
 
-header .menu-close {
-    display: block;
-    position: relative;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-}
-header .menu-close .bar {
-    position: absolute;
-    width: 30px;
-    height: 2px;
-    background-color: #000;
-}
-header .menu-close .bar.a {
-    top: 0;
-    left: 0;
-}
-header .menu-close .bar.b {
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-}
-header .menu-close .bar.c {
-    bottom: 0;
-    left: 0;
-}
-
-header .close-icon {
-    position: relative;
-    background-color: #012;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-header .close-icon:before, .close-icon:after {
-    content: '';
-    position: absolute;
-    height: 30px;
-    width: 2px;
-    background-color: #fff;
-}
-header .close-icon:before {
-    transform: rotate(45deg);
-}
-header .close-icon:after {
-    transform: rotate(-45deg);
-}
-
 /* Apply styles if screen width is 993px or more */
 @media only screen and (min-width: 993px) {
     header {
