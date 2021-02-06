@@ -84,7 +84,7 @@
 }
 
 /* Apply styles if screen width is 992px or less */
-@media screen and (max-width: 992px) {
+@media only screen and (max-width: 992px) {
     .row-100 {
         flex-direction: column;
     }

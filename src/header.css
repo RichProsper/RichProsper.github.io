@@ -6,16 +6,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 20px 100px;
-    z-index: 20;
-    transition: 0.6s;
-}
-header.sticky {
-    padding: 5px 100px;
-    background-color: #FFF;
+    background-color: #fff;
+    padding: 5px 50px;
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: 0.4s ease-in;
 }
 header .logo {
     position: relative;
@@ -24,13 +19,20 @@ header .logo {
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: 0.6s;
-    color: #FFF;
+    color: #000;
 }
 header ul {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 59px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: auto;
+    background-color: #FFF;
+    transition: 0.2s;
 }
 header ul li {
     position: relative;
@@ -38,68 +40,130 @@ header ul li {
 }
 header ul li a {
     position: relative;
-    margin: 0px 15px;
     text-decoration: none;
-    color: #FFF;
-    letter-spacing: 2px;
-    font-weight: 300;
-    transition: 0.6s;
-}
-header ul li:first-child a {
-    margin: 0;
-    margin-right: 15px;
-}
-header ul li:last-child a {
-    margin: 0;
-    margin-left: 15px;
-}
-header.sticky .logo, header.sticky ul li a {
     color: #000;
-    font-weight: bold;
+    letter-spacing: 2px;
+    transition: 0.4s;
 }
-.toggle {
-    position: relative;
-    display: none;
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
-    cursor: pointer;
+header.active ul {
+    visibility: visible;
+    opacity: 1;
+    padding-top: 20px;
+}
+header.active ul li a {
+    display: inline-block;
+    margin: 10px 0px;
+    font-size: 20px;
 }
 
-/* Apply styles if screen width is 992px or less */
-@media screen and (max-width: 992px) {
-    .toggle {
-        display: flex;
+header .menu-close {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+}
+header .menu-close .bar {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #000;
+}
+header .menu-close .bar.a {
+    top: 0;
+    left: 0;
+}
+header .menu-close .bar.b {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+header .menu-close .bar.c {
+    bottom: 0;
+    left: 0;
+}
+
+header .close-icon {
+    position: relative;
+    background-color: #012;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+header .close-icon:before, .close-icon:after {
+    content: '';
+    position: absolute;
+    height: 30px;
+    width: 2px;
+    background-color: #fff;
+}
+header .close-icon:before {
+    transform: rotate(45deg);
+}
+header .close-icon:after {
+    transform: rotate(-45deg);
+}
+
+/* Apply styles if screen width is 993px or more */
+@media only screen and (min-width: 993px) {
+    header {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 20px 100px;
+        box-shadow: unset;
     }
-    header, header.sticky {
-        padding: 5px 50px;
-        background-color: #FFF;
+    header.sticky {
+        padding: 5px 100px;
+        background-color: #fff;
+        box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.2);
+    }
+    header .logo {
+        color: #fff;
     }
     header ul {
-        position: absolute;
-        top: 59px;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        text-align: center;
-        overflow: auto;
-        background-color: #FFF;
-        visibility: hidden;
-        opacity: 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: unset;
+        opacity: unset;
+        top: unset;
+        left: unset;
+        width: unset;
+        height: unset;
+        text-align: unset;
+        overflow: unset;
+        background-color: unset;
+    }
+    header ul li a {
+        margin: 0px 15px;
+        color: #fff;
+        font-weight: 300;
+        transition: 0.6s;
+    }
+    header ul li:first-child a {
+        margin: 0;
+        margin-right: 15px;
+    }
+    header ul li:last-child a {
+        margin: 0;
+        margin-left: 15px;
     }
     header.active ul {
-        visibility: visible;
-        opacity: 1;
-        display: block;
-        padding-top: 20px;
+        visibility: unset;
+        opacity: unset;
+        padding-top: unset;
     }
     header.active ul li a {
-        display: inline-block;
-        margin: 10px 0px;
-        font-size: 20px;
-        font-weight: normal;
+        display: unset;
+        font-size: unset;
     }
-    header .logo, header ul li a {
+    header.sticky .logo, header.sticky ul li a {
         color: #000;
+        font-weight: bold;
+    }
+    header .menu-close {
+        display: none;
     }
 }
