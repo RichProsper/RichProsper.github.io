@@ -1,25 +1,29 @@
-.section {
-    background-color: #F2F2F2;
-    padding: 100px;
+.about {
+    background-color: #f2f2ff;
+    padding: 20px 50px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.section .content {
+.about .content {
     position: relative;
     width: 100%;
     text-align: center;
 }
-.section .content h3 {
-    font-size: 40px;
+.max-width-800px {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.about .content h3 {
+    font-size: 36px;
     font-weight: 200;
     text-transform: uppercase;
     letter-spacing: 2px;
     word-spacing: 4px;
     margin-bottom: 10px;
 }
-.section .content p {
+.about .content p {
     position: relative;
     text-align: justify;
     font-size: 18px;
@@ -27,17 +31,16 @@
     margin-bottom: 20px;
     letter-spacing: 1px;
 }
-.max-width-800px {
-    max-width: 800px;
-    margin: 0 auto;
+.about .content h4 {
+    letter-spacing: 1px;
 }
 
-/* Apply styles if screen width is 992px or less */
-@media only screen and (max-width: 992px) {
-    .section {
-        padding: 100px 50px 50px 50px;
+/* Apply styles if screen width is 993px or more */
+@media only screen and (min-width: 993px) {
+    .about {
+        padding: 20px 100px;
     }
-    h3 {
-        font-size: 36px;
+    .about .content h3 {
+        font-size: 40px;
     }
 }

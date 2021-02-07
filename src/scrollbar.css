@@ -1,25 +1,25 @@
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 ::-webkit-scrollbar-track {
     background: #e0e0e0;
 }
 ::-webkit-scrollbar-thumb {
     background: #888888;  
-    border-radius: 10px;
+    border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #555555;
 }
 
-/* Apply styles if screen width is 992px or less */
-@media only screen and (max-width: 992px) {
+/* Apply styles if screen width is 993px or more */
+@media only screen and (min-width: 993px) {
     ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
     }
     ::-webkit-scrollbar-thumb {
-        border-radius: 8px;
+        border-radius: 10px;
     }
 }
