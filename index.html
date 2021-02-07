@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="src/lang-chips.css">
     <link rel="stylesheet" href="src/about.css">
     <link rel="stylesheet" href="src/portfolio.css">
+    <link rel="stylesheet" href="src/contact.css">
     <link rel="stylesheet" href="src/scrollbar.css">
     <!-- JS -->
     <script defer src="src/header.js"></script>
@@ -112,7 +113,19 @@
 
     <!-- Contact -->
     <section class="contact" id="contact">
-
+        <h3>Send me an email or find me on LinkedIn</h3>
+        <div class="icons">
+            <a href="mailto:rich.stp.p@protonmail.com" class="icon email" title="Email me at: rich.stp.p@protonmail.com">
+                <i class="far fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/rich-prosper-82107b196" target="_blank" class="icon in" title="Find me on LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        <div class="copyright">Copyright © <span id="copy-yr">2021</span> Rich Prosper, All Rights Reserved.</div>
+        <script>
+            document.getElementById('copy-yr').innerHTML = new Date().getFullYear()
+        </script>
     </section>
 </body>
 </html>
