@@ -6,8 +6,10 @@ window.addEventListener('scroll', () => {
     header.classList.toggle('sticky', window.scrollY > 0)
 })
 
+if (window.scrollY > 0) header.classList.add('sticky')
+
 const toggle = () => {
-    header.classList.toggle('active')
+    if (window.innerWidth < 993) header.classList.toggle('active')
     menuClose.classList.toggle('close')
 }
 
@@ -15,5 +17,4 @@ const lis = header.children[1].children
 for (let i = 0; i < lis.length; i++) {
     lis[i].children[0].addEventListener('click', toggle)
 }
-
 menuClose.addEventListener('click', toggle)
