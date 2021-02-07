@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif, Arial, Helvetica;
-    overflow-x: hidden;
 }
 html, body {
     min-height: 1000px;
