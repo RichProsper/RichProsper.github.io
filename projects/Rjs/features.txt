@@ -1,11 +1,12 @@
+Patterns - even, odd, Number{3, 7}, an+b{2n+3}, range(s){2-5,7,9-11}
+         - Apply patterns in the Element finding R()
 * CSS
 Classes
     - * addCls - 1 or more classes
     - * remCls - 1 or more classes
     - * hasCls - 1 or more classes
-    - Replace - 1 or more classes
-    - Toggle - 1 or more classes
-    - ToggleBetweenClasses - 1 or more classes
+    - * toggleCls - 1 or more classes
+    - replaceCls - 1 or more classes
+    - toggleBtwnCls - 1 or more classes
 Attributes
 EventListeners
-Patterns - even, odd, Number{3, 7}, an+b{2n+3}, range(s){2-5,7,9-11}

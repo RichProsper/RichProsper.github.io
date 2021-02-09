@@ -24,11 +24,32 @@ class RDOM {
     }
 
     /**
+     * Ensure's str is of type String and is not empty
+     * @param {String} str
+     */
+    isValidString = str => {
+        if (typeof str === 'string') {
+            if (str) return true
+            else console.error('Empty string provided...')
+        }
+        else {
+            const strType = typeof str
+            console.error(
+                'Invalid parameter provided:',
+                str,
+                `\nExpecting a string instead a(n) ${strType} was provided.`
+            )
+        }
+
+        return false
+    }
+
+    /**
      * Applies the styles to the elemRef
      * @param {Object} stylesObj
      */
     css = stylesObj => {
-        if (this.isValidElemRef()) {
+        if ( this.isValidElemRef() ) {
             if (typeof stylesObj === 'object') {
                 /**
                  * @param {HTMLElement} elem 
@@ -59,79 +80,57 @@ class RDOM {
     } // func css
 
     /**
-     * Adds 1 or more classes
+     * Adds 1 or more classes only if it/they don't exist
      * @param {String} clsStr - Holds 1 or more classes separated by spaces
      */
     addCls = clsStr => {
-        if (this.isValidElemRef()) {
-            if (typeof clsStr === 'string') {
-                if (clsStr) {
-                    /**
-                     * @param {HTMLElement} elem 
-                     * @param {String} classesStr 
-                     */
-                    const addClass = (elem, classesStr) => {
-                        const classesArr = classesStr.split(' ')
-                        for (let cls of classesArr) elem.classList.add(cls)
-                    }
+        if ( this.isValidElemRef() ) {
+            if ( this.isValidString(clsStr) ) {
+                /**
+                 * @param {HTMLElement} elem 
+                 * @param {String} classesStr 
+                 */
+                const addClass = (elem, classesStr) => {
+                    const classesArr = classesStr.split(' ')
+                    for (let cls of classesArr) elem.classList.add(cls)
+                }
 
-                    if (this.elemRef instanceof HTMLElement) addClass(this.elemRef, clsStr)
-                    else {
-                        for (let i = 0; i < this.elemRef.length; i++) {
-                            addClass(this.elemRef[i], clsStr)
-                        }
+                if (this.elemRef instanceof HTMLElement) addClass(this.elemRef, clsStr)
+                else {
+                    for (let i = 0; i < this.elemRef.length; i++) {
+                        addClass(this.elemRef[i], clsStr)
                     }
                 }
-                else console.error('Empty classes string...')
             }
-            else {
-                const classesType = typeof clsStr
-                console.error(
-                    'Invalid class(es) provided:',
-                    clsStr,
-                    `\nExpecting a string instead a(n) ${classesType} was provided.`
-                )
-            }
-        } // if
+        }
 
         return this
     } // func addCls
 
     /**
-     * Removes 1 or more classes
+     * Removes 1 or more classes only if it/they exist
      * @param {String} clsStr - Holds 1 or more classes separated by spaces
      */
     remCls = clsStr => {
-        if (this.isValidElemRef()) {
-            if (typeof clsStr === 'string') {
-                if (clsStr) {
-                    /**
-                     * @param {HTMLElement} elem 
-                     * @param {String} classesStr 
-                     */
-                    const remClass = (elem, classesStr) => {
-                        const classesArr = classesStr.split(' ')
-                        for (let cls of classesArr) elem.classList.remove(cls)
-                    }
+        if ( this.isValidElemRef() ) {
+            if ( this.isValidString(clsStr) ) {
+                /**
+                 * @param {HTMLElement} elem 
+                 * @param {String} classesStr 
+                 */
+                const remClass = (elem, classesStr) => {
+                    const classesArr = classesStr.split(' ')
+                    for (let cls of classesArr) elem.classList.remove(cls)
+                }
 
-                    if (this.elemRef instanceof HTMLElement) remClass(this.elemRef, clsStr)
-                    else {
-                        for (let i = 0; i < this.elemRef.length; i++) {
-                            remClass(this.elemRef[i], clsStr)
-                        }
+                if (this.elemRef instanceof HTMLElement) remClass(this.elemRef, clsStr)
+                else {
+                    for (let i = 0; i < this.elemRef.length; i++) {
+                        remClass(this.elemRef[i], clsStr)
                     }
                 }
-                else console.error('Empty classes string...')
             }
-            else {
-                const classesType = typeof clsStr
-                console.error(
-                    'Invalid class(es) provided:',
-                    clsStr,
-                    `\nExpecting a string instead a(n) ${classesType} was provided.`
-                )
-            }
-        } // if
+        }
 
         return this
     } // func remCls
@@ -142,103 +141,121 @@ class RDOM {
      * @param {Boolean} verbose - Determines how detailed the results will be
      */
     hasCls = (clsStr, verbose=false) => {
-        if (this.isValidElemRef()) {
-            if (typeof clsStr === 'string') {
-                if (clsStr) {
-                    /**
-                     * @param {HTMLElement} elem 
-                     * @param {String} classesStr 
-                     * @param {Boolean} verboseOutput 
-                     */
-                    const hasClass = (elem, classesStr, verboseOutput) => {
-                        const classesArr = classesStr.split(' ')
-                        if (verboseOutput) {
-                            let output = {
-                                numClasses: classesArr.length,
-                                numFound: 0,
-                                foundList: '',
-                                notFoundList: '',
-                                foundAll: false
-                            }
-
-                            for (let cls of classesArr) {
-                                if (elem.classList.contains(cls)) {
-                                    output.numFound++
-                                    output.foundList += `${cls} `
-                                }
-                                else output.notFoundList += `${cls} `
-                            }
-
-                            output.foundList = output.foundList.trim()
-                            output.notFoundList = output.notFoundList.trim()
-
-                            if (output.numClasses === output.numFound) output.foundAll = true
-
-                            return output
+        if ( this.isValidElemRef() ) {
+            if ( this.isValidString(clsStr) ) {
+                /**
+                 * @param {HTMLElement} elem 
+                 * @param {String} classesStr 
+                 * @param {Boolean} verboseOutput 
+                 */
+                const hasClass = (elem, classesStr, verboseOutput) => {
+                    const classesArr = classesStr.split(' ')
+                    if (verboseOutput) {
+                        let output = {
+                            numClasses: classesArr.length,
+                            numFound: 0,
+                            foundList: '',
+                            notFoundList: '',
+                            foundAll: false
                         }
-                        else {
-                            let classFound = true
 
-                            for (let cls of classesArr) {
-                                if (!elem.classList.contains(cls)) classFound = false
+                        for (let cls of classesArr) {
+                            if (elem.classList.contains(cls)) {
+                                output.numFound++
+                                output.foundList += `${cls} `
                             }
-
-                            return classFound
+                            else output.notFoundList += `${cls} `
                         }
-                    } // func hasClass
 
-                    if (this.elemRef instanceof HTMLElement) return hasClass(this.elemRef, clsStr, verbose)
+                        output.foundList = output.foundList.trim()
+                        output.notFoundList = output.notFoundList.trim()
+
+                        if (output.numClasses === output.numFound) output.foundAll = true
+
+                        return output
+                    }
                     else {
-                        if (verbose) {
-                            let result = {
-                                numElems: this.elemRef.length,
-                                numPassed: 0,
-                                passedList: [],
-                                failedList: [],
-                                didAllPass: false
-                            }
+                        let classFound = true
 
-                            for (let i = 0; i < this.elemRef.length; i++) {
-                                const output = hasClass(this.elemRef[i], clsStr, true)
-                                output.element = this.elemRef[i]
-
-                                if (output.foundAll) {
-                                    result.numPassed++
-                                    result.passedList.push(output)
-                                }
-                                else result.failedList.push(output)
-                            }
-
-                            if (result.numPassed === result.numElems) result.didAllPass = true
-
-                            return result
-                        } // if
-                        else {
-                            let classFoundForAllElements = true
-
-                            for (let i = 0; i < this.elemRef.length; i++) {
-                                if ( !hasClass(this.elemRef[i], clsStr, false) ) classFoundForAllElements = false
-                            }
-
-                            return classFoundForAllElements
+                        for (let cls of classesArr) {
+                            if (!elem.classList.contains(cls)) classFound = false
                         }
-                    } // else
-                }
-                else console.error('Empty classes string...')
-            }
-            else {
-                const classesType = typeof clsStr
-                console.error(
-                    'Invalid class(es) provided:',
-                    clsStr,
-                    `\nExpecting a string instead a(n) ${classesType} was provided.`
-                )
+
+                        return classFound
+                    }
+                } // func hasClass
+
+                if (this.elemRef instanceof HTMLElement) return hasClass(this.elemRef, clsStr, verbose)
+                else {
+                    if (verbose) {
+                        let result = {
+                            numElems: this.elemRef.length,
+                            numPassed: 0,
+                            passedList: [],
+                            failedList: [],
+                            didAllPass: false
+                        }
+
+                        for (let i = 0; i < this.elemRef.length; i++) {
+                            const output = hasClass(this.elemRef[i], clsStr, true)
+                            output.element = this.elemRef[i]
+
+                            if (output.foundAll) {
+                                result.numPassed++
+                                result.passedList.push(output)
+                            }
+                            else result.failedList.push(output)
+                        }
+
+                        if (result.numPassed === result.numElems) result.didAllPass = true
+
+                        return result
+                    } // if
+                    else {
+                        let classFoundForAllElements = true
+
+                        for (let i = 0; i < this.elemRef.length; i++) {
+                            if ( !hasClass(this.elemRef[i], clsStr, false) ) classFoundForAllElements = false
+                        }
+
+                        return classFoundForAllElements
+                    }
+                } // else
             }
         } // if
 
         return false
     } // func hasCls
 
+    /**
+     * Toggles between adding/removing classes
+     * @param {String} clsStr - Holds 1 or more classes separated by spaces
+     * @param {Boolean} force - Forces the class to be added or removed, regardless of whether or not it already existed.
+     */
+    toggleCls = (clsStr, force) => {
+        if ( this.isValidElemRef() ) {
+            if ( this.isValidString(clsStr) ) {
+                /**
+                 * @param {HTMLElement} elem 
+                 * @param {String} classesStr 
+                 * @param {Boolean} theForce 
+                 */
+                const toggleClass = (elem, classesStr, theForce) => {
+                    const classesArr = classesStr.split(' ')
+                    for (let cls of classesArr) elem.classList.toggle(cls, theForce)
+                }
+
+                if (this.elemRef instanceof HTMLElement) toggleClass(this.elemRef, clsStr, force)
+                else {
+                    for (let i = 0; i < this.elemRef.length; i++) {
+                        toggleClass(this.elemRef[i], clsStr, force)
+                    }
+                }
+            }
+        }
+
+        return this
+    }
 } // class RDOM
 
 /**

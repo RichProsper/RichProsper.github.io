@@ -11,5 +11,3 @@ R('#id').css({
     transform: 'skewY(-3deg)',
     transformOrigin: 'top left'
 }).addCls('a ab abc def g')
-
-console.log( R('div').hasCls('a a2', true) )

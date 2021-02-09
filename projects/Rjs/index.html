@@ -6,12 +6,21 @@
     <script defer src="R-1.0.0.js"></script>
     <script defer src="script.js"></script>
     <title>R</title>
+    <style>
+        .xxx {
+            background-color: #ddf;
+        }
+        .pad {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <div id="id">id</div>
     <div class="a ab a1">a1</div>
     <div class="a ab a2 yeah">a2</div>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus repudiandae suscipit quas!</p>
-    <span>Lorem ipsum dolor sit.</span>
+    <span id="span">Lorem ipsum dolor sit.</span>
+    <button onclick="R('div').toggleCls('xxx pad')">Click Me</button>
 </body>
 </html>
