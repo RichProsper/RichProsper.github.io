@@ -6,7 +6,7 @@ Classes
     - * remCls - 1 or more classes
     - * hasCls - 1 or more classes
     - * toggleCls - 1 or more classes
-    - replaceCls - 1 or more classes
+    - * replaceCls - 1 or more classes
     - toggleBtwnCls - 1 or more classes
 Attributes
 EventListeners

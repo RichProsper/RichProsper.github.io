@@ -1,6 +1,6 @@
 class RDOM {
     /**
-     * @param {HTMLElement | NodeList} elemRef
+     * @param {HTMLElement | HTMLCollection | NodeList} elemRef
      */
     constructor(elemRef) {
         this.elemRef = elemRef
@@ -230,7 +230,8 @@ class RDOM {
     /**
      * Toggles between adding/removing classes
      * @param {String} clsStr - Holds 1 or more classes separated by spaces
-     * @param {Boolean} force - Forces the class to be added or removed, regardless of whether or not it already existed.
+     * @param {Boolean} force - Forces the class to be added or removed,
+     *                          regardless of whether or not it already existed.
      */
     toggleCls = (clsStr, force) => {
         if ( this.isValidElemRef() ) {
@@ -249,6 +250,47 @@ class RDOM {
                 else {
                     for (let i = 0; i < this.elemRef.length; i++) {
                         toggleClass(this.elemRef[i], clsStr, force)
+                    }
+                }
+            }
+        }
+
+        return this
+    } // func toggleCls
+
+    /**
+     * Replaces 1 or more classes with 1 or more other classes,
+     * only if the class(es) to be replaced exists
+     * @param {String} aClsStr - Holds the class(es) to be replaced
+     * @param {String} bClsStr - Holds the replacing class(es)
+     */
+    replaceCls = (aClsStr, bClsStr) => {
+        if ( this.isValidElemRef() ) {
+            if ( this.isValidString(aClsStr) && this.isValidString(bClsStr) ) {
+                /**
+                 * @param {HTMLElement} elem 
+                 * @param {String} aClassesStr 
+                 * @param {String} bClassesStr 
+                 */
+                const replaceClass = (elem, aClassesStr, bClassesStr) => {
+                    const aClassesArr = aClassesStr.split(' ')
+                    const bClassesArr = bClassesStr.split(' ')
+                    let foundAll = true
+
+                    for (let aCls of aClassesArr) {
+                        if ( !elem.classList.contains(aCls) ) foundAll = false
+                    }
+
+                    if (foundAll) {
+                        for (let aCls of aClassesArr) elem.classList.remove(aCls)
+                        for (let bCls of bClassesArr) elem.classList.add(bCls)
+                    }
+                }
+
+                if (this.elemRef instanceof HTMLElement) replaceClass(this.elemRef, aClsStr, bClsStr)
+                else {
+                    for (let i = 0; i < this.elemRef.length; i++) {
+                        replaceClass(this.elemRef[i], aClsStr, bClsStr)
                     }
                 }
             }
