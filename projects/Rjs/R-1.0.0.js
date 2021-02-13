@@ -46,7 +46,7 @@ class RDOM {
 
     /**
      * Applies the styles to the elemRef
-     * @param {Object} stylesObj
+     * @param {Object} stylesObj - An object containing CSS styles
      */
     css = stylesObj => {
         if ( this.isValidElemRef() ) {
@@ -173,7 +173,7 @@ class RDOM {
                         if (output.numClasses === output.numFound) output.foundAll = true
 
                         return output
-                    }
+                    } // if
                     else {
                         let classFound = true
 
@@ -221,7 +221,7 @@ class RDOM {
                         return classFoundForAllElements
                     }
                 } // else
-            }
+            } // if
         } // if
 
         return false
@@ -230,7 +230,7 @@ class RDOM {
     /**
      * Toggles between adding/removing classes
      * @param {String} clsStr - Holds 1 or more classes separated by spaces
-     * @param {Boolean} force - Forces the class to be added or removed,
+     * @param {Boolean} force - Forces the class(es) to be added or removed,
      *                          regardless of whether or not it already existed.
      */
     toggleCls = (clsStr, force) => {
@@ -293,11 +293,70 @@ class RDOM {
                         replaceClass(this.elemRef[i], aClsStr, bClsStr)
                     }
                 }
-            }
-        }
+            } // if
+        } // if
 
         return this
-    }
+    } // func replaceCls
+
+    /**
+     * Toggle 1 or more classes with 1 or more other classes
+     * @param {String} aClsStr - Holds the first class(es)
+     * @param {String} bClsStr - Holds the second class(es)
+     * @param {Boolean} force - Forces the first class(es) to be added or the second class(es) to be added
+     */
+    toggleBtwnCls = (aClsStr, bClsStr, force) => {
+        if ( this.isValidElemRef() ) {
+            if ( this.isValidString(aClsStr) && this.isValidString(bClsStr) ) {
+                /**
+                 * @param {HTMLElement} elem 
+                 * @param {String} aClassesStr 
+                 * @param {String} bClassesStr 
+                 * @param {Boolean} theForce 
+                 */
+                const toggleBtwnClass = (elem, aClassesStr, bClassesStr, theForce) => {
+                    const aClassesArr = aClassesStr.split(' ')
+                    const bClassesArr = bClassesStr.split(' ')
+
+                    if (typeof theForce === 'undefined') {
+                        let foundAll = true
+
+                        for (let aCls of aClassesArr) {
+                            if ( !elem.classList.contains(aCls) ) foundAll = false
+                        }
+
+                        if (foundAll) {
+                            for (let aCls of aClassesArr) elem.classList.remove(aCls)
+                            for (let bCls of bClassesArr) elem.classList.add(bCls)
+                        }
+                        else {
+                            for (let bCls of bClassesArr) elem.classList.remove(bCls)
+                            for (let aCls of aClassesArr) elem.classList.add(aCls)
+                        }
+                    }
+                    else {
+                        if (theForce) { // Add the first class(es)
+                            for (let bCls of bClassesArr) elem.classList.remove(bCls)
+                            for (let aCls of aClassesArr) elem.classList.add(aCls)
+                        }
+                        else { // Add the second class(es)
+                            for (let aCls of aClassesArr) elem.classList.remove(aCls)
+                            for (let bCls of bClassesArr) elem.classList.add(bCls)
+                        }
+                    }
+                } // func toggleBtwnClass
+
+                if (this.elemRef instanceof HTMLElement) toggleBtwnClass(this.elemRef, aClsStr, bClsStr, force)
+                else {
+                    for (let i = 0; i < this.elemRef.length; i++) {
+                        toggleBtwnClass(this.elemRef[i], aClsStr, bClsStr, force)
+                    }
+                }
+            } // if
+        } // if
+
+        return this
+    } // func toggleBtwnCls
 } // class RDOM
 
 /**
