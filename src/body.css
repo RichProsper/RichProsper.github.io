@@ -2,9 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif, Arial, Helvetica;
 }
 html, body {
     min-height: 1000px;
     scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif, Arial, Helvetica;
 }

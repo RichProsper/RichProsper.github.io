@@ -7,6 +7,9 @@ Classes
     - * hasCls - 1 or more classes
     - * toggleCls - 1 or more classes
     - * replaceCls - 1 or more classes
-    - toggleBtwnCls - 1 or more classes
+    - * toggleBtwnCls - 1 or more classes
 Attributes
+    - attr - Gets or sets attribute(s)
+    - remAttr - Removes attribute(s)
+    - hasAttr - Finds attribute(s)
 EventListeners
