@@ -22,14 +22,16 @@
     <link rel="stylesheet" href="src/portfolio.css">
     <link rel="stylesheet" href="src/contact.css">
     <link rel="stylesheet" href="src/scrollbar.css">
+    <link rel="stylesheet" href="src/to-top.css">
     <!-- JS -->
     <script defer src="src/header.js"></script>
     <script defer src="src/portfolio.js"></script>
+    <script defer src="src/to-top.js"></script>
 </head>
 <body>    
     <!-- Header -->
     <header id="header">
-        <span class="logo">RP</span>
+        <span class="logo"></span>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -133,5 +135,29 @@
             document.getElementById('copy-yr').innerHTML = new Date().getFullYear()
         </script>
     </section>
+
+    <!-- To Top Button -->
+    <div class="to-top" title="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Background Music -->
+    <div class="display-none">
+        <audio id="bg-music" src="media/background-music.mp3"></audio>
+        <script>
+           (() => {
+                const playMusic = () => {
+                    const audio = document.getElementById('bg-music')
+                    audio.volume = 0.01
+                    audio.play()
+                    window.removeEventListener('mousedown', playMusic)
+                    window.removeEventListener('touchstart', playMusic)
+                }
+
+                window.addEventListener('mousedown', playMusic)
+                window.addEventListener('touchstart', playMusic)
+           })()
+        </script>
+    </div>
 </body>
 </html>
