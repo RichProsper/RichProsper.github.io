@@ -149,6 +149,7 @@
                 const playMusic = () => {
                     const audio = document.getElementById('bg-music')
                     audio.volume = 0.01
+                    audio.loop = true
                     audio.play()
                     window.removeEventListener('mousedown', playMusic)
                     window.removeEventListener('touchstart', playMusic)
