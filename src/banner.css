@@ -24,20 +24,20 @@
     position: absolute;
     color: #FFF;
     text-align: center;
-    padding: 0px 50px;
+    padding: 0 5rem;
 }
 .banner h2 .move-in-left {
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-    animation: MoveInLeft 0.8s ease-out 0.2s backwards;
-    font-size: 50px;
-    letter-spacing: 5px;
-    word-spacing: 10px;
+    animation: MoveInLeft .8s ease-out .2s backwards;
+    font-size: 5rem;
+    letter-spacing: .5rem;
+    word-spacing: 1rem;
 }
 .banner h2 .move-in-right {
-    animation: MoveInRight 0.8s ease-out 0.2s backwards;
-    font-size: 40px;
-    letter-spacing: 4px;
-    word-spacing: 8px;
+    animation: MoveInRight .8s ease-out .2s backwards;
+    font-size: 4rem;
+    letter-spacing: .4rem;
+    word-spacing: .8rem;
 }
 .banner h2 div span {
     color: #39BE89;
@@ -50,16 +50,16 @@
         filter: unset;
     }
     .banner h2 {
-        padding: 0px 20px;
+        padding: 0 2rem;
     }
     .banner h2 .move-in-left {
-        font-size: 70px;
-        letter-spacing: 7px;
-        word-spacing: 14px;
+        font-size: 7rem;
+        letter-spacing: .7rem;
+        word-spacing: 1.4rem;
     }
     .banner h2 .move-in-right {
-        font-size: 56px;
-        letter-spacing: 5.6px;
-        word-spacing: 11.2px;
+        font-size: 5.6rem;
+        letter-spacing: .56rem;
+        word-spacing: 1.12rem;
     }
 }

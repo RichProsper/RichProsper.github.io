@@ -7,9 +7,14 @@
 }
 
 html {
+    /* Renders font-size as 62.5% of user's selected browser font size.
+       If left unset the default size is 16px thus, 16 * 0.625 = 10px
+       Thus 1rem = 10px, 1px = 0.1rem */
+    font-size: 62.5%;
     scroll-behavior: smooth;
 }
 body {
+    font-size: 1.6rem;
     font-family: 'Poppins', sans-serif, Arial, Helvetica;
     box-sizing: border-box;
     overflow-x: hidden;

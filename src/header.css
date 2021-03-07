@@ -7,34 +7,34 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 5px 50px;
-    box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.2);
+    padding: .5rem 5rem;
+    box-shadow: .4rem 0 .4rem rgba(0,0,0,.2);
     z-index: 1;
-    transition: 0.4s ease-in;
+    transition: .4s ease-in;
 }
 header .logo {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 5rem;
+    height: 5rem;
     background-image: url(../images/logo/apple-touch-icon.png);
     background-size: cover;
     background-position: center;
     filter: grayscale(100%);
-    transition: 0.4s ease-in;
+    transition: .4s ease-in;
 }
 header ul {
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    top: 58px;
+    top: 5.8rem;
     left: 0;
     width: 100%;
     height: 100vh;
     text-align: center;
     overflow: auto;
     background-color: #111;
-    border-top: 2px solid transparent;
-    transition: 0.2s;
+    border-top: .2rem solid transparent;
+    transition: .2s;
 }
 header ul li {
     position: relative;
@@ -44,39 +44,39 @@ header ul li a {
     position: relative;
     text-decoration: none;
     color: #ccc;
-    letter-spacing: 2px;
-    transition: 0.4s;
+    letter-spacing: .2rem;
+    transition: .4s;
 }
 header.active ul {
     visibility: visible;
     opacity: 1;
-    padding-top: 20px;
-    border-top: 2px solid #aaa;
+    padding-top: 2rem;
+    border-top: .2rem solid #aaa;
 }
 header.active ul li a {
     display: inline-block;
     width: 100%;
-    padding: 10px 0px;
-    font-size: 20px;
+    padding: 1rem 0;
+    font-size: 2rem;
 }
 header.active ul li a:hover {
     color: #fff;
-    letter-spacing: 4px;
+    letter-spacing: .4rem;
     background-color: #222;
 }
 
 /* Apply styles if screen width is 993px or more */
 @media only screen and (min-width: 993px) {
     header {
-        background-color: rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-        padding: 20px 100px;
+        background-color: rgba(0,0,0,.1);
+        backdrop-filter: blur(1rem);
+        padding: 2rem 10rem;
         box-shadow: unset;
     }
     header.sticky {
-        padding: 5px 100px;
+        padding: .5rem 10rem;
         background-color: #fff;
-        box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: .4rem 0 .4rem rgba(0,0,0,.2);
     }
     header .logo {
         filter: unset;
@@ -100,31 +100,31 @@ header.active ul li a:hover {
         background-color: unset;
     }
     header ul li a {
-        margin: 0px 15px;
+        margin: 0 1.5rem;
         color: #fff;
         font-weight: 300;
-        padding-bottom: 10px;
-        border-bottom: 1px solid transparent;
-        transition: color 0.6s, border-color 0.2s;
+        padding-bottom: 1rem;
+        border-bottom: .1rem solid transparent;
+        transition: color .6s, border-color .2s;
     }
     header ul li a:hover {
         border-color: #fff;
     }
     header ul li:first-child a {
         margin: 0;
-        margin-right: 15px;
+        margin-right: 1.5rem;
     }
     header ul li:last-child a {
         margin: 0;
-        margin-left: 15px;
+        margin-left: 1.5rem;
     }
     header.sticky ul li a {
         color: #000;
         font-weight: bold;
     }
     header.sticky ul li a {
-        padding-bottom: 5px;
-        border-bottom: 2px solid transparent;
+        padding-bottom: .5rem;
+        border-bottom: .2rem solid transparent;
     }
     header.sticky ul li a:hover {
         border-color: #000;

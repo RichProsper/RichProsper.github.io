@@ -1,6 +1,6 @@
 .about {
     background-color: #f2f2ff;
-    padding: 20px 50px;
+    padding: 2rem 5rem;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -9,38 +9,36 @@
 .about .content {
     position: relative;
     width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
     text-align: center;
 }
-.max-width-800px {
-    max-width: 800px;
-    margin: 0 auto;
-}
 .about .content h3 {
-    font-size: 36px;
+    font-size: 3.6rem;
     font-weight: 200;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    word-spacing: 4px;
-    margin-bottom: 10px;
+    letter-spacing: .2rem;
+    word-spacing: .4rem;
+    margin-bottom: 1rem;
 }
 .about .content p {
     position: relative;
     text-align: justify;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 300;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    letter-spacing: .1rem;
 }
 .about .content h4 {
-    letter-spacing: 1px;
+    letter-spacing: .1rem;
 }
 
 /* Apply styles if screen width is 993px or more */
 @media only screen and (min-width: 993px) {
     .about {
-        padding: 20px 100px;
+        padding: 2rem 10rem;
     }
     .about .content h3 {
-        font-size: 40px;
+        font-size: 4rem;
     }
 }

@@ -24,23 +24,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
+    background-color: rgba(0,255,255,.1);
+    backdrop-filter: blur(1.5rem);
 }
 .portfolio .container .content {
     text-align: center;
 }
 .portfolio .container h3 {
-    font-size: 36px;
+    font-size: 3.6rem;
     color: #fff;
-    letter-spacing: 2px;
-    padding: 10px;
+    letter-spacing: .2rem;
+    padding: 1rem;
 }
 .portfolio .container #countdown {
-    font-size: 28px;
+    font-size: 2.8rem;
     color: #fff;
-    letter-spacing: 2px;
-    padding: 10px;
+    letter-spacing: .2rem;
+    padding: 1rem;
 }
 
 /* Apply styles if screen width is 993px or more */
@@ -49,9 +49,9 @@
         filter: unset;
     }
     .portfolio .container h3 {
-        font-size: 40px;
+        font-size: 4rem;
     }
     .portfolio .container #countdown {
-        font-size: 30px;
+        font-size: 3rem;
     }
 }
