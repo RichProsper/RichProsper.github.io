@@ -23,14 +23,23 @@
 .banner h2 {
     position: absolute;
     color: #FFF;
-    font-size: 50px;
     text-align: center;
-    letter-spacing: 2px;
-    word-spacing: 4px;
-    line-height: 1.5em;
     padding: 0px 50px;
 }
-.banner h2 span {
+.banner h2 .move-in-left {
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: MoveInLeft 0.8s ease-out 0.2s backwards;
+    font-size: 50px;
+    letter-spacing: 5px;
+    word-spacing: 10px;
+}
+.banner h2 .move-in-right {
+    animation: MoveInRight 0.8s ease-out 0.2s backwards;
+    font-size: 40px;
+    letter-spacing: 4px;
+    word-spacing: 8px;
+}
+.banner h2 div span {
     color: #39BE89;
 }
 
@@ -41,7 +50,16 @@
         filter: unset;
     }
     .banner h2 {
-        font-size: 70px;
         padding: 0px 20px;
+    }
+    .banner h2 .move-in-left {
+        font-size: 70px;
+        letter-spacing: 7px;
+        word-spacing: 14px;
+    }
+    .banner h2 .move-in-right {
+        font-size: 56px;
+        letter-spacing: 5.6px;
+        word-spacing: 11.2px;
     }
 }
