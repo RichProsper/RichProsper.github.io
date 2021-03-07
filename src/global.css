@@ -5,6 +5,11 @@
     padding: 0;
     box-sizing: inherit;
 }
+*::before,
+*::after {
+    content: '';
+    position: absolute;
+}
 html {
     scroll-behavior: smooth;
 }
