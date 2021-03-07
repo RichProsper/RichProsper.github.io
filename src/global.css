@@ -10,6 +10,7 @@
     content: '';
     position: absolute;
 }
+
 html {
     scroll-behavior: smooth;
 }
