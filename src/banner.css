@@ -1,10 +1,11 @@
 .banner {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 99vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f2f2ff;
 }
 .banner .banner-img {
     position: absolute;
@@ -17,6 +18,7 @@
     background-attachment: fixed;
     background-position: center;
     filter: brightness(150%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 90%, 100% 0%);
 }
 .banner h2 {
     position: absolute;
