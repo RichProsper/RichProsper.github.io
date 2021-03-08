@@ -1,4 +1,4 @@
-(() => {
+export default () => {
     const countDownDate = new Date("Mar 31, 2021 23:59:59").getTime()
     const countDownElem = document.getElementById("countdown")
 
@@ -25,4 +25,4 @@
             countDownElem.innerHTML = "EXPIRED"
         }
     }, 1000)
-})()
+}

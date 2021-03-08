@@ -1,4 +1,4 @@
-(() => {
+export default () => {
     const toTop = document.getElementsByClassName('to-top')[0]
 
     window.addEventListener('scroll', () => {
@@ -10,4 +10,4 @@
     toTop.addEventListener('click', () => {
         window.scroll(0, 0)
     })
-})()
+}

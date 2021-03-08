@@ -1,4 +1,4 @@
-(() => {
+export default () => {
     const header = document.getElementById('header')
     const menuClose = document.getElementsByClassName('menu-close')[0]
 
@@ -29,4 +29,4 @@
         lis[i].children[0].addEventListener('click', toggle)
     }
     menuClose.addEventListener('click', toggle)
-})()
+}

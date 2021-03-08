@@ -16,7 +16,7 @@ header .logo {
     position: relative;
     width: 5rem;
     height: 5rem;
-    background-image: url(../images/logo/apple-touch-icon.png);
+    background-image: url(../../images/logo/apple-touch-icon.png);
     background-size: cover;
     background-position: center;
     filter: grayscale(100%);
