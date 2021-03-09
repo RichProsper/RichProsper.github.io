@@ -1,0 +1,28 @@
+{
+  "name": "richprosper",
+  "version": "1.0.0",
+  "description": "Portfolio Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichProsper/RichProsper.github.io.git"
+  },
+  "keywords": [
+    "Web",
+    "Development",
+    "Full",
+    "Stack"
+  ],
+  "author": "Rich Prosper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RichProsper/RichProsper.github.io/issues"
+  },
+  "homepage": "https://github.com/RichProsper/RichProsper.github.io#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  }
+}

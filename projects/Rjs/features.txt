@@ -13,3 +13,9 @@ Attributes
     - remAttr - Removes attribute(s)
     - hasAttr - Finds attribute(s)
 EventListeners
+
+
+Parse CSS into rules
+    - Add, Delete, Update rules
+
+Select pseudo-elements or pseudo-classes of elements
