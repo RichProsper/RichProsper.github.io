@@ -6,7 +6,7 @@
 /* gloabal.css: Contains universal, html, body & gloabl styles */
 @import url(../src/abstracts/global.css);
 @import url(../src/abstracts/scrollbar.css);
-@import url(../src/abstracts/animations.css);
+@import url(../src/abstracts/animations.min.css);
 
 /* ** Components ** */
 @import url(../src/components/menu-close-icon.css);
