@@ -1,0 +1,42 @@
+.about {
+    background-color: $white-primary;
+    padding: 2rem 5rem;
+    min-height: 100vh;
+    @extend %flex_center;
+
+    & .content {
+        width: 100%;
+        max-width: 80rem;
+        margin: 0 auto;
+        text-align: center;
+
+        & h3 {
+            font-size: 3.6rem;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: .2rem;
+            word-spacing: .4rem;
+            margin-bottom: 1rem;
+        }
+        & p {
+            text-align: justify;
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: .1rem;
+        }
+        & h4 {
+            letter-spacing: .1rem;
+        }
+    }
+
+    /* Apply styles if screen width is 993px or more */
+    @media only screen and (min-width: 993px) {
+        & {
+            padding: 2rem 10rem;
+        }
+        & .content h3 {
+            font-size: 4rem;
+        }
+    }
+}

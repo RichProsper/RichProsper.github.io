@@ -1,0 +1,10 @@
+%flex_space-around {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+%flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

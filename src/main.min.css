@@ -1,0 +1,338 @@
+@import url(../vendors/Poppins/Poppins.min.css);
+@import url(../vendors/all.min.css);
+@import url(components/menu-close-icon.css);
+@import url(components/header.css);
+@import url(components/banner.css);
+@import url(components/portfolio.css);
+@import url(components/to-top.css);
+.dev-chips, .contact .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.dev-chips .dev-chip .icon, .about, .contact .icons .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* gloabal: Contains universal, html, body & gloabl styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  /* Renders font-size as 62.5% of user's selected browser font size.
+       If left unset the default size is 16px thus, 16 * 0.625 = 10px
+       Thus 1rem = 10px, 1px = 0.1rem */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Poppins', sans-serif, Arial, Helvetica;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.display-none {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: .8rem;
+  height: .8rem;
+  /* Apply styles if screen width is 993px or more */
+}
+
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888888;
+  border-radius: .8rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+@media only screen and (min-width: 993px) {
+  ::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+  }
+}
+
+@-webkit-keyframes MoveInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-10rem);
+            transform: translateX(-10rem);
+  }
+  80% {
+    opacity: 0.5;
+    -webkit-transform: translateX(2rem);
+            transform: translateX(2rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes MoveInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-10rem);
+            transform: translateX(-10rem);
+  }
+  80% {
+    opacity: 0.5;
+    -webkit-transform: translateX(2rem);
+            transform: translateX(2rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes MoveInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(10rem);
+            transform: translateX(10rem);
+  }
+  80% {
+    opacity: 0.5;
+    -webkit-transform: translateX(-2rem);
+            transform: translateX(-2rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes MoveInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(10rem);
+            transform: translateX(10rem);
+  }
+  80% {
+    opacity: 0.5;
+    -webkit-transform: translateX(-2rem);
+            transform: translateX(-2rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.dev-chips {
+  width: 100%;
+}
+
+.dev-chips .dev-chip {
+  height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 2rem;
+  padding: 0.2rem 2rem 0.2rem 0.2rem;
+  margin: 1rem;
+  background-color: #151515;
+}
+
+.dev-chips .dev-chip .icon {
+  height: 3.6rem;
+  width: 3.6rem;
+  background-color: #ddd;
+  font-size: 2.4rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
+.dev-chips .dev-chip .icon .fa-html5 {
+  color: #fd7e14;
+}
+
+.dev-chips .dev-chip .icon .fa-css3-alt {
+  color: #2196f3;
+}
+
+.dev-chips .dev-chip .icon .fa-js-square {
+  color: #ffab00;
+}
+
+.dev-chips .dev-chip .icon .fa-php {
+  color: #673ab7;
+}
+
+.dev-chips .dev-chip .icon .fa-python {
+  color: #0d47a1;
+}
+
+.dev-chips .dev-chip .icon .fa-database {
+  color: #f50057;
+}
+
+.dev-chips .dev-chip .icon .fa-react {
+  color: #4c6ef5;
+}
+
+.dev-chips .dev-chip .text {
+  font-size: 1.6rem;
+  color: #ddd;
+}
+
+.about {
+  background-color: #f7f7f7;
+  padding: 2rem 5rem;
+  min-height: 100vh;
+  /* Apply styles if screen width is 993px or more */
+}
+
+.about .content {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about .content h3 {
+  font-size: 3.6rem;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+  word-spacing: .4rem;
+  margin-bottom: 1rem;
+}
+
+.about .content p {
+  text-align: justify;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  letter-spacing: .1rem;
+}
+
+.about .content h4 {
+  letter-spacing: .1rem;
+}
+
+@media only screen and (min-width: 993px) {
+  .about {
+    padding: 2rem 10rem;
+  }
+  .about .content h3 {
+    font-size: 4rem;
+  }
+}
+
+.contact {
+  position: relative;
+  width: 100%;
+  min-height: 30vh;
+  padding: 5rem;
+  background-color: #121212;
+}
+
+.contact h3 {
+  text-align: center;
+  font-size: 3.6rem;
+  font-weight: 200;
+  color: #ddd;
+  letter-spacing: .2rem;
+  word-spacing: .4rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  text-transform: capitalize;
+}
+
+.contact .icons {
+  position: relative;
+  width: 100%;
+}
+
+.contact .icons .icon {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  border: .3rem solid #060606;
+  border-radius: 50%;
+  font-size: 4rem;
+  color: #7f7f7f;
+  text-decoration: none;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.contact .icons .icon.email:hover {
+  -webkit-transform: scale(1.33, 1.33);
+          transform: scale(1.33, 1.33);
+  color: #fff;
+  border-color: #fff;
+  -webkit-box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.5), 0 0 1rem rgba(255, 255, 255, 0.5), 0 0 1.5rem rgba(255, 255, 255, 0.5), inset 0 0 1rem white;
+          box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.5), 0 0 1rem rgba(255, 255, 255, 0.5), 0 0 1.5rem rgba(255, 255, 255, 0.5), inset 0 0 1rem white;
+  text-shadow: 0 0 0.1rem white, 0 0 0.1rem white;
+}
+
+.contact .icons .icon.in:hover {
+  -webkit-transform: scale(1.33, 1.33);
+          transform: scale(1.33, 1.33);
+  color: #0a66c2;
+  border-color: #0a66c2;
+  -webkit-box-shadow: 0 0 0.5rem rgba(10, 102, 194, 0.5), 0 0 1rem rgba(10, 102, 194, 0.5), 0 0 1.5rem rgba(10, 102, 194, 0.5), inset 0 0 1rem #0a66c2;
+          box-shadow: 0 0 0.5rem rgba(10, 102, 194, 0.5), 0 0 1rem rgba(10, 102, 194, 0.5), 0 0 1.5rem rgba(10, 102, 194, 0.5), inset 0 0 1rem #0a66c2;
+  text-shadow: 0 0 0.1rem #0a66c2, 0 0 0.1rem #0a66c2;
+}
+
+.contact .copyright {
+  width: 100%;
+  padding-top: 3rem;
+  text-align: center;
+  color: #ddd;
+  letter-spacing: .1rem;
+  font-size: 1.4rem;
+}
+
+/* Apply styles if screen width is 993px or more */
+@media only screen and (min-width: 993px) {
+  .contact h3 {
+    font-size: 4rem;
+  }
+}

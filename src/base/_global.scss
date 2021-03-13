@@ -14,7 +14,7 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    font-size: 1.6rem;
+    font-size: $font-size-default;
     font-family: 'Poppins', sans-serif, Arial, Helvetica;
     box-sizing: border-box;
     overflow-x: hidden;

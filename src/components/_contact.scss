@@ -9,7 +9,7 @@
     text-align: center;
     font-size: 3.6rem;
     font-weight: 200;
-    color: #ddd;
+    color: $grey-primary;
     letter-spacing: .2rem;
     word-spacing: .4rem;
     padding: 1rem;
@@ -19,17 +19,13 @@
 .contact .icons {
     position: relative;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    @extend %flex_space-around;
 }
 .contact .icons .icon {
     position: relative;
     width: 8rem;
     height: 8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend %flex_center;
     border: .3rem solid #060606;
     border-radius: 50%;
     font-size: 4rem;
@@ -63,7 +59,7 @@
     width: 100%;
     padding-top: 3rem;
     text-align: center;
-    color: #ddd;
+    color: $grey-primary;
     letter-spacing: .1rem;
     font-size: 1.4rem;
 }
