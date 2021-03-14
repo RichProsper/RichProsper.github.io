@@ -1,0 +1,8 @@
+@mixin iconBoxTextShadows($color) {
+    box-shadow: 0 0 ($icon-height * .0625) rgba($color,.5),
+        0 0 ($icon-height / 8) rgba($color,.5),
+        0 0 ($icon-height * .1875) rgba($color,.5),
+        inset 0 0 ($icon-height / 8) rgba($color,1);
+    text-shadow: 0 0 ($icon-height / 80) rgba($color,1),
+        0 0 ($icon-height / 80) rgba($color,1);
+}

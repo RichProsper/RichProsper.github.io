@@ -1,9 +1,18 @@
 // ** TYPOGRAPHY ** //
 $font-size-default: 1.6rem;
+$font-size-banner: 7rem;
 
 // ** COLORS ** //
 $grey-primary: #ddd;
 $white-primary: #f7f7f7;
+$green-primary: #39be89;
+$green-secondary: #39be5a;
+$icon-email-white: #fff;
+$icon-in-blue: #0a66c2;
 
 // ** DIMENSTIONS ** //
 $chip-height: 4rem;
+$icon-height: 8rem;
+
+// ** ANIMATIONS ** //
+$move-in: .8s ease-out .2s backwards;

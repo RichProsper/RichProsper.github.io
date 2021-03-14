@@ -1,0 +1,60 @@
+.banner {
+    position: relative;
+    width: 100%;
+    min-height: 99vh;
+    @extend %flex_center;
+    background-color: $white-primary;
+
+    & .banner-img {
+        @extend %cover-parent;
+        background-image: url(../../images/background.jpg);
+        @extend %fullscreen-bg-image;
+        clip-path: polygon(0% 0%, 0% 100%, 100% 90%, 100% 0%);
+    }
+
+    & h2 {
+        position: absolute;
+        color: #FFF;
+        text-align: center;
+        padding: 0 5rem;
+
+        & .move-in-left {
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            animation: MoveInLeft $move-in;
+            font-size: $font-size-banner * .714;
+            letter-spacing: $font-size-banner * .714 / 10;
+            word-spacing: $font-size-banner * .714 / 5;
+        }
+        & .move-in-right {
+            animation: MoveInRight $move-in;
+            font-size: $font-size-banner * .714 * .8;
+            letter-spacing: $font-size-banner * .714 * .8 / 10;
+            word-spacing: $font-size-banner * .714 * .8 / 5;
+        }
+        & div span {
+            color: $green-primary;
+        }
+    }
+
+    /* Apply styles if screen width is 993px or more */
+    @media only screen and (min-width: 993px) {
+        & .banner-img {
+            background-position: unset;
+            filter: unset;
+        }
+        & h2 {
+            padding: 0 2rem;
+
+            & .move-in-left {
+                font-size: $font-size-banner;
+                letter-spacing: $font-size-banner / 10;
+                word-spacing: $font-size-banner / 5;
+            }
+            & .move-in-right {
+                font-size: $font-size-banner * .8;
+                letter-spacing: $font-size-banner * .8 / 10;
+                word-spacing: $font-size-banner * .8 / 5;
+            }
+        }
+    }
+}

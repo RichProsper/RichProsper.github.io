@@ -12,11 +12,11 @@
         background-color: #151515;
 
         & .icon {
-            height: $chip-height * 0.9;
-            width: $chip-height * 0.9;
+            height: $chip-height * .9;
+            width: $chip-height * .9;
             @extend %flex_center;
             background-color: $grey-primary;
-            font-size: $chip-height * 0.6;
+            font-size: $chip-height * .6;
             border-radius: 50%;
             margin-right: $chip-height / 4;
             overflow: hidden;
@@ -44,7 +44,7 @@
             }
         }
         & .text {
-            font-size: $chip-height * 0.4;
+            font-size: $chip-height * .4;
             color: $grey-primary;
         }
     }
