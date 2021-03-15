@@ -14,11 +14,11 @@
 @import "base/animations";
 
 // ** COMPONENTS ** //
-@import url(components/menu-close-icon.css);
+@import "components/menu-close-icon";
 @import "components/header";
 @import "components/banner";
 @import "components/about_dev-chips";
 @import "components/about";
-@import url(components/portfolio.css);
+@import "components/portfolio";
 @import "components/contact";
-@import url(components/to-top.css);
+@import "components/to-top";

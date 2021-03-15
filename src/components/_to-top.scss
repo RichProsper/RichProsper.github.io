@@ -1,0 +1,32 @@
+.to-top {
+    position: fixed;
+    bottom: $to-top-height * .6;
+    right: $to-top-height * .6;
+    @extend %flex_center;
+    width: $to-top-height;
+    height: $to-top-height;
+    box-shadow: 0 .3rem .5rem -.1rem rgba($black-primary,.2),
+        0 .6rem 1rem 0 rgba($black-primary,.14),
+        0 .1rem 1.8rem 0 rgba($black-primary,.12);
+    background-color: rgba($pink-primary,.8);
+    border-radius: 50%;
+    color: #ccc;
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+    pointer-events: none;
+    cursor: pointer;
+    z-index: 1;
+    transition: .25s ease-out;
+
+    &:hover {
+        background-color: $pink-primary;
+        color: $white-primary;
+    }
+    &.sticky {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+        pointer-events: unset;
+    }
+}

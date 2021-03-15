@@ -91,7 +91,9 @@ header {
         }
         & ul {
             position: relative;
-            @extend %flex_center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             visibility: unset;
             opacity: unset;
             top: unset;

@@ -1,0 +1,48 @@
+.portfolio {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    & .banner-img {
+        @extend %cover-parent;
+        background-image: url(../../images/background.jpg);
+        @extend %fullscreen-bg-image;
+    }
+    & .container {
+        @extend %cover-parent;
+        @extend %flex_center;
+        background-color: rgba(0,255,255,.1);
+        backdrop-filter: blur(1.5rem);
+
+        & .content {
+            text-align: center;
+        }
+        & h3 {
+            font-size: 3.6rem;
+            color: $white-primary;
+            letter-spacing: .3rem;
+            padding: 1rem;
+        }
+        & #countdown {
+            font-size: 2.8rem;
+            color: $white-primary;
+            letter-spacing: .2rem;
+            padding: 1rem;
+        }
+    }
+    
+    /* Apply styles if screen width is 993px or more */
+    @media only screen and (min-width: 993px) {
+        & .banner-img {
+            filter: unset;
+        }
+        & .container {
+            & h3 {
+                font-size: 4rem;
+            }
+            & #countdown {
+                font-size: 3rem;
+            }
+        }
+    }
+}
