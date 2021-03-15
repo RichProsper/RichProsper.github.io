@@ -3,7 +3,7 @@
     width: 100%;
     min-height: 99vh;
     @extend %flex_center;
-    background-color: $white-primary;
+    background-color: $white-secondary;
 
     & .banner-img {
         @extend %cover-parent;
@@ -14,7 +14,7 @@
 
     & h2 {
         position: absolute;
-        color: #FFF;
+        color: $white-primary;
         text-align: center;
         padding: 0 5rem;
 
