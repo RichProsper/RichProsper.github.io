@@ -32,7 +32,9 @@
             word-spacing: $font-size-banner * .714 * .8 / 5;
         }
         & div span {
-            color: $green-primary;
+            color: transparent;
+            background-image: linear-gradient(to right, $green-secondary, $green-primary);
+            -webkit-background-clip: text;
         }
     }
 

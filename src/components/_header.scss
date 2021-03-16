@@ -61,7 +61,8 @@ header {
             padding: 1rem 0;
             font-size: 2rem;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 color: $white-primary;
                 letter-spacing: .4rem;
                 background-color: #222;
@@ -113,7 +114,8 @@ header {
                     border-bottom: .1rem solid transparent;
                     transition: color .6s, border-color .2s;
 
-                    &:hover {
+                    &:hover,
+                    &:focus {
                         border-color: $white-primary;
                     }
                 }
@@ -133,7 +135,8 @@ header {
             padding-bottom: .5rem;
             border-bottom: .2rem solid transparent;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 border-color: $black-primary;
             }
         }

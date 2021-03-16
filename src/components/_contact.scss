@@ -33,13 +33,15 @@
             text-decoration: none;
             transition: .2s;
 
-            &.email:hover {
+            &.email:hover,
+            &.email:focus {
                 transform: scale(1.33);
                 color: $icon-email-white;
                 border-color: $icon-email-white;
                 @include iconBoxTextShadows($icon-email-white);
             }
-            &.in:hover {
+            &.in:hover,
+            &.in:focus {
                 transform: scale(1.33);
                 color: $icon-in-blue;
                 border-color: $icon-in-blue;

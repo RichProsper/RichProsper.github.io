@@ -16,12 +16,17 @@
     visibility: hidden;
     pointer-events: none;
     cursor: pointer;
+    border: none;
     z-index: 1;
     transition: .25s ease-out;
 
     &:hover {
         background-color: $pink-primary;
         color: $white-primary;
+    }
+    &:focus {
+        outline-offset: .5rem;
+        outline: -webkit-focus-ring-color auto 1px;
     }
     &.sticky {
         opacity: 1;

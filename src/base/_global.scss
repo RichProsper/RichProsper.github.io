@@ -5,6 +5,9 @@
     padding: 0;
     box-sizing: inherit;
 }
+*:focus {
+    outline: none;
+}
 
 html {
     /* Renders font-size as 62.5% of user's selected browser font size.

@@ -3,13 +3,30 @@
     position: relative;
     width: $menu-close-width;
     height: $menu-close-width * .83333;
+    background: none;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
 
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: $menu-close-width * 1.66666;
+        height: $menu-close-width * 1.66666;
+        border-radius: 50%;
+    }
+    &:hover::before,
+    &:focus::before {
+        background-color: rgba($black-primary,.15);
+    }
     & .bar {
         position: absolute;
         width: $menu-close-width;
         height: $menu-close-width * .066666;
-        background-color: #000;
+        background-color: $black-primary;
         transition: .2s;
 
         &.a {
@@ -27,21 +44,18 @@
         }
     }
     &.close {
-        width: $menu-close-width * .7071;
-        height: $menu-close-width * .7071;
-
         & .bar {
             top: 50%;
 
             &.a {
-                transform: translate(($menu-close-width * -.3), -50%) rotate(45deg);
+                transform: translateY($menu-close-width * -.036666) rotate(45deg);
             }
             &.b {
                 visibility: hidden;
                 opacity: 0;
             }
             &.c {
-                transform: translate(($menu-close-width * -.3), -50%) rotate(-45deg);
+                transform: translateY($menu-close-width * -.036666) rotate(-45deg);
             }
         }
     }
