@@ -512,6 +512,10 @@ header.active ul li a:hover, header.active ul li a:focus {
   color: #2196f3;
 }
 
+.dev-chips .dev-chip .icon .fa-sass {
+  color: #b12654;
+}
+
 .dev-chips .dev-chip .icon .fa-js-square {
   color: #ffab00;
 }

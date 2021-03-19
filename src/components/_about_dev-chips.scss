@@ -27,6 +27,9 @@
             & .fa-css3-alt {
                 color: #2196f3;
             }
+            & .fa-sass {
+                color: #b12654;
+            }
             & .fa-js-square {
                 color: #ffab00;
             }
@@ -37,7 +40,7 @@
                 color: #0d47a1;
             }
             & .fa-database {
-                color: #f50057;
+                color: $pink-primary;
             }
             & .fa-react {
                 color: #4c6ef5;
