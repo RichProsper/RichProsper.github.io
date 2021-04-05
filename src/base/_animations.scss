@@ -26,3 +26,19 @@
         transform: translateX(0);
     }
 }
+
+@keyframes CircleX-Axis {
+    50% {
+        transform: translateX(60rem);
+    }
+}
+@keyframes CircleY-Axis {
+    50% {
+        transform: translateY(20rem);
+    }
+}
+@keyframes CircleZ-Rotate {
+    50% {
+        transform: rotateZ(36deg);
+    }
+}

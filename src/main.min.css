@@ -173,6 +173,48 @@ body {
   }
 }
 
+@-webkit-keyframes CircleX-Axis {
+  50% {
+    -webkit-transform: translateX(60rem);
+            transform: translateX(60rem);
+  }
+}
+
+@keyframes CircleX-Axis {
+  50% {
+    -webkit-transform: translateX(60rem);
+            transform: translateX(60rem);
+  }
+}
+
+@-webkit-keyframes CircleY-Axis {
+  50% {
+    -webkit-transform: translateY(20rem);
+            transform: translateY(20rem);
+  }
+}
+
+@keyframes CircleY-Axis {
+  50% {
+    -webkit-transform: translateY(20rem);
+            transform: translateY(20rem);
+  }
+}
+
+@-webkit-keyframes CircleZ-Rotate {
+  50% {
+    -webkit-transform: rotateZ(36deg);
+            transform: rotateZ(36deg);
+  }
+}
+
+@keyframes CircleZ-Rotate {
+  50% {
+    -webkit-transform: rotateZ(36deg);
+            transform: rotateZ(36deg);
+  }
+}
+
 .menu-close {
   display: block;
   position: relative;
@@ -542,10 +584,34 @@ header.active ul li a:hover, header.active ul li a:focus {
 }
 
 .about {
+  position: relative;
   background-color: #f7f7f7;
   padding: 2rem 5rem;
   min-height: 100vh;
   /* Apply styles if screen width is 993px or more */
+}
+
+.about .wrapper-a {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  -webkit-animation: CircleZ-Rotate 600s infinite ease-in-out;
+          animation: CircleZ-Rotate 600s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.about .wrapper-a .wrapper-b {
+  -webkit-animation: CircleY-Axis 100s infinite ease-in-out;
+          animation: CircleY-Axis 100s infinite ease-in-out;
+}
+
+.about .wrapper-a .wrapper-b .circle {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(33, 150, 243, 0.333);
+  -webkit-animation: CircleX-Axis 600s infinite linear;
+          animation: CircleX-Axis 600s infinite linear;
 }
 
 .about .content {
@@ -587,7 +653,6 @@ header.active ul li a:hover, header.active ul li a:focus {
 
 .portfolio {
   position: relative;
-  width: 100%;
   height: 100vh;
   /* Apply styles if screen width is 993px or more */
 }
