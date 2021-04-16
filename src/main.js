@@ -1,6 +1,6 @@
-import Header from './components/header.js';
-import Portfolio from './components/portfolio.js';
-import ToTop from './components/to-top.js';
+import Header from './components/header.js'
+import Portfolio from './components/portfolio.js'
+import ToTop from './components/to-top.js'
 
 (() => {
     Header()
