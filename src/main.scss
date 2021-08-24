@@ -3,14 +3,12 @@
 @import url(../vendors/all.min.css);
 
 // ** ABSTRACTS ** //
-@import "abstracts/variables";
 @import "abstracts/mixins";
 @import "abstracts/placeholders";
 
 // ** BASE ** //
 /* gloabal: Contains universal, html, body & global styles */
 @import "base/global";
-@import "base/scrollbar";
 @import "base/animations";
 
 // ** COMPONENTS ** //

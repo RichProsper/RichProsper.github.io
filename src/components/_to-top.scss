@@ -1,16 +1,17 @@
 .to-top {
     position: fixed;
-    bottom: $to-top-height * .6;
-    right: $to-top-height * .6;
+    bottom: calc(var(--to-top-height) * .6);
+    right: calc(var(--to-top-height) * .6);
     @extend %flex_center;
-    width: $to-top-height;
-    height: $to-top-height;
-    box-shadow: 0 .3rem .5rem -.1rem rgba($black-primary,.2),
-        0 .6rem 1rem 0 rgba($black-primary,.14),
-        0 .1rem 1.8rem 0 rgba($black-primary,.12);
-    background-color: rgba($pink-primary,.8);
+    width: var(--to-top-height);
+    height: var(--to-top-height);
+    box-shadow: 0 .3rem .5rem -.1rem rgba(0,0,0,.2),
+                0 .6rem 1rem 0 rgba(0,0,0,.14),
+                0 .1rem 1.8rem 0 rgba(0,0,0,.12);
+    background-color: rgba(245,0,87,.8);
     border-radius: 50%;
     color: #ccc;
+    font-size: calc(var(--to-top-height) * .26);
     opacity: 0;
     transform: scale(0);
     visibility: hidden;
@@ -21,8 +22,8 @@
     transition: .25s ease-out;
 
     &:hover {
-        background-color: $pink-primary;
-        color: $white-primary;
+        background-color: var(--pink-primary);
+        color: var(--white-primary);
     }
     &:focus {
         outline-offset: .5rem;

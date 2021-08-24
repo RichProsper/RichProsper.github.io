@@ -1,27 +1,75 @@
+:root {
+    // ** COLORS ** //
+    --grey-primary     : #ddd;
+    --white-primary    : #fff;
+    --white-secondary  : #f7f7f7;
+    --green-primary    : #39be89;
+    --green-secondary  : #39be5a;
+    --icon-in-blue     : #0a66c2;
+    --black-primary    : #000;
+    --pink-primary     : #f50057;
+
+    // ** DIMENSTIONS ** //
+    --chip-height      : 4rem;
+    --icon-height      : 8rem;
+    --menu-close-width : 3rem;
+    --to-top-height    : 5rem;
+
+    // ** ANIMATIONS ** //
+    --move-in: .8s ease-out .2s backwards;
+}
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+    font-size: 46.875%; /* 1rem = 7.5px */
+
+    @media only screen and (min-width: 900px) {
+        font-size: 62.5%; /* 1rem = 10px */
+    }
+    @media only screen and (min-width: 1800px) {
+        font-size: 78.125%; /* 1rem = 12.5px */
+    }
+    @media only screen and (min-width: 2700px) {
+        font-size: 93.75% /* 1rem = 15px */;
+    }
+}
+body {
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif, Arial, Helvetica;
+    letter-spacing: .1rem;
+    overflow-x: hidden;
+}
 *,
 *::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
 }
 *:focus {
     outline: none;
 }
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 
-html {
-    /* Renders font-size as 62.5% of user's selected browser font size.
-       If left unset the default size is 16px thus, 16 * 0.625 = 10px
-       Thus 1rem = 10px, 1px = 0.1rem */
-    font-size: 62.5%;
-    scroll-behavior: smooth;
+    &-track {
+        background: #e0e0e0;
+    }
+    &-thumb {
+        background: #888888;  
+        border-radius: 10px;
+
+        &:hover {
+            background: #555555;
+        }
+    }
 }
-body {
-    font-size: $font-size-default;
-    font-family: 'Poppins', sans-serif, Arial, Helvetica;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
+
 
 .display-none {
     display: none;

@@ -1,8 +1,8 @@
 .menu-close {
     display: block;
     position: relative;
-    width: $menu-close-width;
-    height: $menu-close-width * .83333;
+    width: var(--menu-close-width);
+    height: calc(var(--menu-close-width) * .83333);
     background: none;
     border: none;
     border-radius: 50%;
@@ -14,19 +14,19 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: $menu-close-width * 1.66666;
-        height: $menu-close-width * 1.66666;
+        width: calc(var(--menu-close-width) * 1.66666);
+        height: calc(var(--menu-close-width) * 1.66666);
         border-radius: 50%;
     }
     &:hover::before,
     &:focus::before {
-        background-color: rgba($black-primary,.15);
+        background-color: rgba(0,0,0,.15);
     }
     & .bar {
         position: absolute;
-        width: $menu-close-width;
-        height: $menu-close-width * .066666;
-        background-color: $black-primary;
+        width: var(--menu-close-width);
+        height: calc(var(--menu-close-width) * .066667);
+        background-color: var(--black-primary);
         transition: .2s;
 
         &.a {
@@ -48,14 +48,14 @@
             top: 50%;
 
             &.a {
-                transform: translateY($menu-close-width * -.036666) rotate(45deg);
+                transform: translateY(calc(var(--menu-close-width) * -.036666)) rotate(45deg);
             }
             &.b {
                 visibility: hidden;
                 opacity: 0;
             }
             &.c {
-                transform: translateY($menu-close-width * -.036666) rotate(-45deg);
+                transform: translateY(calc(var(--menu-close-width) * -.036666)) rotate(-45deg);
             }
         }
     }

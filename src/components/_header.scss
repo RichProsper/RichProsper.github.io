@@ -6,16 +6,16 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $white-primary;
+    background-color: var(--white-primary);
     padding: .5rem 5rem;
-    box-shadow: .4rem 0 .4rem rgba($black-primary,.2);
+    box-shadow: .4rem 0 .4rem rgba(0,0,0,.2);
     z-index: 1;
     transition: .4s ease-in;
 
     & .logo {
         position: relative;
-        width: $logo-height;
-        height: $logo-height;
+        width: 5rem;
+        height: 5rem;
         background-image: url(../../images/logo/apple-touch-icon.png);
         background-size: cover;
         background-position: center;
@@ -63,7 +63,7 @@ header {
 
             &:hover,
             &:focus {
-                color: $white-primary;
+                color: var(--white-primary);
                 letter-spacing: .4rem;
                 background-color: #222;
             }
@@ -73,15 +73,15 @@ header {
     /* Apply styles if screen width is 993px or more */
     @media only screen and (min-width: 993px) {
         & {
-            background-color: rgba($black-primary,.1);
+            background-color: rgba(0,0,0,.1);
             backdrop-filter: blur(1rem);
             padding: 2rem 10rem;
             box-shadow: unset;
         }
         &.sticky {
             padding: .5rem 10rem;
-            background-color: $white-primary;
-            box-shadow: .4rem 0 .4rem rgba($black-primary,.2);
+            background-color: var(--white-primary);
+            box-shadow: .4rem 0 .4rem rgba(0,0,0,.2);
 
             & .logo {
                 filter: grayscale(100%);
@@ -108,7 +108,7 @@ header {
             & li {
                 & a {
                     margin: 0 1.5rem;
-                    color: $white-primary;
+                    color: var(--white-primary);
                     font-weight: 300;
                     padding-bottom: 1rem;
                     border-bottom: .1rem solid transparent;
@@ -116,7 +116,7 @@ header {
 
                     &:hover,
                     &:focus {
-                        border-color: $white-primary;
+                        border-color: var(--white-primary);
                     }
                 }
                 &:first-child a {
@@ -130,14 +130,14 @@ header {
             }
         }
         &.sticky ul li a {
-            color: $black-primary;
+            color: var(--black-primary);
             font-weight: bold;
             padding-bottom: .5rem;
             border-bottom: .2rem solid transparent;
 
             &:hover,
             &:focus {
-                border-color: $black-primary;
+                border-color: var(--black-primary);
             }
         }
         & .menu-close {

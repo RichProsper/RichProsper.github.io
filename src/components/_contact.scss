@@ -9,7 +9,7 @@
         text-align: center;
         font-size: 3.6rem;
         font-weight: 200;
-        color: $grey-primary;
+        color: var(--grey-primary);
         letter-spacing: .2rem;
         word-spacing: .4rem;
         padding: 1rem;
@@ -23,12 +23,12 @@
 
         & .icon {
             position: relative;
-            width: $icon-height;
-            height: $icon-height;
+            width: var(--icon-height);
+            height: var(--icon-height);
             @extend %flex_center;
-            border: ($icon-height * .0375) solid #060606;
+            border: calc(var(--icon-height) * .0375) solid #060606;
             border-radius: 50%;
-            font-size: $icon-height / 2;
+            font-size: calc(var(--icon-height) / 2);
             color: #7f7f7f;
             text-decoration: none;
             transition: .2s;
@@ -36,16 +36,16 @@
             &.email:hover,
             &.email:focus {
                 transform: scale(1.33);
-                color: $icon-email-white;
-                border-color: $icon-email-white;
-                @include iconBoxTextShadows($icon-email-white);
+                color: var(--white-primary);
+                border-color: var(--white-primary);
+                @include iconBoxTextShadows(#fff);
             }
             &.in:hover,
             &.in:focus {
                 transform: scale(1.33);
-                color: $icon-in-blue;
-                border-color: $icon-in-blue;
-                @include iconBoxTextShadows($icon-in-blue);
+                color: var(--icon-in-blue);
+                border-color: var(--icon-in-blue);
+                @include iconBoxTextShadows(#0a66c2);
             }
         }
     }
@@ -53,7 +53,7 @@
         width: 100%;
         padding-top: 3rem;
         text-align: center;
-        color: $grey-primary;
+        color: var(--grey-primary);
         letter-spacing: .1rem;
         font-size: 1.4rem;
     }

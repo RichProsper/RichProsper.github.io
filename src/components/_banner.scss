@@ -3,7 +3,7 @@
     width: 100%;
     min-height: 99vh;
     @extend %flex_center;
-    background-color: $white-secondary;
+    background-color: var(--white-secondary);
 
     & .banner-img {
         @extend %cover-parent;
@@ -14,26 +14,27 @@
 
     & h2 {
         position: absolute;
-        color: $white-primary;
+        color: var(--white-primary);
         text-align: center;
         padding: 0 5rem;
 
         & .move-in-left {
             /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-            animation: MoveInLeft $move-in;
-            font-size: $font-size-banner * .714;
-            letter-spacing: $font-size-banner * .714 / 10;
-            word-spacing: $font-size-banner * .714 / 5;
+            animation: MoveInLeft var(--move-in);
+            font-size: 5rem;
+            letter-spacing: .5rem;
+            word-spacing: 1rem;
         }
         & .move-in-right {
-            animation: MoveInRight $move-in;
-            font-size: $font-size-banner * .714 * .8;
-            letter-spacing: $font-size-banner * .714 * .8 / 10;
-            word-spacing: $font-size-banner * .714 * .8 / 5;
+            animation: MoveInRight var(--move-in);
+            font-size: 4rem;
+            letter-spacing: .4rem;
+            word-spacing: .8rem;
         }
         & div span {
             color: transparent;
-            background-image: linear-gradient(to right, $green-secondary, $green-primary);
+            background-image: linear-gradient(to right, var(--green-secondary), var(--green-primary));
+            background-clip: text;
             -webkit-background-clip: text;
         }
     }
@@ -48,14 +49,14 @@
             padding: 0 2rem;
 
             & .move-in-left {
-                font-size: $font-size-banner;
-                letter-spacing: $font-size-banner / 10;
-                word-spacing: $font-size-banner / 5;
+                font-size: 7rem;
+                letter-spacing: .7rem;
+                word-spacing: 1.4rem;
             }
             & .move-in-right {
-                font-size: $font-size-banner * .8;
-                letter-spacing: $font-size-banner * .8 / 10;
-                word-spacing: $font-size-banner * .8 / 5;
+                font-size: 5.6rem;
+                letter-spacing: .56rem;
+                word-spacing: 1.12rem;
             }
         }
     }

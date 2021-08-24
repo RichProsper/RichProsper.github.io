@@ -1,6 +1,6 @@
 .about {
     position: relative;
-    background-color: $white-secondary;
+    background-color: var(--white-secondary);
     padding: 2rem 5rem;
     min-height: 100vh;
     @extend %flex_center;
