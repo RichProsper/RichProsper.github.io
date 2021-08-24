@@ -1,5 +1,5 @@
 export default () => {
-    const countDownDate = new Date("Jul 31, 2021 23:59:59").getTime()
+    const countDownDate = new Date("Dec 31, 2021 23:59:59").getTime()
     const countDownElem = document.getElementById("countdown")
 
     const countDown = () => {
