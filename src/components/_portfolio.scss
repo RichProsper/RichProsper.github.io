@@ -1,8 +1,7 @@
 .portfolio {
-    position: relative;
     background-image: url(../../images/leather.png);
     color: #ccc;
-
+    
     & h3 {
         font-size: 4rem;
         font-weight: 200;
@@ -11,13 +10,13 @@
         word-spacing: .4rem;
         text-align: center;
         padding: 2rem 0;
+        border-bottom: .2rem solid #777;
     }
     & .carousel {
         position: relative;
-        height: calc(100% - 10rem);
 
         & .items {
-            height: 100%;
+            position: relative;
             overflow-x: hidden;
 
             & .item {
