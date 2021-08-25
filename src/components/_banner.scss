@@ -1,9 +1,8 @@
 .banner {
     position: relative;
     width: 100%;
-    min-height: 99vh;
+    min-height: 100vh;
     @extend %flex_center;
-    background-color: var(--white-secondary);
 
     & .banner-img {
         @extend %cover-parent;

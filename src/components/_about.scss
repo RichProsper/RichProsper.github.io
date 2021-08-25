@@ -1,8 +1,7 @@
 .about {
     position: relative;
-    background-color: var(--white-secondary);
     padding: 2rem 5rem;
-    min-height: 100vh;
+    min-height: calc(100vh - 6rem);
     @extend %flex_center;
 
     & .wrapper-a {
@@ -30,9 +29,10 @@
         max-width: 80rem;
         margin: 0 auto;
         text-align: center;
+        color: #ccc;
 
         & h3 {
-            font-size: 3.6rem;
+            font-size: 4rem;
             font-weight: 200;
             text-transform: uppercase;
             letter-spacing: .2rem;
@@ -47,7 +47,7 @@
             letter-spacing: .1rem;
         }
         & h4 {
-            letter-spacing: .1rem;
+            letter-spacing: .2rem;
         }
     }
 
@@ -55,9 +55,6 @@
     @media only screen and (min-width: 993px) {
         & {
             padding: 2rem 10rem;
-        }
-        & .content h3 {
-            font-size: 4rem;
         }
     }
 }

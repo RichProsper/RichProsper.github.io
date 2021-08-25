@@ -7,19 +7,23 @@
         display: flex;
         align-items: center;
         border-radius: calc(var(--chip-height) / 2);
+        border: .2rem solid #777;
         padding: calc(var(--chip-height) / 20)
                  calc(var(--chip-height) / 2) 
                  calc(var(--chip-height) / 20) 
                  calc(var(--chip-height) / 20);
         margin: calc(var(--chip-height) / 4);
-        background-color: #151515;
+        box-shadow: 0 .3rem .5rem -.1rem rgba(0,0,0,.22),
+                    0 .6rem 1rem 0 rgba(0,0,0,.34),
+                    0 .1rem 1.8rem 0 rgba(0,0,0,.32);
+        background-color: #111;
 
         & .icon {
-            height: calc(var(--chip-height) * .9);
-            width: calc(var(--chip-height) * .9);
+            height: calc(var(--chip-height) * .8);
+            width: calc(var(--chip-height) * .8);
             @extend %flex_center;
             background-color: var(--grey-primary);
-            font-size: calc(var(--chip-height) * .6);
+            font-size: calc(var(--chip-height) * .55);
             border-radius: 50%;
             margin-right: calc(var(--chip-height) / 4);
             overflow: hidden;
@@ -49,8 +53,8 @@
                 color: #4c6ef5;
             }
             & img {
-                width: calc(var(--chip-height) * .75);
-                height: calc(var(--chip-height) * .75);
+                width: calc(var(--chip-height) * .7);
+                height: calc(var(--chip-height) * .7);
             }
         }
         & .text {

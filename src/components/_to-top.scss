@@ -5,9 +5,9 @@
     @extend %flex_center;
     width: var(--to-top-height);
     height: var(--to-top-height);
-    box-shadow: 0 .3rem .5rem -.1rem rgba(0,0,0,.2),
-                0 .6rem 1rem 0 rgba(0,0,0,.14),
-                0 .1rem 1.8rem 0 rgba(0,0,0,.12);
+    box-shadow: 0 .3rem .5rem -.1rem rgba(0,0,0,.22),
+                0 .6rem 1rem 0 rgba(0,0,0,.34),
+                0 .1rem 1.8rem 0 rgba(0,0,0,.32);
     background-color: rgba(245,0,87,.8);
     border-radius: 50%;
     color: #ccc;
