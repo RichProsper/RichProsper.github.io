@@ -15,15 +15,10 @@ export default () => {
         let i = +current.innerHTML
         items.children[i - 1].classList.add('hidden')
         
-        if (i === 1) {
-            i = total
-            current.innerHTML = i
-        }
-        else {
-            i--
-            current.innerHTML = i
-        }
+        if (i === 1) i = total    
+        else i--
 
+        current.innerHTML = i
         items.children[i - 1].classList.remove('hidden')
     })
 
@@ -33,15 +28,10 @@ export default () => {
         let i = +current.innerHTML
         items.children[i - 1].classList.add('hidden')
         
-        if (i === total) {
-            i = 1
-            current.innerHTML = i
-        }
-        else {
-            i++
-            current.innerHTML = i
-        }
+        if (i === total) i = 1
+        else i++
 
+        current.innerHTML = i
         items.children[i - 1].classList.remove('hidden')
     })
 }
