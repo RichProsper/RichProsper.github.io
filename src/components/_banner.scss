@@ -6,7 +6,7 @@
 
     & .banner-img {
         @extend %cover-parent;
-        background-image: url(../../images/background.jpg);
+        background-image: url(../../images/background-sm.jpg);
         @extend %fullscreen-bg-image;
         clip-path: polygon(0% 0%, 0% 100%, 100% 90%, 100% 0%);
     }
@@ -35,6 +35,13 @@
             background-image: linear-gradient(to right, var(--green-secondary), var(--green-primary));
             background-clip: text;
             -webkit-background-clip: text;
+        }
+    }
+
+    /* Apply styles if screen width is 601px or more */
+    @media only screen and (min-width: 601px) {
+        & .banner-img {
+            background-image: url(../../images/background-lg.jpg);
         }
     }
 
