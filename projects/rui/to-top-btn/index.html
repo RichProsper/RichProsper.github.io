@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+            background-color: #222;
+            color: #ccc;
+        }
+        h1 {
+            text-align: center;
+        }
+        div {
+            min-height: 60vh;
+        }
+        .a {
+            background-color: #322;
+        }
+        .b {
+            background-color: #232;
+        }
+        .c {
+            background-color: #223;
+        }
+    </style>
+    <link rel="stylesheet" href="../../../vendors/all.min.css">
+    <link rel="stylesheet" href="rui-to-top-btn.min.css">
+    <script defer src="rui-to-top-btn.min.js"></script>
+    <title>To Top Button Demo</title>
+</head>
+<body>
+    <h1>Requires Font Awesome for the Chevron to work!</h1>
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => RUI_ToTopBtn())
+    </script>
+</body>
+</html>
