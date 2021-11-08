@@ -1,0 +1,41 @@
+label[data-checkbox-container] {
+    --hue-1   : 207;
+    --hover   : hsla(var(--hue-1), 90%, 77%, .1);
+    --checked : hsl(var(--hue-1), 90%, 77%);
+
+
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+
+    span[data-checkbox-wrapper] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: .9rem;
+        border-radius: 50%;
+        transition: .2s;
+
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .icon {
+            font-size: 2.2rem;
+        }
+        .checked  {
+            color: var(--checked);
+        }
+        &:hover,
+        &.focus {
+            background-color: var(--hover);
+        }
+    }
+}
