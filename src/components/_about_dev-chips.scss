@@ -2,7 +2,7 @@
     width: 100%;
     @extend %flex_space-around;
 
-    & .dev-chip {
+    .dev-chip {
         height: var(--chip-height);
         display: flex;
         align-items: center;
@@ -18,7 +18,7 @@
                     0 .1rem 1.8rem 0 rgba(0,0,0,.32);
         background-color: #111;
 
-        & .icon {
+        .icon {
             height: calc(var(--chip-height) * .8);
             width: calc(var(--chip-height) * .8);
             @extend %flex_center;
@@ -28,36 +28,36 @@
             margin-right: calc(var(--chip-height) / 4);
             overflow: hidden;
 
-            & .fa-html5 {
+            .fa-html5 {
                 color: #fd7e14;
             }
-            & .fa-css3-alt {
+            .fa-css3-alt {
                 color: #2196f3;
             }
-            & .fa-sass {
+            .fa-sass {
                 color: #b12654;
             }
-            & .fa-js-square {
+            .fa-js-square {
                 color: #ffab00;
             }
-            & .fa-php {
+            .fa-php {
                 color: #673ab7;
             }
-            & .fa-python {
+            .fa-python {
                 color: #0d47a1;
             }
-            & .fa-database {
+            .fa-database {
                 color: var(--pink-primary);
             }
-            & .fa-react {
+            .fa-react {
                 color: #4c6ef5;
             }
-            & img {
+            img, svg {
                 width: calc(var(--chip-height) * .7);
                 height: calc(var(--chip-height) * .7);
             }
         }
-        & .text {
+        .text {
             font-size: calc(var(--chip-height) * .4);
             color: var(--grey-primary);
         }
