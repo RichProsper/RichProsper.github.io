@@ -38,19 +38,20 @@
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="checkbox/rui-checkbox.min.css">
-    <script defer src="checkbox/rui-checkbox.min.js"></script>
+    <script defer type="module" src="checkbox/rui-checkbox.min.js"></script>
     <title>Form Inputs Demo</title>
 </head>
 <body>
     <h1>Checkbox</h1>
     <div id="checkbox"></div>
-
+    <br><br>
     <h1>Input</h1>
     <div id="input"></div>
 
-    <script>
+    <script type="module">
+        import Checkbox from './checkbox/rui-checkbox.min.js'
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('checkbox').appendChild( RUI_Checkbox({}) )
+            document.getElementById('checkbox').appendChild( Checkbox({}) )
         })
     </script>
 </body>

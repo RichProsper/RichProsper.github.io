@@ -1,4 +1,4 @@
-const RUI_Checkbox = ({ labelText, group, attributes }) => {
+export default ({ labelText, group, attributes }) => {
     // Container - label
     const CheckboxContainer = document.createElement('label')
     CheckboxContainer.setAttribute('data-checkbox-container', '')
