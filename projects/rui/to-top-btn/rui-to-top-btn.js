@@ -1,4 +1,4 @@
-const RUI_ToTopBtn = () => {
+export default () => {
     const toTopBtn = document.createElement('button')
     toTopBtn.type = 'button'
     toTopBtn.className = 'rui-to-top-btn'

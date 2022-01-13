@@ -31,6 +31,7 @@
             height: 100%;
             background-color: #222;
             color: #ccc;
+            scroll-behavior: smooth;
         }
         h1 {
             text-align: center;
@@ -50,7 +51,7 @@
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="rui-to-top-btn.min.css">
-    <script defer src="rui-to-top-btn.min.js"></script>
+    <script defer type="module" src="rui-to-top-btn.min.js"></script>
     <title>To Top Button Demo</title>
 </head>
 <body>
@@ -59,8 +60,9 @@
     <div class="b"></div>
     <div class="c"></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => RUI_ToTopBtn())
+    <script type="module">
+        import Checkbox from './rui-to-top-btn.js'
+        document.addEventListener('DOMContentLoaded', () => Checkbox())
     </script>
 </body>
 </html>
