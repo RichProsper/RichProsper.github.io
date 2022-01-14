@@ -4,10 +4,12 @@
     --grey-1    : hsla(var(--hue-white), 100%, .035);
     --grey-2    : hsl(var(--hue-white), 87%);
     --grey-3    : hsl(var(--hue-white), 10%);
+    --grey-4    : hsl(var(--hue-white), 50%);
     // Purple: hsl(291, 100%, 49%)
     --hue-purple : 291;
     --purple-1  : hsl(var(--hue-purple), 100%, 78%);
     --purple-2  : hsl(var(--hue-purple), 100%, 54%);
+    
 
     position: relative;
     margin-bottom: 3.2rem;
@@ -43,6 +45,10 @@
         &:not(:placeholder-shown) ~ span {
             opacity: 1;
             transform: translateY(-2.4rem) scale(.75);
+        }
+        &:disabled,
+        &:disabled ~ span {
+            color: var(--grey-4);
         }
     }
     span {

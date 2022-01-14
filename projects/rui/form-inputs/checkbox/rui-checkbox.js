@@ -131,8 +131,11 @@ export default ({ labelText, group, attributes }) => {
                 })    
             }
 
-            for (let attr in attributes) {
-                Checkbox.setAttribute(attr, attributes[attr])
+            for (let attr in attributes) Checkbox[attr] = attributes[attr]
+            if (attributes?.disabled) CheckboxContainer.classList.add('disabled')
+            if (attributes?.checked) {
+                Checkbox.setAttribute('checked', '')
+                Icon.className = 'fas fa-check-square icon checked'
             }
 
         CheckboxWrapper.appendChild(Checkbox)

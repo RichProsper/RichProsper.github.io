@@ -56,7 +56,7 @@
     <br><br>
 
     <h1>Input</h1>
-    <br><br>
+    <br>
     <div id="input"></div>
 
     <script type="module">
@@ -64,11 +64,21 @@
         import Input from './input/rui-input.min.js'
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('checkbox').appendChild( Checkbox({}) )
+            document.getElementById('checkbox').appendChild( Checkbox({
+                attributes: {
+                    id: 'a',
+                    title: 'Check Me',
+                    // disabled: true,
+                    // checked: true
+                },
+                labelText: 'I\'m a label'
+            }) )
             document.getElementById('input').appendChild( Input({
-                id: 'test',
+                id: 'b',
                 type: 'text',
-                placeholder: 'Enter a number...'
+                placeholder: 'Enter a number...',
+                // value: 4,
+                // disabled: true
             }) )
         })
     </script>
