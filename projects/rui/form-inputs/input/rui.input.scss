@@ -1,0 +1,72 @@
+.control {
+    // White: hsl(0, 0%, 100%)
+    --hue-white : 0, 0%;
+    --grey-1    : hsla(var(--hue-white), 100%, .035);
+    --grey-2    : hsl(var(--hue-white), 87%);
+    --grey-3    : hsl(var(--hue-white), 10%);
+    // Purple: hsl(291, 100%, 49%)
+    --hue-purple : 291;
+    --purple-1  : hsl(var(--hue-purple), 100%, 78%);
+    --purple-2  : hsl(var(--hue-purple), 100%, 54%);
+
+    position: relative;
+    margin-bottom: 3.2rem;
+
+    input {
+        height: 4rem;
+        display: block;
+        width: 100%;
+        background-color: var(--grey-1);
+        border: none;
+        border-bottom: .1rem solid var(--grey-2);
+        color: var(--grey-2);
+        font-size: 1.6rem;
+        padding: 0 .5rem;
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            box-shadow: 0 0 0 5rem var(--grey-3) inset;
+            -webkit-text-fill-color: var(--grey-2);
+        }
+        &::placeholder {
+            color: transparent;
+            user-select: none;
+        }
+        &:focus {
+            outline: none;
+        }
+        &:focus ~ span {
+            color: var(--purple-1);
+        }
+        &:focus ~ span,
+        &:not(:placeholder-shown) ~ span {
+            opacity: 1;
+            transform: translateY(-2.4rem) scale(.75);
+        }
+    }
+    span {
+        position: absolute;
+        top: 0;
+        left: .5rem;
+        opacity: .7;
+        line-height: 4rem;
+        pointer-events: none;
+        transform-origin: top left;
+        transition: .2s;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: scaleX(0);
+        transition: 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+        border-bottom: .2rem solid var(--purple-2);
+        pointer-events: none;
+    }
+    &.focused::after {
+        transform: scaleX(1);
+    }
+}

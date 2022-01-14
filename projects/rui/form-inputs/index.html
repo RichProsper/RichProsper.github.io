@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
         html {
             font-size: 46.875%; /* 1rem = 7.5px */
         }
@@ -33,24 +31,45 @@
             color: #ccc;
         }
         body {
+            box-sizing: border-box;
+            font-size: 1.6rem;
+        }
+        body, #input {
             padding: 1rem;
+        }
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
         }
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="checkbox/rui-checkbox.min.css">
+    <link rel="stylesheet" href="input/rui.input.min.css">
     <title>Form Inputs Demo</title>
 </head>
 <body>
     <h1>Checkbox</h1>
     <div id="checkbox"></div>
     <br><br>
+
     <h1>Input</h1>
+    <br><br>
     <div id="input"></div>
 
     <script type="module">
         import Checkbox from './checkbox/rui-checkbox.min.js'
+        import Input from './input/rui-input.min.js'
+
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('checkbox').appendChild( Checkbox({}) )
+            document.getElementById('input').appendChild( Input({
+                id: 'test',
+                type: 'text',
+                placeholder: 'Enter a number...'
+            }) )
         })
     </script>
 </body>
