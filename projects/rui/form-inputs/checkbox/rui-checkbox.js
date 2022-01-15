@@ -1,4 +1,4 @@
-export default ({ labelText, group, attrs, custAttrs }) => {
+export default ({ labelText, group, attrs }) => {
     // Container - label
     const CheckboxContainer = document.createElement('label')
     CheckboxContainer.setAttribute('data-checkbox-container', '')
@@ -131,13 +131,12 @@ export default ({ labelText, group, attrs, custAttrs }) => {
                 })    
             }
 
-            for (let attr in attrs) Checkbox[attr] = attrs[attr]
-            if (attrs?.disabled) CheckboxContainer.classList.add('disabled')
-            if (attrs?.checked) {
+            for (let attr in attrs) Checkbox.setAttribute(attr, attrs[attr])
+            if ('disabled' in attrs) CheckboxContainer.classList.add('disabled')
+            if ('checked' in attrs) {
                 Checkbox.setAttribute('checked', '')
                 Icon.className = 'fas fa-check-square icon checked'
             }
-            for (let custAttr in custAttrs) Checkbox.setAttribute(custAttr, custAttrs[custAttr])
 
         CheckboxWrapper.appendChild(Checkbox)
         CheckboxWrapper.appendChild(Icon)

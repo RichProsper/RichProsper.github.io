@@ -1,11 +1,10 @@
-export default (attrs = {}, custAttrs = {}) => {
+export default (attrs = {}) => {
     const Control = document.createElement('div')
     Control.className = 'control'
 
         const Input = document.createElement('input')
 
-        for (let attr in attrs) Input[attr] = attrs[attr]
-        for (let custAttr in custAttrs) Input.setAttribute(custAttr, custAttrs[custAttr])
+        for (let attr in attrs) Input.setAttribute(attr, attrs[attr])
 
         Input.addEventListener('focus', () => Control.classList.add('focused'))
         Input.addEventListener('blur', () => Control.classList.remove('focused'))

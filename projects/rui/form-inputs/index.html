@@ -47,7 +47,7 @@
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="checkbox/rui-checkbox.min.css">
-    <link rel="stylesheet" href="input/rui.input.min.css">
+    <link rel="stylesheet" href="input/rui-input.min.css">
     <title>Form Inputs Demo</title>
 </head>
 <body>
@@ -72,22 +72,23 @@
             document.getElementById('checkbox').appendChild( Checkbox({
                 attrs: {
                     id: 'a',
-                    title: 'Check Me'
-                },
-                labelText: 'I\'m a label',
-                custAttrs: {
+                    title: 'Check Me',
                     'data-class': 'checkbox',
-                    'data-title': 'title'
-                }
+                    'data-title': 'title',
+                    // disabled: '',
+                    // checked: ''
+                },
+                labelText: 'I\'m a label'
             }) )
             document.getElementById('input').appendChild( Input({
                 id: 'b',
-                type: 'date',
-                placeholder: 'Enter a number...'
-            }, {
+                type: 'search',
+                placeholder: 'Enter a number...',
                 'data-id': 'abc',
-                'data-value': 'def'
+                'data-value': 'def',
+                // disabled: ''
             }) )
+
         })
     </script>
 </body>
