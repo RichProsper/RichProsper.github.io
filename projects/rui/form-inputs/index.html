@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Prevents favicon.ico requests -->
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    <link rel="icon" href="data:;base64,iVBORw0KGgo="> 
     <style>
         html {
             font-size: 46.875%; /* 1rem = 7.5px */
@@ -51,13 +51,18 @@
     <title>Form Inputs Demo</title>
 </head>
 <body>
-    <h1>Checkbox</h1>
+    <h2>Checkbox</h2>
     <div id="checkbox"></div>
     <br><br>
 
-    <h1>Input</h1>
+    <h2>Input</h2>
     <br>
     <div id="input"></div>
+    <br><br>
+
+    <h2>Switch</h2>
+    <div id="switch"></div>
+    <br><br>
 
     <script type="module">
         import Checkbox from './checkbox/rui-checkbox.min.js'
@@ -65,20 +70,23 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('checkbox').appendChild( Checkbox({
-                attributes: {
+                attrs: {
                     id: 'a',
-                    title: 'Check Me',
-                    // disabled: true,
-                    // checked: true
+                    title: 'Check Me'
                 },
-                labelText: 'I\'m a label'
+                labelText: 'I\'m a label',
+                custAttrs: {
+                    'data-class': 'checkbox',
+                    'data-title': 'title'
+                }
             }) )
             document.getElementById('input').appendChild( Input({
                 id: 'b',
-                type: 'text',
-                placeholder: 'Enter a number...',
-                // value: 4,
-                // disabled: true
+                type: 'date',
+                placeholder: 'Enter a number...'
+            }, {
+                'data-id': 'abc',
+                'data-value': 'def'
             }) )
         })
     </script>
