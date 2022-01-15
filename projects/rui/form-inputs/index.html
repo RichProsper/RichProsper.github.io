@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="checkbox/rui-checkbox.min.css">
     <link rel="stylesheet" href="input/rui-input.min.css">
+    <link rel="stylesheet" href="switch/rui-switch.min.css">
     <title>Form Inputs Demo</title>
 </head>
 <body>
@@ -67,6 +68,7 @@
     <script type="module">
         import Checkbox from './checkbox/rui-checkbox.min.js'
         import Input from './input/rui-input.min.js'
+        import Switch from './switch/rui-switch.min.js'
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('checkbox').appendChild( Checkbox({
@@ -88,7 +90,17 @@
                 'data-value': 'def',
                 // disabled: ''
             }) )
-
+            document.getElementById('switch').appendChild( Switch({
+                labelText: 'I\'m a switch',
+                attrs: {
+                    id: 'c',
+                    title: 'Switch Me',
+                    'data-class': 'switch',
+                    'data-title': 'title',
+                    // disabled: '',
+                    // checked: ''
+                }
+            }) )
         })
     </script>
 </body>

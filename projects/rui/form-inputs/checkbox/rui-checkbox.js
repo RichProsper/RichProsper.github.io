@@ -1,4 +1,4 @@
-export default ({ labelText, group, attrs }) => {
+export default ({ labelText, group, attrs = {} }) => {
     // Container - label
     const CheckboxContainer = document.createElement('label')
     CheckboxContainer.setAttribute('data-checkbox-container', '')
@@ -142,11 +142,11 @@ export default ({ labelText, group, attrs }) => {
         CheckboxWrapper.appendChild(Icon)
     CheckboxContainer.appendChild(CheckboxWrapper)
 
-        if (labelText) {
-            const LabelText = document.createElement('span')
-            LabelText.innerHTML = labelText
-            CheckboxContainer.appendChild(LabelText)
-        }
+    if (labelText) {
+        const LabelText = document.createElement('span')
+        LabelText.textContent = labelText
+        CheckboxContainer.appendChild(LabelText)
+    }
 
     return CheckboxContainer
 }
