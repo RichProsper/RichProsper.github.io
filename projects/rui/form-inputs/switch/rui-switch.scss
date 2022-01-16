@@ -15,11 +15,6 @@ label[data-switch-container] {
     align-items: center;
     cursor: pointer;
 
-    &.disabled {
-        cursor: default;
-        pointer-events: none;
-        color: var(--grey-1);
-    }
     span[data-switch-wrapper] {
         position: relative;
         display: inline-flex;
@@ -87,6 +82,20 @@ label[data-switch-container] {
             background-color: var(--white);
             opacity: .3;
             z-index: -1;
+        }
+    }
+    &.disabled {
+        cursor: default;
+        pointer-events: none;
+        color: var(--grey-1);
+
+        span[data-switch-wrapper] span[data-switch-base].checked {
+            color: var(--grey-1);
+
+            & + span[data-switch-track] {
+                background-color: var(--white);
+                opacity: .3;
+            }
         }
     }
 }

@@ -12,18 +12,25 @@ export default ({ labelText, attrs = {} }) => {
             Base.setAttribute('data-switch-base', '')
 
                 // Input - input[type="checkbox"]
-                const Checkbox = document.createElement('input')
-                Checkbox.type = 'checkbox'
-                Checkbox.addEventListener('change', function() {
+                const Switch = document.createElement('input')
+                Switch.type = 'checkbox'
+                Switch.addEventListener('change', function() {
                     if (this.checked) Base.classList.add('checked')
                     else Base.classList.remove('checked')
                 })
+
+                for (let attr in attrs) Switch.setAttribute(attr, attrs[attr])
+                if ('disabled' in attrs) SwitchContainer.classList.add('disabled')
+                if ('checked' in attrs) {
+                    Switch.setAttribute('checked', '')
+                    Base.classList.add('checked')
+                }
 
                 // Thumb - span
                 const Thumb = document.createElement('span')
                 Thumb.setAttribute('data-switch-thumb', '')
 
-            Base.appendChild(Checkbox)
+            Base.appendChild(Switch)
             Base.appendChild(Thumb)
 
             // Track - span
