@@ -45,6 +45,16 @@
             padding: 0;
             box-sizing: inherit;
         }
+        h2 {
+            text-align: center;
+            text-decoration: underline;
+        }
+        #checkbox, #input, #switch {
+            display: flex;
+            justify-content: space-evenly;
+            border-bottom: .1rem solid #555;
+            margin-bottom: 1rem;
+        }
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="../../../vendors/Poppins/Poppins.min.css">
@@ -56,16 +66,13 @@
 <body>
     <h2>Checkbox</h2>
     <div id="checkbox"></div>
-    <br><br>
 
     <h2>Input</h2>
     <br>
     <div id="input"></div>
-    <br><br>
 
     <h2>Switch</h2>
     <div id="switch"></div>
-    <br><br>
 
     <script type="module">
         import Checkbox from './checkbox/rui-checkbox.min.js'
@@ -73,34 +80,77 @@
         import Switch from './switch/rui-switch.min.js'
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('checkbox').appendChild( Checkbox({
+            const checkbox = document.getElementById('checkbox')
+            checkbox.appendChild( Checkbox({
                 attrs: {
                     id: 'a',
                     title: 'Check Me',
                     'data-class': 'checkbox',
-                    'data-value': 5,
-                    // disabled: '',
-                    // checked: ''
+                    'data-value': 5
                 },
-                labelText: 'I\'m a label'
+                labelText: 'Label'
             }) )
-            document.getElementById('input').appendChild( Input({
+            checkbox.appendChild( Checkbox({
+                attrs: {
+                    disabled: ''
+                },
+                labelText: 'Disabled'
+            }) )
+            checkbox.appendChild( Checkbox({
+                attrs: {
+                    checked: ''
+                },
+                labelText: 'Checked'
+            }) )
+            checkbox.appendChild( Checkbox({
+                attrs: {
+                    disabled: '',
+                    checked: ''
+                },
+                labelText: 'Disabled & Checked'
+            }) )
+            
+            const input = document.getElementById('input')
+            input.appendChild( Input({
                 id: 'b',
-                type: 'search',
-                placeholder: 'Enter text...',
+                type: 'text',
+                placeholder: 'Placeholder...',
                 'data-id': 'abc',
                 'data-value': 'def',
-                // disabled: ''
             }) )
-            document.getElementById('switch').appendChild( Switch({
-                labelText: 'I\'m a switch',
+            input.appendChild( Input({
+                type: 'text',
+                placeholder: 'Disabled...',
+                disabled: ''
+            }) )
+            
+            const switch_ = document.getElementById('switch')
+            switch_.appendChild( Switch({
+                labelText: 'Label',
                 attrs: {
                     id: 'c',
                     title: 'Switch Me',
                     'data-class': 'switch',
                     'data-value': 'on/off',
-                    // disabled: '',
-                    // checked: ''
+                }
+            }) )
+            switch_.appendChild( Switch({
+                labelText: 'Disabled',
+                attrs: {
+                    disabled: ''
+                }
+            }) )
+            switch_.appendChild( Switch({
+                labelText: 'On',
+                attrs: {
+                    checked: ''
+                }
+            }) )
+            switch_.appendChild( Switch({
+                labelText: 'Disabled & On',
+                attrs: {
+                    disabled: '',
+                    checked: ''
                 }
             }) )
         })
