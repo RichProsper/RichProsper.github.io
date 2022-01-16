@@ -1,4 +1,4 @@
-export default ({ labelText, attrs = {} }) => {
+export default ({ labelText, attrs = {}, evts = {} }) => {
     // Container - label
     const SwitchContainer = document.createElement('label')
     SwitchContainer.setAttribute('data-switch-container', '')
@@ -19,11 +19,20 @@ export default ({ labelText, attrs = {} }) => {
                     else Base.classList.remove('checked')
                 })
 
+                // Set attributes
                 for (let attr in attrs) Switch.setAttribute(attr, attrs[attr])
                 if ('disabled' in attrs) SwitchContainer.classList.add('disabled')
                 if ('checked' in attrs) {
                     Switch.setAttribute('checked', '')
                     Base.classList.add('checked')
+                }
+
+                // Set events
+                for (let evt in evts) {
+                    if ( Array.isArray(evts[evt]) ) {
+                        for (let e of evts[evt]) Switch.addEventListener(evt, e)
+                    }
+                    else Switch.addEventListener(evt, evts[evt])
                 }
 
                 // Thumb - span

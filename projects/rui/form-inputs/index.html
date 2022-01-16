@@ -88,7 +88,15 @@
                     'data-class': 'checkbox',
                     'data-value': 5
                 },
-                labelText: 'Label'
+                labelText: 'Label',
+                evts: {
+                    change: [
+                        () => console.log('a'),
+                        () => console.log('b'),
+                        () => console.log('c')
+                    ],
+                    focus: () => console.log(checkbox)
+                }
             }) )
             checkbox.appendChild( Checkbox({
                 attrs: {
@@ -112,16 +120,32 @@
             
             const input = document.getElementById('input')
             input.appendChild( Input({
-                id: 'b',
-                type: 'text',
-                placeholder: 'Placeholder...',
-                'data-id': 'abc',
-                'data-value': 'def',
+                attrs: {
+                    id: 'b',
+                    type: 'text',
+                    placeholder: 'Placeholder...',
+                    'data-id': 'abc',
+                    'data-value': 'def',
+                },
+                evts: {
+                    change: [
+                        () => console.log('a'),
+                        () => console.log('b'),
+                    ],
+                    focus: () => console.log('focus'),
+                    keyup: () => console.log('keyup'),
+                    blur: [
+                        () => console.log('blurA'),
+                        () => console.log('blurB'),
+                    ]
+                }
             }) )
             input.appendChild( Input({
-                type: 'text',
-                placeholder: 'Disabled...',
-                disabled: ''
+                attrs: {
+                    type: 'text',
+                    placeholder: 'Disabled...',
+                    disabled: ''
+                }
             }) )
             
             const switch_ = document.getElementById('switch')
@@ -132,6 +156,15 @@
                     title: 'Switch Me',
                     'data-class': 'switch',
                     'data-value': 'on/off',
+                },
+                evts: {
+                    change: [
+                        () => console.log('a'),
+                        () => console.log('b'),
+                        () => console.log('c')
+                    ],
+                    focus: () => console.log('focus'),
+                    blur: () => console.log('blur')
                 }
             }) )
             switch_.appendChild( Switch({
