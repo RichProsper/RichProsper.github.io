@@ -39,9 +39,10 @@ label[data-checkbox-container] {
 
             &:disabled {
                 cursor: default;
-            }
-            &:disabled ~ .checked {
-                color: var(--grey-2);
+
+                & + .checked {
+                    color: var(--grey-2);
+                }
             }
         }
         .icon {

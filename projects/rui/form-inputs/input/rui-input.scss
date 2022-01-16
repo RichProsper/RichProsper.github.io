@@ -36,17 +36,18 @@
         }
         &:focus {
             outline: none;
+
+            & + span {
+                color: var(--blue-1);
+            }
         }
-        &:focus ~ span {
-            color: var(--blue-1);
-        }
-        &:focus ~ span,
-        &:not(:placeholder-shown) ~ span {
+        &:focus + span,
+        &:not(:placeholder-shown) + span {
             opacity: 1;
             transform: translateY(-2.4rem) scale(.75);
         }
         &:disabled,
-        &:disabled ~ span {
+        &:disabled + span {
             color: var(--grey-4);
         }
     }
