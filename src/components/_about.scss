@@ -4,17 +4,17 @@
     min-height: calc(100vh - 6rem);
     @extend %flex_center;
 
-    & .wrapper-a {
+    .wrapper-a {
         position: absolute;
         top: 0;
         left: 25%;
         animation: CircleZ-Rotate 600s infinite ease-in-out;
         pointer-events: none;
 
-        & .wrapper-b {
+        .wrapper-b {
             animation: CircleY-Axis 100s infinite ease-in-out;
 
-            & .circle {
+            .circle {
                 border-radius: 50%;
                 width: 3rem;
                 height: 3rem;
@@ -24,14 +24,14 @@
         }
     }
 
-    & .content {
+    .content {
         width: 100%;
         max-width: 80rem;
         margin: 0 auto;
         text-align: center;
         color: #ccc;
 
-        & h3 {
+        h3 {
             font-size: 4rem;
             font-weight: 200;
             text-transform: uppercase;
@@ -39,14 +39,19 @@
             word-spacing: .4rem;
             margin-bottom: 1rem;
         }
-        & p {
+        p {
             text-align: justify;
             font-size: 1.8rem;
             font-weight: 300;
             margin-bottom: 2rem;
             letter-spacing: .1rem;
+
+            .new-line {
+                display: block;
+                margin-top: .8rem;
+            }
         }
-        & h4 {
+        h4 {
             letter-spacing: .2rem;
         }
     }

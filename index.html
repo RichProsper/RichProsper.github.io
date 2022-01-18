@@ -51,9 +51,11 @@
         <div class="content">
             <h3>About Me</h3>
             <p>
-                I'm a Full Stack Web Developer who graduated from the University of the West Indies (UWI) in 2019
-                with a Bachelor's Degree in Computer Science. I've accrued three and a half years of experience developing
-                internal websites for various companies during my internships.
+                I'm a Full Stack Web Developer with three and a half years of experience developing small scale websites for various companies during my internships and on my free time. My interests over the next two years (<span id="from">2022</span> - <span id="to">2024</span>) are:
+                <span class="new-line">- Continuing to improve upon UI/UX Design</span>
+                <span class="new-line">- Learning blockchain development with Substrate</span>
+                <span class="new-line">- Learning mobile app development with Flutter or ReactNative</span>
+                <span class="new-line">- Learning desktop app development width Electron JS</span>
             </p>
 
             <h4>My Languages</h4>
@@ -186,14 +188,18 @@
             </a>
         </div>
         <div class="copyright">Copyright © <span id="copy_yr">2021</span> Rich Prosper, All Rights Reserved.</div>
-        <script>
-            document.getElementById('copy_yr').innerHTML = new Date().getFullYear()
-        </script>
     </section>
 
     <!-- To Top Button -->
     <button type="button" class="to-top" title="Back to Top">
         <i class="fas fa-chevron-up"></i>
     </button>
+
+    <script>
+        const yr = new Date().getFullYear()
+        document.getElementById('copy_yr').textContent = yr
+        document.getElementById('from').textContent = yr
+        document.getElementById('to').textContent = yr + 2
+    </script>
 </body>
 </html>
