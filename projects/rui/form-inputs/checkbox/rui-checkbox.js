@@ -24,7 +24,7 @@ export default ({ labelText, attrs = {}, evts = {} }) => {
             })    
 
             // Set attributes
-            for (let attr in attrs) Checkbox.setAttribute(attr, attrs[attr])
+            for (const attr in attrs) Checkbox.setAttribute(attr, attrs[attr])
             if ('disabled' in attrs) CheckboxContainer.classList.add('disabled')
             if ('checked' in attrs) {
                 Checkbox.setAttribute('checked', '')
@@ -32,9 +32,9 @@ export default ({ labelText, attrs = {}, evts = {} }) => {
             }
 
             // Set events
-            for (let evt in evts) {
+            for (const evt in evts) {
                 if ( Array.isArray(evts[evt]) ) {
-                    for (let e of evts[evt]) Checkbox.addEventListener(evt, e)
+                    for (const e of evts[evt]) Checkbox.addEventListener(evt, e)
                 }
                 else Checkbox.addEventListener(evt, evts[evt])
             }

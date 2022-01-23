@@ -5,15 +5,15 @@ export default ({ attrs = {}, evts = {} }) => {
         const Input = document.createElement('input')
 
         // Set attributes
-        for (let attr in attrs) Input.setAttribute(attr, attrs[attr])
+        for (const attr in attrs) Input.setAttribute(attr, attrs[attr])
 
         Input.addEventListener('focus', () => InputContainer.classList.add('focused'))
         Input.addEventListener('blur', () => InputContainer.classList.remove('focused'))
 
         // Set events
-        for (let evt in evts) {
+        for (const evt in evts) {
             if ( Array.isArray(evts[evt]) ) {
-                for (let e of evts[evt]) Input.addEventListener(evt, e)
+                for (const e of evts[evt]) Input.addEventListener(evt, e)
             }
             else Input.addEventListener(evt, evts[evt])
         }
