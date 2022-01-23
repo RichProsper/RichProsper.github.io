@@ -1,4 +1,4 @@
-.control {
+div[data-input-container] {
     // White: hsl(0, 0%, 100%)
     --hue-white : 0, 0%;
     --grey-1    : hsla(var(--hue-white), 100%, .035);

@@ -1,14 +1,14 @@
 export default ({ attrs = {}, evts = {} }) => {
-    const Control = document.createElement('div')
-    Control.className = 'control'
+    const InputContainer = document.createElement('div')
+    InputContainer.setAttribute('data-input-container', '')
 
         const Input = document.createElement('input')
 
         // Set attributes
         for (let attr in attrs) Input.setAttribute(attr, attrs[attr])
 
-        Input.addEventListener('focus', () => Control.classList.add('focused'))
-        Input.addEventListener('blur', () => Control.classList.remove('focused'))
+        Input.addEventListener('focus', () => InputContainer.classList.add('focused'))
+        Input.addEventListener('blur', () => InputContainer.classList.remove('focused'))
 
         // Set events
         for (let evt in evts) {
@@ -18,13 +18,13 @@ export default ({ attrs = {}, evts = {} }) => {
             else Input.addEventListener(evt, evts[evt])
         }
 
-    Control.appendChild(Input)
+    InputContainer.appendChild(Input)
     
     if (attrs?.placeholder) {
         const Span = document.createElement('span')
         Span.textContent = attrs?.placeholder
-        Control.appendChild(Span)
+        InputContainer.appendChild(Span)
     }
 
-    return Control
+    return InputContainer
 }
