@@ -5,6 +5,7 @@ div[data-select-container] {
     --grey-2    : hsl(var(--hue-white), 87%);
     --grey-3    : hsl(var(--hue-white), 10%);
     --grey-4    : hsl(var(--hue-white), 50%);
+    --grey-5    : hsl(var(--hue-white), 43%);
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
     --blue-1    : hsl(var(--hue-blue), 90%, 77%);
@@ -25,6 +26,10 @@ div[data-select-container] {
         padding: 0 .5rem;
         cursor: pointer;
 
+        &:hover {
+            border-bottom-width: .2rem;
+            border-bottom-color: var(--white);
+        }
         &:focus {
             outline: none;
 
@@ -37,6 +42,35 @@ div[data-select-container] {
         &:disabled + span {
             color: var(--grey-4);
             cursor: default;
+            pointer-events: none;
+        }
+        &[multiple] {
+            height: auto;
+            min-height: 10rem;
+            background-color: var(--grey-3);
+            outline: .2rem solid transparent;
+            border: .1rem solid var(--grey-4);
+            transition: outline 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+
+            &:hover {
+                outline-color: var(--white);
+            }
+            &:focus {
+                outline-color: var(--blue-2);
+            }
+            optgroup, option {
+                background-color: unset;
+            }
+            option:hover,
+            option:checked {
+                color: inherit;
+                background-color: var(--blue-2);
+
+                &:disabled {
+                    color: var(--grey-5);
+                    background-color: unset;
+                }
+            }
         }
         optgroup, option {
             background-color: var(--grey-3);

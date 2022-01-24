@@ -49,7 +49,7 @@
             text-align: center;
             text-decoration: underline;
         }
-        #checkbox, #input, #switch, #select {
+        #checkbox, #input, #switch, #select-single, #select-multiple {
             display: flex;
             justify-content: space-evenly;
             border-bottom: .1rem solid #555;
@@ -69,15 +69,17 @@
     <h2>Checkbox</h2>
     <div id="checkbox"></div>
 
-    <h2>Input</h2>
-    <br>
+    <h2>Input</h2><br>
     <div id="input"></div>
 
     <h2>Switch</h2>
     <div id="switch"></div>
 
-    <h2>Select</h2>
-    <div id="select"></div>
+    <h2>Select Single</h2><br>
+    <div id="select-single"></div>
+
+    <h2>Select Multiple</h2><br>
+    <div id="select-multiple"></div>
 
     <script type="module">
         import Checkbox from './checkbox/rui-checkbox.min.js'
@@ -193,12 +195,54 @@
                 }
             }) )
         
-            const select = document.getElementById('select')
-            select.appendChild( Select({
-                labelText: 'Label',
+            const selectSingle = document.getElementById('select-single')
+            
+            selectSingle.appendChild( Select({
+                labelText: 'Single',
+                options: [
+                    {
+                        value: 1,
+                        textContent: 'Lorem ipsum'
+                    },
+                    {
+                        value: 2,
+                        textContent: 'Dolor sit',
+                        disabled: ''
+                    },
+                    {
+                        value: 3,
+                        textContent: 'Amet consectetur'
+                    },
+                    {
+                        value: 4,
+                        textContent: 'Adipiscing elit'
+                    }
+                ]
+            }) )
+            selectSingle.appendChild( Select({
+                labelText: 'Single Disabled',
+                attrs: {
+                    disabled: ''
+                },
+                options: [
+                    {
+                        value: 1,
+                        textContent: 'Lorem ipsum'
+                    },
+                    {
+                        value: 2,
+                        textContent: 'Dolor sit'
+                    },
+                    {
+                        value: 3,
+                        textContent: 'Amet consectetur'
+                    }
+                ]
+            }) )
+            selectSingle.appendChild( Select({
+                labelText: 'Single OptGroups',
                 attrs: {
                     id: 'd',
-                    type: 'text',
                     'data-id': 'abc',
                     'data-value': 'def',
                 },
@@ -259,11 +303,75 @@
                     }
                 ]
             }) )
-            select.appendChild( Select({
-                labelText: 'Disabled',
+            
+            const selectMultiple = document.getElementById('select-multiple')
+            selectMultiple.appendChild( Select({
+                labelText: 'Multiple',
                 attrs: {
-                    type: 'text',
-                    disabled: ''
+                    multiple: ''
+                },
+                evts: {
+                    change: [
+                        () => console.log('a'),
+                        () => console.log('b'),
+                    ],
+                    blur: [
+                        () => console.log('blurA'),
+                        () => console.log('blurB'),
+                    ]
+                },
+                optgroups: [
+                    {
+                        attrs: {
+                            label: '1st Heading',
+                            disabled: ''
+                        },
+                        options: [
+                            {
+                                value: 1,
+                                textContent: 'Lorem ipsum',
+                                'data-opt': 'ipsum'
+                            },
+                            {
+                                value: 2,
+                                textContent: 'Dolor sit'
+                            }
+                        ]
+                    },
+                    {
+                        attrs: {
+                            label: '2nd Heading',
+                            'data-attr': 'lorem'
+                        },
+                        options: [
+                            {
+                                value: 3,
+                                label: 'Amet',
+                                textContent: 'Amet consectetur'
+                            },
+                            {
+                                value: 4,
+                                textContent: 'Adipiscing elit',
+                                selected: '',
+                            },
+                            {
+                                value: 5,
+                                textContent: 'Sed do',
+                                disabled: '',
+                            },
+                            {
+                                value: 6,
+                                textContent: 'Eiusmod tempor',
+                            }
+                        ]
+                    }
+                ]
+            }) )
+            selectMultiple.appendChild( Select({
+                labelText: 'Multiple Disabled',
+                attrs: {
+                    disabled: '',
+                    multiple: ''
                 },
                 options: [
                     {
@@ -280,6 +388,7 @@
                     }
                 ]
             }) )
+
         })
     </script>
 </body>

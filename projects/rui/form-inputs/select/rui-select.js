@@ -38,13 +38,13 @@ export default ({ labelText, attrs = {}, evts = {}, options = [], optgroups = []
         createOptions(options, Select)
 
         for (const optgroup of optgroups) {
-            const Optgroup = document.createElement('optgroup')
+            const OptGroup = document.createElement('optgroup')
 
-            for (const attr in optgroup.attrs) Optgroup.setAttribute(attr, optgroup.attrs[attr])
+            for (const attr in optgroup.attrs) OptGroup.setAttribute(attr, optgroup.attrs[attr])
 
-            createOptions(optgroup.options, Optgroup)
+            createOptions(optgroup.options, OptGroup)
 
-            Select.appendChild(Optgroup)
+            Select.appendChild(OptGroup)
         }
 
     SelectContainer.appendChild(Select)
