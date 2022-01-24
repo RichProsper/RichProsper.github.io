@@ -1,6 +1,7 @@
 div[data-input-container] {
     // White: hsl(0, 0%, 100%)
     --hue-white : 0, 0%;
+    --white     : hsl(var(--hue-white), 100%);
     --grey-1    : hsla(var(--hue-white), 100%, .035);
     --grey-2    : hsl(var(--hue-white), 87%);
     --grey-3    : hsl(var(--hue-white), 10%);
@@ -33,6 +34,15 @@ div[data-input-container] {
         &::placeholder {
             color: transparent;
             user-select: none;
+        }
+        &:hover {
+            border-bottom-width: .2rem;
+            border-bottom-color: var(--white);
+
+            &:disabled {
+                border-bottom-width: .1rem;
+                border-bottom-color: var(--grey-2);
+            }
         }
         &:focus {
             outline: none;
