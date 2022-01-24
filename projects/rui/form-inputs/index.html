@@ -35,7 +35,7 @@
             font-size: 1.6rem;
             font-family: 'Poppins', Arial, Helvetica, sans-serif;
         }
-        body, #input, #switch {
+        body {
             padding: 1rem;
         }
         *,
@@ -49,11 +49,12 @@
             text-align: center;
             text-decoration: underline;
         }
-        #checkbox, #input, #switch {
+        #checkbox, #input, #switch, #select {
             display: flex;
             justify-content: space-evenly;
             border-bottom: .1rem solid #555;
             margin-bottom: 1rem;
+            padding: 1rem;
         }
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
@@ -61,6 +62,7 @@
     <link rel="stylesheet" href="checkbox/rui-checkbox.min.css">
     <link rel="stylesheet" href="input/rui-input.min.css">
     <link rel="stylesheet" href="switch/rui-switch.min.css">
+    <link rel="stylesheet" href="select/rui-select.min.css">
     <title>Form Inputs Demo</title>
 </head>
 <body>
@@ -74,10 +76,14 @@
     <h2>Switch</h2>
     <div id="switch"></div>
 
+    <h2>Select</h2>
+    <div id="select"></div>
+
     <script type="module">
         import Checkbox from './checkbox/rui-checkbox.min.js'
         import Input from './input/rui-input.min.js'
         import Switch from './switch/rui-switch.min.js'
+        import Select from './select/rui-select.min.js'
 
         document.addEventListener('DOMContentLoaded', () => {
             const checkbox = document.getElementById('checkbox')
@@ -185,6 +191,94 @@
                     disabled: '',
                     checked: ''
                 }
+            }) )
+        
+            const select = document.getElementById('select')
+            select.appendChild( Select({
+                labelText: 'Label',
+                attrs: {
+                    id: 'd',
+                    type: 'text',
+                    'data-id': 'abc',
+                    'data-value': 'def',
+                },
+                evts: {
+                    change: [
+                        () => console.log('a'),
+                        () => console.log('b'),
+                    ],
+                    blur: [
+                        () => console.log('blurA'),
+                        () => console.log('blurB'),
+                    ]
+                },
+                optgroups: [
+                    {
+                        attrs: {
+                            label: '1st Heading',
+                            disabled: ''
+                        },
+                        options: [
+                            {
+                                value: 1,
+                                textContent: 'Lorem ipsum',
+                                'data-opt': 'ipsum'
+                            },
+                            {
+                                value: 2,
+                                textContent: 'Dolor sit'
+                            }
+                        ]
+                    },
+                    {
+                        attrs: {
+                            label: '2nd Heading',
+                            'data-attr': 'lorem'
+                        },
+                        options: [
+                            {
+                                value: 3,
+                                label: 'Amet',
+                                textContent: 'Amet consectetur'
+                            },
+                            {
+                                value: 4,
+                                textContent: 'Adipiscing elit',
+                                selected: '',
+                            },
+                            {
+                                value: 5,
+                                textContent: 'Sed do',
+                                disabled: '',
+                            },
+                            {
+                                value: 6,
+                                textContent: 'Eiusmod tempor',
+                            }
+                        ]
+                    }
+                ]
+            }) )
+            select.appendChild( Select({
+                labelText: 'Disabled',
+                attrs: {
+                    type: 'text',
+                    disabled: ''
+                },
+                options: [
+                    {
+                        value: 1,
+                        textContent: 'Lorem ipsum'
+                    },
+                    {
+                        value: 2,
+                        textContent: 'Dolor sit'
+                    },
+                    {
+                        value: 3,
+                        textContent: 'Amet consectetur'
+                    }
+                ]
             }) )
         })
     </script>
