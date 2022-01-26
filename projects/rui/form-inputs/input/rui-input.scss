@@ -13,9 +13,10 @@ div[data-input-container] {
     
 
     position: relative;
+    height: 4rem;
 
     input {
-        height: 4rem;
+        height: 100%;
         display: block;
         width: 100%;
         background-color: var(--grey-1);

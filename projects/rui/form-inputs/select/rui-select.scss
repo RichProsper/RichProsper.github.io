@@ -13,9 +13,13 @@ div[data-select-container] {
     
 
     position: relative;
+    height: 4rem;
 
+    &.multiple {
+        height: auto;
+    }
     select {
-        height: 4rem;
+        height: 100%;
         display: block;
         width: 100%;
         background-color: var(--grey-1);

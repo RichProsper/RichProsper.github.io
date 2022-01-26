@@ -6,6 +6,7 @@ export default ({ labelText, attrs = {}, evts = {}, options = [], optgroups = []
 
         // Set attributes
         for (const attr in attrs) Select.setAttribute(attr, attrs[attr])
+        if ('multiple' in attrs) SelectContainer.classList.add('multiple')
 
         Select.addEventListener('focus', () => SelectContainer.classList.add('focused'))
         Select.addEventListener('blur', () => SelectContainer.classList.remove('focused'))
