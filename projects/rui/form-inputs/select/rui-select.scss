@@ -6,6 +6,7 @@ div[data-select-container] {
     --grey-3    : hsl(var(--hue-white), 10%);
     --grey-4    : hsl(var(--hue-white), 50%);
     --grey-5    : hsl(var(--hue-white), 43%);
+    --grey-6    : hsla(var(--hue-white), 100%, .055);
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
     --blue-1    : hsl(var(--hue-blue), 90%, 77%);
@@ -31,8 +32,8 @@ div[data-select-container] {
         cursor: pointer;
 
         &:hover {
-            border-bottom-width: .2rem;
             border-bottom-color: var(--white);
+            background-color: var(--grey-6);
         }
         &:focus {
             outline: none;
