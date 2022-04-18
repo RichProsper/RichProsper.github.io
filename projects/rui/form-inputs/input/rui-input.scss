@@ -83,3 +83,9 @@ div[data-input-container] {
         transform: scaleX(1);
     }
 }
+
+div[data-input-container][data-file] {
+    input::file-selector-button {
+        display: none;
+    }
+}
