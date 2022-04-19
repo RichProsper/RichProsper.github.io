@@ -1,32 +1,49 @@
 export default ({ attrs = {}, evts = {} }) => {
-    const DivContainer = document.createElement('div')
-    DivContainer.setAttribute('data-input-container', '')
-
-        const Input = document.createElement('input')
+    const Container = { el: {} }
+    const Input = document.createElement('input')
     
-        // Set attributes
-        for (const attr in attrs) Input.setAttribute(attr, attrs[attr])
+    // Set attributes
+    for (const attr in attrs) Input.setAttribute(attr, attrs[attr])
 
-        Input.addEventListener('focus', () => DivContainer.classList.add('focused'))
-        Input.addEventListener('blur', () => DivContainer.classList.remove('focused'))
+    Input.addEventListener('focus', () => Container.el.classList.add('focused'))
+    Input.addEventListener('blur', () => Container.el.classList.remove('focused'))
 
-        // Set events
-        for (const evt in evts) {
-            if ( Array.isArray(evts[evt]) ) {
-                for (const e of evts[evt]) Input.addEventListener(evt, e)
-            }
-            else Input.addEventListener(evt, evts[evt])
+    // Set events
+    for (const evt in evts) {
+        if ( Array.isArray(evts[evt]) ) {
+            for (const e of evts[evt]) Input.addEventListener(evt, e)
         }
-
-    DivContainer.appendChild(Input)
-    
-    if (attrs?.placeholder) {
-        const Span = document.createElement('span')
-        Span.textContent = attrs?.placeholder
-        DivContainer.appendChild(Span)
+        else Input.addEventListener(evt, evts[evt])
     }
 
-    if (attrs?.type === 'file') DivContainer.setAttribute('data-file', '')
+    switch (attrs?.type) {
+        case 'file': {
+            Container.el = document.createElement('label')
 
-    return DivContainer
+            const Icon = document.createElement('i')
+            Icon.className = 'fas fa-upload'
+
+            const Span = document.createElement('span')
+            Span.textContent = ' Choose a file...'
+
+            Container.el.appendChild(Input)
+            Container.el.appendChild(Icon)
+            Container.el.appendChild(Span)
+            break
+        }
+        default: {
+            Container.el = document.createElement('div')
+            Container.el.appendChild(Input)
+    
+            if (attrs?.placeholder) {
+                const Span = document.createElement('span')
+                Span.textContent = attrs?.placeholder
+                Container.el.appendChild(Span)
+            }
+        }
+    }
+
+    Container.el.setAttribute('data-input-container', '')
+
+    return Container.el
 }
