@@ -87,36 +87,44 @@ div[data-input-container] {
 label[data-input-container] {
     // White: hsl(0, 0%, 100%)
     --hue-white : 0, 0%;
-    --white     : hsl(var(--hue-white), 100%);
-    --grey-1    : hsla(var(--hue-white), 100%, .035);
-    --grey-2    : hsl(var(--hue-white), 87%);
-    --grey-3    : hsl(var(--hue-white), 10%);
-    --grey-4    : hsl(var(--hue-white), 50%);
+    --grey-1    : hsl(var(--hue-white), 50%);
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
-    --blue-1    : hsl(var(--hue-blue), 90%, 77%);
-    --blue-2    : hsl(var(--hue-blue), 90%, 53%);
+    --blue-1    : hsl(var(--hue-blue), 90%, 53%);
     
 
     position: relative;
-    width: 18rem;
-    height: 4rem;
-    border: .2rem solid currentColor;
-    cursor: pointer;
-    line-height: 3.6rem;
-    text-align: center;
-    padding: 0 .5rem;
-    transition: .2s;
-
-    &:focus,
-    &:hover {
-        color: var(--blue-2);
-    }
+    overflow: hidden;
 
     input {
+        position: absolute;
         width: 0;
         height: 0;
         opacity: 0;
         z-index: -1;
+
+        &:disabled + div {
+            color: var(--grey-1);
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    div {
+        height: 4rem;
+        border: .2rem solid currentColor;
+        cursor: pointer;
+        line-height: 3.6rem;
+        text-align: center;
+        padding: 0 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        transition: .2s;
+
+        &.focused,
+        &:hover {
+            color: var(--blue-1);
+        }
     }
 }
