@@ -10,9 +10,6 @@ export default ({ attrs = {}, evts = {} }) => {
                 // Set attributes
                 for (const attr in attrs) Input.setAttribute(attr, attrs[attr])
 
-                Input.addEventListener('focus', () => InputContainer.classList.add('focused'))
-                Input.addEventListener('blur', () => InputContainer.classList.remove('focused'))
-
                 // Set events
                 for (const evt in evts) {
                     if ( Array.isArray(evts[evt]) ) {
@@ -32,6 +29,8 @@ export default ({ attrs = {}, evts = {} }) => {
                 Div.appendChild(Icon)
                 Div.appendChild(Span)
 
+                Input.addEventListener('focus', () => Div.classList.add('focused'))
+                Input.addEventListener('blur', () => Div.classList.remove('focused'))
                 Input.addEventListener('change', e => {
                     const files = e.target.files
                     switch (files.length) {
