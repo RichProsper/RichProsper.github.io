@@ -3,7 +3,6 @@ export default ({ attrs = {}, evts = {} }) => {
         case 'file': {
             const InputContainer = document.createElement('label')
             InputContainer.setAttribute('data-input-container', '')
-            InputContainer.title = 'Choose a file...'
 
                 const Input = document.createElement('input')
         
@@ -19,6 +18,7 @@ export default ({ attrs = {}, evts = {} }) => {
                 }
 
                 const Div = document.createElement('div')
+                Div.title = attrs.title ? attrs.title : ''
 
                     const Icon = document.createElement('i')
                     Icon.className = 'fas fa-upload'
@@ -36,22 +36,18 @@ export default ({ attrs = {}, evts = {} }) => {
                     switch (files.length) {
                         case 0: {
                             Span.textContent = ' Choose a file...'
-                            InputContainer.title = 'Choose a file...'
                             break
                         }
                         case 1: {
                             Span.textContent = ` ${files[0].name}`
-                            InputContainer.title = files[0].name
                             break
                         }
                         default: {
                             if (files.length < 9) {
                                 Span.textContent = ` ${files.length} files selected`
-                                InputContainer.title = `${files.length} files selected`
                             }
                             else {
                                 Span.textContent = ' 9+ files selected'
-                                InputContainer.title = '9+ files selected'
                             }
                         }
                     }
