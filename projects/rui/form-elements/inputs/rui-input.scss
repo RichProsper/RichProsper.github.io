@@ -12,6 +12,7 @@ div[data-input-container] {
     --blue-2    : hsl(var(--hue-blue), 90%, 53%);
     
 
+    color-scheme: dark;
     position: relative;
     height: 4rem;
 
@@ -81,50 +82,5 @@ div[data-input-container] {
     }
     &.focused::after {
         transform: scaleX(1);
-    }
-}
-
-label[data-input-container] {
-    // White: hsl(0, 0%, 100%)
-    --hue-white : 0, 0%;
-    --grey-1    : hsl(var(--hue-white), 50%);
-    // Light Blue : hsl(207, 90%, 77%)
-    --hue-blue   : 207;
-    --blue-1    : hsl(var(--hue-blue), 90%, 53%);
-    
-
-    position: relative;
-    overflow: hidden;
-
-    input {
-        position: absolute;
-        width: 0;
-        height: 0;
-        opacity: 0;
-        z-index: -1;
-
-        &:disabled + div {
-            color: var(--grey-1);
-            cursor: default;
-            pointer-events: none;
-        }
-    }
-
-    div {
-        height: 4rem;
-        border: .2rem solid currentColor;
-        cursor: pointer;
-        line-height: 3.6rem;
-        text-align: center;
-        padding: 0 1rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        transition: .2s;
-
-        &.focused,
-        &:hover {
-            color: var(--blue-1);
-        }
     }
 }

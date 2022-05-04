@@ -49,7 +49,7 @@
             text-align: center;
             text-decoration: underline;
         }
-        #checkbox, #input, #switch, #select-single, #select-multiple, #textarea {
+        .example {
             display: flex;
             justify-content: space-evenly;
             border-bottom: .1rem solid #555;
@@ -59,36 +59,38 @@
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="../../../vendors/Poppins/Poppins.min.css">
-    <link rel="stylesheet" href="checkbox/rui-checkbox.min.css">
-    <link rel="stylesheet" href="input/rui-input.min.css">
-    <link rel="stylesheet" href="switch/rui-switch.min.css">
+    <link rel="stylesheet" href="inputs/checkbox/rui-checkbox.min.css">
+    <link rel="stylesheet" href="inputs/rui-input.min.css">
+    <link rel="stylesheet" href="inputs/input-file/rui-input-file.min.css">
+    <link rel="stylesheet" href="inputs/switch/rui-switch.min.css">
     <link rel="stylesheet" href="select/rui-select.min.css">
     <link rel="stylesheet" href="textarea/rui-textarea.min.css">
-    <title>Form Inputs Demo</title>
+    <title>Form Elements Demo</title>
 </head>
 <body>
     <h2>Checkbox</h2>
-    <div id="checkbox"></div>
+    <div id="checkbox" class="example"></div>
 
     <h2>Input</h2><br>
-    <div id="input"></div>
+    <div id="input" class="example"></div>
 
     <h2>Switch</h2>
-    <div id="switch"></div>
+    <div id="switch" class="example"></div>
 
     <h2>Select Single</h2><br>
-    <div id="select-single"></div>
+    <div id="select-single" class="example"></div>
 
     <h2>Select Multiple</h2><br>
-    <div id="select-multiple"></div>
+    <div id="select-multiple" class="example"></div>
 
     <h2>Textarea</h2><br>
-    <div id="textarea"></div>
+    <div id="textarea" class="example"></div>
 
     <script type="module">
-        import Checkbox from './checkbox/rui-checkbox.min.js'
-        import Input from './input/rui-input.min.js'
-        import Switch from './switch/rui-switch.min.js'
+        import Checkbox from './inputs/checkbox/rui-checkbox.min.js'
+        import Input from './inputs/rui-input.min.js'
+        import InputFile from './inputs/input-file/rui-input-file.min.js'
+        import Switch from './inputs/switch/rui-switch.min.js'
         import Select from './select/rui-select.min.js'
         import Textarea from './textarea/rui-textarea.min.js'
 
@@ -160,7 +162,7 @@
                     disabled: ''
                 }
             }) )
-            input.appendChild( Input({
+            input.appendChild( InputFile({
                 attrs: {
                     type: 'file',
                     title: 'Only .txt files'

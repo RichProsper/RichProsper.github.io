@@ -1,4 +1,4 @@
-export default ({ attrs = {}, evts = {} }) => {
+export default ({ attrs = {}, evts = {}, label = 'Choose a file...' }) => {
     switch (attrs?.type) {
         case 'file': {
             const InputContainer = document.createElement('label')
@@ -24,7 +24,7 @@ export default ({ attrs = {}, evts = {} }) => {
                     Icon.className = 'fas fa-upload'
 
                     const Span = document.createElement('span')
-                    Span.textContent = ' Choose a file...'
+                    Span.textContent = ` ${label}`
 
                 Div.appendChild(Icon)
                 Div.appendChild(Span)
@@ -35,7 +35,7 @@ export default ({ attrs = {}, evts = {} }) => {
                     const files = e.target.files
                     switch (files.length) {
                         case 0: {
-                            Span.textContent = ' Choose a file...'
+                            Span.textContent = ` ${label}`
                             break
                         }
                         case 1: {
@@ -59,34 +59,10 @@ export default ({ attrs = {}, evts = {} }) => {
             return InputContainer
         }
         default: {
-            const InputContainer = document.createElement('div')
-            InputContainer.setAttribute('data-input-container', '')
-
-                const Input = document.createElement('input')
-    
-                // Set attributes
-                for (const attr in attrs) Input.setAttribute(attr, attrs[attr])
-
-                Input.addEventListener('focus', () => InputContainer.classList.add('focused'))
-                Input.addEventListener('blur', () => InputContainer.classList.remove('focused'))
-
-                // Set events
-                for (const evt in evts) {
-                    if ( Array.isArray(evts[evt]) ) {
-                        for (const e of evts[evt]) Input.addEventListener(evt, e)
-                    }
-                    else Input.addEventListener(evt, evts[evt])
-                }
-
-            InputContainer.appendChild(Input)
-    
-            if (attrs?.placeholder) {
-                const Span = document.createElement('span')
-                Span.textContent = attrs?.placeholder
-                InputContainer.appendChild(Span)
-            }
-
-            return InputContainer
+            const Div = document.createElement('div')
+            Div.style.lineHeight = '4rem'
+            Div.textContent = `Only input type 'file' is supported!`
+            return Div
         }
     }
 }
