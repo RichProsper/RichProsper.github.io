@@ -168,6 +168,13 @@
                     title: 'Only .txt files'
                 }
             }) )
+            input.appendChild( InputFile({
+                attrs: {
+                    type: 'file',
+                    title: 'Only .txt files',
+                    'rui-type': 'image'
+                }
+            }) )
             
             const switch_ = document.getElementById('switch')
             switch_.appendChild( Switch({

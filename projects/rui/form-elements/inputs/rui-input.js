@@ -1,5 +1,5 @@
 export default ({ attrs = {}, evts = {} }) => {
-    switch (attrs?.type) {
+    switch (attrs.type) {
         case 'button':
         case 'checkbox':
         case 'color':
@@ -36,13 +36,13 @@ export default ({ attrs = {}, evts = {} }) => {
 
             InputContainer.appendChild(Input)
     
-            if (attrs?.placeholder) {
+            if (attrs.placeholder) {
                 const Span = document.createElement('span')
-                Span.textContent = attrs?.placeholder
+                Span.textContent = attrs.placeholder
                 InputContainer.appendChild(Span)
             }
 
             return InputContainer
         }
-    }
+    } // switch ()
 }

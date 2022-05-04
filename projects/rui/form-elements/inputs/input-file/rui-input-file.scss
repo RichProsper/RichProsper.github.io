@@ -9,6 +9,7 @@ label[data-input-container] {
 
     position: relative;
     overflow: hidden;
+    display: flex;
 
     input {
         position: absolute;
@@ -23,7 +24,6 @@ label[data-input-container] {
             pointer-events: none;
         }
     }
-
     div {
         height: 4rem;
         border: .2rem solid currentColor;
@@ -36,9 +36,13 @@ label[data-input-container] {
         text-overflow: ellipsis;
         transition: .2s;
 
-        &.focused,
-        &:hover {
-            color: var(--blue-1);
+        &[rui-preview] {
+            width: 4rem;
+            border-left: none;
         }
+    }
+    &.focused div,
+    &:hover div {
+        color: var(--blue-1);
     }
 }
