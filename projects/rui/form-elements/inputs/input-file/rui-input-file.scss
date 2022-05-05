@@ -36,13 +36,18 @@ label[data-input-container] {
         text-overflow: ellipsis;
         transition: .2s;
 
+        &.focused,
+        &:hover {
+            color: var(--blue-1);
+        }
         &[rui-preview] {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 4rem;
             border-left: none;
+            font-size: 2rem;
+            text-overflow: unset;
         }
-    }
-    &.focused div,
-    &:hover div {
-        color: var(--blue-1);
     }
 }

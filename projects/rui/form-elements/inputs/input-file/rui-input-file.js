@@ -20,59 +20,64 @@ export default ({ attrs = {}, evts = {}, label = 'Choose a file...' }) => {
                 const Div = document.createElement('div')
                 if (attrs.title) Div.title = attrs.title
 
-                    const Icon = document.createElement('i')
-                    Icon.className = 'fas fa-upload'
+                    const UploadIcon = document.createElement('i')
+                    UploadIcon.className = 'fas fa-upload'
 
                     const Span = document.createElement('span')
                     Span.textContent = ` ${label}`
 
-                Div.appendChild(Icon)
+                Div.appendChild(UploadIcon)
                 Div.appendChild(Span)
+
+                Input.addEventListener('focus', () => Div.classList.add('focused'))
+                Input.addEventListener('blur', () => Div.classList.remove('focused'))
+
 
             InputContainer.appendChild(Input)
             InputContainer.appendChild(Div)
 
-                switch (attrs['rui-type']) {
-                    case 'image': {
-                        const Preview = document.createElement('div')
-                        Preview.setAttribute('rui-preview', '')
+            switch (attrs['rui-type']) {
+                case 'image': {
+                    const Preview = document.createElement('div')
+                    Preview.setAttribute('rui-preview', '')
 
-                        InputContainer.appendChild(Preview)
-                    }
-                    case 'video': {
+                        const PreviewIcon = document.createElement('i')
+                        PreviewIcon.className = 'fas fa-image'
 
-                    }
-                    case 'audio': {
+                    Preview.appendChild(PreviewIcon)
+                    InputContainer.appendChild(Preview)
+                    break
+                }
+                case 'video': {
 
-                    }
-                    default: {
-                        document.body.appendChild( document.createTextNode('default') )
+                }
+                case 'audio': {
 
-                        Input.addEventListener('focus', () => InputContainer.classList.add('focused'))
-                        Input.addEventListener('blur', () => InputContainer.classList.remove('focused'))
-                        Input.addEventListener('change', e => {
-                            const files = e.target.files
-                            switch (files.length) {
-                                case 0: {
-                                    Span.textContent = ` ${label}`
-                                    break
+                }
+                default: {
+                    Input.addEventListener('change', e => {
+                        const files = e.target.files
+                        switch (files.length) {
+                            case 0: {
+                                Span.textContent = ` ${label}`
+                                break
+                            }
+                            case 1: {
+                                Span.textContent = ` ${files[0].name}`
+                                break
+                            }
+                            default: {
+                                if (files.length < 9) {
+                                    Span.textContent = ` ${files.length} files selected`
                                 }
-                                case 1: {
-                                    Span.textContent = ` ${files[0].name}`
-                                    break
-                                }
-                                default: {
-                                    if (files.length < 9) {
-                                        Span.textContent = ` ${files.length} files selected`
-                                    }
-                                    else {
-                                        Span.textContent = ' 9+ files selected'
-                                    }
+                                else {
+                                    Span.textContent = ' 9+ files selected'
                                 }
                             }
-                        })
-                    }
+                        }
+                    })
                 }
+            }
 
             return InputContainer
         } // case:
