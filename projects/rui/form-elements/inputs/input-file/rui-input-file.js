@@ -2,7 +2,7 @@ export default ({ attrs = {}, evts = {}, label = 'Choose a file...' }) => {
     switch (attrs.type) {
         case 'file': {
             const InputContainer = document.createElement('label')
-            InputContainer.setAttribute('data-input-container', '')
+            InputContainer.setAttribute('data-input-file-container', '')
 
                 const Input = document.createElement('input')
         

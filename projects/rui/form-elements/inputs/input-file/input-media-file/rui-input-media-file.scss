@@ -1,44 +1,71 @@
-label[data-input-container] {
+div[data-input-media-file-container] {
     // White: hsl(0, 0%, 100%)
     --hue-white : 0, 0%;
     --grey-1    : hsl(var(--hue-white), 50%);
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
-    --blue-1    : hsl(var(--hue-blue), 90%, 53%);
+    --blue-1    : hsla(var(--hue-blue), 90%, 53%, 20%);
     
 
     position: relative;
-    overflow: hidden;
     display: flex;
 
-    input {
-        position: absolute;
-        width: 0;
-        height: 0;
-        opacity: 0;
-        z-index: -1;
+    label {
+        position: relative;
+        overflow: hidden;
 
-        &:disabled + div {
+        input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            z-index: -1;
+    
+            &:disabled + div {
+                color: var(--grey-1);
+                cursor: default;
+                pointer-events: none;
+            }
+        }
+        div {
+            height: 4rem;
+            border: .2rem solid currentColor;
+            cursor: pointer;
+            line-height: 3.6rem;
+            text-align: center;
+            padding: 0 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            transition: .2s;
+    
+            &.focused,
+            &:hover {
+                background-color: var(--blue-1);
+            }
+        }
+    }
+    button {
+        color: inherit;
+        background-color: transparent;
+        min-width: 4rem;
+        border: .2rem solid currentColor;
+        border-left: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+
+        &:focus,
+        &:hover {
+            background-color: var(--blue-1);
+            outline: none;
+        }
+        &:disabled {
             color: var(--grey-1);
             cursor: default;
             pointer-events: none;
-        }
-    }
-    div {
-        height: 4rem;
-        border: .2rem solid currentColor;
-        cursor: pointer;
-        line-height: 3.6rem;
-        text-align: center;
-        padding: 0 1rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        transition: .2s;
-
-        &.focused,
-        &:hover {
-            color: var(--blue-1);
         }
     }
 }
