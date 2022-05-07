@@ -62,7 +62,23 @@ export default ({ attrs = {}, evts = {}, label = 'Choose a file...' }) => {
         if (attrs.disabled !== undefined) Preview.disabled = true
 
             const MediaIcon = document.createElement('i')
-            MediaIcon.className = 'fas fa-image'
+
+            switch (attrs['rui-type']) {
+                case 'audio': {
+                    Preview.title = 'Click to preview selected audio file(s)'
+                    MediaIcon.className = 'fas fa-music'
+                    break
+                }
+                case 'video': {
+                    Preview.title = 'Click to preview selected video file(s)'
+                    MediaIcon.className = 'fas fa-play'
+                    break
+                }
+                default: {
+                    Preview.title = 'Click to preview selected image file(s)'
+                    MediaIcon.className = 'fas fa-image'
+                }
+            }
 
         Preview.appendChild(MediaIcon)
 
