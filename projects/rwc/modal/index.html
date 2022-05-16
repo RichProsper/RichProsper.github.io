@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../../global.min.css">
+    <script src="rwc-modal.min.js" defer></script>
+    <style>
+        section {
+            padding: 2em;
+        }
+        section h1 {
+            margin-bottom: 1em;
+        }
+        section button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+            font-size: inherit;
+            border: .125em solid currentColor;
+            padding: .25em .75em;
+            border-radius: .25em;
+        }
+        section button:hover,
+        section button:focus {
+            color: lightskyblue;
+        }
+    </style>
+    <title>Form Elements Demo</title>
+</head>
+<body>
+    <section>
+        <h1>Modals</h1>
+        <button type="button">Toggle Modal</button>
+        <rwc-modal></rwc-modal>
+    </section>
+</body>
+</html>
