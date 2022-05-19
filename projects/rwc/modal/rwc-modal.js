@@ -7,6 +7,8 @@ class RWC_Modal extends HTMLElement {
     init() {
         this.attachShadow({mode: 'open'})
         this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))
+
+        this.Modal = this.shadowRoot.querySelector('.modal')
     }
 
     getTemplate() {
@@ -14,23 +16,44 @@ class RWC_Modal extends HTMLElement {
         template.innerHTML = `
             <link rel="stylesheet" href="modal.min.css">
 
-            <div class="modal">
+            <div class="modal" aria-modal="true" role="dialog">
                 <div class="content">
                     <div class="header">
-                        <h3>A Cool Heading</h3>
+                        <h3><slot name="heading" /></h3>
                         <button type="button" class="close">
                             <span>&times;</span>
                         </button>
                     </div>
                     <div class="body">
                         <div class="body-content">
-                            <p>The Body</p>
+                            <slot name="body-content" />
                         </div>
                     </div>
                 </div>
             </div>
         `
         return template
+    }
+
+    connectedCallback() {
+        this.Modal.addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('open')
+        })
+
+        this.shadowRoot.querySelector('.close').addEventListener('click', () => {
+            this.Modal.classList.remove('open')
+        })
+
+        if (this.getAttribute('modal_id')) {
+            const modalOpener = document.querySelector(`[modal_id="${this.getAttribute('modal_id')}"]`)
+            modalOpener.addEventListener('click', () => {
+                this.Modal.classList.add('open')
+            })
+        }
+
+        if (this.getAttribute('modal_outline_color')) {
+            this.Modal.firstElementChild.style.borderColor = this.getAttribute('modal_outline_color')
+        }
     }
 }
 
