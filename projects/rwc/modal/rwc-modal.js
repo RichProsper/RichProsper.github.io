@@ -9,12 +9,19 @@ class RWC_Modal extends HTMLElement {
         this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))
 
         this.Modal = this.shadowRoot.querySelector('.modal')
+        this.Style = this.shadowRoot.querySelector('.style')
     }
 
     getTemplate() {
         const template = document.createElement('template')
         template.innerHTML = `
             <link rel="stylesheet" href="modal.min.css">
+
+            <style class="style">
+                .modal .content {
+                    border-color: [[borderColor]];
+                }
+            </style>
 
             <div class="modal" aria-modal="true" role="dialog">
                 <div class="content">
@@ -52,7 +59,8 @@ class RWC_Modal extends HTMLElement {
         }
 
         if (this.getAttribute('modal_outline_color')) {
-            this.Modal.firstElementChild.style.borderColor = this.getAttribute('modal_outline_color')
+            this.Style.innerHTML = this.Style.innerHTML.replace('[[borderColor]]', this.getAttribute('modal_outline_color'))
+            // TODO Use var() to do the property switch
         }
     }
 }
