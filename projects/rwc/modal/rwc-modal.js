@@ -1,6 +1,6 @@
 class RWC_Modal extends HTMLElement {
     static get observedAttributes() {
-        return ['modal_outline_color'];
+        return ['modal_id', 'modal_outline_color'];
     }
 
     constructor() {
@@ -45,6 +45,8 @@ class RWC_Modal extends HTMLElement {
         return template
     }
 
+    openModal = () => this.Modal.classList.add('open')
+
     connectedCallback() {
         this.Modal.addEventListener('click', function(e) {
             if (e.target === this) this.classList.remove('open')
@@ -53,19 +55,26 @@ class RWC_Modal extends HTMLElement {
         this.shadowRoot.querySelector('.close').addEventListener('click', () => {
             this.Modal.classList.remove('open')
         })
-
-        if (this.getAttribute('modal_id')) {
-            const modalOpener = document.querySelector(`[modal_id="${this.getAttribute('modal_id')}"]`)
-            modalOpener.addEventListener('click', () => {
-                this.Modal.classList.add('open')
-            })
-        }
-
-        this.Style.innerHTML = this.css.replace('[[modal_outline_color]]', this.getAttribute('modal_outline_color') || this.defaultModalOutlineColor)
     }
 
+    // This life cycle hook is run before connectedCallback()
     attributeChangedCallback(name, oldValue, newValue) {
-        this.Style.innerHTML = this.css.replace('[[modal_outline_color]]', newValue)
+        switch (name) {
+            case 'modal_id': {
+                const prevModalOpener = document.querySelector(`[for_modal="${oldValue}"]`)
+                const newModalOpener = document.querySelector(`[for_modal="${newValue}"]`)
+
+                if (prevModalOpener) prevModalOpener.removeEventListener('click', this.openModal)
+                newModalOpener.addEventListener('click', this.openModal)
+
+                break
+            }
+            case 'modal_outline_color': {
+                this.Style.innerHTML = this.css.replace('[[modal_outline_color]]', newValue)
+                break
+            }
+            default: {}
+        }
     }
 }
 

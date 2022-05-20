@@ -36,7 +36,7 @@
     <section>
         <h1>Modals</h1>
 
-        <button type="button" modal_id="0">Toggle Modal</button>
+        <button type="button" for_modal="0">Toggle Modal 1</button>
         <rwc-modal modal_id="0" modal_outline_color="#2be">
             <span slot="heading">This is the Heading</span>
             <div slot="body-content">
@@ -45,13 +45,15 @@
             </div>
         </rwc-modal>
 
-        <button type="button" modal_id="1">Toggle Modal</button>
+        <button type="button" for_modal="1">Toggle Modal 2</button>
         <rwc-modal modal_id="1" modal_outline_color="purple">
             <span slot="heading">Another Modal</span>
             <div slot="body-content">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, consequuntur! Necessitatibus perferendis minus, expedita inventore deserunt deleniti. Sapiente placeat est, eos quod facilis eaque qui, natus quos debitis nesciunt aperiam.</p>
             </div>
         </rwc-modal>
+
+        <button type="button" for_modal="2">Toggle Modal 3</button>
     </section>
 </body>
 </html>
