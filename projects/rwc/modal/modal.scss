@@ -24,6 +24,7 @@
     height: 100vh;
     background-color: var(--white-2);
     padding: 8em 4em;
+    backdrop-filter: blur(.2rem);
     box-sizing: border-box;
 
     &.open {
