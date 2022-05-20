@@ -7,12 +7,12 @@
 
 .modal {
     --hs-1: 0, 0%;
-    --white-1: hsl(var(--hs-1), 63%);
-    --white-2: hsl(var(--hs-1), 33%);
-    --white-3: hsla(var(--hs-1), 10%, .75);
-    --white-4: hsl(var(--hs-1), 10%);
-    --white-5: hsl(var(--hs-1), 5%);
-    --white-6: hsl(var(--hs-1), 53%);
+    --white-1: hsl(var(--hs-1), 33%);
+    --white-2: hsla(var(--hs-1), 10%, .75);
+    --white-3: hsl(var(--hs-1), 10%);
+    --white-4: hsl(var(--hs-1), 5%);
+    --white-5: hsl(var(--hs-1), 53%);
+    --modal-outline-color: [[modal-outline-color]];
 
 
     display: none;
@@ -22,7 +22,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--white-3);
+    background-color: var(--white-2);
     padding: 8em 4em;
     box-sizing: border-box;
 
@@ -35,14 +35,14 @@
         box-sizing: border-box;
     }
     .content {
-        background-color: var(--white-4);
+        background-color: var(--white-3);
         border-radius: 1.5rem;
-        border: .2rem solid var(--white-1);
+        border: .2rem solid var(--modal-outline-color);
 
         .header {
             position: relative;
             height: 4rem;
-            border-bottom: .2rem solid var(--white-2);
+            border-bottom: .2rem solid var(--white-1);
 
             h3 {
                 font-size: 2rem;
@@ -59,9 +59,9 @@
                 width: 3rem;
                 height: 3rem;
                 border-radius: 50%;
-                background-color: var(--white-4);
+                background-color: var(--white-3);
                 border: .2rem solid;
-                border-color: var(--white-1) var(--white-1) var(--white-1) transparent;
+                border-color: var(--modal-outline-color) var(--modal-outline-color) var(--modal-outline-color) transparent;
                 transform: rotate(-45deg);
                 cursor: pointer;
                 color: inherit;
@@ -76,7 +76,7 @@
                 }
                 &:hover,
                 &:focus {
-                    color: var(--white-1);
+                    color: var(--modal-outline-color);
                 }
             }
         }
@@ -106,15 +106,15 @@
         height: 15px;
     
         &-track, &-corner {
-            background: var(--white-5);
+            background: var(--white-4);
         }
         &-thumb {
-            background: var(--white-6);
+            background: var(--white-5);
             border-radius: 9px;
-            border: 3px solid var(--white-5);
+            border: 3px solid var(--white-4);
     
             &:hover {
-                background: var(--white-6); 
+                background: var(--white-5); 
             }
         }
     }
