@@ -33,7 +33,7 @@
     *,
     *::before,
     *::after {
-        box-sizing: border-box;
+        box-sizing: inherit;
     }
     .content {
         background-color: var(--white-3);
