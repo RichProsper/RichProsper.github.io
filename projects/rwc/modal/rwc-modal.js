@@ -55,6 +55,8 @@ class RWC_Modal extends HTMLElement {
         this.shadowRoot.querySelector('.close').addEventListener('click', () => {
             this.Modal.classList.remove('open')
         })
+
+        this.Style.innerHTML = this.css.replace('[[modal_outline_color]]', this.getAttribute('modal_outline_color') || this.defaultModalOutlineColor)
     }
 
     // This life cycle hook is run before connectedCallback()
