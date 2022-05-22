@@ -23,7 +23,7 @@ class RWC_Modal extends HTMLElement {
         `
         const template = document.createElement('template')
         template.innerHTML = `
-            <style>${this.css}</style>
+            <style></style>
 
             <div class="modal" aria-modal="true" role="dialog">
                 <div class="content">
