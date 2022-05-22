@@ -28,14 +28,14 @@ class RWC_Modal extends HTMLElement {
             <div class="modal" aria-modal="true" role="dialog">
                 <div class="content">
                     <div class="header">
-                        <h3><slot name="heading" /></h3>
+                        <h3><slot name="heading"></h3>
                         <button type="button" class="close">
                             <span>&times;</span>
                         </button>
                     </div>
                     <div class="body">
                         <div class="body-content">
-                            <slot name="body-content" />
+                            <slot name="body-content">
                         </div>
                     </div>
                 </div>
