@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+.totopbutton {
+    --button-height : 5rem;
+
+    // Deep Pink : hsl(339, 100%, 48%)
+    --hue    : 339;
+    --button-color : hsla(var(--hue), 100%, 48%, .8);
+    --button-hover-color : hsl(var(--hue), 100%, 48%);
+    
+
+    
+    box-sizing: border-box;
+    position: fixed;
+    bottom: calc(var(--button-height) * .6);
+    right: calc(var(--button-height) * .6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--button-height);
+    height: var(--button-height);
+    box-shadow: 0 .3rem .5rem -.1rem hsla(0, 0%, 0%, 0.22),
+                0 .6rem 1rem 0 hsla(0, 0%, 0%, 0.34),
+                0 .1rem 1.8rem 0 hsla(0, 0%, 0%, 0.32);
+    background-color: var(--button-color);
+    border-radius: 50%;
+    color: #ccc;
+    font-size: calc(var(--button-height) * .26);
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+    pointer-events: none;
+    cursor: pointer;
+    border: none;
+    z-index: 9999;
+    transition: .25s ease-out;
+    
+    &:hover {
+        background-color: var(--button-hover-color);
+        color: #fff;
+    }
+    &:focus {
+        outline-offset: .5rem;
+        outline: -webkit-focus-ring-color auto 1px;
+    }
+    &.sticky {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+        pointer-events: unset;
+    }
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+}
