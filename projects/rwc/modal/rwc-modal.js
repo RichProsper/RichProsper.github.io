@@ -1,6 +1,6 @@
 class RWC_Modal extends HTMLElement {
     static get observedAttributes() {
-        return ['modal_id', 'modal_outline_color'];
+        return ['modal_id', 'modal_outline_color']
     }
 
     constructor() {
