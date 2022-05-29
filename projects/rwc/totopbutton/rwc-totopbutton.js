@@ -1,8 +1,8 @@
 class RWC_ToTopButton extends HTMLElement {
     static get observedAttributes() {
         return [
-            'button_color', 'button_hover_color', 'chevron_color', 'chevron_hover_color',
-            'button_placement'
+            'button_size', 'button_color', 'button_hover_color', 'chevron_color',
+            'chevron_hover_color', 'button_placement'
         ]
     }
 
@@ -20,13 +20,14 @@ class RWC_ToTopButton extends HTMLElement {
     }
 
     getTemplate() {
+        this.defaultButtonSize = '5rem'
         this.defaultButtonColor = 'hsla(var(--deep-pink-hue), 100%, 48%, .8)'
         this.defaultButtonHoverColor = 'hsl(var(--deep-pink-hue), 100%, 48%)'
         this.defaultChevronColor = 'hsl(0, 0%, 80%)'
         this.defaultChevronHoverColor = 'hsl(0, 0%, 100%)'
         this.defaultButtonPlacement = 'bottom-right'
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.totopbutton{--button-height: 5rem;--deep-pink-hue: 339;--button-color: [[button_color]];--button-hover-color: [[button_hover_color]];--chevron-color: [[chevron_color]];--chevron-hover-color: [[chevron_hover_color]];-webkit-box-sizing:border-box;box-sizing:border-box;position:fixed;[[button_placement]]display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:var(--button-height);height:var(--button-height);-webkit-box-shadow:0 0.3rem 0.5rem -0.1rem rgba(0,0,0,0.22),0 0.6rem 1rem 0 rgba(0,0,0,0.34),0 0.1rem 1.8rem 0 rgba(0,0,0,0.32);box-shadow:0 0.3rem 0.5rem -0.1rem rgba(0,0,0,0.22),0 0.6rem 1rem 0 rgba(0,0,0,0.34),0 0.1rem 1.8rem 0 rgba(0,0,0,0.32);background-color:var(--button-color);border-radius:50%;font-size:calc(var(--button-height) * .26);opacity:0;-webkit-transform:scale(0);transform:scale(0);visibility:hidden;pointer-events:none;cursor:pointer;border:none;z-index:9999;-webkit-transition:.25s ease-out;transition:.25s ease-out}.totopbutton:hover{background-color:var(--button-hover-color)}.totopbutton:hover svg{fill:var(--chevron-hover-color)}.totopbutton:focus{outline-offset:.5rem;outline:-webkit-focus-ring-color auto 1px}.totopbutton.sticky{opacity:1;-webkit-transform:scale(1);transform:scale(1);visibility:visible;pointer-events:unset}.totopbutton *,.totopbutton *::before,.totopbutton *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.totopbutton svg{width:1em;fill:var(--chevron-color)}
+            *,*::before,*::after{margin:0;padding:0}.totopbutton{--button_size: [[button_size]];--deep-pink-hue: 339;--button-color: [[button_color]];--button-hover-color: [[button_hover_color]];--chevron-color: [[chevron_color]];--chevron-hover-color: [[chevron_hover_color]];-webkit-box-sizing:border-box;box-sizing:border-box;position:fixed;[[button_placement]]display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:1em;height:1em;-webkit-box-shadow:0 0.06em 0.1em -0.02em rgba(0,0,0,0.22),0 0.12em 0.2em 0 rgba(0,0,0,0.34),0 0.02em 0.36em 0 rgba(0,0,0,0.32);box-shadow:0 0.06em 0.1em -0.02em rgba(0,0,0,0.22),0 0.12em 0.2em 0 rgba(0,0,0,0.34),0 0.02em 0.36em 0 rgba(0,0,0,0.32);background-color:var(--button-color);border-radius:50%;font-size:var(--button_size);opacity:0;-webkit-transform:scale(0);transform:scale(0);visibility:hidden;pointer-events:none;cursor:pointer;border:none;z-index:9999;-webkit-transition:.25s ease-out;transition:.25s ease-out}.totopbutton:hover{background-color:var(--button-hover-color)}.totopbutton:hover svg{fill:var(--chevron-hover-color)}.totopbutton:focus{outline-offset:.1em;outline:-webkit-focus-ring-color auto 1px}.totopbutton.sticky{opacity:1;-webkit-transform:scale(1);transform:scale(1);visibility:visible;pointer-events:unset}.totopbutton *,.totopbutton *::before,.totopbutton *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.totopbutton svg{width:.26em;fill:var(--chevron-color)}
         `
 
         const template = document.createElement('template')
@@ -43,26 +44,27 @@ class RWC_ToTopButton extends HTMLElement {
 
     updateStyle() {
         const btnPlacement = this.getAttribute('button_placement') || this.defaultButtonPlacement
-        let css = this.css.replace('[[button_color]]', this.getAttribute('button_color') || this.defaultButtonColor)
+        let css = this.css.replace('[[button_size]]', this.getAttribute('button_size') || this.defaultButtonSize)
+        css = css.replace('[[button_color]]', this.getAttribute('button_color') || this.defaultButtonColor)
         css = css.replace('[[button_hover_color]]', this.getAttribute('button_hover_color') || this.defaultButtonHoverColor)
         css = css.replace('[[chevron_color]]', this.getAttribute('chevron_color') || this.defaultChevronColor)
         css = css.replace('[[chevron_hover_color]]', this.getAttribute('chevron_hover_color') || this.defaultChevronHoverColor)
 
         switch (true) {
             case (btnPlacement === 'top-left' || btnPlacement === 'top left'): {
-                this.Style.innerHTML = css.replace('[[button_placement]]', 'top:calc(var(--button-height) * .6);left:calc(var(--button-height) * .6);')
+                this.Style.innerHTML = css.replace('[[button_placement]]', 'top:.6em;left:.6em;')
                 break
             }
             case (btnPlacement === 'top-right' || btnPlacement === 'top right'): {
-                this.Style.innerHTML = css.replace('[[button_placement]]', 'top:calc(var(--button-height) * .6);right:calc(var(--button-height) * .6);')
+                this.Style.innerHTML = css.replace('[[button_placement]]', 'top:.6em;right:.6em;')
                 break
             }
             case (btnPlacement === 'bottom-left' || btnPlacement === 'bottom left'): {
-                this.Style.innerHTML = css.replace('[[button_placement]]', 'bottom:calc(var(--button-height) * .6);left:calc(var(--button-height) * .6);')
+                this.Style.innerHTML = css.replace('[[button_placement]]', 'bottom:.6em;left:.6em;')
                 break
             }
             default: {
-                this.Style.innerHTML = css.replace('[[button_placement]]', 'bottom:calc(var(--button-height) * .6);right:calc(var(--button-height) * .6);')
+                this.Style.innerHTML = css.replace('[[button_placement]]', 'bottom:.6em;right:.6em;')
                 break
             }
         }
@@ -83,7 +85,7 @@ class RWC_ToTopButton extends HTMLElement {
     }
 
     // This life cycle hook is run before connectedCallback()
-    attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback() {
         this.updateStyle()
     }
 }
