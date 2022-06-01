@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="inputs/checkbox/rui-checkbox.min.css">
     <link rel="stylesheet" href="inputs/rui-input.min.css">
     <link rel="stylesheet" href="inputs/input-file/rui-input-file.min.css">
-    <link rel="stylesheet" href="inputs/input-file/input-media-file/rui-input-media-file.min.css">
     <link rel="stylesheet" href="inputs/switch/rui-switch.min.css">
     <link rel="stylesheet" href="select/rui-select.min.css">
     <link rel="stylesheet" href="textarea/rui-textarea.min.css">
@@ -36,9 +35,6 @@
 
     <h2>Input</h2><br>
     <div id="input" class="example"></div>
-
-    <h2>Input 2</h2><br>
-    <div id="input2" class="example"></div>
 
     <h2>Switch</h2>
     <div id="switch" class="example"></div>
@@ -56,7 +52,6 @@
         import Checkbox from './inputs/checkbox/rui-checkbox.min.js'
         import Input from './inputs/rui-input.min.js'
         import InputFile from './inputs/input-file/rui-input-file.min.js'
-        import InputMediaFile from './inputs/input-file/input-media-file/rui-input-media-file.min.js'
         import Switch from './inputs/switch/rui-switch.min.js'
         import Select from './select/rui-select.min.js'
         import Textarea from './textarea/rui-textarea.min.js'
@@ -136,22 +131,6 @@
                 }
             }) )
             input.appendChild( InputFile({
-                attrs: {
-                    type: 'file',
-                    title: 'Only .pdf files',
-                    disabled: ''
-                }
-            }) )
-
-            const input2 = document.getElementById('input2')
-            input2.appendChild( InputMediaFile({
-                attrs: {
-                    type: 'date',
-                    title: 'Only .txt files',
-                    'rui-type': 'audio'
-                }
-            }) )
-            input2.appendChild( InputMediaFile({
                 attrs: {
                     type: 'file',
                     title: 'Only .pdf files',
