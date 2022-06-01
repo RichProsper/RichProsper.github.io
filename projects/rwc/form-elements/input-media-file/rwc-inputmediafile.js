@@ -12,13 +12,15 @@ class RWC_InputMediaFile extends HTMLElement {
 
     init() {
         this.attachShadow({mode: 'open'})
-        this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))
+        this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))  
 
-        this.InputMediaFile = this.shadowRoot.querySelector('.inputmediafile')
         this.Style = this.shadowRoot.querySelector('style')
+        this.Input = this.shadowRoot.querySelector('input')
+        this.ModalOpener = this.shadowRoot.querySelector('button')
     }
 
     getTemplate() {
+        this.defaultInputSize = '1.6rem'
         this.defaultMediaType = 'image'
         this.defaultTitle = 'Only image files allowed'
         this.defaulDisabled = false
@@ -31,7 +33,7 @@ class RWC_InputMediaFile extends HTMLElement {
 
         const template = document.createElement('template')
         template.innerHTML = `
-            <link rel="stylesheet" href="rwc-inputmediafile.min.css">
+            <link rel="stylesheet" href="style.min.css">
             <style></style>
 
             <div class="inputmediafile">
@@ -51,8 +53,24 @@ class RWC_InputMediaFile extends HTMLElement {
         return template
     }
 
+    setupModal() {
+        this.Modal = document.createElement('rwc-modal')
+        this.Modal.setAttribute('modal_outline_color', '#2be')
+        this.Modal.innerHTML = `
+            <span slot="heading">Image.jpg / 5 files selected</span>
+            <div slot="body-content">
+                <img alt="Image" src="">
+            </div>
+        `
+        document.body.appendChild(this.Modal)
+
+        this.ModalOpener.addEventListener('click', () => {
+            this.Modal.shadowRoot.querySelector('.modal').classList.add('open')
+        })
+    }
+
     connectedCallback() {
-        
+        this.setupModal()
     }
 
     // This life cycle hook is run before connectedCallback()
