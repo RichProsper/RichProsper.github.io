@@ -6,7 +6,7 @@
 }
 
 .totopbutton {
-    --button_size: [[button_size]];
+    --button-size: [[button_size]];
 
     // Deep Pink : hsl(339, 100%, 48%)
     --deep-pink-hue         : 339;
@@ -29,7 +29,7 @@
                 0 .02em .36em 0 hsla(0, 0%, 0%, 0.32);
     background-color: var(--button-color);
     border-radius: 50%;
-    font-size: var(--button_size);
+    font-size: var(--button-size);
     opacity: 0;
     transform: scale(0);
     visibility: hidden;
