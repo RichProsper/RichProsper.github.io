@@ -41,6 +41,10 @@
                 color: var(--grey-1);
                 cursor: default;
                 pointer-events: none;
+
+                svg {
+                    fill: var(--grey-1);
+                }
             }
         }
         div {
@@ -88,6 +92,10 @@
             color: var(--grey-1);
             cursor: default;
             pointer-events: none;
+
+            svg {
+                fill: var(--grey-1);
+            }
         }
         svg {
             width: 1em;
