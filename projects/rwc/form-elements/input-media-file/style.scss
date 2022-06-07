@@ -13,7 +13,8 @@
     --grey-1    : hsl(var(--hue-white), 50%);
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue  : 207;
-    --blue-1    : hsla(var(--hue-blue), 90%, 53%, 20%);
+    --blue-1    : hsl(var(--hue-blue), 90%, 18%);
+    --music-icon-outline-color : hsl(var(--hue-white), 13%);
 
 
     position: relative;
@@ -72,6 +73,7 @@
         }
     }
     button {
+        position: relative;
         color: var(--white-1);
         background-color: transparent;
         width: 2em;
@@ -82,11 +84,19 @@
         justify-content: center;
         align-items: center;
         font-size: calc(var(--input-size) * 1.25);
+        transition: .2s;
 
         &:focus,
         &:hover {
             background-color: var(--blue-1);
             outline: none;
+
+            svg.music {
+                filter: drop-shadow(.05em 0 var(--blue-1))
+                        drop-shadow(-.05em 0 var(--blue-1))
+                        drop-shadow(0 .05em var(--blue-1))
+                        drop-shadow(0 -.05em var(--blue-1));
+            }
         }
         &:disabled {
             color: var(--grey-1);
@@ -100,6 +110,17 @@
         svg {
             width: 1em;
             fill: var(--white-1);
+        }
+        svg.music {
+            position: absolute;
+            width: .6em;
+            bottom: .35em;
+            right: .35em;
+            filter: drop-shadow(.05em 0 var(--music-icon-outline-color))
+                    drop-shadow(-.05em 0 var(--music-icon-outline-color))
+                    drop-shadow(0 .05em var(--music-icon-outline-color))
+                    drop-shadow(0 -.05em var(--music-icon-outline-color));
+            transition: .2s;
         }
     }
 }
