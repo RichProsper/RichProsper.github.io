@@ -1,7 +1,8 @@
 class RWC_InputMediaFile extends HTMLElement {
     static get observedAttributes() {
         return [
-            'size', 'media_types', 'title', 'disabled', 'max_file_size', 'multiple', 'placeholder', 'required', 'accept'
+            'size', 'title', 'disabled', 'max_file_size', 'multiple', 'placeholder', 'required',
+            'accept'
         ]
         
         // return [
@@ -30,23 +31,18 @@ class RWC_InputMediaFile extends HTMLElement {
         this.defaultTitle = 'Only image files allowed'
         this.defaultPlaceholder = 'Choose a file...'
         this.defaultMaxFileSize = 5242880 //5,242,880 bytes = 5MB
-        this.defaultMediaTypes = ['image']
-        this.selectedMediaTypes = this.defaultMediaType
-        this.mediaTypes = ['image', 'audio', 'video']
-        this.Extensions = {
-            image: [
-                '.tif', '.pjp', '.xbm', '.jxl', '.svgz', '.jpg', '.jpeg', '.ico', '.tiff', '.gif',
-                '.svg', '.jfif', '.webp', '.png', '.bmp', '.pjpeg', '.avif'
-            ],
-            audio: [
-                '.opus', '.flac', '.webm', '.weba', '.wav', '.ogg', '.m4a', '.mp3', '.oga', '.mid',
-                '.amr', '.aiff', '.wma', '.au', '.aac'
-            ],
-            video: [
-                '.ogm', '.wmv', '.mpg', '.webm', '.ogv', '.mov', '.asx', '.mpeg', '.mp4', '.m4v',
-                '.avi'
-            ]
-        }
+        this.defaultAccept = ['image/*']
+        this.Extensions = [
+            // * Image Extensions
+            'image/*', '.tif', '.pjp', '.xbm', '.jxl', '.svgz', '.jpg', '.jpeg', '.ico',
+            '.tiff', '.gif', '.svg', '.jfif', '.webp', '.png', '.bmp', '.pjpeg', '.avif',
+            // * Audio Extensions
+            'audio/*', '.opus', '.flac', '.webm', '.weba', '.wav', '.ogg', '.m4a', '.mp3',
+            '.oga', '.mid', '.amr', '.aiff', '.wma', '.au', '.aac',
+            // * Video Extensions
+            'video/*', '.ogm', '.wmv', '.mpg', '.webm', '.ogv', '.mov', '.asx', '.mpeg',
+            '.mp4', '.m4v', '.avi'
+        ]
         this.css = ``
 
         const template = document.createElement('template')
@@ -88,50 +84,17 @@ class RWC_InputMediaFile extends HTMLElement {
         })
     }
 
-    determineSelectedMediaTypes() {
-        if (!this.hasAttribute('media_types')) return this.defaultMediaTypes
-
-        const mediaTypes = this.getAttribute('media_types').replace(/ /g, '').split(',')
-        const selectedMediaTypes = []
-        
-        mediaTypes.forEach(mediaType => {
-            if (this.mediaTypes.indexOf(mediaType) > -1) selectedMediaTypes.push(mediaType)
-        })
-
-        if (selectedMediaTypes.length === 0) return this.defaultMediaTypes
-
-        return selectedMediaTypes
-    }
-
     determineSelectedAccept() {
-        const hasImageType = this.selectedMediaTypes.indexOf('image') > -1
-        const hasAudioType = this.selectedMediaTypes.indexOf('audio') > -1
-        const hasVideoType = this.selectedMediaTypes.indexOf('video') > -1
-        const selectedAccept = []
-        let extensions = []
-
-        if (!this.hasAttribute('accept')) {
-            if (hasImageType) selectedAccept.push('image/*')
-            if (hasAudioType) selectedAccept.push('audio/*')
-            if (hasVideoType) selectedAccept.push('video/*')
-            return selectedAccept
-        }
+        if (!this.hasAttribute('accept')) return this.defaultAccept
 
         const accept = this.getAttribute('accept').replace(/ /g, '').split(',')
-
-        if (hasImageType) extensions = extensions.concat(this.Extensions.image)
-        if (hasAudioType) extensions = extensions.concat(this.Extensions.audio)
-        if (hasVideoType) extensions = extensions.concat(this.Extensions.video)
+        const selectedAccept = []
 
         accept.forEach(accpt => {
-            if (extensions.indexOf(accpt) > -1) selectedAccept.push(accpt)
+            if (this.Extensions.indexOf(accpt) > -1) selectedAccept.push(accpt)
         })
 
-        if (selectedAccept.length === 0) {
-            if (hasImageType) selectedAccept.push('image/*')
-            if (hasAudioType) selectedAccept.push('audio/*')
-            if (hasVideoType) selectedAccept.push('video/*')
-        }
+        if (selectedAccept.length === 0) return this.defaultAccept
 
         return selectedAccept
     }
@@ -152,9 +115,7 @@ class RWC_InputMediaFile extends HTMLElement {
         this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
         this.PlaceholderSpan.textContent = this.getAttribute('placeholder') || this.defaultPlaceholder
 
-        this.selectedMediaTypes = this.determineSelectedMediaTypes()
-        this.selectedAccept = this.determineSelectedAccept()
-        this.Input.setAttribute('accept', this.selectedAccept)
+        this.Input.setAttribute('accept', this.determineSelectedAccept())
     }
 
     connectedCallback() {
