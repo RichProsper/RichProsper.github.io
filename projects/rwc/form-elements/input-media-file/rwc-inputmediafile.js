@@ -28,8 +28,8 @@ class RWC_InputMediaFile extends HTMLElement {
 
     getTemplate() {
         this.defaultInputSize = '1.6rem'
-        this.defaultTitle = 'Only image files allowed'
-        this.defaultPlaceholder = 'Choose a file...'
+        this.defaultTitle = 'Only image, audio, or video files allowed'
+        this.defaultPlaceholder = 'Choose a media file...'
         this.defaultMaxFileSize = 5242880 //5,242,880 bytes = 5MB
         this.defaultAccept = ['image/*']
         this.Extensions = [
@@ -112,19 +112,41 @@ class RWC_InputMediaFile extends HTMLElement {
         }
         
         this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
-        this.PlaceholderSpan.textContent = this.getAttribute('placeholder') || this.defaultPlaceholder
+        this.selectedPlaceholder = this.getAttribute('placeholder') || this.defaultPlaceholder
+        this.PlaceholderSpan.textContent = this.selectedPlaceholder
 
         this.Input.setAttribute('accept', this.determineSelectedAccept())
     }
 
     connectedCallback() {
+        this.setupModal()
+        this.updateElement()
+
         // TODO Handle File Selects & Previews
         // TODO Handle 'input_size', 'music_icon_outline_color'
         this.Input.addEventListener('focus', () => this.PlaceholderDiv.classList.add('focused'))
         this.Input.addEventListener('blur', () => this.PlaceholderDiv.classList.remove('focused'))
-
-        this.setupModal()
-        this.updateElement()
+        this.Input.addEventListener('change', e => {
+            const files = e.target.files
+            switch (files.length) {
+                case 0: {
+                    this.PlaceholderSpan.textContent = ` ${this.selectedPlaceholder}`
+                    break
+                }
+                case 1: {
+                    this.PlaceholderSpan.textContent = ` ${files[0].name}`
+                    break
+                }
+                default: {
+                    if (files.length < 9) {
+                        this.PlaceholderSpan.textContent = ` ${files.length} media files selected`
+                    }
+                    else {
+                        this.PlaceholderSpan.textContent = ' 9+ media files selected'
+                    }
+                }
+            }
+        })
     }
 
     attributeChangedCallback() {
