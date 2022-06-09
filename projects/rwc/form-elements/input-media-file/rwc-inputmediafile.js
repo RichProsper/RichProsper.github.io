@@ -32,17 +32,20 @@ class RWC_InputMediaFile extends HTMLElement {
         this.defaultPlaceholder = 'Choose a media file...'
         this.defaultMaxFileSize = 5242880 //5,242,880 bytes = 5MB
         this.defaultAccept = ['image/*']
-        this.Extensions = [
-            // * Image Extensions
-            'image/*', '.tif', '.pjp', '.xbm', '.jxl', '.svgz', '.jpg', '.jpeg', '.ico',
-            '.tiff', '.gif', '.svg', '.jfif', '.webp', '.png', '.bmp', '.pjpeg', '.avif',
-            // * Audio Extensions
-            'audio/*', '.opus', '.flac', '.webm', '.weba', '.wav', '.ogg', '.m4a', '.mp3',
-            '.oga', '.mid', '.amr', '.aiff', '.wma', '.au', '.aac',
-            // * Video Extensions
-            'video/*', '.ogm', '.wmv', '.mpg', '.webm', '.ogv', '.mov', '.asx', '.mpeg',
-            '.mp4', '.m4v', '.avi'
-        ]
+        this.Extensions = {
+            image: [
+                'image/*', '.tif', '.pjp', '.xbm', '.jxl', '.svgz', '.jpg', '.jpeg', '.ico',
+                '.tiff', '.gif', '.svg', '.jfif', '.webp', '.png', '.bmp', '.pjpeg', '.avif'
+            ],
+            audio: [
+                'audio/*', '.opus', '.flac', '.webm', '.weba', '.wav', '.ogg', '.m4a', '.mp3',
+                '.oga', '.mid', '.amr', '.aiff', '.wma', '.au', '.aac'
+            ],
+            video: [
+                'video/*', '.ogm', '.wmv', '.mpg', '.webm', '.ogv', '.mov', '.asx', '.mpeg',
+                '.mp4', '.m4v', '.avi'
+            ]
+        }
         this.defaultMusicIconOutlineColor = 'hsl(var(--hue-white), 13%)'
         this.css = ``
 
@@ -73,7 +76,7 @@ class RWC_InputMediaFile extends HTMLElement {
         this.Modal = document.createElement('rwc-modal')
         this.Modal.setAttribute('modal_outline_color', '#2be')
         this.Modal.innerHTML = `
-            <span slot="heading">No media file(s) selected...</span>
+            <span slot="heading">${this.selectedPlaceholder}</span>
             <div slot="body-content"></div>
         `
         document.body.appendChild(this.Modal)
@@ -87,10 +90,11 @@ class RWC_InputMediaFile extends HTMLElement {
         if (!this.hasAttribute('accept')) return this.defaultAccept
 
         const accept = this.getAttribute('accept').replace(/ /g, '').split(',')
+        const extensions = this.Extensions.image.concat(this.Extensions.audio, this.Extensions.video)
         const selectedAccept = []
 
         accept.forEach(accpt => {
-            if (this.Extensions.indexOf(accpt) > -1) selectedAccept.push(accpt)
+            if (extensions.indexOf(accpt) > -1) selectedAccept.push(accpt)
         })
 
         if (selectedAccept.length === 0) return this.defaultAccept
@@ -118,32 +122,82 @@ class RWC_InputMediaFile extends HTMLElement {
         this.Input.setAttribute('accept', this.determineSelectedAccept())
     }
 
+    /**
+     * Setup the media file preview
+     * @param {File[]} files - the media file
+     */
+    setPreview(files) {
+        const ModalBody = this.Modal.querySelector('[slot="body-content"]')
+        ModalBody.innerHTML = null
+
+        for (const file of files) {
+            let ext = file.name.split('.')
+            ext = '.' + ext[ext.length - 1]
+    
+            switch (true) {
+                case (this.Extensions.image.indexOf(ext) > -1): {
+                    ModalBody.innerHTML += `
+                        <img src="${URL.createObjectURL(file)}" alt="${file.name}">
+                    `
+                    break
+                }
+                case (this.Extensions.audio.indexOf(ext) > -1): {
+                    ModalBody.innerHTML += `
+                        <audio controls>
+                            <source src="${URL.createObjectURL(file)}" type="${file.type}">
+                        </audio>
+                    `
+                    break
+                }
+                case (this.Extensions.video.indexOf(ext) > -1): {
+                    ModalBody.innerHTML += `
+                        <video controls>
+                            <source src="${URL.createObjectURL(file)}" type="${file.type}">
+                        </video>
+                    `
+                    break
+                }
+                default: {}
+            }
+        }
+    }
+
     connectedCallback() {
         this.setupModal()
         this.updateElement()
 
-        // TODO Handle File Selects & Previews
+        // TODO Style File Previews
         // TODO Handle 'input_size', 'music_icon_outline_color'
         this.Input.addEventListener('focus', () => this.PlaceholderDiv.classList.add('focused'))
         this.Input.addEventListener('blur', () => this.PlaceholderDiv.classList.remove('focused'))
         this.Input.addEventListener('change', e => {
+            const ModalHeading = this.Modal.querySelector('[slot="heading"]')
+            const ModalBody = this.Modal.querySelector('[slot="body-content"]')
             const files = e.target.files
+
             switch (files.length) {
                 case 0: {
                     this.PlaceholderSpan.textContent = ` ${this.selectedPlaceholder}`
+                    ModalHeading.textContent = this.selectedPlaceholder
+                    ModalBody.innerHTML = null
                     break
                 }
                 case 1: {
                     this.PlaceholderSpan.textContent = ` ${files[0].name}`
+                    ModalHeading.textContent = files[0].name
+                    this.setPreview(files)
                     break
                 }
                 default: {
                     if (files.length < 9) {
                         this.PlaceholderSpan.textContent = ` ${files.length} media files selected`
+                        ModalHeading.textContent = `${files.length} media files selected`
                     }
                     else {
                         this.PlaceholderSpan.textContent = ' 9+ media files selected'
+                        ModalHeading.textContent = '9+ media files selected'
                     }
+                    this.setPreview(files)
                 }
             }
         })
