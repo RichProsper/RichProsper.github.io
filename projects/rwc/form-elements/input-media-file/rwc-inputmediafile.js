@@ -1,21 +1,37 @@
+// TODO Handle 'max_file_size', 'max_files' and Validation State
+// TODO this.internals_.setValidity({valueMissing: true}, 'Please select a media file')
+// TODO https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Constraint_validation
+// TODO Handle 'input_size', 'music_icon_outline_color'
 class RWC_InputMediaFile extends HTMLElement {
+    static formAssociated = true
+
     static get observedAttributes() {
         return [
-            'input_size', 'title', 'disabled', 'max_file_size', 'max_files', 'multiple', 'placeholder',
-            'required', 'accept', 'music_icon_outline_color'
-        ]
-        
-        // return [
-        //     'input_size', 'max_file_size', 'music_icon_outline_color'
-        // ]
+            'input_size', 'title', 'disabled', 'max_file_size', 'max_files', 'multiple',
+            'placeholder', 'required', 'accept', 'music_icon_outline_color'
+        ]        
     }
+
+    get files()             { return this.files_                       }
+    get form()              { return this.internals_.form              }
+    get name()              { return this.getAttribute('name')         }
+    get type()              { return this.localName                    }
+    get validity()          { return this.internals_.validity          }
+    get validationMessage() { return this.internals_.validationMessage }
+    get willValidate()      { return this.internals_.willValidate      }
+
+    checkValidity()  { return this.internals_.checkValidity()  }
+    reportValidity() { return this.internals_.reportValidity() }
 
     constructor() {
         super()
+        this.internals_ = this.attachInternals()
+        this.files_ = null
         this.init()
     }
 
     init() {
+        this.setAttribute('tabindex', 0)
         this.attachShadow({mode: 'open'})
         this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))  
 
@@ -120,15 +136,6 @@ class RWC_InputMediaFile extends HTMLElement {
     updateElement() {
         this.hasAttribute('multiple') ? this.Input.setAttribute('multiple', '') : this.Input.removeAttribute('multiple')
         this.hasAttribute('required') ? this.Input.setAttribute('required', '') : this.Input.removeAttribute('required')
-
-        if (this.hasAttribute('disabled')) {
-            this.Input.setAttribute('disabled', '')
-            this.ModalOpener.setAttribute('disabled', '')
-        } 
-        else {
-            this.Input.removeAttribute('disabled')
-            this.ModalOpener.removeAttribute('disabled')
-        }
         
         this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
         this.selectedPlaceholder = this.getAttribute('placeholder') || this.defaultPlaceholder
@@ -137,15 +144,11 @@ class RWC_InputMediaFile extends HTMLElement {
         this.Input.setAttribute('accept', this.determineSelectedAccept())
     }
 
-    /**
-     * Setup the media file preview
-     * @param {FileList} files - the media file
-     */
-    setPreview(files) {
+    setPreview() {
         const ModalBody = this.Modal.querySelector('[slot="body-content"]')
         ModalBody.innerHTML = null
 
-        for (const file of files) {
+        for (const file of this.files_) {
             let ext = file.name.toLowerCase().split('.')
             ext = '.' + ext[ext.length - 1]
     
@@ -186,23 +189,31 @@ class RWC_InputMediaFile extends HTMLElement {
         }
     }
 
+    setFormValueHelper() {
+        if (this.files_.length === 0) return
+
+        const name = this.getAttribute('name')
+        const fileEntries = new FormData()
+
+        for (const file of this.files_) fileEntries.append(name, file)
+
+        this.internals_.setFormValue(fileEntries)
+    }
+
     connectedCallback() {
         this.setupModal()
         this.updateElement()
 
-        // TODO Create a form for testing purposes
-        // TODO Handle 'max_file_size', 'max_files'
-        // TODO Handle 'input_size', 'music_icon_outline_color'
         this.Input.addEventListener('focus', () => this.PlaceholderDiv.classList.add('focused'))
         this.Input.addEventListener('blur', () => this.PlaceholderDiv.classList.remove('focused'))
         this.Input.addEventListener('change', e => {
             const ModalHeading = this.Modal.querySelector('[slot="heading"]')
             const ModalBody = this.Modal.querySelector('[slot="body-content"]')
-            const files = e.target.files
 
-            // TODO https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Constraint_validation
+            this.files_ = e.target.files
+            this.setFormValueHelper()
 
-            switch (files.length) {
+            switch (this.files_.length) {
                 case 0: {
                     this.PlaceholderSpan.textContent = ` ${this.selectedPlaceholder}`
                     ModalHeading.textContent = this.selectedPlaceholder
@@ -210,28 +221,51 @@ class RWC_InputMediaFile extends HTMLElement {
                     break
                 }
                 case 1: {
-                    this.PlaceholderSpan.textContent = ` ${files[0].name}`
-                    ModalHeading.textContent = files[0].name
-                    this.setPreview(files)
+                    this.PlaceholderSpan.textContent = ` ${this.files_[0].name}`
+                    ModalHeading.textContent = this.files_[0].name
+                    this.setPreview()
                     break
                 }
                 default: {
-                    if (files.length < 9) {
-                        this.PlaceholderSpan.textContent = ` ${files.length} media files selected`
-                        ModalHeading.textContent = `${files.length} media files selected`
+                    if (this.files_.length < 9) {
+                        this.PlaceholderSpan.textContent = ` ${this.files_.length} media files selected`
+                        ModalHeading.textContent = `${this.files_.length} media files selected`
                     }
                     else {
                         this.PlaceholderSpan.textContent = ' 9+ media files selected'
                         ModalHeading.textContent = '9+ media files selected'
                     }
-                    this.setPreview(files)
+                    this.setPreview()
                 }
             }
         })
+
+
     }
 
     attributeChangedCallback() {
         this.updateElement()
+    }
+
+    /**
+     * This is called when the 'disabled' attribute of the element or of an ancestor <fieldset> is
+     * updated
+     * @param {Boolean} disabled 
+     */
+    formDisabledCallback(disabled) {
+        if (disabled) {
+            this.Input.setAttribute('disabled', '')
+            this.ModalOpener.setAttribute('disabled', '')
+        } 
+        else {
+            this.Input.removeAttribute('disabled')
+            this.ModalOpener.removeAttribute('disabled')
+        }
+    }
+
+    formResetCallback() {
+        this.internals_.setFormValue(null)
+        this.Input.value = null
     }
 }
 

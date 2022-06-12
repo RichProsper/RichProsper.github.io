@@ -26,8 +26,26 @@
 <body>
     <h1>Input Media File Demo</h1>
 
-    <rwc-inputmediafile multiple accept="image/*,audio/*,video/*"></rwc-inputmediafile>
-    <hr>
-    <rwc-inputmediafile disabled></rwc-inputmediafile>
+    <form>
+        <rwc-inputmediafile name="b" multiple accept="image/*,audio/*,video/*">
+        </rwc-inputmediafile>
+        <hr>
+        <rwc-inputmediafile disabled></rwc-inputmediafile>
+        <hr>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault()
+                
+                const data = new FormData(this)
+                
+                for (const p of data) console.log(p)
+            })
+        })
+    </script>
 </body>
 </html>
