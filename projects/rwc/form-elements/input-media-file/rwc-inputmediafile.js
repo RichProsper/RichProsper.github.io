@@ -1,7 +1,7 @@
 class RWC_InputMediaFile extends HTMLElement {
     static get observedAttributes() {
         return [
-            'input_size', 'title', 'disabled', 'max_file_size', 'multiple', 'placeholder',
+            'input_size', 'title', 'disabled', 'max_file_size', 'max_files', 'multiple', 'placeholder',
             'required', 'accept', 'music_icon_outline_color'
         ]
         
@@ -76,8 +76,23 @@ class RWC_InputMediaFile extends HTMLElement {
         this.Modal = document.createElement('rwc-modal')
         this.Modal.setAttribute('modal_outline_color', '#2be')
         this.Modal.innerHTML = `
+            <style>
+                [rwc_modal][slot="body-content"] {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-pack: distribute;
+                    justify-content: space-around;
+                    -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                }
+                [rwc_modal][slot="body-content"] .media-container {
+                    margin-right: 1em;
+                    margin-bottom: 1em;
+                }
+            </style>
             <span slot="heading">${this.selectedPlaceholder}</span>
-            <div slot="body-content"></div>
+            <div rwc_modal slot="body-content"></div>
         `
         document.body.appendChild(this.Modal)
 
@@ -124,36 +139,45 @@ class RWC_InputMediaFile extends HTMLElement {
 
     /**
      * Setup the media file preview
-     * @param {File[]} files - the media file
+     * @param {FileList} files - the media file
      */
     setPreview(files) {
         const ModalBody = this.Modal.querySelector('[slot="body-content"]')
         ModalBody.innerHTML = null
 
         for (const file of files) {
-            let ext = file.name.split('.')
+            let ext = file.name.toLowerCase().split('.')
             ext = '.' + ext[ext.length - 1]
     
             switch (true) {
                 case (this.Extensions.image.indexOf(ext) > -1): {
                     ModalBody.innerHTML += `
-                        <img src="${URL.createObjectURL(file)}" alt="${file.name}">
+                        <div class="media-container">
+                            <h4 class="media-title">${file.name}</h4>
+                            <img src="${URL.createObjectURL(file)}" alt="${file.name}">
+                        </div>
                     `
                     break
                 }
                 case (this.Extensions.audio.indexOf(ext) > -1): {
                     ModalBody.innerHTML += `
-                        <audio controls>
-                            <source src="${URL.createObjectURL(file)}" type="${file.type}">
-                        </audio>
+                        <div class="media-container">
+                            <h4 class="media-title">${file.name}</h4>
+                            <audio controls>
+                                <source src="${URL.createObjectURL(file)}" type="${file.type}">
+                            </audio>
+                        </div>
                     `
                     break
                 }
                 case (this.Extensions.video.indexOf(ext) > -1): {
                     ModalBody.innerHTML += `
-                        <video controls>
-                            <source src="${URL.createObjectURL(file)}" type="${file.type}">
-                        </video>
+                        <div class="media-container">
+                            <h4 class="media-title">${file.name}</h4>
+                            <video controls>
+                                <source src="${URL.createObjectURL(file)}" type="${file.type}">
+                            </video>
+                        </div>
                     `
                     break
                 }
@@ -166,7 +190,8 @@ class RWC_InputMediaFile extends HTMLElement {
         this.setupModal()
         this.updateElement()
 
-        // TODO Style File Previews
+        // TODO Create a form for testing purposes
+        // TODO Handle 'max_file_size', 'max_files'
         // TODO Handle 'input_size', 'music_icon_outline_color'
         this.Input.addEventListener('focus', () => this.PlaceholderDiv.classList.add('focused'))
         this.Input.addEventListener('blur', () => this.PlaceholderDiv.classList.remove('focused'))
@@ -174,6 +199,8 @@ class RWC_InputMediaFile extends HTMLElement {
             const ModalHeading = this.Modal.querySelector('[slot="heading"]')
             const ModalBody = this.Modal.querySelector('[slot="body-content"]')
             const files = e.target.files
+
+            // TODO https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Constraint_validation
 
             switch (files.length) {
                 case 0: {
