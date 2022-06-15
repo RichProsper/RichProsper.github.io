@@ -190,7 +190,11 @@ class RWC_InputMediaFile extends HTMLElement {
     }
 
     setFormValueHelper() {
-        if (this.files_.length === 0) return
+        if (this.files_.length === 0) {
+            this.internals_.setFormValue(null)
+            this.Input.value = null
+            return
+        }
 
         const name = this.getAttribute('name')
         const fileEntries = new FormData()
@@ -198,6 +202,15 @@ class RWC_InputMediaFile extends HTMLElement {
         for (const file of this.files_) fileEntries.append(name, file)
 
         this.internals_.setFormValue(fileEntries)
+    }
+
+    resetInput() {
+        const ModalHeading = this.Modal.querySelector('[slot="heading"]')
+        const ModalBody = this.Modal.querySelector('[slot="body-content"]')
+
+        this.PlaceholderSpan.textContent = ` ${this.selectedPlaceholder}`
+        ModalHeading.textContent = this.selectedPlaceholder
+        ModalBody.innerHTML = null
     }
 
     connectedCallback() {
@@ -215,9 +228,7 @@ class RWC_InputMediaFile extends HTMLElement {
 
             switch (this.files_.length) {
                 case 0: {
-                    this.PlaceholderSpan.textContent = ` ${this.selectedPlaceholder}`
-                    ModalHeading.textContent = this.selectedPlaceholder
-                    ModalBody.innerHTML = null
+                    this.resetInput()
                     break
                 }
                 case 1: {
@@ -239,8 +250,6 @@ class RWC_InputMediaFile extends HTMLElement {
                 }
             }
         })
-
-
     }
 
     attributeChangedCallback() {
@@ -264,8 +273,9 @@ class RWC_InputMediaFile extends HTMLElement {
     }
 
     formResetCallback() {
-        this.internals_.setFormValue(null)
-        this.Input.value = null
+        this.files_ = []
+        this.setFormValueHelper()
+        this.resetInput()
     }
 }
 

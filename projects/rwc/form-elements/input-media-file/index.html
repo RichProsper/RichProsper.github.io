@@ -17,8 +17,8 @@
             margin-bottom: 1em;
         }
         hr {
-            margin-top: .5em;
-            margin-bottom: .5em;
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
     </style>
     <title>Input Media File Demo</title>
@@ -27,7 +27,7 @@
     <h1>Input Media File Demo</h1>
 
     <form>
-        <rwc-inputmediafile name="b" multiple accept="image/*,audio/*,video/*">
+        <rwc-inputmediafile name="a" multiple accept="image/*,audio/*,video/*">
         </rwc-inputmediafile>
         <hr>
         <rwc-inputmediafile disabled></rwc-inputmediafile>
@@ -40,6 +40,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault()
+                console.log(`Submitting at data:`)
                 
                 const data = new FormData(this)
                 
