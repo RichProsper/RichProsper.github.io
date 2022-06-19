@@ -27,7 +27,11 @@
     <h1>Input Media File Demo</h1>
 
     <form>
-        <rwc-inputmediafile name="a" multiple accept="image/*,audio/*,video/*">
+        <rwc-inputmediafile 
+            name="a" multiple accept="image/*,audio/*,video/*" required
+            min_files="2" max_files="7"
+            max_file_size="5242880"
+        >
         </rwc-inputmediafile>
         <hr>
         <rwc-inputmediafile disabled></rwc-inputmediafile>

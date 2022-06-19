@@ -1,6 +1,3 @@
-// TODO Handle 'max_file_size', 'max_files' and Validation State
-// TODO this.internals_.setValidity({valueMissing: true}, 'Please select a media file')
-// TODO https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Constraint_validation
 // TODO Handle 'input_size', 'music_icon_outline_color'
 class RWC_InputMediaFile extends HTMLElement {
     static formAssociated = true
@@ -26,7 +23,7 @@ class RWC_InputMediaFile extends HTMLElement {
     constructor() {
         super()
         this.internals_ = this.attachInternals()
-        this.files_ = null
+        this.files_ = []
         this.init()
     }
 
@@ -189,6 +186,78 @@ class RWC_InputMediaFile extends HTMLElement {
         }
     }
 
+    validation() {
+        switch (true) {
+            case (this.hasAttribute('required') && this.files_.length === 0): {
+                this.internals_.setValidity({valueMissing: true}, 'Please select a media file')
+                return
+            }
+            case (this.hasAttribute('max_file_size')): {
+                const maxFileSize = +this.getAttribute('max_file_size')
+
+                for (const file of this.files_) {
+                    if (Number.isInteger(maxFileSize) && file.size > maxFileSize) {
+                        this.internals_.setValidity({tooLong: true}, `One or more of your selected media files exceeds ${maxFileSize} bytes`)
+                        return
+                    }
+                }
+
+                break
+            }
+            case (this.hasAttribute('multiple')): {
+                switch (true) {
+                    case (this.hasAttribute('num_files')): {
+                        const numFiles = +this.getAttribute('num_files')
+
+                        if (Number.isInteger(numFiles) && numFiles > 0 && this.files_.length != numFiles) {
+                            this.internals_.setValidity({customError: true}, `You need to select exactly ${numFiles} media files`)
+                            return
+                        }
+
+                        break
+                    }
+                    case (this.hasAttribute('min_files') && this.hasAttribute('max_files')): {
+                        const minFiles = +this.getAttribute('min_files')
+                        const maxFiles = +this.getAttribute('max_files')
+
+                        if (Number.isInteger(minFiles) && Number.isInteger(maxFiles) && minFiles > 0 && minFiles < maxFiles && (this.files_.length < minFiles || this.files_.length > maxFiles)) {
+                            this.internals_.setValidity({rangeUnderflow: true}, `Please select atleast ${minFiles} and no more than ${maxFiles} media files`)
+                            return
+                        }
+
+                        break
+                    }
+                    case (this.hasAttribute('min_files')): {
+                        const minFiles = +this.getAttribute('min_files')
+
+                        if (Number.isInteger(minFiles) && minFiles > 0 && this.files_.length < minFiles) {
+                            this.internals_.setValidity({rangeUnderflow: true}, `Please select atleast ${minFiles} media files`)
+                            return
+                        }
+
+                        break
+                    }
+                    case (this.hasAttribute('max_files')): {
+                        const maxFiles = +this.getAttribute('max_files')
+
+                        if (Number.isInteger(maxFiles) && maxFiles > 0 && this.files_.length > maxFiles) {
+                            this.internals_.setValidity({rangeOverflow: true}, `Please select no more than ${maxFiles} media files`)
+                            return
+                        }
+
+                        break
+                    }
+                    default: {}
+                }
+
+                break
+            }
+            default: {}
+        }
+
+        this.internals_.setValidity({})
+    }
+
     setFormValueHelper() {
         if (this.files_.length === 0) {
             this.internals_.setFormValue(null)
@@ -216,15 +285,16 @@ class RWC_InputMediaFile extends HTMLElement {
     connectedCallback() {
         this.setupModal()
         this.updateElement()
+        this.validation()
 
         this.Input.addEventListener('focus', () => this.PlaceholderDiv.classList.add('focused'))
         this.Input.addEventListener('blur', () => this.PlaceholderDiv.classList.remove('focused'))
         this.Input.addEventListener('change', e => {
             const ModalHeading = this.Modal.querySelector('[slot="heading"]')
-            const ModalBody = this.Modal.querySelector('[slot="body-content"]')
 
             this.files_ = e.target.files
             this.setFormValueHelper()
+            this.validation()
 
             switch (this.files_.length) {
                 case 0: {
@@ -276,6 +346,7 @@ class RWC_InputMediaFile extends HTMLElement {
         this.files_ = []
         this.setFormValueHelper()
         this.resetInput()
+        this.validation()
     }
 }
 
