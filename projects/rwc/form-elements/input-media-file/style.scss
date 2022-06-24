@@ -6,7 +6,7 @@
 }
 
 .inputmediafile {
-    --input-size : 1.6rem;
+    --input-size : [[input_size]];
     // White: hsl(0, 0%, 100%)
     --hue-white : 0, 0%;
     --white-1   : hsl(var(--hue-white), 87%);
@@ -14,7 +14,7 @@
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue  : 207;
     --blue-1    : hsl(var(--hue-blue), 90%, 18%);
-    --music-icon-outline-color : hsl(var(--hue-white), 13%);
+    --music-icon-outline-color : [[music_icon_outline_color]];
 
 
     position: relative;
