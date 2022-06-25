@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../../../global.min.css">
+    <script src="rwc-checkbox.js" defer></script>
+    <style>
+        body {
+            padding: 1em;
+        }
+        h1 {
+            margin-bottom: 1em;
+        }
+        hr {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+    </style>
+    <title>Checkbox Demo</title>
+</head>
+<body>
+    <h1>Checkbox Demo</h1>
+
+    <form>
+        <rwc-checkbox checkbox_size="2.4rem" name="a"></rwc-checkbox>
+        <hr>
+        <rwc-checkbox name="b" required>
+        </rwc-checkbox>
+        <hr>
+        <rwc-checkbox disabled></rwc-checkbox>
+        <hr>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault()
+                console.log(`Submitting at data:`)
+                
+                const data = new FormData(this)
+                
+                for (const datum of data) console.log(datum)
+            })
+        })
+    </script>
+</body>
+</html>
