@@ -18,6 +18,47 @@ class RWC_InputMediaFile extends HTMLElement {
     checkValidity()  { return this.internals_.checkValidity()  }
     reportValidity() { return this.internals_.reportValidity() }
 
+    setFormValue() {
+        if (this.files_.length === 0) {
+            this.internals_.setFormValue(null)
+            this.Input.value = null
+            return
+        }
+
+        const name = this.getAttribute('name')
+        const fileEntries = new FormData()
+
+        for (const file of this.files_) fileEntries.append(name, file)
+
+        this.internals_.setFormValue(fileEntries)
+    }
+
+    /**
+     * This is called when the 'disabled' attribute of the element or of an ancestor <fieldset> is
+     * updated
+     * @param {Boolean} disabled 
+     */
+    formDisabledCallback(disabled) {
+        if (disabled) {
+            this.Input.setAttribute('disabled', '')
+            this.ModalOpener.setAttribute('disabled', '')
+        } 
+        else {
+            this.Input.removeAttribute('disabled')
+            this.ModalOpener.removeAttribute('disabled')
+        }
+    }
+
+    /**
+     * This is called when the form is reset
+     */
+    formResetCallback() {
+        this.files_ = []
+        this.setFormValue()
+        this.resetInput()
+        this.validation()
+    }
+
     constructor() {
         super()
         this.internals_ = this.attachInternals()
@@ -258,21 +299,6 @@ class RWC_InputMediaFile extends HTMLElement {
         this.internals_.setValidity({})
     }
 
-    setFormValue() {
-        if (this.files_.length === 0) {
-            this.internals_.setFormValue(null)
-            this.Input.value = null
-            return
-        }
-
-        const name = this.getAttribute('name')
-        const fileEntries = new FormData()
-
-        for (const file of this.files_) fileEntries.append(name, file)
-
-        this.internals_.setFormValue(fileEntries)
-    }
-
     resetInput() {
         const ModalHeading = this.Modal.querySelector('[slot="heading"]')
         const ModalBody = this.Modal.querySelector('[slot="body-content"]')
@@ -324,29 +350,6 @@ class RWC_InputMediaFile extends HTMLElement {
 
     attributeChangedCallback() {
         this.updateElement()
-    }
-
-    /**
-     * This is called when the 'disabled' attribute of the element or of an ancestor <fieldset> is
-     * updated
-     * @param {Boolean} disabled 
-     */
-    formDisabledCallback(disabled) {
-        if (disabled) {
-            this.Input.setAttribute('disabled', '')
-            this.ModalOpener.setAttribute('disabled', '')
-        } 
-        else {
-            this.Input.removeAttribute('disabled')
-            this.ModalOpener.removeAttribute('disabled')
-        }
-    }
-
-    formResetCallback() {
-        this.files_ = []
-        this.setFormValue()
-        this.resetInput()
-        this.validation()
     }
 }
 
