@@ -3,7 +3,7 @@ class RWC_Checkbox extends HTMLElement {
 
     static get observedAttributes() {
         return [
-            'checkbox_size', 'checkbox_color', 'is_indeterminate', 'required', 'title'
+            'checkbox_size', 'checkbox_color', 'checked', 'is_indeterminate', 'required', 'title'
         ]        
     }
 
@@ -29,12 +29,8 @@ class RWC_Checkbox extends HTMLElement {
      * @param {Boolean} disabled 
      */
      formDisabledCallback(disabled) {
-        if (disabled) {
-            
-        } 
-        else {
-            
-        }
+        this.Checkbox.className = disabled ? 'checkbox disabled' : 'checkbox'
+        this.Input.disabled = disabled
     }
 
     /**
@@ -55,6 +51,7 @@ class RWC_Checkbox extends HTMLElement {
         this.attachShadow({mode: 'open'})
         this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))  
 
+        this.Checkbox = this.shadowRoot.querySelector('label.checkbox')
         this.Style = this.shadowRoot.querySelector('style')
         this.Input = this.shadowRoot.querySelector('input')
         this.SpanWrapper = this.shadowRoot.querySelector('span.wrapper')
@@ -87,26 +84,29 @@ class RWC_Checkbox extends HTMLElement {
 
         return template
     }
+
+    /**
+     * @param {Boolean} checked - The checked state
+     */
+    toggleCheck(checked) {
+        if (checked) {
+            this.SvgSquare.classList.add('hidden')
+            this.SvgChecked.classList.remove('hidden')
+        }
+        else {
+            this.SvgSquare.classList.remove('hidden')
+            this.SvgChecked.classList.add('hidden')
+        }
+    }
     
     connectedCallback() {
-        const checkbox = this
-
         this.Input.addEventListener('focus', () => this.SpanWrapper.classList.add('focus'))
         this.Input.addEventListener('blur', () => this.SpanWrapper.classList.remove('focus'))
-        this.Input.addEventListener('change', function() {
-            if (this.checked) {
-                checkbox.SvgSquare.classList.add('hidden')
-                checkbox.SvgChecked.classList.remove('hidden')
-            }
-            else {
-                checkbox.SvgSquare.classList.remove('hidden')
-                checkbox.SvgChecked.classList.add('hidden')
-            }
-        })
+        this.Input.addEventListener('change', e => this.toggleCheck(e.target.checked))
     }
 
     attributeChangedCallback() {
-        
+        this.toggleCheck(this.hasAttribute('checked'))
     }
 }
 

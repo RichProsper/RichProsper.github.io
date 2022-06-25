@@ -21,7 +21,6 @@
         }
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
-    <link rel="stylesheet" href="inputs/checkbox/rui-checkbox.min.css">
     <link rel="stylesheet" href="inputs/rui-input.min.css">
     <link rel="stylesheet" href="inputs/input-file/rui-input-file.min.css">
     <link rel="stylesheet" href="inputs/switch/rui-switch.min.css">
@@ -30,9 +29,6 @@
     <title>Form Elements Demo</title>
 </head>
 <body>
-    <h2>Checkbox</h2>
-    <div id="checkbox" class="example"></div>
-
     <h2>Input</h2><br>
     <div id="input" class="example"></div>
 
@@ -49,52 +45,13 @@
     <div id="textarea" class="example"></div>
 
     <script type="module">
-        import Checkbox from './inputs/checkbox/rui-checkbox.min.js'
         import Input from './inputs/rui-input.min.js'
         import InputFile from './inputs/input-file/rui-input-file.min.js'
         import Switch from './inputs/switch/rui-switch.min.js'
         import Select from './select/rui-select.min.js'
         import Textarea from './textarea/rui-textarea.min.js'
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkbox = document.getElementById('checkbox')
-            checkbox.appendChild( Checkbox({
-                attrs: {
-                    id: 'a',
-                    title: 'Check Me',
-                    'data-class': 'checkbox',
-                    'data-value': 5
-                },
-                labelText: 'Label',
-                evts: {
-                    change: [
-                        () => console.log('a'),
-                        () => console.log('b'),
-                        () => console.log('c')
-                    ],
-                    focus: () => console.log(checkbox)
-                }
-            }) )
-            checkbox.appendChild( Checkbox({
-                attrs: {
-                    disabled: ''
-                },
-                labelText: 'Disabled'
-            }) )
-            checkbox.appendChild( Checkbox({
-                attrs: {
-                    checked: ''
-                },
-                labelText: 'Checked'
-            }) )
-            checkbox.appendChild( Checkbox({
-                attrs: {
-                    disabled: '',
-                    checked: ''
-                },
-                labelText: 'Disabled & Checked'
-            }) )
-            
+        document.addEventListener('DOMContentLoaded', () => {            
             const input = document.getElementById('input')
             input.appendChild( Input({
                 attrs: {

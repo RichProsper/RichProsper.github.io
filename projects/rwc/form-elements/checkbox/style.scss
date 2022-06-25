@@ -7,7 +7,7 @@
 
 .checkbox {
     // --checkbox-size : [[checkbox_size]];
-    --checkbox-size : 2.1rem;
+    --checkbox-size : 2.2rem;
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
     --hover   : hsla(var(--hue-blue), 90%, 77%, .1);
@@ -57,7 +57,7 @@
             &:disabled {
                 cursor: default;
 
-                & + .checked {
+                & ~ svg.checked {
                     color: var(--grey-2);
                 }
             }
