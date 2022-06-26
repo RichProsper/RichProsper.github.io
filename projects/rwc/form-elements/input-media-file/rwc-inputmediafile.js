@@ -180,6 +180,8 @@ class RWC_InputMediaFile extends HTMLElement {
         this.Input.setAttribute('accept', this.determineSelectedAccept())
 
         this.Style.innerHTML = this.css.replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize).replace('[[music_icon_outline_color]]', this.getAttribute('music_icon_outline_color') || this.defaultMusicIconOutlineColor)
+
+        this.validation()
     }
 
     setPreview() {
