@@ -1,10 +1,9 @@
-// TODO Handle 'checkbox_size', 'checkbox_color'
 class RWC_Checkbox extends HTMLElement {
     static formAssociated = true
 
     static get observedAttributes() {
         return [
-            'checkbox_size', 'checkbox_color', 'value', 'is_indeterminate', 'required'
+            'value', 'required', 'is_indeterminate', 'checkbox_size', 'checkbox_color'
         ]        
     }
 
@@ -64,10 +63,10 @@ class RWC_Checkbox extends HTMLElement {
 
     getTemplate() {
         this.defaultCheckboxSize = '2.2rem'
-        this.defaultCheckboxColor = ''
+        this.defaultCheckboxColor = '207, 90%, 77%'
         this.defaultValue = 'on'
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.checkbox{--checkbox-size: [[checkbox_size]];--hue-blue: 207;--hover: hsla(var(--hue-blue), 90%, 77%, .1);--checked: hsl(var(--hue-blue), 90%, 77%);--hue-white: 0, 0%;--grey-1: hsl(var(--hue-white), 50%);--grey-2: hsl(var(--hue-white), 30%);position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;font-size:var(--checkbox-size);-webkit-box-sizing:border-box;box-sizing:border-box}.checkbox *,.checkbox *::before,.checkbox *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.checkbox.disabled{cursor:default;pointer-events:none;color:var(--grey-1)}.checkbox .wrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;position:relative;padding:.409em;border-radius:50%;-webkit-transition:.2s;transition:.2s}.checkbox .wrapper input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:1}.checkbox .wrapper input:checked ~ svg.checked{display:block}.checkbox .wrapper input:not(:checked) ~ svg.square{display:block}.checkbox .wrapper input:disabled{cursor:default}.checkbox .wrapper input:disabled ~ svg{color:var(--grey-2)}.checkbox .wrapper svg{width:1em;height:1em;fill:currentColor;display:none}.checkbox .wrapper svg.checked,.checkbox .wrapper svg.indeterminate{color:var(--checked)}.checkbox .wrapper:hover,.checkbox .wrapper.focus{background-color:var(--hover)}.checkbox .wrapper[is_indeterminate] input ~ svg.square,.checkbox .wrapper[is_indeterminate] input ~ svg.checked{display:none}.checkbox .wrapper[is_indeterminate] input ~ svg.indeterminate{display:block}.checkbox .label{font-size:.727em}
+            *,*::before,*::after{margin:0;padding:0}.checkbox{--checkbox-size: [[checkbox_size]];--checkbox-color: [[checkbox_color]];--hover: [[hover]];--hue-white: 0, 0%;--grey-1: hsl(var(--hue-white), 50%);--grey-2: hsl(var(--hue-white), 30%);position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;font-size:var(--checkbox-size);-webkit-box-sizing:border-box;box-sizing:border-box}.checkbox *,.checkbox *::before,.checkbox *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.checkbox.disabled{cursor:default;pointer-events:none;color:var(--grey-1)}.checkbox .wrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;position:relative;padding:.409em;border-radius:50%;-webkit-transition:.2s;transition:.2s}.checkbox .wrapper input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:1}.checkbox .wrapper input:checked ~ svg.checked{display:block}.checkbox .wrapper input:not(:checked) ~ svg.square{display:block}.checkbox .wrapper input:disabled{cursor:default}.checkbox .wrapper input:disabled ~ svg{color:var(--grey-2)}.checkbox .wrapper svg{width:1em;height:1em;fill:currentColor;display:none}.checkbox .wrapper svg.checked,.checkbox .wrapper svg.indeterminate{color:var(--checkbox-color)}.checkbox .wrapper:hover,.checkbox .wrapper.focus{background-color:var(--hover)}.checkbox .wrapper[is_indeterminate] input ~ svg.square,.checkbox .wrapper[is_indeterminate] input ~ svg.checked{display:none}.checkbox .wrapper[is_indeterminate] input ~ svg.indeterminate{display:block}.checkbox .label{font-size:.727em}
         `
 
         const template = document.createElement('template')
@@ -96,10 +95,82 @@ class RWC_Checkbox extends HTMLElement {
 
         this.internals_.setValidity({})
     }
+
+    namedColorToRGBColor() {
+        if (!this.hasAttribute('checkbox_color')) return false
+
+        const div = document.createElement('div')
+        div.style.color = this.getAttribute('checkbox_color')
+        document.body.appendChild(div)
+
+        const rgbColor = window.getComputedStyle(div).getPropertyValue('color').replace(/[rgba()]/g, '').split(', ')
+        document.body.removeChild(div)
+
+        // Make red, green, and blue fractions
+        const red   = +rgbColor[0] / 255,
+              green = +rgbColor[1] / 255,
+              blue  = +rgbColor[2] / 255
+
+        // Find greatest and smallest channel values and the delta value
+        const channel_min = Math.min(red, green, blue),
+              channel_max = Math.max(red, green, blue),
+              delta = channel_max - channel_min
+
+        let hue = 0,
+            saturation = 0,
+            lightness = 0
+
+        // Determine hue
+        if      (delta === 0) hue = 0
+        else if (channel_max === red) hue = ((green - blue) / delta) % 6
+        else if (channel_max === green) hue = ((blue - red) / delta) + 2
+        else if (channel_max === blue) hue = ((red - green) / delta) + 4
+
+        hue = Math.round(hue * 60)
+        if (hue < 0) hue += 360
+
+        // Determine lightness & saturation
+        lightness = (channel_max + channel_min) / 2
+        saturation = delta === 0 ? 0 : delta / (1 - Math.abs((2 * lightness) - 1))
+
+        saturation = +(saturation * 100).toFixed(1)
+        lightness = +(lightness * 100).toFixed(1)
+
+        if (rgbColor.length === 4) {
+            return [
+                `hsla(${hue}, ${saturation}%, ${lightness}%, ${rgbColor[3]})`,
+                `hsla(${hue}, ${saturation}%, ${lightness}%, .1)`
+            ]
+        }
+        else {
+            return [
+                `hsl(${hue}, ${saturation}%, ${lightness}%)`,
+                `hsla(${hue}, ${saturation}%, ${lightness}%, .1)`
+            ]
+        }
+    }
+
+    updateSizeColor() {
+        const colors = this.namedColorToRGBColor()
+        let css = this.css.replace('[[checkbox_size]]', this.getAttribute('checkbox_size') || this.defaultCheckboxSize)
+
+        if (!colors) {
+            css = css.replace('[[checkbox_color]]', 'hsl(' + this.defaultCheckboxColor + ')')
+            css = css.replace('[[hover]]', 'hsl(' + this.defaultCheckboxColor + ', .1)')
+        }
+        else {
+            css = css.replace('[[checkbox_color]]', colors[0])
+            css = css.replace('[[hover]]', colors[1])
+        }
+
+        this.Style.innerHTML = css
+    }
     
     connectedCallback() {
         this.Input.checked = this.hasAttribute('checked')
         if (!this.getAttribute('value')) this.setAttribute('value', this.defaultValue)
+
+        this.updateSizeColor()
         this.setFormValue()
         this.validation()
         
@@ -111,14 +182,27 @@ class RWC_Checkbox extends HTMLElement {
         })
     }
 
-    attributeChangedCallback() {
-        if (!this.getAttribute('value')) this.setAttribute('value', this.defaultValue)
-
-        this.hasAttribute('required') ? this.Input.setAttribute('required', '') : this.Input.removeAttribute('required')
-
-        this.hasAttribute('is_indeterminate') ? this.Wrapper.setAttribute('is_indeterminate', '') : this.Wrapper.removeAttribute('is_indeterminate')
-
-        this.Style.innerHTML = this.css.replace('[[checkbox_size]]', this.getAttribute('checkbox_size') || this.defaultCheckboxSize)
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case 'value': {
+                if (!this.getAttribute('value')) this.setAttribute('value', this.defaultValue)
+                break
+            }
+            case 'required': {
+                this.hasAttribute('required') ? this.Input.setAttribute('required', '') : this.Input.removeAttribute('required')
+                break
+            }
+            case 'is_indeterminate': {
+                this.hasAttribute('is_indeterminate') ? this.Wrapper.setAttribute('is_indeterminate', '') : this.Wrapper.removeAttribute('is_indeterminate')
+                break
+            }
+            case 'checkbox_size':
+            case 'checkbox_color': {
+                this.updateSizeColor()
+                break
+            }
+            default: {}
+        }
 
         this.validation()
     }
