@@ -26,31 +26,42 @@
     <h1>Checkbox Demo</h1>
 
     <form>
-        <rwc-checkbox checkbox_size="2.4rem" name="a" value="first">
+        <rwc-checkbox checkbox_size="3rem" name="normal" value="first">
             <span slot="label">A normal checkbox</span>
-        </rwc-checkbox>
-        <hr>
-        <rwc-checkbox name="b" checked value="second">
+        </rwc-checkbox><hr>
+
+        <rwc-checkbox name="checked" checked value="second">
             <span slot="label">Checked</span>
-        </rwc-checkbox>
-        <hr>
-        <rwc-checkbox name="c" required value="third">
+        </rwc-checkbox><hr>
+
+        <rwc-checkbox is_indeterminate value="second">
+            <span slot="label">Is Indeterminate</span>
+        </rwc-checkbox><hr>
+
+        <rwc-checkbox name="required" required value="third">
             <span slot="label">Required</span>
-        </rwc-checkbox>
-        <hr>
+        </rwc-checkbox><hr>
+
         <rwc-checkbox disabled>
             <span slot="label">Disabled</span>
-        </rwc-checkbox>
-        <hr>
-        <rwc-checkbox name="d" checked disabled>
+        </rwc-checkbox><hr>
+
+        <rwc-checkbox name="disbaled_checked" checked disabled>
             <span slot="label">Disabled & Checked</span>
-        </rwc-checkbox>
-        <hr>
+        </rwc-checkbox><hr>
+
+        <rwc-checkbox is_indeterminate disabled value="second">
+            <span slot="label">Is Indeterminate</span>
+        </rwc-checkbox><hr>
+
         <rwc-checkbox></rwc-checkbox>
-        <rwc-checkbox disabled></rwc-checkbox>
         <rwc-checkbox checked></rwc-checkbox>
+        <rwc-checkbox is_indeterminate></rwc-checkbox>
+        <rwc-checkbox disabled></rwc-checkbox>
         <rwc-checkbox disabled checked></rwc-checkbox>
+        <rwc-checkbox disabled is_indeterminate></rwc-checkbox>
         <hr>
+
         <button type="submit">Submit</button>
         <button type="reset">Reset</button>
     </form>

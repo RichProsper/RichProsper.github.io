@@ -6,7 +6,7 @@
 }
 
 .checkbox {
-    --checkbox-size : 2.2rem;
+    --checkbox-size : [[checkbox_size]];
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
     --hover   : hsla(var(--hue-blue), 90%, 77%, .1);
@@ -81,6 +81,15 @@
         &:hover,
         &.focus {
             background-color: var(--hover);
+        }
+        &[is_indeterminate] {
+            input ~ svg.square,
+            input ~ svg.checked {
+                display: none;
+            }
+            input ~ svg.indeterminate {
+                display: block;
+            }
         }
     }
     .label {
