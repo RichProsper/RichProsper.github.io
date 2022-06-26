@@ -1,14 +1,17 @@
+// TODO Handle 'is_indeterminate', 'checkbox_size', 'checkbox_color'
 class RWC_Checkbox extends HTMLElement {
     static formAssociated = true
 
     static get observedAttributes() {
         return [
-            'checkbox_size', 'checkbox_color', 'checked', 'is_indeterminate', 'required', 'title'
+            'checkbox_size', 'checkbox_color', 'value', 'is_indeterminate', 'required'
         ]        
     }
 
-    get value()             { return this.value_                       }
-    set value(newValue)     { this.value_ = newValue                   }
+    get value()             { return this.getAttribute('value')        }
+    set value(v)            { this.setAttribute('value', v)            }
+    get checked()           { return this.Input.checked                }
+    set checked(c)          { this.Input.checked = c                   }
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
     get type()              { return this.localName                    }
@@ -19,9 +22,7 @@ class RWC_Checkbox extends HTMLElement {
     checkValidity()  { return this.internals_.checkValidity()  }
     reportValidity() { return this.internals_.reportValidity() }
 
-    setFormValue() {
-
-    }
+    setFormValue = () => this.checked ? this.internals_.setFormValue(this.getAttribute('value')) : this.internals_.setFormValue(null)
 
     /**
      * This is called when the 'disabled' attribute of the element or of an ancestor <fieldset> is
@@ -37,13 +38,14 @@ class RWC_Checkbox extends HTMLElement {
      * This is called when the form is reset
      */
     formResetCallback() {
-
+        this.Input.checked = this.hasAttribute('checked')
+        this.setFormValue()
+        this.validation()
     }
 
     constructor() {
         super()
         this.internals_ = this.attachInternals()
-        this.value_ = null
         this.init()
     }
 
@@ -64,6 +66,7 @@ class RWC_Checkbox extends HTMLElement {
     getTemplate() {
         this.defaultCheckboxSize = ''
         this.defaultCheckboxColor = ''
+        this.defaultValue = 'on'
         this.css = ``
 
         const template = document.createElement('template')
@@ -78,35 +81,42 @@ class RWC_Checkbox extends HTMLElement {
                     <svg class="checked hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32C419.3 32 448 60.65 448 96V416C448 451.3 419.3 480 384 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H384zM339.8 211.8C350.7 200.9 350.7 183.1 339.8 172.2C328.9 161.3 311.1 161.3 300.2 172.2L192 280.4L147.8 236.2C136.9 225.3 119.1 225.3 108.2 236.2C97.27 247.1 97.27 264.9 108.2 275.8L172.2 339.8C183.1 350.7 200.9 350.7 211.8 339.8L339.8 211.8z"/></svg>
                     <svg class="indeterminate hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32C419.3 32 448 60.65 448 96V416C448 451.3 419.3 480 384 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H384zM136 232C122.7 232 112 242.7 112 256C112 269.3 122.7 280 136 280H312C325.3 280 336 269.3 336 256C336 242.7 325.3 232 312 232H136z"/></svg>
                 </span>
-                <span class="label">Label...</span>
+                <slot name="label" class="label"></slot>
             </label>
         `
 
         return template
     }
 
-    /**
-     * @param {Boolean} checked - The checked state
-     */
-    toggleCheck(checked) {
-        if (checked) {
-            this.SvgSquare.classList.add('hidden')
-            this.SvgChecked.classList.remove('hidden')
+    validation() {
+        if (this.hasAttribute('required') && !this.checked) {
+            this.internals_.setValidity({valueMissing: true}, 'Please check this box if you want to proceed', this.Input)
+            return
         }
-        else {
-            this.SvgSquare.classList.remove('hidden')
-            this.SvgChecked.classList.add('hidden')
-        }
+
+        this.internals_.setValidity({})
     }
     
     connectedCallback() {
+        this.Input.checked = this.hasAttribute('checked')
+        if (!this.getAttribute('value')) this.setAttribute('value', this.defaultValue)
+        this.setFormValue()
+        this.validation()
+        
         this.Input.addEventListener('focus', () => this.SpanWrapper.classList.add('focus'))
         this.Input.addEventListener('blur', () => this.SpanWrapper.classList.remove('focus'))
-        this.Input.addEventListener('change', e => this.toggleCheck(e.target.checked))
+        this.Input.addEventListener('change', () => {
+            this.setFormValue()
+            this.validation()
+        })
     }
 
     attributeChangedCallback() {
-        this.toggleCheck(this.hasAttribute('checked'))
+        if (!this.getAttribute('value')) this.setAttribute('value', this.defaultValue)
+
+        this.hasAttribute('required') ? this.Input.setAttribute('required', '') : this.Input.removeAttribute('required')
+
+        this.validation()
     }
 }
 

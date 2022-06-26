@@ -6,7 +6,6 @@
 }
 
 .checkbox {
-    // --checkbox-size : [[checkbox_size]];
     --checkbox-size : 2.2rem;
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
@@ -35,7 +34,7 @@
         pointer-events: none;
         color: var(--grey-1);
     }
-    span.wrapper {
+    .wrapper {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -54,24 +53,29 @@
             cursor: pointer;
             z-index: 1;
 
+            &:checked ~ svg.checked {
+                display: block;
+            }
+            &:not(:checked) ~ svg.square {
+                display: block;
+            }
             &:disabled {
                 cursor: default;
 
-                & ~ svg.checked {
+                & ~ svg {
                     color: var(--grey-2);
                 }
-            }
+            }      
         }
         svg {
             width: 1em;
+            height: 1em;
             fill: currentColor;
+            display: none;
 
             &.checked,
-            &.indeterminate  {
+            &.indeterminate {
                 color: var(--checked);
-            }
-            &.hidden {
-                display: none;
             }
         }
         &:hover,
@@ -79,7 +83,7 @@
             background-color: var(--hover);
         }
     }
-    span.label {
+    .label {
         font-size: .727em;
     }
 }

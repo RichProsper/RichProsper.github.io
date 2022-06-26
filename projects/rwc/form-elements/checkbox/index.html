@@ -26,13 +26,29 @@
     <h1>Checkbox Demo</h1>
 
     <form>
-        <rwc-checkbox checkbox_size="2.4rem" name="a"></rwc-checkbox>
-        <hr>
-        <rwc-checkbox name="b" required checked>
+        <rwc-checkbox checkbox_size="2.4rem" name="a" value="first">
+            <span slot="label">A normal checkbox</span>
         </rwc-checkbox>
         <hr>
-        <rwc-checkbox disabled></rwc-checkbox>
+        <rwc-checkbox name="b" checked value="second">
+            <span slot="label">Checked</span>
+        </rwc-checkbox>
         <hr>
+        <rwc-checkbox name="c" required value="third">
+            <span slot="label">Required</span>
+        </rwc-checkbox>
+        <hr>
+        <rwc-checkbox disabled>
+            <span slot="label">Disabled</span>
+        </rwc-checkbox>
+        <hr>
+        <rwc-checkbox name="d" checked disabled>
+            <span slot="label">Disabled & Checked</span>
+        </rwc-checkbox>
+        <hr>
+        <rwc-checkbox></rwc-checkbox>
+        <rwc-checkbox disabled></rwc-checkbox>
+        <rwc-checkbox checked></rwc-checkbox>
         <rwc-checkbox disabled checked></rwc-checkbox>
         <hr>
         <button type="submit">Submit</button>
