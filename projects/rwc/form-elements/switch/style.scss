@@ -1,4 +1,12 @@
-label[data-switch-container] {
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+label.switch {
+    // --switch-size : [[switch_size]];
     // Light Blue : hsl(207, 90%, 77%)
     --hue-blue   : 207;
     --hover   : hsla(var(--hue-blue), 90%, 77%, .1);
@@ -11,11 +19,19 @@ label[data-switch-container] {
     --grey-2            : hsl(var(--hue-white), 30%);
 
 
+    position: relative;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
+    font-size: var(--switch-size);
+    box-sizing: border-box;
 
-    span[data-switch-wrapper] {
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+    .wrapper {
         position: relative;
         display: inline-flex;
         width: 5.8rem;
@@ -24,7 +40,7 @@ label[data-switch-container] {
         padding: 1.2rem;
         z-index: 0;
 
-        span[data-switch-base] {
+        .base {
             position: absolute;
             left: 0;
             top: 0;
@@ -49,7 +65,7 @@ label[data-switch-container] {
                 opacity: 0;
                 z-index: 1;
             }
-            span[data-switch-thumb] {
+            .thumb {
                 width: 2rem;
                 height: 2rem;
                 border-radius: 50%;
@@ -58,23 +74,25 @@ label[data-switch-container] {
                             0 .1rem .1rem 0 rgba(0, 0, 0, .14),
                             0 .1rem .3rem 0 rgba(0, 0, 0, .12);
             }
-            &:hover {
+            &:hover,
+            &.focus {
                 background-color: var(--white-transparent);
             }
             &.checked {
                 color: var(--checked);
                 transform: translateX(2rem);
 
-                &:hover {
+                &:hover,
+                &.focus {
                     background-color: var(--hover);
                 }
-                & + span[data-switch-track] {
+                & + .track {
                     background-color: var(--checked);
                     opacity: .5;
                 }
             }
         }
-        span[data-switch-track] {
+        .track {
             width: 100%;
             height: 100%;
             border-radius: .7rem;
@@ -84,15 +102,18 @@ label[data-switch-container] {
             z-index: -1;
         }
     }
+    .label {
+        font-size: 1em;
+    }
     &.disabled {
         cursor: default;
         pointer-events: none;
         color: var(--grey-1);
 
-        span[data-switch-wrapper] span[data-switch-base].checked {
+        .wrapper .base.checked {
             color: var(--grey-1);
 
-            & + span[data-switch-track] {
+            & + .track {
                 background-color: var(--white);
                 opacity: .3;
             }

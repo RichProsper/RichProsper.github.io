@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="inputs/rui-input.min.css">
     <link rel="stylesheet" href="inputs/input-file/rui-input-file.min.css">
-    <link rel="stylesheet" href="inputs/switch/rui-switch.min.css">
     <link rel="stylesheet" href="select/rui-select.min.css">
     <link rel="stylesheet" href="textarea/rui-textarea.min.css">
     <title>Form Elements Demo</title>
@@ -31,9 +30,6 @@
 <body>
     <h2>Input</h2><br>
     <div id="input" class="example"></div>
-
-    <h2>Switch</h2>
-    <div id="switch" class="example"></div>
 
     <h2>Select Single</h2><br>
     <div id="select-single" class="example"></div>
@@ -47,7 +43,6 @@
     <script type="module">
         import Input from './inputs/rui-input.min.js'
         import InputFile from './inputs/input-file/rui-input-file.min.js'
-        import Switch from './inputs/switch/rui-switch.min.js'
         import Select from './select/rui-select.min.js'
         import Textarea from './textarea/rui-textarea.min.js'
 
@@ -94,46 +89,7 @@
                     disabled: ''
                 }
             }) )
-            
-            const switch_ = document.getElementById('switch')
-            switch_.appendChild( Switch({
-                labelText: 'Label',
-                attrs: {
-                    id: 'c',
-                    title: 'Switch Me',
-                    'data-class': 'switch',
-                    'data-value': 'on/off',
-                },
-                evts: {
-                    change: [
-                        () => console.log('a'),
-                        () => console.log('b'),
-                        () => console.log('c')
-                    ],
-                    focus: () => console.log('focus'),
-                    blur: () => console.log('blur')
-                }
-            }) )
-            switch_.appendChild( Switch({
-                labelText: 'Disabled',
-                attrs: {
-                    disabled: ''
-                }
-            }) )
-            switch_.appendChild( Switch({
-                labelText: 'On',
-                attrs: {
-                    checked: ''
-                }
-            }) )
-            switch_.appendChild( Switch({
-                labelText: 'Disabled & On',
-                attrs: {
-                    disabled: '',
-                    checked: ''
-                }
-            }) )
-        
+                    
             const selectSingle = document.getElementById('select-single')
             selectSingle.appendChild( Select({
                 labelText: 'Single',
