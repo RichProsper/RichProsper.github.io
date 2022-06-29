@@ -7,13 +7,11 @@ class RWC_Switch extends HTMLElement {
 
     get value()             { return this.getAttribute('value')        }
     set value(v)            { this.setAttribute('value', v)            }
-
     get checked()           { return this.Input.checked                }
     set checked(c)          {
         this.Input.checked = c
         c ? this.Base.classList.add('checked') : this.Base.classList.remove('checked')
     }
-
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
     get type()              { return this.localName                    }
@@ -63,15 +61,16 @@ class RWC_Switch extends HTMLElement {
     }
 
     getTemplate() {
-        this.defaultSwitchSize = '2.2rem'
+        this.defaultSwitchSize = '5.8rem'
         this.defaultSwitchColor = '207, 90%, 77%'
         this.defaultValue = 'on'
-        this.css = ``
+        this.css = `
+            *,*::before,*::after{margin:0;padding:0}label.switch{--switch-size: [[switch_size]];--switch-color: [[switch_color]];--hover: [[hover]];--hue-white: 0, 0%;--white: hsl(var(--hue-white), 100%);--white-transparent: hsla(var(--hue-white), 100%, .1);--grey-1: hsl(var(--hue-white), 50%);--grey-2: hsl(var(--hue-white), 30%);position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;font-size:var(--switch-size);-webkit-box-sizing:border-box;box-sizing:border-box}label.switch *,label.switch *::before,label.switch *::after{-webkit-box-sizing:inherit;box-sizing:inherit}label.switch .wrapper{position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;width:1em;height:.655em;overflow:hidden;padding:.207em;z-index:0}label.switch .wrapper .base{position:absolute;left:0;top:0;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;-webkit-tap-highlight-color:transparent;padding:.155em;border-radius:50%;z-index:1;-webkit-transition:0.15s cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:0.15s cubic-bezier(0.4, 0, 0.2, 1) 0ms}label.switch .wrapper .base input{position:absolute;top:0;left:0;width:100%;height:100%;cursor:inherit;opacity:0;z-index:1}label.switch .wrapper .base .thumb{width:.345em;height:.345em;border-radius:50%;background-color:currentColor;-webkit-box-shadow:0 0.0345em 0.0172em -0.0172em rgba(0,0,0,0.2),0 0.0172em 0.0172em 0 rgba(0,0,0,0.14),0 0.0172em 0.0517em 0 rgba(0,0,0,0.12);box-shadow:0 0.0345em 0.0172em -0.0172em rgba(0,0,0,0.2),0 0.0172em 0.0172em 0 rgba(0,0,0,0.14),0 0.0172em 0.0517em 0 rgba(0,0,0,0.12)}label.switch .wrapper .base:hover,label.switch .wrapper .base.focus{background-color:var(--white-transparent)}label.switch .wrapper .base.checked{color:var(--switch-color);-webkit-transform:translateX(0.345em);transform:translateX(0.345em)}label.switch .wrapper .base.checked:hover,label.switch .wrapper .base.checked.focus{background-color:var(--hover)}label.switch .wrapper .base.checked+.track{background-color:var(--switch-color);opacity:.5}label.switch .wrapper .track{width:100%;height:100%;border-radius:.121em;-webkit-transition:0.15s cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:0.15s cubic-bezier(0.4, 0, 0.2, 1) 0ms;background-color:var(--white);opacity:.3;z-index:-1}label.switch .label{font-size:.276em}label.switch.disabled{cursor:default;pointer-events:none;color:var(--grey-1)}label.switch.disabled .wrapper .base.checked{color:var(--grey-1)}label.switch.disabled .wrapper .base.checked+.track{background-color:var(--white);opacity:.3}
+        `
 
         const template = document.createElement('template')
         template.innerHTML = `
-            <link rel="stylesheet" href="style.min.css">
-            <style></style>
+            <style>${this.css}</style>
 
             <label class="switch">
                 <span class="wrapper">

@@ -6,11 +6,10 @@
 }
 
 label.switch {
-    // --switch-size : [[switch_size]];
+    --switch-size : [[switch_size]];
     // Light Blue : hsl(207, 90%, 77%)
-    --hue-blue   : 207;
-    --hover   : hsla(var(--hue-blue), 90%, 77%, .1);
-    --checked : hsl(var(--hue-blue), 90%, 77%);
+    --switch-color   : [[switch_color]];
+    --hover          : [[hover]];
     // White: hsl(0, 0%, 100%)
     --hue-white         : 0, 0%;
     --white             : hsl(var(--hue-white), 100%);
@@ -34,10 +33,10 @@ label.switch {
     .wrapper {
         position: relative;
         display: inline-flex;
-        width: 5.8rem;
-        height: 3.8rem;
+        width: 1em;
+        height: .655em;
         overflow: hidden;
-        padding: 1.2rem;
+        padding: .207em;
         z-index: 0;
 
         .base {
@@ -50,7 +49,7 @@ label.switch {
             user-select: none;
             background-color: transparent;
             -webkit-tap-highlight-color: transparent;
-            padding: .9rem;
+            padding: .155em;
             border-radius: 50%;
             z-index: 1;
             transition: .15s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -66,28 +65,28 @@ label.switch {
                 z-index: 1;
             }
             .thumb {
-                width: 2rem;
-                height: 2rem;
+                width: .345em;
+                height: .345em;
                 border-radius: 50%;
                 background-color: currentColor;
-                box-shadow: 0 .2rem .1rem -.1rem rgba(0, 0, 0, .2),
-                            0 .1rem .1rem 0 rgba(0, 0, 0, .14),
-                            0 .1rem .3rem 0 rgba(0, 0, 0, .12);
+                box-shadow: 0 .0345em .0172em -.0172em rgba(0, 0, 0, .2),
+                            0 .0172em .0172em 0 rgba(0, 0, 0, .14),
+                            0 .0172em .0517em 0 rgba(0, 0, 0, .12);
             }
             &:hover,
             &.focus {
                 background-color: var(--white-transparent);
             }
             &.checked {
-                color: var(--checked);
-                transform: translateX(2rem);
+                color: var(--switch-color);
+                transform: translateX(.345em);
 
                 &:hover,
                 &.focus {
                     background-color: var(--hover);
                 }
                 & + .track {
-                    background-color: var(--checked);
+                    background-color: var(--switch-color);
                     opacity: .5;
                 }
             }
@@ -95,7 +94,7 @@ label.switch {
         .track {
             width: 100%;
             height: 100%;
-            border-radius: .7rem;
+            border-radius: .121em;
             transition: .15s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
             background-color: var(--white);
             opacity: .3;
@@ -103,7 +102,7 @@ label.switch {
         }
     }
     .label {
-        font-size: 1em;
+        font-size: .276em;
     }
     &.disabled {
         cursor: default;
