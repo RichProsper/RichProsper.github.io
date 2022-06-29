@@ -58,6 +58,8 @@
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('rwc-switch').Input.addEventListener('change', () => console.log('changed!'))
+
             document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault()
                 console.log(`Submitting at data:`)
