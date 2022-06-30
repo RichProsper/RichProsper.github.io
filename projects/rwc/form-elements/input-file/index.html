@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../../../global.min.css">
+    <script src="../../modal/rwc-modal.min.js" defer></script>
+    <script src="rwc-inputfile.js" defer></script>
+    <style>
+        body {
+            padding: 1em;
+        }
+        h1 {
+            margin-bottom: 1em;
+        }
+        hr {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+    </style>
+    <title>Input File Demo</title>
+</head>
+<body>
+    <h1>Input File Demo</h1>
+
+    <form>
+        <rwc-inputfile input_size="1.4rem" name="a"></rwc-inputfile>
+        <hr>
+        <rwc-inputfile 
+            name="b" multiple accept="image/*,.ogg" required
+            min_files="3" max_files="7"
+            max_file_size="5242880"
+        >
+        </rwc-inputfile>
+        <hr>
+        <rwc-inputfile disabled></rwc-inputfile>
+        <hr>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault()
+                console.log(`Submitting at data:`)
+                
+                const data = new FormData(this)
+                
+                for (const p of data) console.log(p)
+            })
+        })
+    </script>
+</body>
+</html>
