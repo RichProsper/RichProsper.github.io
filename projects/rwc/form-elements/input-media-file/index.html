@@ -27,7 +27,7 @@
     <h1>Input Media File Demo</h1>
 
     <form>
-        <rwc-inputmediafile input_size="1.4rem" name="a"></rwc-inputmediafile>
+        <rwc-inputmediafile input_size="1.4rem" input_color="darkred" name="a"></rwc-inputmediafile>
         <hr>
         <rwc-inputmediafile 
             name="b" multiple accept="image/*,audio/*,video/*" required
@@ -50,7 +50,7 @@
                 
                 const data = new FormData(this)
                 
-                for (const p of data) console.log(p)
+                for (const datum of data) console.log(datum)
             })
         })
     </script>

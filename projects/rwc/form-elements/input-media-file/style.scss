@@ -11,9 +11,8 @@
     --hue-white : 0, 0%;
     --white-1   : hsl(var(--hue-white), 87%);
     --grey-1    : hsl(var(--hue-white), 50%);
-    // Light Blue : hsl(207, 90%, 77%)
-    --hue-blue  : 207;
-    --blue-1    : hsl(var(--hue-blue), 90%, 18%);
+    // Dark Blue : hsl(207, 90%, 18%)
+    --input-color    : [[input_color]];
     --music-icon-outline-color : [[music_icon_outline_color]];
 
 
@@ -65,7 +64,7 @@
     
             &.focused,
             &:hover {
-                background-color: var(--blue-1);
+                background-color: var(--input-color);
             }
             svg {
                 width: 1em;
@@ -90,14 +89,14 @@
 
         &:focus,
         &:hover {
-            background-color: var(--blue-1);
+            background-color: var(--input-color);
             outline: none;
 
             svg.music {
-                filter: drop-shadow(.05em 0 var(--blue-1))
-                        drop-shadow(-.05em 0 var(--blue-1))
-                        drop-shadow(0 .05em var(--blue-1))
-                        drop-shadow(0 -.05em var(--blue-1));
+                filter: drop-shadow(.05em 0 var(--input-color))
+                        drop-shadow(-.05em 0 var(--input-color))
+                        drop-shadow(0 .05em var(--input-color))
+                        drop-shadow(0 -.05em var(--input-color));
             }
         }
         &:disabled {

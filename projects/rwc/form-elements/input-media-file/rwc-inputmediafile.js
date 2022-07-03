@@ -3,7 +3,9 @@ class RWC_InputMediaFile extends HTMLElement {
 
     static get observedAttributes() {
         return [
-            'input_size', 'title', 'max_file_size', 'num_files', 'min_files', 'max_files', 'multiple', 'placeholder', 'required', 'accept', 'music_icon_outline_color'
+            'input_size', 'input_color', 'title', 'max_file_size', 'num_files', 'min_files',
+            'max_files', 'multiple', 'placeholder', 'required', 'accept',
+            'music_icon_outline_color'
         ]        
     }
 
@@ -79,6 +81,7 @@ class RWC_InputMediaFile extends HTMLElement {
 
     getTemplate() {
         this.defaultInputSize = '1.6rem'
+        this.defaultInputColor = 'hsl(207, 90%, 18%)'
         this.defaultMusicIconOutlineColor = 'hsl(var(--hue-white), 13%)'
         this.defaultTitle = 'Only image, audio, or video files allowed'
         this.defaultPlaceholder = 'Choose a media file...'
@@ -98,7 +101,7 @@ class RWC_InputMediaFile extends HTMLElement {
             ]
         }
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.inputmediafile{--input-size: [[input_size]];--hue-white: 0, 0%;--white-1: hsl(var(--hue-white), 87%);--grey-1: hsl(var(--hue-white), 50%);--hue-blue: 207;--blue-1: hsl(var(--hue-blue), 90%, 18%);--music-icon-outline-color: [[music_icon_outline_color]];position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);-webkit-box-sizing:border-box;box-sizing:border-box}.inputmediafile *,.inputmediafile *::before,.inputmediafile *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.inputmediafile label{position:relative;overflow:hidden}.inputmediafile label input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;z-index:-1}.inputmediafile label input:disabled+div{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile label input:disabled+div svg{fill:var(--grey-1)}.inputmediafile label div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:2.5em;border:.125em solid currentColor;cursor:pointer;text-align:center;padding:0 .625em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-webkit-transition:.2s;transition:.2s}.inputmediafile label div.focused,.inputmediafile label div:hover{background-color:var(--blue-1)}.inputmediafile label div svg{width:1em;fill:var(--white-1);margin-right:.5em}.inputmediafile button{position:relative;color:var(--white-1);background-color:transparent;width:2em;border:.1em solid currentColor;border-left:none;cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:calc(var(--input-size) * 1.25);-webkit-transition:.2s;transition:.2s}.inputmediafile button:focus,.inputmediafile button:hover{background-color:var(--blue-1);outline:none}.inputmediafile button:focus svg.music,.inputmediafile button:hover svg.music{-webkit-filter:drop-shadow(0.05em 0 var(--blue-1)) drop-shadow(-0.05em 0 var(--blue-1)) drop-shadow(0 0.05em var(--blue-1)) drop-shadow(0 -0.05em var(--blue-1));filter:drop-shadow(0.05em 0 var(--blue-1)) drop-shadow(-0.05em 0 var(--blue-1)) drop-shadow(0 0.05em var(--blue-1)) drop-shadow(0 -0.05em var(--blue-1))}.inputmediafile button:disabled{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile button:disabled svg{fill:var(--grey-1)}.inputmediafile button svg{width:1em;fill:var(--white-1)}.inputmediafile button svg.music{position:absolute;width:.6em;bottom:.35em;right:.35em;-webkit-filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));-webkit-transition:.2s;transition:.2s}
+            *,*::before,*::after{margin:0;padding:0}.inputmediafile{--input-size: [[input_size]];--hue-white: 0, 0%;--white-1: hsl(var(--hue-white), 87%);--grey-1: hsl(var(--hue-white), 50%);--input-color: [[input_color]];--music-icon-outline-color: [[music_icon_outline_color]];position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);-webkit-box-sizing:border-box;box-sizing:border-box}.inputmediafile *,.inputmediafile *::before,.inputmediafile *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.inputmediafile label{position:relative;overflow:hidden}.inputmediafile label input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;z-index:-1}.inputmediafile label input:disabled+div{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile label input:disabled+div svg{fill:var(--grey-1)}.inputmediafile label div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:2.5em;border:.125em solid currentColor;cursor:pointer;text-align:center;padding:0 .625em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-webkit-transition:.2s;transition:.2s}.inputmediafile label div.focused,.inputmediafile label div:hover{background-color:var(--input-color)}.inputmediafile label div svg{width:1em;fill:var(--white-1);margin-right:.5em}.inputmediafile button{position:relative;color:var(--white-1);background-color:transparent;width:2em;border:.1em solid currentColor;border-left:none;cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:calc(var(--input-size) * 1.25);-webkit-transition:.2s;transition:.2s}.inputmediafile button:focus,.inputmediafile button:hover{background-color:var(--input-color);outline:none}.inputmediafile button:focus svg.music,.inputmediafile button:hover svg.music{-webkit-filter:drop-shadow(0.05em 0 var(--input-color)) drop-shadow(-0.05em 0 var(--input-color)) drop-shadow(0 0.05em var(--input-color)) drop-shadow(0 -0.05em var(--input-color));filter:drop-shadow(0.05em 0 var(--input-color)) drop-shadow(-0.05em 0 var(--input-color)) drop-shadow(0 0.05em var(--input-color)) drop-shadow(0 -0.05em var(--input-color))}.inputmediafile button:disabled{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile button:disabled svg{fill:var(--grey-1)}.inputmediafile button svg{width:1em;fill:var(--white-1)}.inputmediafile button svg.music{position:absolute;width:.6em;bottom:.35em;right:.35em;-webkit-filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));-webkit-transition:.2s;transition:.2s}
         `
 
         const template = document.createElement('template')
@@ -168,9 +171,57 @@ class RWC_InputMediaFile extends HTMLElement {
         return selectedAccept
     }
 
+    convertToHSLColor() {
+        if (!this.hasAttribute('input_color')) return false
+
+        const div = document.createElement('div')
+        div.style.color = this.getAttribute('input_color')
+        document.body.appendChild(div)
+
+        const rgbColor = window.getComputedStyle(div).getPropertyValue('color').replace(/[rgba()]/g, '').split(', ')
+        document.body.removeChild(div)
+
+        // Make red, green, and blue fractions
+        const red   = +rgbColor[0] / 255,
+              green = +rgbColor[1] / 255,
+              blue  = +rgbColor[2] / 255
+
+        // Find greatest and smallest channel values and the delta value
+        const channel_min = Math.min(red, green, blue),
+              channel_max = Math.max(red, green, blue),
+              delta = channel_max - channel_min
+
+        let hue = 0,
+            saturation = 0,
+            lightness = 0
+
+        // Determine hue
+        if      (delta === 0) hue = 0
+        else if (channel_max === red) hue = ((green - blue) / delta) % 6
+        else if (channel_max === green) hue = ((blue - red) / delta) + 2
+        else if (channel_max === blue) hue = ((red - green) / delta) + 4
+
+        hue = Math.round(hue * 60)
+        if (hue < 0) hue += 360
+
+        // Determine lightness & saturation
+        lightness = (channel_max + channel_min) / 2
+        saturation = delta === 0 ? 0 : delta / (1 - Math.abs((2 * lightness) - 1))
+
+        saturation = +(saturation * 100).toFixed(1)
+        lightness = +(lightness * 100).toFixed(1)
+
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    }
+
     updateElement() {
-        this.hasAttribute('multiple') ? this.Input.setAttribute('multiple', '') : this.Input.removeAttribute('multiple')
-        this.hasAttribute('required') ? this.Input.setAttribute('required', '') : this.Input.removeAttribute('required')
+        this.hasAttribute('multiple')
+            ? this.Input.setAttribute('multiple', '')
+            : this.Input.removeAttribute('multiple')
+
+        this.hasAttribute('required')
+            ? this.Input.setAttribute('required', '')
+            : this.Input.removeAttribute('required')
         
         this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
         this.selectedPlaceholder = this.getAttribute('placeholder') || this.defaultPlaceholder
@@ -178,7 +229,10 @@ class RWC_InputMediaFile extends HTMLElement {
 
         this.Input.setAttribute('accept', this.determineSelectedAccept())
 
-        this.Style.innerHTML = this.css.replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize).replace('[[music_icon_outline_color]]', this.getAttribute('music_icon_outline_color') || this.defaultMusicIconOutlineColor)
+        this.Style.innerHTML = this.css
+            .replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize)
+            .replace('[[input_color]]', this.convertToHSLColor() || this.defaultInputColor)
+            .replace('[[music_icon_outline_color]]', this.getAttribute('music_icon_outline_color') || this.defaultMusicIconOutlineColor)
 
         this.validation()
     }
