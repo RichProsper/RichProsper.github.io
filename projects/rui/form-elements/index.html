@@ -22,7 +22,6 @@
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
     <link rel="stylesheet" href="inputs/rui-input.min.css">
-    <link rel="stylesheet" href="inputs/input-file/rui-input-file.min.css">
     <link rel="stylesheet" href="select/rui-select.min.css">
     <link rel="stylesheet" href="textarea/rui-textarea.min.css">
     <title>Form Elements Demo</title>
@@ -42,7 +41,6 @@
 
     <script type="module">
         import Input from './inputs/rui-input.min.js'
-        import InputFile from './inputs/input-file/rui-input-file.min.js'
         import Select from './select/rui-select.min.js'
         import Textarea from './textarea/rui-textarea.min.js'
 
@@ -73,19 +71,6 @@
                 attrs: {
                     type: 'text',
                     placeholder: 'Disabled...',
-                    disabled: ''
-                }
-            }) )
-            input.appendChild( InputFile({
-                attrs: {
-                    type: 'file',
-                    title: 'Only .txt files'
-                }
-            }) )
-            input.appendChild( InputFile({
-                attrs: {
-                    type: 'file',
-                    title: 'Only .pdf files',
                     disabled: ''
                 }
             }) )
