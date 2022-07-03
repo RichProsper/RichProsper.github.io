@@ -1,10 +1,9 @@
-// TODO Change :focus css styles
 class RWC_InputFile extends HTMLElement {
     static formAssociated = true
 
     static get observedAttributes() {
         return [
-            'input_size', 'title', 'max_file_size', 'num_files', 'min_files', 'max_files', 'multiple', 'placeholder', 'required', 'accept',
+            'input_size', 'input_color', 'title', 'max_file_size', 'num_files', 'min_files', 'max_files', 'multiple', 'placeholder', 'required', 'accept',
         ]        
     }
 
@@ -72,10 +71,11 @@ class RWC_InputFile extends HTMLElement {
 
     getTemplate() {
         this.defaultInputSize = '1.6rem'
+        this.defaultInputColor = 'hsl(207, 90%, 53%)'
         this.defaultTitle = 'Only image, audio, or video files allowed'
         this.defaultPlaceholder = 'Choose a file...'
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.inputfile{--input-size: [[input_size]];--hue-white: 0, 0%;--white-1: hsl(var(--hue-white), 87%);--grey-1: hsl(var(--hue-white), 50%);--hue-blue: 207;--blue-1: hsl(var(--hue-blue), 90%, 18%);position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);overflow:hidden;-webkit-box-sizing:border-box;box-sizing:border-box}.inputfile *,.inputfile *::before,.inputfile *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.inputfile input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;z-index:-1}.inputfile input:disabled+div{color:var(--grey-1);cursor:default;pointer-events:none}.inputfile input:disabled+div svg{fill:var(--grey-1)}.inputfile div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:2.5em;border:.125em solid currentColor;cursor:pointer;text-align:center;padding:0 .625em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-webkit-transition:.2s;transition:.2s}.inputfile div.focused,.inputfile div:hover{background-color:var(--blue-1)}.inputfile div svg{width:1em;fill:var(--white-1);margin-right:.5em}
+            *,*::before,*::after{margin:0;padding:0}.inputfile{--input-size: [[input_size]];--hue-white: 0, 0%;--white-1: hsl(var(--hue-white), 87%);--grey-1: hsl(var(--hue-white), 50%);--input-color: [[input_color]];position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);overflow:hidden;-webkit-box-sizing:border-box;box-sizing:border-box}.inputfile *,.inputfile *::before,.inputfile *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.inputfile input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;z-index:-1}.inputfile input:disabled+div{color:var(--grey-1);cursor:default;pointer-events:none}.inputfile input:disabled+div svg{fill:var(--grey-1)}.inputfile div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:2.5em;border:.125em solid currentColor;cursor:pointer;text-align:center;padding:0 .625em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-webkit-transition:color .2s;transition:color .2s}.inputfile div.focused,.inputfile div:hover{color:var(--input-color)}.inputfile div.focused svg,.inputfile div:hover svg{fill:var(--input-color)}.inputfile div svg{width:1em;fill:var(--white-1);margin-right:.5em;-webkit-transition:fill .2s;transition:fill .2s}
         `
 
         const template = document.createElement('template')
@@ -94,6 +94,51 @@ class RWC_InputFile extends HTMLElement {
         return template
     }
 
+    convertToHSLColor() {
+        if (!this.hasAttribute('input_color')) return false
+
+        const div = document.createElement('div')
+        div.style.color = this.getAttribute('input_color')
+        document.body.appendChild(div)
+
+        const rgbColor = window.getComputedStyle(div).getPropertyValue('color').replace(/[rgba()]/g, '').split(', ')
+        document.body.removeChild(div)
+
+        // Make red, green, and blue fractions
+        const red   = +rgbColor[0] / 255,
+              green = +rgbColor[1] / 255,
+              blue  = +rgbColor[2] / 255
+
+        // Find greatest and smallest channel values and the delta value
+        const channel_min = Math.min(red, green, blue),
+              channel_max = Math.max(red, green, blue),
+              delta = channel_max - channel_min
+
+        let hue = 0,
+            saturation = 0,
+            lightness = 0
+
+        // Determine hue
+        if      (delta === 0) hue = 0
+        else if (channel_max === red) hue = ((green - blue) / delta) % 6
+        else if (channel_max === green) hue = ((blue - red) / delta) + 2
+        else if (channel_max === blue) hue = ((red - green) / delta) + 4
+
+        hue = Math.round(hue * 60)
+        if (hue < 0) hue += 360
+
+        // Determine lightness & saturation
+        lightness = (channel_max + channel_min) / 2
+        saturation = delta === 0 ? 0 : delta / (1 - Math.abs((2 * lightness) - 1))
+
+        saturation = +(saturation * 100).toFixed(1)
+        lightness = +(lightness * 100).toFixed(1)
+
+        return rgbColor.length === 4
+            ? `hsla(${hue}, ${saturation}%, ${lightness}%, ${rgbColor[3]})`
+            : `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    }
+
     updateElement() {
         this.hasAttribute('multiple')
             ? this.Input.setAttribute('multiple', '')
@@ -109,7 +154,9 @@ class RWC_InputFile extends HTMLElement {
 
         this.Input.setAttribute('accept', this.getAttribute('accept'))
 
-        this.Style.innerHTML = this.css.replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize)
+        this.Style.innerHTML = this.css
+            .replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize)
+            .replace('[[input_color]]', this.convertToHSLColor() || this.defaultInputColor)
 
         this.validation()
     }

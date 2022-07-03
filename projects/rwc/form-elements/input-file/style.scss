@@ -12,8 +12,7 @@
     --white-1   : hsl(var(--hue-white), 87%);
     --grey-1    : hsl(var(--hue-white), 50%);
     // Light Blue : hsl(207, 90%, 77%)
-    --hue-blue  : 207;
-    --blue-1    : hsl(var(--hue-blue), 90%, 18%);
+    --input-color    : [[input_color]];
 
 
     position: relative;
@@ -29,8 +28,6 @@
     }
     input {
         position: absolute;
-        // width: 0;
-        // height: 0;
         top: 0;
         left: 0;
         width: 100%;
@@ -59,16 +56,21 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        transition: .2s;
+        transition: color .2s;
 
         &.focused,
         &:hover {
-            background-color: var(--blue-1);
+            color: var(--input-color);
+
+            svg {
+                fill: var(--input-color);
+            }
         }
         svg {
             width: 1em;
             fill: var(--white-1);
             margin-right: .5em;
+            transition: fill .2s;
         }
     }
 }
