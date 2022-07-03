@@ -96,7 +96,7 @@ class RWC_Checkbox extends HTMLElement {
         this.internals_.setValidity({})
     }
 
-    namedColorToRGBColor() {
+    convertToHSLColor() {
         if (!this.hasAttribute('checkbox_color')) return false
 
         const div = document.createElement('div')
@@ -151,7 +151,7 @@ class RWC_Checkbox extends HTMLElement {
     }
 
     updateSizeColor() {
-        const colors = this.namedColorToRGBColor()
+        const colors = this.convertToHSLColor()
         let css = this.css.replace('[[checkbox_size]]', this.getAttribute('checkbox_size') || this.defaultCheckboxSize)
 
         if (!colors) {

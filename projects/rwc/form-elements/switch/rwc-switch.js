@@ -96,7 +96,7 @@ class RWC_Switch extends HTMLElement {
         this.internals_.setValidity({})
     }
 
-    namedColorToRGBColor() {
+    convertToHSLColor() {
         if (!this.hasAttribute('switch_color')) return false
 
         const div = document.createElement('div')
@@ -151,7 +151,7 @@ class RWC_Switch extends HTMLElement {
     }
 
     updateSizeColor() {
-        const colors = this.namedColorToRGBColor()
+        const colors = this.convertToHSLColor()
         let css = this.css.replace('[[switch_size]]', this.getAttribute('switch_size') || this.defaultSwitchSize)
 
         if (!colors) {
