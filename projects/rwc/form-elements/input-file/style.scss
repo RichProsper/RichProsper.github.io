@@ -67,8 +67,9 @@
             }
         }
         svg {
+            color: inherit;
             width: 1em;
-            fill: var(--white-1);
+            fill: currentColor;
             margin-right: .5em;
             transition: fill .2s;
         }
