@@ -96,7 +96,7 @@ class RWC_Checkbox extends HTMLElement {
         this.internals_.setValidity({})
     }
 
-    convertToHSLColor() {
+    addOpacityToColor() {
         if (!this.hasAttribute('checkbox_color')) return false
 
         const div = document.createElement('div')
@@ -106,52 +106,22 @@ class RWC_Checkbox extends HTMLElement {
         const rgbColor = window.getComputedStyle(div).getPropertyValue('color').replace(/[rgba()]/g, '').split(', ')
         document.body.removeChild(div)
 
-        // Make red, green, and blue fractions
-        const red   = +rgbColor[0] / 255,
-              green = +rgbColor[1] / 255,
-              blue  = +rgbColor[2] / 255
-
-        // Find greatest and smallest channel values and the delta value
-        const channel_min = Math.min(red, green, blue),
-              channel_max = Math.max(red, green, blue),
-              delta = channel_max - channel_min
-
-        let hue = 0,
-            saturation = 0,
-            lightness = 0
-
-        // Determine hue
-        if      (delta === 0) hue = 0
-        else if (channel_max === red) hue = ((green - blue) / delta) % 6
-        else if (channel_max === green) hue = ((blue - red) / delta) + 2
-        else if (channel_max === blue) hue = ((red - green) / delta) + 4
-
-        hue = Math.round(hue * 60)
-        if (hue < 0) hue += 360
-
-        // Determine lightness & saturation
-        lightness = (channel_max + channel_min) / 2
-        saturation = delta === 0 ? 0 : delta / (1 - Math.abs((2 * lightness) - 1))
-
-        saturation = +(saturation * 100).toFixed(1)
-        lightness = +(lightness * 100).toFixed(1)
-
         if (rgbColor.length === 4) {
             return [
-                `hsla(${hue}, ${saturation}%, ${lightness}%, ${rgbColor[3]})`,
-                `hsla(${hue}, ${saturation}%, ${lightness}%, .1)`
+                `rgba(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}, ${rgbColor[3]})`,
+                `rgba(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}, .1)`
             ]
         }
         else {
             return [
-                `hsl(${hue}, ${saturation}%, ${lightness}%)`,
-                `hsla(${hue}, ${saturation}%, ${lightness}%, .1)`
+                `rgb(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]})`,
+                `rgba(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}, .1)`
             ]
         }
     }
 
     updateSizeColor() {
-        const colors = this.convertToHSLColor()
+        const colors = this.addOpacityToColor()
         let css = this.css.replace('[[checkbox_size]]', this.getAttribute('checkbox_size') || this.defaultCheckboxSize)
 
         if (!colors) {
