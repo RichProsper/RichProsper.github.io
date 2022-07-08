@@ -15,8 +15,8 @@ class RWC_InputFile extends HTMLElement {
     get validationMessage() { return this.internals_.validationMessage }
     get willValidate()      { return this.internals_.willValidate      }
 
-    checkValidity()  { return this.internals_.checkValidity()  }
-    reportValidity() { return this.internals_.reportValidity() }
+    checkValidity  = () => this.internals_.checkValidity()
+    reportValidity = () => this.internals_.reportValidity()
 
     setFormValue() {
         if (this.files_.length === 0) {
