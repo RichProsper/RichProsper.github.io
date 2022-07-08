@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../../../global.min.css">
+    <script src="rwc-input.js" defer></script>
+    <style>
+        body {
+            padding: 1.333em;
+        }
+        h1 {
+            margin-bottom: 1.333em;
+        }
+        hr {
+            margin-top: 1.333em;
+            margin-bottom: 1.333em;
+        }
+    </style>
+    <title>Input Demo</title>
+</head>
+<body>
+    <h1>Input Demo</h1>
+
+    <form>
+        <rwc-input
+            input_size="3rem" name="no_type" value="No type" input_color="orange"
+        >
+        </rwc-input><hr>
+
+        <rwc-input name="type_text" checked value="second">
+        </rwc-input><hr>
+
+        <rwc-input name="required" required value="third">
+        </rwc-input><hr>
+
+        <rwc-input disabled>
+        </rwc-input><hr>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault()
+                console.log(`Submitting at data:`)
+                
+                const data = new FormData(this)
+                
+                for (const datum of data) console.log(datum)
+            })
+        })
+    </script>
+</body>
+</html>
