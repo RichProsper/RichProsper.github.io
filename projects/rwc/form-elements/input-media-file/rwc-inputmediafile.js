@@ -171,47 +171,19 @@ class RWC_InputMediaFile extends HTMLElement {
         return selectedAccept
     }
 
-    convertToHSLColor() {
+    transparentToOpaqueColor() {
         if (!this.hasAttribute('input_color')) return false
 
         const div = document.createElement('div')
         div.style.color = this.getAttribute('input_color')
         document.body.appendChild(div)
 
-        const rgbColor = window.getComputedStyle(div).getPropertyValue('color').replace(/[rgba()]/g, '').split(', ')
+        const color = window.getComputedStyle(div).getPropertyValue('color')
         document.body.removeChild(div)
+        if (!color.startsWith('rgba')) return color
 
-        // Make red, green, and blue fractions
-        const red   = +rgbColor[0] / 255,
-              green = +rgbColor[1] / 255,
-              blue  = +rgbColor[2] / 255
-
-        // Find greatest and smallest channel values and the delta value
-        const channel_min = Math.min(red, green, blue),
-              channel_max = Math.max(red, green, blue),
-              delta = channel_max - channel_min
-
-        let hue = 0,
-            saturation = 0,
-            lightness = 0
-
-        // Determine hue
-        if      (delta === 0) hue = 0
-        else if (channel_max === red) hue = ((green - blue) / delta) % 6
-        else if (channel_max === green) hue = ((blue - red) / delta) + 2
-        else if (channel_max === blue) hue = ((red - green) / delta) + 4
-
-        hue = Math.round(hue * 60)
-        if (hue < 0) hue += 360
-
-        // Determine lightness & saturation
-        lightness = (channel_max + channel_min) / 2
-        saturation = delta === 0 ? 0 : delta / (1 - Math.abs((2 * lightness) - 1))
-
-        saturation = +(saturation * 100).toFixed(1)
-        lightness = +(lightness * 100).toFixed(1)
-
-        return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+        const rgbaColor = color.replace(/[rgba()]/g, '').split(', ')
+        return `rgb(${rgbaColor[0]}, ${rgbaColor[1]}, ${rgbaColor[2]})`
     }
 
     updateElement() {
@@ -231,7 +203,7 @@ class RWC_InputMediaFile extends HTMLElement {
 
         this.Style.innerHTML = this.css
             .replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize)
-            .replace('[[input_color]]', this.convertToHSLColor() || this.defaultInputColor)
+            .replace('[[input_color]]', this.transparentToOpaqueColor() || this.defaultInputColor)
             .replace('[[music_icon_outline_color]]', this.getAttribute('music_icon_outline_color') || this.defaultMusicIconOutlineColor)
 
         this.validation()
