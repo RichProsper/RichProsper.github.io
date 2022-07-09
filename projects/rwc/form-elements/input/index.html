@@ -27,17 +27,21 @@
 
     <form>
         <rwc-input
-            input_size="3rem" name="no_type" value="No type" input_color="rgb(206, 147, 216)"
+            input_size="3rem" input_color="rgb(206, 147, 216)" name="no_type"
+            placeholder = "No type..." value="I have no type"
         >
+        </rwc-input>
+
+        <rwc-input name="type_text" placeholder="Type text..." value="My type is text">
+        </rwc-input>
+
+        <rwc-input name="required" placeholder="Required..." required value="I am required">
         </rwc-input><hr>
 
-        <rwc-input name="type_text" checked value="second">
-        </rwc-input><hr>
+        <rwc-input name="readonly" placeholder="Readonly..." value="I am readonly" readonly>
+        </rwc-input>
 
-        <rwc-input name="required" required value="third">
-        </rwc-input><hr>
-
-        <rwc-input disabled>
+        <rwc-input name="disabled" placeholder="Disabled..." value="I am disabled" disabled>
         </rwc-input><hr>
 
         <button type="submit">Submit</button>

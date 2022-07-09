@@ -3,12 +3,39 @@ class RWC_Input extends HTMLElement {
 
     static get observedAttributes() {
         return [
-            'input_size', 'input_color', ''
+            'value', 'readonly', 'maxlength', 'minlength', 'min', 'max', 'multiple', 'pattern', 'title', 'placeholder', 'required', 'step', 'autofocus', 'input_size', 'input_color'
         ]        
     }
 
+    // TODO inputSize, inputColor
     get value()             { return this.Input.value                  }
-    set value(v)            { this.Input.value = v                     }
+    set value(val)          { this.Input.value = val                   }
+    get disabled()          { return this.Input.disabled               }
+    set disabled(d)         { this.Input.disabled = d                  }
+    get readOnly()          { return this.Input.readOnly               }
+    set readOnly(rO)        { this.Input.readOnly = rO                 }
+    get maxLength()         { return this.Input.maxLength              }
+    set maxLength(maxL)     { this.Input.maxLength = maxL              }
+    get minLength()         { return this.Input.minLength              }
+    set minLength(minL)     { this.Input.minLength = minL              }
+    get max()               { return this.Input.max                    }
+    set max(max_)           { this.Input.max = max_                    }
+    get min()               { return this.Input.min                    }
+    set min(min_)           { this.Input.min = min_                    }
+    get multiple()          { return this.Input.multiple               }
+    set multiple(m)         { this.Input.multiple = m                  }
+    get pattern()           { return this.Input.pattern                }
+    set pattern(pat)        { this.Input.pattern = pat                 }
+    get title()             { return this.Input.title                  }
+    set title(title_)       { this.Input.title = title_                }
+    get placeholder()       { return this.Input.placeholder            }
+    set placeholder(ph)     { this.Input.placeholder = ph              }
+    get required()          { return this.Input.required               }
+    set required(r)         { this.Input.required = r                  }
+    get step()              { return this.Input.step                   }
+    set step(step_)         { this.Input.step = step_                  }
+    get autofocus()         { return this.Input.autofocus              }
+    set autofocus(a)        { this.Input.autofocus = a                 }
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
     get type()              { return this.localName                    }
@@ -74,12 +101,12 @@ class RWC_Input extends HTMLElement {
 
     // TODO
     validation() {
-        // if (this.hasAttribute('required') && this.value === '') {
-        //     this.internals_.setValidity({valueMissing: true}, 'Please fill out this field', this.Input)
-        //     return
-        // }
+        if (this.hasAttribute('required') && this.value === '') {
+            this.internals_.setValidity({valueMissing: true}, 'Please fill out this field', this.Input)
+            return
+        }
 
-        // this.internals_.setValidity({})
+        this.internals_.setValidity({})
     }
 
     // TODO
@@ -167,17 +194,84 @@ class RWC_Input extends HTMLElement {
         })
     }
 
-    // TODO
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
             case 'value': {
                 this.hasAttribute('value')
-                    ? this.Input.setAttribute('value', this.getAttribute('value'))
+                    ? this.Input.setAttribute('value', newValue)
                     : this.Input.removeAttribute('value')
                 break
             }
+            case 'readonly': {
+                this.hasAttribute('readonly')
+                    ? this.Input.setAttribute('readonly', '')
+                    : this.removeAttribute('readonly')
+                break
+            }
+            case 'maxlength': {
+                this.hasAttribute('maxlength')
+                    ? this.Input.setAttribute('maxlength', newValue)
+                    : this.removeAttribute('maxlength')
+                break
+            }
+            case 'minlength': {
+                this.hasAttribute('minlength')
+                    ? this.Input.setAttribute('minlength', newValue)
+                    : this.removeAttribute('minlength')
+                break
+            }
+            case 'max': {
+                this.hasAttribute('max')
+                    ? this.Input.setAttribute('max', newValue)
+                    : this.removeAttribute('max')
+                break
+            }
+            case 'min': {
+                this.hasAttribute('min')
+                    ? this.Input.setAttribute('min', newValue)
+                    : this.removeAttribute('min')
+                break
+            }
+            case 'multiple': {
+                this.hasAttribute('multiple')
+                    ? this.Input.setAttribute('multiple', '')
+                    : this.removeAttribute('multiple')
+                break
+            }
+            case 'pattern': {
+                this.hasAttribute('pattern')
+                    ? this.Input.setAttribute('pattern', newValue)
+                    : this.removeAttribute('pattern')
+                break
+            }
+            case 'title': {
+                this.hasAttribute('title')
+                    ? this.Input.setAttribute('title', newValue)
+                    : this.removeAttribute('title')
+                break
+            }
+            case 'placeholder': {
+                this.hasAttribute('placeholder')
+                    ? this.Input.setAttribute('placeholder', newValue)
+                    : this.removeAttribute('placeholder')
+                break
+            }
             case 'required': {
-                this.hasAttribute('required') ? this.Input.setAttribute('required', '') : this.Input.removeAttribute('required')
+                this.hasAttribute('required')
+                    ? this.Input.setAttribute('required', '')
+                    : this.Input.removeAttribute('required')
+                break
+            }
+            case 'step': {
+                this.hasAttribute('step')
+                    ? this.Input.setAttribute('step', newValue)
+                    : this.removeAttribute('step')
+                break
+            }
+            case 'autofocus': {
+                this.hasAttribute('autofocus')
+                    ? this.Input.setAttribute('autofocus', '')
+                    : this.Input.removeAttribute('autofocus')
                 break
             }
             case 'input_size':
@@ -193,3 +287,16 @@ class RWC_Input extends HTMLElement {
 }
 
 window.customElements.define('rwc-input', RWC_Input)
+
+// TODO These types are not supported. Default to text
+// case 'button':
+// case 'checkbox':
+// case 'color':
+// case 'file':
+// case 'image':
+// case 'radio':
+// case 'range':
+// case 'reset':
+// case 'submit':
+
+// TODO datalists don't work in web components. Will have to creatr a InputList web component
