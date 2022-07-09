@@ -7,6 +7,7 @@ class RWC_InputFile extends HTMLElement {
         ]        
     }
 
+    // TODO input_size etc
     get files()             { return this.files_                       }
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
