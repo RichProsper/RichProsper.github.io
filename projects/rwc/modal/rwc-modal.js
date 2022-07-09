@@ -3,6 +3,8 @@ class RWC_Modal extends HTMLElement {
         return ['modal_id', 'modal_outline_color']
     }
 
+    // TODO getters and setters
+
     constructor() {
         super()
         this.init()

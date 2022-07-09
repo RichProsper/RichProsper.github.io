@@ -6,6 +6,8 @@ class RWC_ToTopButton extends HTMLElement {
         ]
     }
 
+    // TODO getters and setters
+
     constructor() {
         super()
         this.init()
