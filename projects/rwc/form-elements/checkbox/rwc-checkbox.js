@@ -7,6 +7,7 @@ class RWC_Checkbox extends HTMLElement {
         ]        
     }
 
+    // TODO required etc
     get value()             { return this.getAttribute('value')        }
     set value(v)            { this.setAttribute('value', v)            }
     get checked()           { return this.Input.checked                }
