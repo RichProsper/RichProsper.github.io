@@ -6,7 +6,7 @@
 }
 
 div.input-container {
-    --input-size : [[input_size]];
+    // --input-size : [[input_size]];
     // White: hsl(0, 0%, 100%)
     --hue-white : 0, 0%;
     --white     : hsl(var(--hue-white), 100%);
@@ -15,7 +15,7 @@ div.input-container {
     --grey-3    : hsl(var(--hue-white), 10%);
     --grey-4    : hsl(var(--hue-white), 50%);
     // Light Blue : hsl(207, 90%, 77%)
-    --hue-blue   : 207;
+    --hue-blue  : 207;
     --blue-1    : hsl(var(--hue-blue), 90%, 77%);
     --blue-2    : hsl(var(--hue-blue), 90%, 53%);
     
@@ -24,7 +24,7 @@ div.input-container {
     position: relative;
     display: inline-flex;
     height: 4rem;
-    font-size: var(--input-size);
+    // font-size: var(--input-size);
     box-sizing: border-box;
 
     *,

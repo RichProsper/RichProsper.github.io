@@ -25,20 +25,15 @@ class RWC_Input extends HTMLElement {
      * updated
      * @param {Boolean} disabled 
      */
-    // TODO
-    formDisabledCallback(disabled) {
-        // this.Checkbox.className = disabled ? 'checkbox disabled' : 'checkbox'
-        // this.Input.disabled = disabled
-    }
+    formDisabledCallback = disabled => this.Input.disabled = disabled
 
     /**
      * This is called when the form is reset
      */
-    // TODO
     formResetCallback() {
-        // this.Input.value = this.getAttribute('value')
-        // this.setFormValue()
-        // this.validation()
+        this.Input.value = this.Input.getAttribute('value')
+        this.setFormValue()
+        this.validation()
     }
 
     constructor() {
@@ -51,7 +46,7 @@ class RWC_Input extends HTMLElement {
         this.attachShadow({mode: 'open'})
         this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))  
 
-        this.InputContainer = this.shadowRoot.querySelector('label.input-container')
+        this.InputContainer = this.shadowRoot.querySelector('div.input-container')
         this.Style = this.shadowRoot.querySelector('style')
         this.Input = this.shadowRoot.querySelector('input')
         this.Placeholder = this.shadowRoot.querySelector('span.placeholder')
@@ -70,7 +65,7 @@ class RWC_Input extends HTMLElement {
 
             <div class="input-container">
                 <input>
-                <span class="placeholder">To Be Removed</span>
+                <span class="placeholder"></span>
             </div>
         `
 
@@ -159,18 +154,17 @@ class RWC_Input extends HTMLElement {
         // this.Style.innerHTML = css
     }
     
-    // TODO
     connectedCallback() {
         this.updateSizeColor()
-        // this.setFormValue()
-        // this.validation()
+        this.setFormValue()
+        this.validation()
         
-        // this.Input.addEventListener('focus', () => this.InputContainer.classList.add('focus'))
-        // this.Input.addEventListener('blur', () => this.InputContainer.classList.remove('focus'))
-        // this.Input.addEventListener('input', () => {
-        //     this.setFormValue()
-        //     this.validation()
-        // })
+        this.Input.addEventListener('focus', () => this.InputContainer.classList.add('focused'))
+        this.Input.addEventListener('blur', () => this.InputContainer.classList.remove('focused'))
+        this.Input.addEventListener('input', () => {
+            this.setFormValue()
+            this.validation()
+        })
     }
 
     // TODO
