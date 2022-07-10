@@ -1,3 +1,5 @@
+// TODO observedAttributes, getters & setters, color-scheme: dark scss on the other form-element web components
+
 class RWC_Input extends HTMLElement {
     static formAssociated = true
 
@@ -8,6 +10,7 @@ class RWC_Input extends HTMLElement {
     }
 
     // TODO inputSize, inputColor
+    // TODO setAttribute (like placeholder)
     get value()             { return this.Input.value                  }
     set value(val)          { this.Input.value = val                   }
     get disabled()          { return this.Input.disabled               }
@@ -29,7 +32,8 @@ class RWC_Input extends HTMLElement {
     get title()             { return this.Input.title                  }
     set title(title_)       { this.Input.title = title_                }
     get placeholder()       { return this.Input.placeholder            }
-    set placeholder(ph)     { this.Input.placeholder = ph              }
+    set placeholder(ph)     { this.Input.placeholder = ph,
+                              this.setAttribute('placeholder', ph)     }
     get required()          { return this.Input.required               }
     set required(r)         { this.Input.required = r                  }
     get step()              { return this.Input.step                   }
@@ -251,9 +255,14 @@ class RWC_Input extends HTMLElement {
                 break
             }
             case 'placeholder': {
-                this.hasAttribute('placeholder')
-                    ? this.Input.setAttribute('placeholder', newValue)
-                    : this.removeAttribute('placeholder')
+                if (this.hasAttribute('placeholder')) {
+                    this.Input.setAttribute('placeholder', newValue)
+                    this.Placeholder.textContent = newValue
+                }
+                else {
+                    this.removeAttribute('placeholder')
+                    this.Placeholder.textContent = null
+                }
                 break
             }
             case 'required': {
