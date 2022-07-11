@@ -45,6 +45,18 @@ body {
 *:focus {
     outline: none;
 }
+button[type="submit"],
+button[type="reset"] {
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    padding: .4em 1em;
+    border: .1em solid currentColor;
+    border-radius: .3em;
+    cursor: pointer;
+}
 ::-webkit-scrollbar {
     width: 15px;
     height: 15px;
