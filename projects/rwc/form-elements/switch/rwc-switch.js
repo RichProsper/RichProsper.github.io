@@ -5,7 +5,6 @@ class RWC_Switch extends HTMLElement {
         return ['value', 'required', 'switch_size', 'switch_color']        
     }
 
-    // TODO required etc
     get value()             { return this.getAttribute('value')        }
     set value(v)            { this.setAttribute('value', v)            }
 
