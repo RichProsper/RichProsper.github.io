@@ -7,11 +7,28 @@ class RWC_Checkbox extends HTMLElement {
         ]        
     }
 
-    // TODO required etc
-    get value()             { return this.getAttribute('value')        }
-    set value(v)            { this.setAttribute('value', v)            }
-    get checked()           { return this.Input.checked                }
-    set checked(c)          { this.Input.checked = c                   }
+    get value()     { return this.getAttribute('value') }
+    set value(v)    { this.setAttribute('value', v)     }
+    get checked()   { return this.Input.checked         }
+    set checked(c)  { this.Input.checked = c            }
+    get required()  { return this.Input.required        }
+    set required(r) { r ? this.setAttribute('required', '') : this.removeAttribute('required') }
+
+    get isIndeterminate()   { return this.hasAttribute('is_indeterminate') }
+    set isIndeterminate(iI) {
+        iI ? this.setAttribute('is_indeterminate', '') : this.removeAttribute('is_indeterminate')
+    }
+
+    get checkboxSize()   { return this.getAttribute('checkbox_size') || '' }
+    set checkboxSize(cS) {
+        cS ? this.setAttribute('checkbox_size', cS) : this.removeAttribute('checkbox_size')
+    }
+
+    get checkboxColor()   { return this.getAttribute('checkbox_color') || '' }
+    set checkboxColor(cC) {
+        cC ? this.setAttribute('checkbox_color', cC) : this.removeAttribute('checkbox_color')
+    }
+
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
     get type()              { return this.localName                    }
@@ -22,7 +39,11 @@ class RWC_Checkbox extends HTMLElement {
     checkValidity  = () => this.internals_.checkValidity()
     reportValidity = () => this.internals_.reportValidity()
 
-    setFormValue = () => this.checked ? this.internals_.setFormValue(this.getAttribute('value')) : this.internals_.setFormValue(null)
+    setFormValue() {
+        this.checked
+            ? this.internals_.setFormValue(this.getAttribute('value'))
+            : this.internals_.setFormValue(null)
+    }
 
     /**
      * This is called when the 'disabled' attribute of the element or of an ancestor <fieldset> is
@@ -67,7 +88,7 @@ class RWC_Checkbox extends HTMLElement {
         this.defaultCheckboxColor = '207, 90%, 77%'
         this.defaultValue = 'on'
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.checkbox{--checkbox-size: [[checkbox_size]];--checkbox-color: [[checkbox_color]];--hover: [[hover]];--hue-white: 0, 0%;--grey-1: hsl(var(--hue-white), 50%);--grey-2: hsl(var(--hue-white), 30%);position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;font-size:var(--checkbox-size);-webkit-box-sizing:border-box;box-sizing:border-box}.checkbox *,.checkbox *::before,.checkbox *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.checkbox.disabled{cursor:default;pointer-events:none;color:var(--grey-1)}.checkbox .wrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;position:relative;padding:.409em;border-radius:50%;-webkit-transition:.2s;transition:.2s}.checkbox .wrapper input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:1}.checkbox .wrapper input:checked ~ svg.checked{display:block}.checkbox .wrapper input:not(:checked) ~ svg.square{display:block}.checkbox .wrapper input:disabled{cursor:default}.checkbox .wrapper input:disabled ~ svg{color:var(--grey-2)}.checkbox .wrapper svg{width:1em;height:1em;fill:currentColor;display:none}.checkbox .wrapper svg.checked,.checkbox .wrapper svg.indeterminate{color:var(--checkbox-color)}.checkbox .wrapper:hover,.checkbox .wrapper.focus{background-color:var(--hover)}.checkbox .wrapper[is_indeterminate] input ~ svg.square,.checkbox .wrapper[is_indeterminate] input ~ svg.checked{display:none}.checkbox .wrapper[is_indeterminate] input ~ svg.indeterminate{display:block}.checkbox .label{font-size:.727em}
+            *,*::before,*::after{margin:0;padding:0}.checkbox{--checkbox-size: [[checkbox_size]];--checkbox-color: [[checkbox_color]];--hover: [[hover]];--hue-white: 0, 0%;--grey-1: hsl(var(--hue-white), 50%);--grey-2: hsl(var(--hue-white), 30%);color-scheme:dark;position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;font-size:var(--checkbox-size);-webkit-box-sizing:border-box;box-sizing:border-box}.checkbox *,.checkbox *::before,.checkbox *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.checkbox.disabled{cursor:default;pointer-events:none;color:var(--grey-1)}.checkbox .wrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;position:relative;padding:.409em;border-radius:50%;-webkit-transition:.2s;transition:.2s}.checkbox .wrapper input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:1}.checkbox .wrapper input:checked ~ svg.checked{display:block}.checkbox .wrapper input:not(:checked) ~ svg.square{display:block}.checkbox .wrapper input:disabled{cursor:default}.checkbox .wrapper input:disabled ~ svg{color:var(--grey-2)}.checkbox .wrapper svg{width:1em;height:1em;fill:currentColor;display:none}.checkbox .wrapper svg.checked,.checkbox .wrapper svg.indeterminate{color:var(--checkbox-color)}.checkbox .wrapper:hover,.checkbox .wrapper.focus{background-color:var(--hover)}.checkbox .wrapper[is_indeterminate] input ~ svg.square,.checkbox .wrapper[is_indeterminate] input ~ svg.checked{display:none}.checkbox .wrapper[is_indeterminate] input ~ svg.indeterminate{display:block}.checkbox .label{font-size:.727em}
         `
 
         const template = document.createElement('template')
@@ -160,11 +181,15 @@ class RWC_Checkbox extends HTMLElement {
                 break
             }
             case 'required': {
-                this.hasAttribute('required') ? this.Input.setAttribute('required', '') : this.Input.removeAttribute('required')
+                this.hasAttribute('required')
+                    ? this.Input.setAttribute('required', '')
+                    : this.Input.removeAttribute('required')
                 break
             }
             case 'is_indeterminate': {
-                this.hasAttribute('is_indeterminate') ? this.Wrapper.setAttribute('is_indeterminate', '') : this.Wrapper.removeAttribute('is_indeterminate')
+                this.hasAttribute('is_indeterminate')
+                    ? this.Wrapper.setAttribute('is_indeterminate', '')
+                    : this.Wrapper.removeAttribute('is_indeterminate')
                 break
             }
             case 'checkbox_size':
