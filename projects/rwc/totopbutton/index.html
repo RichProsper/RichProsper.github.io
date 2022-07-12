@@ -7,7 +7,7 @@
     <!-- Prevents favicon.ico requests -->
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="../../global.min.css">
-    <script src="rwc-totopbutton.min.js" defer></script>
+    <script src="rwc-totopbutton.js" defer></script>
     <style>
         div {
             min-height: 60vh;
@@ -26,14 +26,15 @@
     <title>To Top Button Demo</title>
 </head>
 <body>
-    <div class="a">
-        <h1>To Top Button</h1>
-    </div>
+    <div class="a"><h1>To Top Button</h1></div>
     <div class="b"></div>
     <div class="c"></div>
 
     <rwc-totopbutton></rwc-totopbutton>
     <rwc-totopbutton button_size="3.6rem" button_placement="top-left"></rwc-totopbutton>
-    <rwc-totopbutton button_size="7.5rem" button_color="hsla(60, 100%, 50%, 0.5)" button_hover_color="hsl(60, 100%, 40%)" chevron_color="#000" chevron_hover_color="#333" button_placement="bottom-left"></rwc-totopbutton>
+    <rwc-totopbutton
+        button_size="7.5rem" button_color="yellow" chevron_color="black" button_placement="bottom-left"
+    >
+    </rwc-totopbutton>
 </body>
 </html>

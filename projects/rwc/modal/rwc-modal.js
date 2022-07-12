@@ -3,7 +3,17 @@ class RWC_Modal extends HTMLElement {
         return ['modal_id', 'modal_outline_color']
     }
 
-    // TODO getters and setters
+    get modalId()   { return this.getAttribute('modal_id') || '' }
+    set modalId(mI) {
+        mI ? this.setAttribute('modal_id', mI) : this.removeAttribute('modal_id')
+    }
+
+    get modalOutlineColor()    { return this.getAttribute('modal_outline_color') || '' }
+    set modalOutlineColor(mOC) {
+        mOC
+            ? this.setAttribute('modal_outline_color', mOC)
+            : this.removeAttribute('modal_outline_color')
+    }
 
     constructor() {
         super()
@@ -69,12 +79,12 @@ class RWC_Modal extends HTMLElement {
                 const newModalOpener = document.querySelector(`[for_modal="${newValue}"]`)
 
                 if (prevModalOpener) prevModalOpener.removeEventListener('click', this.openModal)
-                newModalOpener.addEventListener('click', this.openModal)
+                if (newModalOpener) newModalOpener.addEventListener('click', this.openModal)
 
                 break
             }
             case 'modal_outline_color': {
-                this.Style.innerHTML = this.css.replace('[[modal_outline_color]]', newValue)
+                this.Style.innerHTML = this.css.replace('[[modal_outline_color]]', newValue || this.defaultModalOutlineColor)
                 break
             }
             default: {}

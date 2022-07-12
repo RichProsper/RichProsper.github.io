@@ -18,7 +18,7 @@
     
     box-sizing: border-box;
     position: fixed;
-    [[button_placement]]
+    inset: btn-placement; // This gets replaced by button_placement
     display: flex;
     justify-content: center;
     align-items: center;
