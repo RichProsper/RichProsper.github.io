@@ -56,6 +56,12 @@ button[type="reset"] {
     border: .1em solid currentColor;
     border-radius: .3em;
     cursor: pointer;
+    transition: .2s;
+
+    &:hover,
+    &:focus {
+        color: dodgerblue;
+    }
 }
 ::-webkit-scrollbar {
     width: 15px;
