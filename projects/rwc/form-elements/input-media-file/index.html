@@ -13,7 +13,7 @@
         body {
             padding: 1em;
         }
-        h1 {
+        h1, h2 {
             margin-bottom: 1em;
         }
         hr {
@@ -25,12 +25,13 @@
 </head>
 <body>
     <h1>Input Media File Demo</h1>
+    <h2>Requires rwc-modal</h2>
 
     <form>
-        <rwc-inputmediafile input_size="1.4rem" input_color="darkred" name="a"></rwc-inputmediafile>
+        <rwc-inputmediafile input_size="1.4rem" input_color="darkred" name="first"></rwc-inputmediafile>
         <hr>
         <rwc-inputmediafile 
-            name="b" multiple accept="image/*,audio/*,video/*" required
+            name="second" multiple accept="image/*,audio/*,video/*" required
             min_files="3" max_files="7"
             max_file_size="5242880"
         >

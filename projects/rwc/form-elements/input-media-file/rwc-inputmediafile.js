@@ -3,14 +3,66 @@ class RWC_InputMediaFile extends HTMLElement {
 
     static get observedAttributes() {
         return [
-            'input_size', 'input_color', 'title', 'max_file_size', 'num_files', 'min_files',
-            'max_files', 'multiple', 'placeholder', 'required', 'accept',
-            'music_icon_outline_color'
+            'max_file_size', 'num_files', 'min_files', 'max_files', 'multiple', 'required', 'placeholder', 'title', 'accept', 'input_size', 'input_color', 'music_icon_outline_color'
         ]        
     }
 
     // TODO input_size etc
-    get files()             { return this.files_                       }
+    get files() { return this.files_ }
+
+    get maxFileSize()    { return this.getAttribute('max_file_size') || '' }
+    set maxFileSize(mFS) {
+        mFS ? this.setAttribute('max_file_size', mFS) : this.removeAttribute('max_file_size')
+    }
+
+    get numFiles()   { return this.getAttribute('num_files') || '' }
+    set numFiles(nF) {
+        nF ? this.setAttribute('num_files', nF) : this.removeAttribute('num_files')
+    }
+
+    get minFiles()   { return this.getAttribute('min_files') || '' }
+    set minFiles(mF) {
+        mF ? this.setAttribute('min_files', mF) : this.removeAttribute('min_files')
+    }
+
+    get maxFiles()   { return this.getAttribute('max_files') || '' }
+    set maxFiles(mF) {
+        mF ? this.setAttribute('max_files', mF) : this.removeAttribute('max_files')
+    }
+
+    get multiple()  { return this.Input.multiple }
+    set multiple(m) { m ? this.setAttribute('multiple', '') : this.removeAttribute('multiple') }
+
+    get required()  { return this.Input.required }
+    set required(r) { r ? this.setAttribute('required', '') : this.removeAttribute('required') }
+
+    get placeholder()  { return this.getAttribute('placeholder') || '' }
+    set placeholder(p) {
+        p ? this.setAttribute('placeholder', p) : this.removeAttribute('placeholder')
+    }
+
+    get accept()  { return this.Input.accept }
+    set accept(a) {
+        a ? this.setAttribute('accept', a) : this.removeAttribute('accept')
+    }
+    
+    get inputSize()   { return this.getAttribute('input_size') || '' }
+    set inputSize(iS) {
+        iS ? this.setAttribute('input_size', iS) : this.removeAttribute('input_size')
+    }
+
+    get inputColor()   { return this.getAttribute('input_color') || '' }
+    set inputColor(iC) {
+        iC ? this.setAttribute('input_color', iC) : this.removeAttribute('input_color')
+    }
+
+    get musicIconOutlineColor()     { return this.getAttribute('music_icon_outline_color') || '' }
+    set musicIconOutlineColor(mIOC) {
+        mIOC
+            ? this.setAttribute('music_icon_outline_color', mIOC)
+            : this.removeAttribute('music_icon_outline_color')
+    }
+
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
     get type()              { return this.localName                    }
@@ -102,7 +154,7 @@ class RWC_InputMediaFile extends HTMLElement {
             ]
         }
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.inputmediafile{--input-size: [[input_size]];--hue-white: 0, 0%;--white-1: hsl(var(--hue-white), 87%);--grey-1: hsl(var(--hue-white), 50%);--input-color: [[input_color]];--music-icon-outline-color: [[music_icon_outline_color]];position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);-webkit-box-sizing:border-box;box-sizing:border-box}.inputmediafile *,.inputmediafile *::before,.inputmediafile *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.inputmediafile label{position:relative;overflow:hidden}.inputmediafile label input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;z-index:-1}.inputmediafile label input:disabled+div{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile label input:disabled+div svg{fill:var(--grey-1)}.inputmediafile label div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:2.5em;border:.125em solid currentColor;cursor:pointer;text-align:center;padding:0 .625em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-webkit-transition:.2s;transition:.2s}.inputmediafile label div.focused,.inputmediafile label div:hover{background-color:var(--input-color)}.inputmediafile label div svg{width:1em;fill:var(--white-1);margin-right:.5em}.inputmediafile button{position:relative;color:var(--white-1);background-color:transparent;width:2em;border:.1em solid currentColor;border-left:none;cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:calc(var(--input-size) * 1.25);-webkit-transition:.2s;transition:.2s}.inputmediafile button:focus,.inputmediafile button:hover{background-color:var(--input-color);outline:none}.inputmediafile button:focus svg.music,.inputmediafile button:hover svg.music{-webkit-filter:drop-shadow(0.05em 0 var(--input-color)) drop-shadow(-0.05em 0 var(--input-color)) drop-shadow(0 0.05em var(--input-color)) drop-shadow(0 -0.05em var(--input-color));filter:drop-shadow(0.05em 0 var(--input-color)) drop-shadow(-0.05em 0 var(--input-color)) drop-shadow(0 0.05em var(--input-color)) drop-shadow(0 -0.05em var(--input-color))}.inputmediafile button:disabled{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile button:disabled svg{fill:var(--grey-1)}.inputmediafile button svg{width:1em;fill:var(--white-1)}.inputmediafile button svg.music{position:absolute;width:.6em;bottom:.35em;right:.35em;-webkit-filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));-webkit-transition:.2s;transition:.2s}
+            *,*::before,*::after{margin:0;padding:0}.inputmediafile{--input-size: [[input_size]];--hue-white: 0, 0%;--white-1: hsl(var(--hue-white), 87%);--grey-1: hsl(var(--hue-white), 50%);--input-color: [[input_color]];--music-icon-outline-color: [[music_icon_outline_color]];color-scheme:dark;position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);-webkit-box-sizing:border-box;box-sizing:border-box}.inputmediafile *,.inputmediafile *::before,.inputmediafile *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.inputmediafile label{position:relative;overflow:hidden}.inputmediafile label input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;z-index:-1}.inputmediafile label input:disabled+div{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile label input:disabled+div svg{fill:var(--grey-1)}.inputmediafile label div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:2.5em;border:.125em solid currentColor;cursor:pointer;text-align:center;padding:0 .625em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-webkit-transition:.2s;transition:.2s}.inputmediafile label div.focused,.inputmediafile label div:hover{background-color:var(--input-color)}.inputmediafile label div svg{width:1em;fill:var(--white-1);margin-right:.5em}.inputmediafile button{position:relative;color:var(--white-1);background-color:transparent;width:2em;border:.1em solid currentColor;border-left:none;cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:calc(var(--input-size) * 1.25);-webkit-transition:.2s;transition:.2s}.inputmediafile button:focus,.inputmediafile button:hover{background-color:var(--input-color);outline:none}.inputmediafile button:focus svg.music,.inputmediafile button:hover svg.music{-webkit-filter:drop-shadow(0.05em 0 var(--input-color)) drop-shadow(-0.05em 0 var(--input-color)) drop-shadow(0 0.05em var(--input-color)) drop-shadow(0 -0.05em var(--input-color));filter:drop-shadow(0.05em 0 var(--input-color)) drop-shadow(-0.05em 0 var(--input-color)) drop-shadow(0 0.05em var(--input-color)) drop-shadow(0 -0.05em var(--input-color))}.inputmediafile button:disabled{color:var(--grey-1);cursor:default;pointer-events:none}.inputmediafile button:disabled svg{fill:var(--grey-1)}.inputmediafile button svg{width:1em;fill:var(--white-1)}.inputmediafile button svg.music{position:absolute;width:.6em;bottom:.35em;right:.35em;-webkit-filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));filter:drop-shadow(0.05em 0 var(--music-icon-outline-color)) drop-shadow(-0.05em 0 var(--music-icon-outline-color)) drop-shadow(0 0.05em var(--music-icon-outline-color)) drop-shadow(0 -0.05em var(--music-icon-outline-color));-webkit-transition:.2s;transition:.2s}
         `
 
         const template = document.createElement('template')
@@ -187,27 +239,19 @@ class RWC_InputMediaFile extends HTMLElement {
         return `rgb(${rgbaColor[0]}, ${rgbaColor[1]}, ${rgbaColor[2]})`
     }
 
-    updateElement() {
-        this.hasAttribute('multiple')
-            ? this.Input.setAttribute('multiple', '')
-            : this.Input.removeAttribute('multiple')
+    updatePlaceholder() {
+        const ModalHeading = this.Modal.querySelector('[slot="heading"]')
 
-        this.hasAttribute('required')
-            ? this.Input.setAttribute('required', '')
-            : this.Input.removeAttribute('required')
-        
-        this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
         this.selectedPlaceholder = this.getAttribute('placeholder') || this.defaultPlaceholder
         this.PlaceholderSpan.textContent = this.selectedPlaceholder
+        ModalHeading.textContent = this.selectedPlaceholder
+    }
 
-        this.Input.setAttribute('accept', this.determineSelectedAccept())
-
+    updateSizeColor() {        
         this.Style.innerHTML = this.css
             .replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize)
-            .replace('[[input_color]]', this.transparentToOpaqueColor() || this.defaultInputColor)
+            .replace('[[input_color]]', this.getAttribute('input_color') || this.defaultInputColor)
             .replace('[[music_icon_outline_color]]', this.getAttribute('music_icon_outline_color') || this.defaultMusicIconOutlineColor)
-
-        this.validation()
     }
 
     setPreview() {
@@ -257,15 +301,15 @@ class RWC_InputMediaFile extends HTMLElement {
 
     validation() {
         switch (true) {
-            case (this.hasAttribute('required') && this.files_.length === 0): {
+            case (this.required && this.files_.length === 0): {
                 this.internals_.setValidity({valueMissing: true}, 'Please select a media file', this.Input)
                 return
             }
             case (this.hasAttribute('max_file_size')): {
-                const maxFileSize = +this.getAttribute('max_file_size')
+                const maxFileSize = +this.maxFileSize
 
                 for (const file of this.files_) {
-                    if (Number.isInteger(maxFileSize) && file.size > maxFileSize) {
+                    if (Number.isInteger(maxFileSize) && maxFileSize > 0 && file.size > maxFileSize) {
                         this.internals_.setValidity({tooLong: true}, `One or more of your selected media files exceeds ${maxFileSize} bytes`, this.Input)
                         return
                     }
@@ -273,10 +317,12 @@ class RWC_InputMediaFile extends HTMLElement {
 
                 // No 'break' statement. This is so the other cases can get checked
             }
-            case (this.hasAttribute('multiple')): {
+            case (this.multiple): {
+                if (!this.multiple) break
+
                 switch (true) {
                     case (this.hasAttribute('num_files')): {
-                        const numFiles = +this.getAttribute('num_files')
+                        const numFiles = +this.numFiles
 
                         if (Number.isInteger(numFiles) && numFiles > 0 && this.files_.length != numFiles) {
                             this.internals_.setValidity({customError: true}, `You need to select exactly ${numFiles} media files`, this.Input)
@@ -286,8 +332,8 @@ class RWC_InputMediaFile extends HTMLElement {
                         break
                     }
                     case (this.hasAttribute('min_files') && this.hasAttribute('max_files')): {
-                        const minFiles = +this.getAttribute('min_files')
-                        const maxFiles = +this.getAttribute('max_files')
+                        const minFiles = +this.minFiles
+                        const maxFiles = +this.maxFiles
 
                         if (Number.isInteger(minFiles) && Number.isInteger(maxFiles) && minFiles > 0 && minFiles < maxFiles && (this.files_.length < minFiles || this.files_.length > maxFiles)) {
                             this.internals_.setValidity({customError: true}, `Please select atleast ${minFiles} and no more than ${maxFiles} media files`, this.Input)
@@ -297,7 +343,7 @@ class RWC_InputMediaFile extends HTMLElement {
                         break
                     }
                     case (this.hasAttribute('min_files')): {
-                        const minFiles = +this.getAttribute('min_files')
+                        const minFiles = +this.minFiles
 
                         if (Number.isInteger(minFiles) && minFiles > 0 && this.files_.length < minFiles) {
                             this.internals_.setValidity({rangeUnderflow: true}, `Please select atleast ${minFiles} media files`, this.Input)
@@ -307,7 +353,7 @@ class RWC_InputMediaFile extends HTMLElement {
                         break
                     }
                     case (this.hasAttribute('max_files')): {
-                        const maxFiles = +this.getAttribute('max_files')
+                        const maxFiles = +this.maxFiles
 
                         if (Number.isInteger(maxFiles) && maxFiles > 0 && this.files_.length > maxFiles) {
                             this.internals_.setValidity({rangeOverflow: true}, `Please select no more than ${maxFiles} media files`, this.Input)
@@ -338,7 +384,12 @@ class RWC_InputMediaFile extends HTMLElement {
 
     connectedCallback() {
         this.setupModal()
-        this.updateElement()
+        this.updatePlaceholder()
+
+        this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
+        this.Input.setAttribute('accept', this.determineSelectedAccept())
+
+        this.updateSizeColor()
         this.validation()
 
         this.Input.addEventListener('focus', () => this.PlaceholderDiv.classList.add('focused'))
@@ -376,8 +427,42 @@ class RWC_InputMediaFile extends HTMLElement {
         })
     }
 
-    attributeChangedCallback() {
-        this.updateElement()
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case 'multiple': {
+                this.hasAttribute('multiple')
+                    ? this.Input.setAttribute('multiple', '')
+                    : this.Input.removeAttribute('multiple')
+                break
+            }
+            case 'required': {
+                this.hasAttribute('required')
+                    ? this.Input.setAttribute('required', '')
+                    : this.Input.removeAttribute('required')
+                break
+            }
+            case 'title': {
+                this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
+                break
+            }
+            case 'placeholder': {
+                this.updatePlaceholder()
+                break
+            }
+            case 'accept': {
+                this.Input.setAttribute('accept', this.determineSelectedAccept())
+                break
+            }
+            case 'input_size':
+            case 'input_color':
+            case 'music_icon_outline_color': {
+                this.updateSizeColor()
+                break
+            }
+            default: {}
+        }
+        
+        this.validation()
     }
 }
 

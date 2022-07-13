@@ -162,7 +162,7 @@ class RWC_InputFile extends HTMLElement {
                 const maxFileSize = +this.maxFileSize
 
                 for (const file of this.files_) {
-                    if (Number.isInteger(maxFileSize) && file.size > maxFileSize) {
+                    if (Number.isInteger(maxFileSize) && maxFileSize > 0 && file.size > maxFileSize) {
                         this.internals_.setValidity({tooLong: true}, `One or more of your selected files exceeds ${maxFileSize} bytes`, this.Input)
                         return
                     }
@@ -228,6 +228,7 @@ class RWC_InputFile extends HTMLElement {
 
     connectedCallback() {
         this.updatePlaceholder()
+        this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
         this.updateSizeColor()
         this.validation()
 
@@ -271,10 +272,7 @@ class RWC_InputFile extends HTMLElement {
                 break
             }
             case 'title': {
-                if (this.hasAttribute('title'))
-                    this.PlaceholderDiv.title = this.getAttribute('title')
-                else
-                    this.setAttribute('title', this.defaultTitle)
+                this.PlaceholderDiv.title = this.getAttribute('title') || this.defaultTitle
                 break
             }
             case 'placeholder': {
