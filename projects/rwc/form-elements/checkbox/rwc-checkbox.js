@@ -110,7 +110,7 @@ class RWC_Checkbox extends HTMLElement {
     }
 
     validation() {
-        if (this.hasAttribute('required') && !this.checked) {
+        if (this.required && !this.checked) {
             this.internals_.setValidity({valueMissing: true}, 'Please check this box if you want to proceed', this.Input)
             return
         }
