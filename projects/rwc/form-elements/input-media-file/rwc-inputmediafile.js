@@ -35,6 +35,9 @@ class RWC_InputMediaFile extends HTMLElement {
     get required()  { return this.Input.required }
     set required(r) { r ? this.setAttribute('required', '') : this.removeAttribute('required') }
 
+    get disabled()  { return this.Input.disabled }
+    set disabled(d) { d ? this.setAttribute('disabled', '') : this.removeAttribute('disabled') }
+
     get placeholder()  { return this.getAttribute('placeholder') || '' }
     set placeholder(p) {
         p ? this.setAttribute('placeholder', p) : this.removeAttribute('placeholder')

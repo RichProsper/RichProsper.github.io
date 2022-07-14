@@ -14,8 +14,11 @@ class RWC_Switch extends HTMLElement {
         c ? this.Base.classList.add('checked') : this.Base.classList.remove('checked')
     }
 
-    get required()  { return this.Input.required        }
+    get required()  { return this.Input.required }
     set required(r) { r ? this.setAttribute('required', '') : this.removeAttribute('required') }
+
+    get disabled()  { return this.Input.disabled }
+    set disabled(d) { d ? this.setAttribute('disabled', '') : this.removeAttribute('disabled') }
 
     get switchSize()   { return this.getAttribute('switch_size') || '' }
     set switchSize(sS) {

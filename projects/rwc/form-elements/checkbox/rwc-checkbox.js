@@ -13,6 +13,8 @@ class RWC_Checkbox extends HTMLElement {
     set checked(c)  { this.Input.checked = c            }
     get required()  { return this.Input.required        }
     set required(r) { r ? this.setAttribute('required', '') : this.removeAttribute('required') }
+    get disabled()  { return this.Input.disabled        }
+    set disabled(d) { d ? this.setAttribute('disabled', '') : this.removeAttribute('disabled') }
 
     get isIndeterminate()   { return this.hasAttribute('is_indeterminate') }
     set isIndeterminate(iI) {
