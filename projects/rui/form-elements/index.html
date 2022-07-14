@@ -21,15 +21,11 @@
         }
     </style>
     <link rel="stylesheet" href="../../../vendors/all.min.css">
-    <link rel="stylesheet" href="inputs/rui-input.min.css">
     <link rel="stylesheet" href="select/rui-select.min.css">
     <link rel="stylesheet" href="textarea/rui-textarea.min.css">
     <title>Form Elements Demo</title>
 </head>
 <body>
-    <h2>Input</h2><br>
-    <div id="input" class="example"></div>
-
     <h2>Select Single</h2><br>
     <div id="select-single" class="example"></div>
 
@@ -40,41 +36,10 @@
     <div id="textarea" class="example"></div>
 
     <script type="module">
-        import Input from './inputs/rui-input.min.js'
         import Select from './select/rui-select.min.js'
         import Textarea from './textarea/rui-textarea.min.js'
 
-        document.addEventListener('DOMContentLoaded', () => {            
-            const input = document.getElementById('input')
-            input.appendChild( Input({
-                attrs: {
-                    id: 'b',
-                    type: 'text',
-                    placeholder: 'Placeholder...',
-                    'data-id': 'abc',
-                    'data-value': 'def',
-                },
-                evts: {
-                    change: [
-                        () => console.log('a'),
-                        () => console.log('b'),
-                    ],
-                    focus: () => console.log('focus'),
-                    keyup: () => console.log('keyup'),
-                    blur: [
-                        () => console.log('blurA'),
-                        () => console.log('blurB'),
-                    ]
-                }
-            }) )
-            input.appendChild( Input({
-                attrs: {
-                    type: 'text',
-                    placeholder: 'Disabled...',
-                    disabled: ''
-                }
-            }) )
-                    
+        document.addEventListener('DOMContentLoaded', () => {                       
             const selectSingle = document.getElementById('select-single')
             selectSingle.appendChild( Select({
                 labelText: 'Single',
