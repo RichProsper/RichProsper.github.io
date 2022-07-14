@@ -109,7 +109,7 @@ class RWC_Switch extends HTMLElement {
     }
 
     validation() {
-        if (this.hasAttribute('required') && !this.checked) {
+        if (this.required && !this.checked) {
             this.internals_.setValidity({valueMissing: true}, 'Please switch this on if you want to proceed', this.Input)
             return
         }
