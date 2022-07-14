@@ -18,6 +18,11 @@ class RWC_ToTopButton extends HTMLElement {
         cC ? this.setAttribute('chevron_color', cC) : this.removeAttribute('chevron_color')
     }
 
+    get buttonPlacement()   { return this.getAttribute('button_placement') || '' }
+    set buttonPlacement(bP) {
+        bP ? this.setAttribute('button_placement', bP) : this.removeAttribute('button_placement')
+    }
+
     constructor() {
         super()
         this.init()
