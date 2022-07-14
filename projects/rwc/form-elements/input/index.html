@@ -15,8 +15,11 @@
         h1 {
             margin-bottom: 1.333em;
         }
+        rwc-input {
+            display: inline-flex;
+            margin-bottom: 2.5em;
+        }
         hr {
-            margin-top: 1.333em;
             margin-bottom: 1.333em;
         }
     </style>
@@ -27,20 +30,30 @@
 
     <form>
         <rwc-input
-            input_size="3rem" input_color="rgb(206, 147, 216)" name="no_type"
-            placeholder = "No type..."
+            name="no_type" placeholder = "No type..." input_size="3rem" input_color="rgb(206, 147, 216)" 
         >
         </rwc-input>
-
-        <rwc-input name="type_text" placeholder="Type text...">
+        <rwc-input type="date" name="type_date" placeholder="Type date..."></rwc-input>
+        <rwc-input
+            type="datetime-local" name="type_datetime-local" placeholder="Type datetime-local..."
+        >
         </rwc-input>
+        <rwc-input type="email" name="type_email" placeholder="Type email..."></rwc-input>
+        <rwc-input type="month" name="type_month" placeholder="Type month..."></rwc-input>
+        <rwc-input type="number" name="type_number" placeholder="Type number..."></rwc-input>
+        <rwc-input type="password" name="type_password" placeholder="Type password..."></rwc-input>
+        <rwc-input type="search" name="type_search" placeholder="Type search..."></rwc-input>
+        <rwc-input type="tel" name="type_tel" placeholder="Type tel..."></rwc-input>
+        <rwc-input type="text" name="type_text" placeholder="Type text..."></rwc-input>
+        <rwc-input type="time" name="type_time" placeholder="Type time..."></rwc-input>
+        <rwc-input type="url" name="type_url" placeholder="Type url..."></rwc-input>
+        <rwc-input type="week" name="type_week" placeholder="Type week..."></rwc-input>
+        <hr>
 
         <rwc-input name="required" placeholder="Required..." required>
-        </rwc-input><hr>
-
+        </rwc-input>
         <rwc-input name="readonly" placeholder="Readonly..." value="I am readonly" readonly>
         </rwc-input>
-
         <rwc-input name="disabled" placeholder="Disabled..." disabled>
         </rwc-input><hr>
 

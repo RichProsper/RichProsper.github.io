@@ -111,6 +111,9 @@ class RWC_Input extends HTMLElement {
     getTemplate() {
         this.defaultInputSize = '2.2rem'
         this.defaultInputColor = '207, 90%, 77%'
+        this.supportedTypes = [
+            'date', 'datetime-local', 'email', 'month', 'number', 'password', 'search', 'tel', 'text', 'time', 'url', 'week'
+        ]
         this.css = ``
 
         const template = document.createElement('template')
@@ -192,6 +195,19 @@ class RWC_Input extends HTMLElement {
         }
     }
 
+    updateType() {
+        if (!this.hasAttribute('type')) {
+            this.Input.removeAttribute('type')
+            return
+        }
+
+        const type = this.getAttribute('type')
+
+        this.supportedTypes.indexOf(type) > -1
+            ? this.Input.setAttribute('type', type)
+            : this.Input.setAttribute('type', 'text')
+    }
+
     // TODO
     updateSizeColor() {
         // const colors = this.convertToHSLColor()
@@ -222,13 +238,10 @@ class RWC_Input extends HTMLElement {
         })
     }
 
-    // TODO supported types
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
             case 'type': {
-                this.hasAttribute('type')
-                    ? this.Input.setAttribute('type', newValue)
-                    : this.Input.removeAttribute('type')
+                this.updateType()
                 break
             }
             case 'value': {
@@ -329,14 +342,15 @@ class RWC_Input extends HTMLElement {
 window.customElements.define('rwc-input', RWC_Input)
 
 // TODO These types are not supported. Default to text
-// case 'button':
-// case 'checkbox':
-// case 'color':
-// case 'file':
-// case 'image':
-// case 'radio':
-// case 'range':
-// case 'reset':
-// case 'submit':
+// button - Use a regular button[type="button"]
+// checkbox - Use rwc-checkbox or rwc-switch
+// color - // TODO
+// file - Use rwc-inputfile
+// hidden - Just use a normal hidden input
+// image - Use a regular button and set a background-image
+// radio - // TODO
+// range - // TODO
+// reset - Use a regular button[type="reset"]
+// submit - Use a regular button[type="submit"]
 
 // TODO datalists don't work in web components. Will have to create a InputList web component
