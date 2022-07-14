@@ -7,7 +7,6 @@ class RWC_InputMediaFile extends HTMLElement {
         ]        
     }
 
-    // TODO input_size etc
     get files() { return this.files_ }
 
     get maxFileSize()    { return this.getAttribute('max_file_size') || '' }
