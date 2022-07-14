@@ -1,48 +1,70 @@
-// TODO observedAttributes, getters & setters, color-scheme: dark scss on the other form-element web components
-
 class RWC_Input extends HTMLElement {
     static formAssociated = true
 
     static get observedAttributes() {
         return [
-            'value', 'readonly', 'maxlength', 'minlength', 'min', 'max', 'multiple', 'pattern', 'title', 'placeholder', 'required', 'step', 'autofocus', 'input_size', 'input_color'
+            'type', 'value', 'readonly', 'maxlength', 'minlength', 'min', 'max', 'multiple', 'pattern', 'title', 'placeholder', 'required', 'step', 'autofocus', 'input_size', 'input_color'
         ]        
     }
 
-    // TODO inputSize, inputColor
-    // TODO setAttribute (like placeholder)
-    get value()             { return this.Input.value                  }
-    set value(val)          { this.Input.value = val                   }
-    get disabled()          { return this.Input.disabled               }
-    set disabled(d)         { this.Input.disabled = d                  }
-    get readOnly()          { return this.Input.readOnly               }
-    set readOnly(rO)        { this.Input.readOnly = rO                 }
-    get maxLength()         { return this.Input.maxLength              }
-    set maxLength(maxL)     { this.Input.maxLength = maxL              }
-    get minLength()         { return this.Input.minLength              }
-    set minLength(minL)     { this.Input.minLength = minL              }
-    get max()               { return this.Input.max                    }
-    set max(max_)           { this.Input.max = max_                    }
-    get min()               { return this.Input.min                    }
-    set min(min_)           { this.Input.min = min_                    }
-    get multiple()          { return this.Input.multiple               }
-    set multiple(m)         { this.Input.multiple = m                  }
-    get pattern()           { return this.Input.pattern                }
-    set pattern(pat)        { this.Input.pattern = pat                 }
-    get title()             { return this.Input.title                  }
-    set title(title_)       { this.Input.title = title_                }
-    get placeholder()       { return this.Input.placeholder            }
-    set placeholder(ph)     { this.Input.placeholder = ph,
-                              this.setAttribute('placeholder', ph)     }
-    get required()          { return this.Input.required               }
-    set required(r)         { this.Input.required = r                  }
-    get step()              { return this.Input.step                   }
-    set step(step_)         { this.Input.step = step_                  }
-    get autofocus()         { return this.Input.autofocus              }
-    set autofocus(a)        { this.Input.autofocus = a                 }
+    get type()  { return this.Input.type }
+    set type(t) { t ? this.setAttribute('type', t) : this.removeAttribute('type') }
+
+    get value()  { return this.Input.value }
+    set value(v) { this.Input.value = v    }
+
+    get disabled()  { return this.Input.disabled }
+    set disabled(d) { d ? this.setAttribute('disabled', '') : this.removeAttribute('disabled') }
+
+    get readOnly()   { return this.Input.readOnly }
+    set readOnly(rO) { rO ? this.setAttribute('readonly', '') : this.removeAttribute('readonly') }
+
+    get maxLength()   { return this.Input.maxLength }
+    set maxLength(mL) {
+        mL ? this.setAttribute('maxlength', mL) : this.removeAttribute('maxlength')
+    }
+    get minLength()   { return this.Input.minLength }
+    set minLength(mL) {
+        mL ? this.setAttribute('minlength', mL) : this.removeAttribute('minlength')
+    }
+
+    get max()  { return this.Input.max }
+    set max(m) { m ? this.setAttribute('max', m) : this.removeAttribute('max') }
+    get min()  { return this.Input.min }
+    set min(m) { m ? this.setAttribute('min', m) : this.removeAttribute('min') }
+
+    get multiple()  { return this.Input.multiple        }
+    set multiple(m) { m ? this.setAttribute('multiple', '') : this.removeAttribute('multiple') }
+
+    get pattern()  { return this.Input.pattern }
+    set pattern(p) { p ? this.setAttribute('pattern', p) : this.removeAttribute('pattern') }
+    
+    get placeholder()  { return this.Input.placeholder }
+    set placeholder(p) {
+        p ? this.setAttribute('placeholder', p) : this.removeAttribute('placeholder')
+    }
+
+    get required()  { return this.Input.required }
+    set required(r) { r ? this.setAttribute('required', '') : this.removeAttribute('required') }
+
+    get step()  { return this.Input.step }
+    set step(s) { s ? this.setAttribute('step', s) : this.removeAttribute('step') }
+
+    get autofocus()  { return this.Input.autofocus }
+    set autofocus(a) { a ? this.setAttribute('autofocus', '') : this.removeAttribute('autofocus') }
+
+    get inputSize()   { return this.getAttribute('input_size') || '' }
+    set inputSize(iS) {
+        iS ? this.setAttribute('input_size', iS) : this.removeAttribute('input_size')
+    }
+
+    get inputColor()   { return this.getAttribute('input_color') || '' }
+    set inputColor(iC) {
+        iC ? this.setAttribute('input_color', iC) : this.removeAttribute('input_color')
+    }
+
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
-    get type()              { return this.localName                    }
     get validity()          { return this.internals_.validity          }
     get validationMessage() { return this.internals_.validationMessage }
     get willValidate()      { return this.internals_.willValidate      }
@@ -56,7 +78,9 @@ class RWC_Input extends HTMLElement {
      * updated
      * @param {Boolean} disabled 
      */
-    formDisabledCallback = disabled => this.Input.disabled = disabled
+    formDisabledCallback(disabled) {
+        this.Input.disabled = disabled
+    }
 
     /**
      * This is called when the form is reset
@@ -105,7 +129,7 @@ class RWC_Input extends HTMLElement {
 
     // TODO
     validation() {
-        if (this.hasAttribute('required') && this.value === '') {
+        if (this.required && this.value === '') {
             this.internals_.setValidity({valueMissing: true}, 'Please fill out this field', this.Input)
             return
         }
@@ -198,8 +222,15 @@ class RWC_Input extends HTMLElement {
         })
     }
 
+    // TODO supported types
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
+            case 'type': {
+                this.hasAttribute('type')
+                    ? this.Input.setAttribute('type', newValue)
+                    : this.Input.removeAttribute('type')
+                break
+            }
             case 'value': {
                 this.hasAttribute('value')
                     ? this.Input.setAttribute('value', newValue)
@@ -209,49 +240,49 @@ class RWC_Input extends HTMLElement {
             case 'readonly': {
                 this.hasAttribute('readonly')
                     ? this.Input.setAttribute('readonly', '')
-                    : this.removeAttribute('readonly')
+                    : this.Input.removeAttribute('readonly')
                 break
             }
             case 'maxlength': {
                 this.hasAttribute('maxlength')
                     ? this.Input.setAttribute('maxlength', newValue)
-                    : this.removeAttribute('maxlength')
+                    : this.Input.removeAttribute('maxlength')
                 break
             }
             case 'minlength': {
                 this.hasAttribute('minlength')
                     ? this.Input.setAttribute('minlength', newValue)
-                    : this.removeAttribute('minlength')
+                    : this.Input.removeAttribute('minlength')
                 break
             }
             case 'max': {
                 this.hasAttribute('max')
                     ? this.Input.setAttribute('max', newValue)
-                    : this.removeAttribute('max')
+                    : this.Input.removeAttribute('max')
                 break
             }
             case 'min': {
                 this.hasAttribute('min')
                     ? this.Input.setAttribute('min', newValue)
-                    : this.removeAttribute('min')
+                    : this.Input.removeAttribute('min')
                 break
             }
             case 'multiple': {
                 this.hasAttribute('multiple')
                     ? this.Input.setAttribute('multiple', '')
-                    : this.removeAttribute('multiple')
+                    : this.Input.removeAttribute('multiple')
                 break
             }
             case 'pattern': {
                 this.hasAttribute('pattern')
                     ? this.Input.setAttribute('pattern', newValue)
-                    : this.removeAttribute('pattern')
+                    : this.Input.removeAttribute('pattern')
                 break
             }
             case 'title': {
                 this.hasAttribute('title')
                     ? this.Input.setAttribute('title', newValue)
-                    : this.removeAttribute('title')
+                    : this.Input.removeAttribute('title')
                 break
             }
             case 'placeholder': {
@@ -260,7 +291,7 @@ class RWC_Input extends HTMLElement {
                     this.Placeholder.textContent = newValue
                 }
                 else {
-                    this.removeAttribute('placeholder')
+                    this.Input.removeAttribute('placeholder')
                     this.Placeholder.textContent = null
                 }
                 break
@@ -274,7 +305,7 @@ class RWC_Input extends HTMLElement {
             case 'step': {
                 this.hasAttribute('step')
                     ? this.Input.setAttribute('step', newValue)
-                    : this.removeAttribute('step')
+                    : this.Input.removeAttribute('step')
                 break
             }
             case 'autofocus': {
@@ -308,4 +339,4 @@ window.customElements.define('rwc-input', RWC_Input)
 // case 'reset':
 // case 'submit':
 
-// TODO datalists don't work in web components. Will have to creatr a InputList web component
+// TODO datalists don't work in web components. Will have to create a InputList web component
