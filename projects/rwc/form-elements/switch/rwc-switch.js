@@ -184,6 +184,7 @@ class RWC_Switch extends HTMLElement {
         switch (name) {
             case 'value': {
                 if (!this.getAttribute('value')) this.setAttribute('value', this.defaultValue)
+                this.setFormValue()
                 break
             }
             case 'required': {
