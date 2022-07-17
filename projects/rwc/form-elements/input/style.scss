@@ -33,6 +33,7 @@ div.input-container {
         box-sizing: inherit;
     }
     input {
+        position: relative;
         height: 100%;
         display: block;
         width: 100%;
@@ -44,39 +45,32 @@ div.input-container {
         font-family: inherit;
         padding: 0 .5rem;
 
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus {
-            box-shadow: 0 0 0 5rem var(--grey-3) inset;
-            -webkit-text-fill-color: var(--grey-2);
-        }
         &::placeholder {
             color: transparent;
             user-select: none;
         }
-        &:hover {
-            border-bottom-width: .2rem;
-            border-bottom-color: var(--white);
+        &:hover ~ .hover {
+            opacity: 1;
         }
         &:focus {
             outline: none;
 
-            & + span {
+            & + .placeholder {
                 color: var(--blue-1);
             }
         }
-        &:focus + span,
-        &:not(:placeholder-shown) + span {
+        &:focus + .placeholder,
+        &:not(:placeholder-shown) + .placeholder {
             opacity: 1;
             transform: translateY(-2.4rem) scale(.75);
         }
         &:disabled,
-        &:disabled + span {
+        &:disabled + .placeholder {
             color: var(--grey-4);
             pointer-events: none;
         }
     }
-    span {
+    .placeholder {
         position: absolute;
         top: 0;
         left: .5rem;
@@ -85,6 +79,17 @@ div.input-container {
         pointer-events: none;
         transform-origin: top left;
         transition: .2s;
+    }
+    .hover {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: .2rem;
+        background-color: var(--white);
+        opacity: 0;
+        transition: opacity .2s;
+        pointer-events: none;
     }
     &::after {
         content: '';
