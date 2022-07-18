@@ -125,6 +125,7 @@ class RWC_ToTopButton extends HTMLElement {
 
         saturation = +(saturation * 100).toFixed(1)
         lightness = +(lightness * 100).toFixed(1)
+        
         const lightnessHover = lightness + 20
 
         if (rgbColor.length === 4) {
