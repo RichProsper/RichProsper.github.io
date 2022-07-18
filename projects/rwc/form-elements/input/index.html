@@ -20,7 +20,7 @@
             margin-bottom: 2.5em;
         }
         hr {
-            margin-bottom: 1.333em;
+            margin-bottom: 2.5em;
         }
     </style>
     <title>Input Demo</title>
@@ -29,25 +29,23 @@
     <h1>Input Demo</h1>
 
     <form>
-        <rwc-input
-            name="no_type" placeholder = "No type..." input_size="3rem" input_color="rgb(206, 147, 216)" 
-        >
-        </rwc-input>
+        <rwc-input name="no_type" placeholder = "No type..."></rwc-input>
+        <rwc-input type="text" name="type_text" placeholder="Type text..."></rwc-input>
+        <rwc-input type="search" name="type_search" placeholder="Type search..."></rwc-input>
+        <rwc-input type="email" name="type_email" placeholder="Type email..."></rwc-input>
+        <rwc-input type="password" name="type_password" placeholder="Type password..."></rwc-input>
+        <rwc-input type="url" name="type_url" placeholder="Type url..."></rwc-input>
+        <rwc-input type="tel" name="type_tel" placeholder="Type tel..."></rwc-input>
+        <rwc-input type="number" name="type_number" placeholder="Type number..."></rwc-input>
+
+        <rwc-input type="month" name="type_month" placeholder="Type month..."></rwc-input>
+        <rwc-input type="week" name="type_week" placeholder="Type week..."></rwc-input>
         <rwc-input type="date" name="type_date" placeholder="Type date..."></rwc-input>
         <rwc-input
             type="datetime-local" name="type_datetime-local" placeholder="Type datetime-local..."
         >
         </rwc-input>
-        <rwc-input type="email" name="type_email" placeholder="Type email..."></rwc-input>
-        <rwc-input type="month" name="type_month" placeholder="Type month..."></rwc-input>
-        <rwc-input type="number" name="type_number" placeholder="Type number..."></rwc-input>
-        <rwc-input type="password" name="type_password" placeholder="Type password..."></rwc-input>
-        <rwc-input type="search" name="type_search" placeholder="Type search..."></rwc-input>
-        <rwc-input type="tel" name="type_tel" placeholder="Type tel..."></rwc-input>
-        <rwc-input type="text" name="type_text" placeholder="Type text..."></rwc-input>
         <rwc-input type="time" name="type_time" placeholder="Type time..."></rwc-input>
-        <rwc-input type="url" name="type_url" placeholder="Type url..."></rwc-input>
-        <rwc-input type="week" name="type_week" placeholder="Type week..."></rwc-input>
         <hr>
 
         <rwc-input name="required" placeholder="Required..." required>
@@ -56,6 +54,19 @@
         </rwc-input>
         <rwc-input name="disabled" placeholder="Disabled..." disabled>
         </rwc-input><hr>
+
+        <rwc-input input_size="7rem" placeholder="Input size: 7rem"></rwc-input>
+        <rwc-input input_size="6rem" placeholder="Input size: 6rem"></rwc-input>
+        <rwc-input input_size="5rem" placeholder="Input size: 5rem"></rwc-input>
+        <rwc-input input_size="3rem" placeholder="Input size: 3rem"></rwc-input>
+        <hr>
+
+        <rwc-input input_color="hsl(123, 38%, 57%)" placeholder="Input color: green">
+        </rwc-input>
+        <rwc-input input_color="orange" placeholder="Input color: orange"></rwc-input>
+        <rwc-input input_color="red" placeholder="Input color: red"></rwc-input>
+        <rwc-input input_color="violet" placeholder="Input color: violet"></rwc-input>
+        <hr>
 
         <button type="submit">Submit</button>
         <button type="reset">Reset</button>

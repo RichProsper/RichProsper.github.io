@@ -107,23 +107,25 @@ class RWC_Input extends HTMLElement {
         this.Placeholder = this.shadowRoot.querySelector('span.placeholder')
     }
 
-    // TODO
     getTemplate() {
-        this.defaultInputSize = '2.2rem'
-        this.defaultInputColor = '207, 90%, 77%'
+        this.defaultInputSize = '4rem'
+        this.defaultInputColor = 'hsl(207, 90%, 77%)'
+        this.defaultInputColor = { h: 207, s: 90, l: 77 }
         this.supportedTypes = [
             'date', 'datetime-local', 'email', 'month', 'number', 'password', 'search', 'tel', 'text', 'time', 'url', 'week'
         ]
-        this.css = ``
+        this.css = `
+            *,*::before,*::after{margin:0;padding:0}div.input-container{--input-size: [[input_size]];--hue-white: 0, 0%;--white: hsl(var(--hue-white), 100%);--grey-1: hsl(var(--hue-white), 87%);--grey-2: hsl(var(--hue-white), 50%);--grey-3: hsla(var(--hue-white), 100%, .035);--color-1a: [[color_1a]];--color-1b: [[color_1b]];--color-2a: [[color_2a]];--color-2b: [[color_2b]];color-scheme:dark;position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);height:1em;-webkit-box-sizing:border-box;box-sizing:border-box}div.input-container *,div.input-container *::before,div.input-container *::after{-webkit-box-sizing:inherit;box-sizing:inherit}div.input-container input{position:relative;height:100%;display:block;width:100%;background-color:var(--color-2a);border:none;border-bottom:0.025em solid var(--grey-1);color:var(--grey-1);font-size:.4em;font-family:inherit;padding:0 .125em;-webkit-tap-highlight-color:transparent;-webkit-transition:background-color .2s;transition:background-color .2s}div.input-container input::-webkit-input-placeholder{color:transparent;-webkit-user-select:none;user-select:none}div.input-container input:-ms-input-placeholder{color:transparent;-ms-user-select:none;user-select:none}div.input-container input::-ms-input-placeholder{color:transparent;-ms-user-select:none;user-select:none}div.input-container input::placeholder{color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}div.input-container input:hover{background-color:var(--color-2b)}div.input-container input:hover ~ .hover{opacity:1}div.input-container input:focus{outline:none}div.input-container input:focus+.placeholder{color:var(--color-1a)}div.input-container input:focus+.placeholder,div.input-container input:not(:placeholder-shown)+.placeholder{opacity:1;-webkit-transform:translateY(-1.5em) scale(0.75);transform:translateY(-1.5em) scale(0.75)}div.input-container input:disabled{background-color:var(--grey-3)}div.input-container input:disabled,div.input-container input:disabled+.placeholder{color:var(--grey-2);pointer-events:none}div.input-container .placeholder{position:absolute;top:0;left:.125em;font-size:.4em;opacity:.7;line-height:2.5em;pointer-events:none;-webkit-transform-origin:top left;transform-origin:top left;-webkit-transition:.2s;transition:.2s}div.input-container .hover{position:absolute;bottom:0;left:0;width:100%;height:.05em;background-color:var(--white);opacity:0;-webkit-transition:opacity .2s;transition:opacity .2s;pointer-events:none}div.input-container::after{content:'';position:absolute;left:0;right:0;bottom:0;height:.05em;background-color:var(--color-1b);-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transition:300ms cubic-bezier(0, 0, 0.2, 1) 0ms;transition:300ms cubic-bezier(0, 0, 0.2, 1) 0ms;pointer-events:none}div.input-container.focused::after{-webkit-transform:scaleX(1);transform:scaleX(1)}
+        `
 
         const template = document.createElement('template')
         template.innerHTML = `
-            <link rel="stylesheet" href="style.min.css">
-            <style></style>
+            <style>${this.css}</style>
 
             <div class="input-container">
                 <input>
                 <span class="placeholder"></span>
+                <span class="hover"></span>
             </div>
         `
 
@@ -140,9 +142,17 @@ class RWC_Input extends HTMLElement {
         this.internals_.setValidity({})
     }
 
-    // TODO
-    convertToHSLColor() {
-        if (!this.hasAttribute('input_color')) return false
+    determineColors() {
+        if (!this.hasAttribute('input_color')) {
+            const color = this.defaultInputColor
+
+            return [
+                `hsl(${color.h}, ${color.s}%, ${color.l}%)`,
+                `hsl(${color.h}, ${color.s}%, ${color.l - 24}%)`,
+                `hsla(${color.h}, ${color.s}%, ${color.l}%, .035)`,
+                `hsla(${color.h}, ${color.s}%, ${color.l}%, .07)`
+            ]
+        }
 
         const div = document.createElement('div')
         div.style.color = this.getAttribute('input_color')
@@ -181,18 +191,12 @@ class RWC_Input extends HTMLElement {
         saturation = +(saturation * 100).toFixed(1)
         lightness = +(lightness * 100).toFixed(1)
 
-        if (rgbColor.length === 4) {
-            return [
-                `hsla(${hue}, ${saturation}%, ${lightness}%, ${rgbColor[3]})`,
-                `hsla(${hue}, ${saturation}%, ${lightness}%, .1)`
-            ]
-        }
-        else {
-            return [
-                `hsl(${hue}, ${saturation}%, ${lightness}%)`,
-                `hsla(${hue}, ${saturation}%, ${lightness}%, .1)`
-            ]
-        }
+        return [
+            `hsl(${hue}, ${saturation}%, ${lightness}%)`,
+            `hsl(${hue}, ${saturation}%, ${lightness - 24}%)`,
+            `hsla(${hue}, ${saturation}%, ${lightness}%, .035)`,
+            `hsla(${hue}, ${saturation}%, ${lightness}%, .07)`
+        ]
     }
 
     updateType() {
@@ -208,21 +212,15 @@ class RWC_Input extends HTMLElement {
             : this.Input.setAttribute('type', 'text')
     }
 
-    // TODO
     updateSizeColor() {
-        // const colors = this.convertToHSLColor()
-        // let css = this.css.replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize)
+        const [color1a, color1b, color2a, color2b] = this.determineColors()
 
-        // if (!colors) {
-        //     css = css.replace('[[input_color]]', 'hsl(' + this.defaultInputColor + ')')
-        //     css = css.replace('[[hover]]', 'hsl(' + this.defaultInputColor + ', .1)')
-        // }
-        // else {
-        //     css = css.replace('[[input_color]]', colors[0])
-        //     css = css.replace('[[hover]]', colors[1])
-        // }
-
-        // this.Style.innerHTML = css
+        this.Style.innerHTML = this.css
+            .replace('[[input_size]]', this.getAttribute('input_size') || this.defaultInputSize)
+            .replace('[[color_1a]]', color1a)
+            .replace('[[color_1b]]', color1b)
+            .replace('[[color_2a]]', color2a)
+            .replace('[[color_2b]]', color2b)
     }
     
     connectedCallback() {
