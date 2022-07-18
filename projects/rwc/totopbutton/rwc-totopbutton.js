@@ -125,19 +125,17 @@ class RWC_ToTopButton extends HTMLElement {
 
         saturation = +(saturation * 100).toFixed(1)
         lightness = +(lightness * 100).toFixed(1)
-        
-        const lightnessHover = lightness + 20
 
         if (rgbColor.length === 4) {
             return [
                 `hsla(${hue}, ${saturation}%, ${lightness}%, ${rgbColor[3]})`,
-                `hsla(${hue}, ${saturation}%, ${lightnessHover}%, ${rgbColor[3]})`
+                `hsla(${hue}, ${saturation}%, ${lightness + 20}%, ${rgbColor[3]})`
             ]
         }
         else {
             return [
                 `hsl(${hue}, ${saturation}%, ${lightness}%)`,
-                `hsl(${hue}, ${saturation}%, ${lightnessHover}%)`
+                `hsl(${hue}, ${saturation}%, ${lightness + 20}%)`
             ]
         }
     }
