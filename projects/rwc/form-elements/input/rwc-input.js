@@ -112,7 +112,7 @@ class RWC_Input extends HTMLElement {
         this.defaultInputColor = 'hsl(207, 90%, 77%)'
         this.defaultInputColor = { h: 207, s: 90, l: 77 }
         this.supportedTypes = [
-            'date', 'datetime-local', 'email', 'month', 'number', 'password', 'search', 'tel', 'text', 'time', 'url', 'week'
+            'text', 'search', 'email', 'password', 'url', 'tel', 'number', 'month', 'week', 'date', 'datetime-local', 'time'
         ]
         this.css = `
             *,*::before,*::after{margin:0;padding:0}div.input-container{--input-size: [[input_size]];--hue-white: 0, 0%;--white: hsl(var(--hue-white), 100%);--grey-1: hsl(var(--hue-white), 87%);--grey-2: hsl(var(--hue-white), 50%);--grey-3: hsla(var(--hue-white), 100%, .035);--color-1a: [[color_1a]];--color-1b: [[color_1b]];--color-2a: [[color_2a]];--color-2b: [[color_2b]];color-scheme:dark;position:relative;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;font-size:var(--input-size);height:1em;-webkit-box-sizing:border-box;box-sizing:border-box}div.input-container *,div.input-container *::before,div.input-container *::after{-webkit-box-sizing:inherit;box-sizing:inherit}div.input-container input{position:relative;height:100%;display:block;width:100%;background-color:var(--color-2a);border:none;border-bottom:0.025em solid var(--grey-1);color:var(--grey-1);font-size:.4em;font-family:inherit;padding:0 .125em;-webkit-tap-highlight-color:transparent;-webkit-transition:background-color .2s;transition:background-color .2s}div.input-container input::-webkit-input-placeholder{color:transparent;-webkit-user-select:none;user-select:none}div.input-container input:-ms-input-placeholder{color:transparent;-ms-user-select:none;user-select:none}div.input-container input::-ms-input-placeholder{color:transparent;-ms-user-select:none;user-select:none}div.input-container input::placeholder{color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}div.input-container input:hover{background-color:var(--color-2b)}div.input-container input:hover ~ .hover{opacity:1}div.input-container input:focus{outline:none}div.input-container input:focus+.placeholder{color:var(--color-1a)}div.input-container input:focus+.placeholder,div.input-container input:not(:placeholder-shown)+.placeholder{opacity:1;-webkit-transform:translateY(-1.5em) scale(0.75);transform:translateY(-1.5em) scale(0.75)}div.input-container input:disabled{background-color:var(--grey-3)}div.input-container input:disabled,div.input-container input:disabled+.placeholder{color:var(--grey-2);pointer-events:none}div.input-container .placeholder{position:absolute;top:0;left:.125em;font-size:.4em;opacity:.7;line-height:2.5em;pointer-events:none;-webkit-transform-origin:top left;transform-origin:top left;-webkit-transition:.2s;transition:.2s}div.input-container .hover{position:absolute;bottom:0;left:0;width:100%;height:.05em;background-color:var(--white);opacity:0;-webkit-transition:opacity .2s;transition:opacity .2s;pointer-events:none}div.input-container::after{content:'';position:absolute;left:0;right:0;bottom:0;height:.05em;background-color:var(--color-1b);-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transition:300ms cubic-bezier(0, 0, 0.2, 1) 0ms;transition:300ms cubic-bezier(0, 0, 0.2, 1) 0ms;pointer-events:none}div.input-container.focused::after{-webkit-transform:scaleX(1);transform:scaleX(1)}
@@ -134,9 +134,12 @@ class RWC_Input extends HTMLElement {
 
     // TODO
     validation() {
-        if (this.required && this.value === '') {
-            this.internals_.setValidity({valueMissing: true}, 'Please fill out this field', this.Input)
-            return
+        switch (true) {
+            case (this.required && this.value === ''): {
+                this.internals_.setValidity({valueMissing: true}, 'Please fill out this field', this.Input)
+                return
+            }
+            default: {}
         }
 
         this.internals_.setValidity({})
@@ -338,6 +341,13 @@ class RWC_Input extends HTMLElement {
 }
 
 window.customElements.define('rwc-input', RWC_Input)
+
+/**
+ * TODO Validation
+ ** [maxlength, minlength] <==> [text, search, email, password, url, tel, number]
+ ** [max, min, step]       <==> [number, month, week, date, datetime-local, time]
+ ** [pattern]              <==> [text, search, email, password, url, tel]
+ */
 
 // TODO These types are not supported. Default to text
 // button - Use a regular button[type="button"]
