@@ -3,7 +3,7 @@ class RWC_Input extends HTMLElement {
 
     static get observedAttributes() {
         return [
-            'type', 'value', 'readonly', 'minlength', 'maxlength', 'min', 'max', 'multiple', 'pattern', 'title', 'placeholder', 'required', 'step', 'autofocus', 'input_size', 'input_color'
+            'type', 'value', 'readonly', 'size', 'minlength', 'maxlength', 'min', 'max', 'multiple', 'pattern', 'title', 'placeholder', 'required', 'step', 'autofocus', 'input_size', 'input_color'
         ]        
     }
 
@@ -11,13 +11,16 @@ class RWC_Input extends HTMLElement {
     set type(t) { t ? this.setAttribute('type', t) : this.removeAttribute('type') }
 
     get value()  { return this.Input.value }
-    set value(v) { this.Input.value = v    }
+    set value(v) { this.Input.value = v, this.validation() }
 
     get disabled()  { return this.Input.disabled }
     set disabled(d) { d ? this.setAttribute('disabled', '') : this.removeAttribute('disabled') }
 
     get readOnly()   { return this.Input.readOnly }
     set readOnly(rO) { rO ? this.setAttribute('readonly', '') : this.removeAttribute('readonly') }
+
+    get size()  { return this.Input.size }
+    set size(s) { s ? this.setAttribute('size', s) : this.removeAttribute('size') }
 
     get maxLength()   { return this.Input.maxLength }
     set maxLength(mL) {
@@ -142,11 +145,25 @@ class RWC_Input extends HTMLElement {
             case (this.hasAttribute('minlength') && this.hasAttribute('maxlength')): {
                 if (
                     this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
-                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'   ||
-                    this.type === 'number'
+                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
                 ) {
+                    const minLength = +this.minLength
+                    const maxLength = +this.maxLength
 
+                    if (
+                        Number.isInteger(minLength) && Number.isInteger(maxLength) &&
+                        minLength > 0 && minLength < maxLength &&
+                        (this.value.length < minLength || this.value.length > maxLength)
+                    ) {
+                        this.internals_.setValidity(
+                            {customError: true},
+                            `Please lengthen/shorten this text to be atleast ${minLength} and no more than ${maxLength} charcters in length`,
+                            this.Input
+                        )
+                        return
+                    }
                 }
+
                 break
             }
             default: {}
@@ -267,6 +284,12 @@ class RWC_Input extends HTMLElement {
                     : this.Input.removeAttribute('readonly')
                 break
             }
+            case 'size': {
+                this.hasAttribute('size')
+                    ? this.Input.setAttribute('size', newValue)
+                    : this.Input.removeAttribute('size')
+                break
+            }
             case 'maxlength': {
                 this.hasAttribute('maxlength')
                     ? this.Input.setAttribute('maxlength', newValue)
@@ -354,7 +377,7 @@ window.customElements.define('rwc-input', RWC_Input)
 
 /**
  *  TODO Validation
- ** [maxlength, minlength] <==> [text, search, email, password, url, tel, number]
+ ** [maxlength, minlength] <==> [text, search, email, password, url, tel]
  ** [max, min, step]       <==> [number, month, week, date, datetime-local, time]
  ** [pattern]              <==> [text, search, email, password, url, tel]
  */

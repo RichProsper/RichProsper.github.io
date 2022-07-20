@@ -30,7 +30,10 @@
 
     <form>
         <rwc-input name="no_type" placeholder = "No type..."></rwc-input>
-        <rwc-input type="text" name="type_text" placeholder="Type text..."></rwc-input>
+        <rwc-input
+            type="text" name="type_text" placeholder="Type text..." minlength="3" maxlength="6"
+        >
+        </rwc-input>
         <rwc-input type="search" name="type_search" placeholder="Type search..."></rwc-input>
         <rwc-input type="email" name="type_email" placeholder="Type email..."></rwc-input>
         <rwc-input type="password" name="type_password" placeholder="Type password..."></rwc-input>
