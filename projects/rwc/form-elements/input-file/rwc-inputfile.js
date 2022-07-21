@@ -157,7 +157,7 @@ class RWC_InputFile extends HTMLElement {
 
     validation() {
         switch (true) {
-            case (this.required && this.files_.length === 0): {
+            case (this.required && this.files.length === 0): {
                 this.internals_.setValidity({valueMissing: true}, 'Please select a file', this.Input)
                 return
             }

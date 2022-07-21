@@ -138,11 +138,15 @@ class RWC_Input extends HTMLElement {
     // TODO
     validation() {
         switch (true) {
-            case (this.required && this.value === ''): {
+            case (this.required && this.value === '') : {
                 this.internals_.setValidity({valueMissing: true}, 'Please fill out this field', this.Input)
                 return
             }
-            case (this.hasAttribute('minlength') && this.hasAttribute('maxlength')): {
+            case (
+                this.hasAttribute('minlength') &&
+                this.hasAttribute('maxlength') &&
+                this.value !== ''
+            ) : {
                 if (
                     this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
                     this.type === 'password' || this.type === 'url'    || this.type === 'tel'
