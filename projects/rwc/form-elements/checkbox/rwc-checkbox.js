@@ -174,6 +174,26 @@ class RWC_Checkbox extends HTMLElement {
             this.setFormValue()
             this.validation()
         })
+        this.Input.addEventListener('keydown', e => {
+            if (e.key.toUpperCase() === 'ENTER') {
+                if (!this.form) return
+                
+                // this.form.submit() doesn't trigger the form submit event. So we need to use this workaround
+                let submit = this.form.querySelector('[type="submit"]')
+                
+                if (submit) {
+                    submit.click()
+                    return
+                }
+
+                const submitBtn = document.createElement('button')
+                submitBtn.type = 'submit'
+                submitBtn.style.display = 'none'
+                this.form.appendChild(submitBtn)
+                submitBtn.click()
+                submitBtn.remove()
+            }
+        })
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
