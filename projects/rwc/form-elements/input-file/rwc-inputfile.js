@@ -69,16 +69,17 @@ class RWC_InputFile extends HTMLElement {
     reportValidity = () => this.internals_.reportValidity()
 
     setFormValue() {
+        if (!this.name) return
+        
         if (this.files_.length === 0) {
             this.internals_.setFormValue(null)
             this.Input.value = null
             return
         }
 
-        const name = this.getAttribute('name')
         const fileEntries = new FormData()
 
-        for (const file of this.files_) fileEntries.append(name, file)
+        for (const file of this.files_) fileEntries.append(this.name, file)
 
         this.internals_.setFormValue(fileEntries)
     }
@@ -173,8 +174,8 @@ class RWC_InputFile extends HTMLElement {
 
                 // No 'break' statement. This is so the other cases can get checked
             }
-            case (this.multiple): {
-                if (!this.multiple) break
+            case (this.multiple && this.files.length > 0): {
+                if (!this.multiple || this.files.length === 0) break
 
                 switch (true) {
                     case (this.hasAttribute('num_files')): {

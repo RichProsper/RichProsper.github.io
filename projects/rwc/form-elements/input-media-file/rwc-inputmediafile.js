@@ -76,6 +76,8 @@ class RWC_InputMediaFile extends HTMLElement {
     reportValidity = () => this.internals_.reportValidity()
 
     setFormValue() {
+        if (!this.name) return
+        
         if (this.files_.length === 0) {
             this.internals_.setFormValue(null)
             this.Input.value = null
@@ -319,8 +321,8 @@ class RWC_InputMediaFile extends HTMLElement {
 
                 // No 'break' statement. This is so the other cases can get checked
             }
-            case (this.multiple): {
-                if (!this.multiple) break
+            case (this.multiple && this.files.length > 0): {
+                if (!this.multiple || this.files.length === 0) break
 
                 switch (true) {
                     case (this.hasAttribute('num_files')): {
