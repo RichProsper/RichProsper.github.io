@@ -29,14 +29,21 @@
     <h1>Input Demo</h1>
 
     <form>
-        <rwc-input name="no_type" placeholder = "No type..."></rwc-input>
-        <rwc-input
-            type="text" name="type_text" placeholder="Type text..." minlength="3" maxlength="6"
-        >
+        <rwc-input name="no_type" placeholder="No type..." minlength="3" maxlength="6"></rwc-input>
+        <rwc-input type="text" name="type_text" placeholder="Type text..." minlength="3">
         </rwc-input>
-        <rwc-input type="search" name="type_search" placeholder="Type search..."></rwc-input>
-        <rwc-input type="email" name="type_email" placeholder="Type email..."></rwc-input>
-        <rwc-input type="password" name="type_password" placeholder="Type password..."></rwc-input>
+        <rwc-input type="search" name="type_search" placeholder="Type search..." maxlength="6">
+        </rwc-input>
+        <rwc-input
+            type="email" name="type_email" placeholder="Type email..."
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Must contain characters followed by an '@' sign, followed by more characters, and then a '.' sign. After the '.' sign, add at least 2 letters from a to z."
+        ></rwc-input>
+        <rwc-input
+            type="password" name="type_password" placeholder="Type password..."
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+        ></rwc-input>
         <rwc-input type="url" name="type_url" placeholder="Type url..."></rwc-input>
         <rwc-input type="tel" name="type_tel" placeholder="Type tel..."></rwc-input>
         <rwc-input type="number" name="type_number" placeholder="Type number..."></rwc-input>
@@ -45,8 +52,7 @@
         <rwc-input type="date" name="type_date" placeholder="Type date..."></rwc-input>
         <rwc-input
             type="datetime-local" name="type_datetime-local" placeholder="Type datetime-local..."
-        >
-        </rwc-input>
+        ></rwc-input>
         <rwc-input type="time" name="type_time" placeholder="Type time..."></rwc-input>
         <hr>
 

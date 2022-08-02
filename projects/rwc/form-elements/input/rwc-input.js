@@ -135,7 +135,12 @@ class RWC_Input extends HTMLElement {
         return template
     }
 
-    // TODO
+    /**
+     *  TODO Validation
+     ** [max, min, step] <==> [number, month, week, date, datetime-local, time]
+     ** [pattern]        <==> [text, search, email, password, url, tel]
+     ** Standard pattern for URLs and emails
+     */
     validation() {
         switch (true) {
             case (this.required && this.value === '') : {
@@ -162,6 +167,64 @@ class RWC_Input extends HTMLElement {
                         this.internals_.setValidity(
                             {customError: true},
                             `Please lengthen/shorten this text to be atleast ${minLength} and no more than ${maxLength} charcters in length`,
+                            this.Input
+                        )
+                        return
+                    }
+                }
+
+                break
+            }
+            case (this.hasAttribute('minlength') && this.value !== '') : {
+                if (
+                    this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
+                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
+                ) {
+                    const minLength = +this.minLength
+
+                    if (Number.isInteger(minLength) && minLength > 0 && this.value.length < minLength) {
+                        this.internals_.setValidity(
+                            {tooShort: true},
+                            `Please lengthen this text to be atleast ${minLength} charcters in length`,
+                            this.Input
+                        )
+                        return
+                    }
+                }
+
+                break
+            }
+            case (this.hasAttribute('maxlength') && this.value !== '') : {
+                if (
+                    this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
+                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
+                ) {
+                    const maxLength = +this.maxLength
+
+                    if (Number.isInteger(maxLength) && maxLength > 0 && this.value.length > maxLength) {
+                        this.internals_.setValidity(
+                            {tooLong: true},
+                            `Please shorten this text to be no more than ${maxLength} charcters in length`,
+                            this.Input
+                        )
+                        return
+                    }
+                }
+
+                break
+            }
+            case (this.hasAttribute('pattern') && this.value !== '') : {
+                if (
+                    this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
+                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
+                ) {
+                    // See https://html.spec.whatwg.org/multipage/input.html#the-pattern-attribute for why we append "^(?:" to the beginning and ")$" to the end of the RegEx. And why we set "u" as our flag.
+                    const pattern = new RegExp(`^(?:${this.pattern})$`, 'u')
+                    
+                    if (!this.value.match(pattern)) {
+                        this.internals_.setValidity(
+                            {patternMismatch: true},
+                            'Please match the requested format.',
                             this.Input
                         )
                         return
@@ -271,7 +334,7 @@ class RWC_Input extends HTMLElement {
         this.Input.addEventListener('keydown', e => {
             if (e.key.toUpperCase() === 'ENTER') {
                 if (!this.form) return
-                
+
                 // this.form.submit() doesn't trigger the form submit event. So we need to use this workaround
                 let submit = this.form.querySelector('[type="submit"]')
                 
@@ -398,13 +461,6 @@ class RWC_Input extends HTMLElement {
 }
 
 window.customElements.define('rwc-input', RWC_Input)
-
-/**
- *  TODO Validation
- ** [maxlength, minlength] <==> [text, search, email, password, url, tel]
- ** [max, min, step]       <==> [number, month, week, date, datetime-local, time]
- ** [pattern]              <==> [text, search, email, password, url, tel]
- */
 
 // TODO These types are not supported. Default to text
 // button - Use a regular button[type="button"]
