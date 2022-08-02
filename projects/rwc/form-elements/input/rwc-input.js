@@ -138,8 +138,6 @@ class RWC_Input extends HTMLElement {
     /**
      *  TODO Validation
      ** [max, min, step] <==> [number, month, week, date, datetime-local, time]
-     ** [pattern]        <==> [text, search, email, password, url, tel]
-     ** Standard pattern for URLs and emails
      */
     validation() {
         switch (true) {
@@ -220,17 +218,111 @@ class RWC_Input extends HTMLElement {
                 ) {
                     // See https://html.spec.whatwg.org/multipage/input.html#the-pattern-attribute for why we append "^(?:" to the beginning and ")$" to the end of the RegEx. And why we set "u" as our flag.
                     const pattern = new RegExp(`^(?:${this.pattern})$`, 'u')
-                    
-                    if (!this.value.match(pattern)) {
+
+                    if (this.multiple) {
+                        // Matches zero or more white spaces before or after the comma
+                        const vals = this.value.split(/\s*,\s*/u)
+
+                        for (const val of vals) {
+                            if (!val.match(pattern)) {
+                                this.internals_.setValidity(
+                                    {patternMismatch: true},
+                                    'Please ensure all values match the requested format.',
+                                    this.Input
+                                )
+                                return
+                            }
+                            this.internals_.setFormValue(vals)
+                        }
+                    }
+                    else {
+                        if (!this.value.match(pattern)) {
+                            this.internals_.setValidity(
+                                {patternMismatch: true},
+                                'Please match the requested format.',
+                                this.Input
+                            )
+                            return
+                        }
+                    }
+                }
+
+                break
+            }
+            case (this.type === 'email' && this.value !== '') : {
+                if (this.multiple) {
+                    const vals = this.value.split(/\s*,\s*/u)
+
+                    for (const val of vals) {
+                        if (val.startsWith('@')) {
+                            this.internals_.setValidity(
+                                {customError: true},
+                                `Please enter a part followed by '@'. '${val}' is incomplete`,
+                                this.Input
+                            )
+                            return
+                        }
+                        else if (val.endsWith('@')) {
+                            this.internals_.setValidity(
+                                {customError: true},
+                                `Please enter a part following '@'. '${val}' is incomplete`,
+                                this.Input
+                            )
+                            return
+                        }
+                        else if (val.indexOf('@') === -1) {
+                            this.internals_.setValidity(
+                                {customError: true},
+                                `Please include an '@' in the email address. '${val}' is missing an '@'.`,
+                                this.Input
+                            )
+                            return
+                        }
+                        this.internals_.setFormValue(vals)
+                    }
+                }
+                else {
+                    if (this.value.startsWith('@')) {
                         this.internals_.setValidity(
-                            {patternMismatch: true},
-                            'Please match the requested format.',
+                            {customError: true},
+                            `Please enter a part followed by '@'. '${this.value}' is incomplete`,
+                            this.Input
+                        )
+                        return
+                    }
+                    else if (this.value.endsWith('@')) {
+                        this.internals_.setValidity(
+                            {customError: true},
+                            `Please enter a part following '@'. '${this.value}' is incomplete`,
+                            this.Input
+                        )
+                        return
+                    }
+                    else if (this.value.indexOf('@') === -1) {
+                        this.internals_.setValidity(
+                            {customError: true},
+                            `Please include an '@' in the email address. '${this.value}' is missing an '@'.`,
                             this.Input
                         )
                         return
                     }
                 }
 
+                break
+            }
+            case (this.type === 'url' && this.value !== '') : {
+                if (!this.value.match(new RegExp('^(?:https?://.+)$', 'u'))) {
+                    this.internals_.setValidity(
+                        {customError: true},
+                        `Must start with 'http://' or 'https://' and be followed by at least one character`,
+                        this.Input
+                    )
+                    return
+                }
+
+                break
+            }
+            case (this.hasAttribute('min') && this.hasAttribute('max') && this.value !== '') : {
                 break
             }
             default: {}
