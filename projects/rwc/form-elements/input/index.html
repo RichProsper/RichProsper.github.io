@@ -48,21 +48,27 @@
         <rwc-input type="tel" name="type_tel" placeholder="Type tel..."></rwc-input>
         <rwc-input
             type="number" name="type_number" placeholder="Type number..." min="30012340000" max="50012340000" step="365.23"
-        >
-        </rwc-input>
+        ></rwc-input>
         <rwc-input
             type="month" name="type_month" placeholder="Type month..." min="2022-05" max="2023-11"
-        >
-        </rwc-input>
+            step="2"
+        ></rwc-input>
         <rwc-input
             type="week" name="type_week" placeholder="Type week..." min="2022-W25" max="2023-W35"
-        >
-        </rwc-input>
-        <rwc-input type="date" name="type_date" placeholder="Type date..."></rwc-input>
+            step="2"
+        ></rwc-input>
+        <rwc-input
+            type="date" name="type_date" placeholder="Type date..." min="2022-01-30"
+            max="2023-10-30" step="7"
+        ></rwc-input>
         <rwc-input
             type="datetime-local" name="type_datetime-local" placeholder="Type datetime-local..."
+            min="2022-07-02T06:03" max="2022-09-22T17:14" step="10.008"
         ></rwc-input>
-        <rwc-input type="time" name="type_time" placeholder="Type time..."></rwc-input>
+        <rwc-input
+            type="time" name="type_time" placeholder="Type time..." min="04:05:13.240"
+            max="20:20:45.356" step="10.007"
+        ></rwc-input>
         <hr>
 
         <rwc-input name="required" placeholder="Required..." required>

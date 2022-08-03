@@ -68,9 +68,9 @@ class RWC_Input extends HTMLElement {
 
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
-    get validity()          { return this.internals_.validity          }
-    get validationMessage() { return this.internals_.validationMessage }
-    get willValidate()      { return this.internals_.willValidate      }
+    get validity()          { return this.Input.validity          }
+    get validationMessage() { return this.Input.validationMessage }
+    get willValidate()      { return this.Input.willValidate      }
 
     checkValidity  = () => this.internals_.checkValidity()
     reportValidity = () => this.internals_.reportValidity()
@@ -135,272 +135,9 @@ class RWC_Input extends HTMLElement {
         return template
     }
 
-    /**
-     * @param {String} dateString 
-     */
-    formatDate(dateString) {
-        switch (this.type) {
-            case 'month': {
-                let [year, month] = dateString.split('-')
-                year = +year
-                month = +month - 1
-
-                return new Date(year, month).toLocaleDateString('en-us', { year: 'numeric', month: 'long'})
-            }
-            case 'week': {
-                let [year, week] = dateString.split('-W')
-                return `Week ${week}, ${year}`
-            }
-            default: {console.error('Only dates allowed!')}
-        }
-    }
-
-    /**
-     *  TODO Validation
-     ** [max, min, step] <==> [number, month, week, date, datetime-local, time]
-     */
     validation() {
-        switch (true) {
-            case (this.required && this.value === '') : {
-                this.internals_.setValidity({valueMissing: true}, 'Please fill out this field', this.Input)
-                return
-            }
-            case (
-                this.hasAttribute('minlength') &&
-                this.hasAttribute('maxlength') &&
-                this.value !== ''
-            ) : {
-                if (
-                    this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
-                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
-                ) {
-                    const minLength = +this.minLength
-                    const maxLength = +this.maxLength
-
-                    if (
-                        Number.isInteger(minLength) && Number.isInteger(maxLength) &&
-                        minLength > 0 && minLength < maxLength &&
-                        (this.value.length < minLength || this.value.length > maxLength)
-                    ) {
-                        this.internals_.setValidity(
-                            {customError: true},
-                            `Please lengthen/shorten this text to be atleast ${minLength} and no more than ${maxLength} charcters in length`,
-                            this.Input
-                        )
-                        return
-                    }
-                }
-
-                break
-            }
-            case (this.hasAttribute('minlength') && this.value !== '') : {
-                if (
-                    this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
-                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
-                ) {
-                    const minLength = +this.minLength
-
-                    if (Number.isInteger(minLength) && minLength > 0 && this.value.length < minLength) {
-                        this.internals_.setValidity(
-                            {tooShort: true},
-                            `Please lengthen this text to be atleast ${minLength} charcters in length`,
-                            this.Input
-                        )
-                        return
-                    }
-                }
-
-                break
-            }
-            case (this.hasAttribute('maxlength') && this.value !== '') : {
-                if (
-                    this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
-                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
-                ) {
-                    const maxLength = +this.maxLength
-
-                    if (Number.isInteger(maxLength) && maxLength > 0 && this.value.length > maxLength) {
-                        this.internals_.setValidity(
-                            {tooLong: true},
-                            `Please shorten this text to be no more than ${maxLength} charcters in length`,
-                            this.Input
-                        )
-                        return
-                    }
-                }
-
-                break
-            }
-            case (this.hasAttribute('pattern') && this.value !== '') : {
-                if (
-                    this.type === 'text'     || this.type === 'search' || this.type === 'email' ||
-                    this.type === 'password' || this.type === 'url'    || this.type === 'tel'
-                ) {
-                    // See https://html.spec.whatwg.org/multipage/input.html#the-pattern-attribute for why we append "^(?:" to the beginning and ")$" to the end of the RegEx. And why we set "u" as our flag.
-                    const pattern = new RegExp(`^(?:${this.pattern})$`, 'u')
-
-                    if (this.multiple) {
-                        // Matches zero or more white spaces before or after the comma
-                        const vals = this.value.split(/\s*,\s*/u)
-
-                        for (const val of vals) {
-                            if (!val.match(pattern)) {
-                                this.internals_.setValidity(
-                                    {patternMismatch: true},
-                                    'Please ensure all values match the requested format.',
-                                    this.Input
-                                )
-                                return
-                            }
-                            this.internals_.setFormValue(vals)
-                        }
-                    }
-                    else {
-                        if (!this.value.match(pattern)) {
-                            this.internals_.setValidity(
-                                {patternMismatch: true},
-                                'Please match the requested format.',
-                                this.Input
-                            )
-                            return
-                        }
-                    }
-                }
-
-                break
-            }
-            case (this.type === 'email' && this.value !== '') : {
-                if (this.multiple) {
-                    const vals = this.value.split(/\s*,\s*/u)
-
-                    for (const val of vals) {
-                        if (val.startsWith('@')) {
-                            this.internals_.setValidity(
-                                {typeMismatch: true},
-                                `Please enter a part followed by '@'. '${val}' is incomplete`,
-                                this.Input
-                            )
-                            return
-                        }
-                        else if (val.endsWith('@')) {
-                            this.internals_.setValidity(
-                                {typeMismatch: true},
-                                `Please enter a part following '@'. '${val}' is incomplete`,
-                                this.Input
-                            )
-                            return
-                        }
-                        else if (val.indexOf('@') === -1) {
-                            this.internals_.setValidity(
-                                {typeMismatch: true},
-                                `Please include an '@' in the email address. '${val}' is missing an '@'.`,
-                                this.Input
-                            )
-                            return
-                        }
-                        this.internals_.setFormValue(vals)
-                    }
-                }
-                else {
-                    if (this.value.startsWith('@')) {
-                        this.internals_.setValidity(
-                            {typeMismatch: true},
-                            `Please enter a part followed by '@'. '${this.value}' is incomplete`,
-                            this.Input
-                        )
-                        return
-                    }
-                    else if (this.value.endsWith('@')) {
-                        this.internals_.setValidity(
-                            {typeMismatch: true},
-                            `Please enter a part following '@'. '${this.value}' is incomplete`,
-                            this.Input
-                        )
-                        return
-                    }
-                    else if (this.value.indexOf('@') === -1) {
-                        this.internals_.setValidity(
-                            {typeMismatch: true},
-                            `Please include an '@' in the email address. '${this.value}' is missing an '@'.`,
-                            this.Input
-                        )
-                        return
-                    }
-                }
-
-                break
-            }
-            case (this.type === 'url' && this.value !== '') : {
-                if (!this.value.match(new RegExp('^(?:https?://.+)$', 'u'))) {
-                    this.internals_.setValidity(
-                        {typeMismatch: true},
-                        `Must start with 'http://' or 'https://' and be followed by at least one character`,
-                        this.Input
-                    )
-                    return
-                }
-
-                break
-            }
-            case (this.hasAttribute('min') && this.hasAttribute('max') && this.value !== '') : {
-                if (
-                    this.type === 'number' || this.type === 'month' || this.type === 'week' ||
-                    this.type === 'date'   || this.type === 'datetime-local' ||
-                    this.type === 'time'
-                ) {
-                    if (this.min > '0' && this.min < this.max && (this.value < this.min || this.value > this.max)) {
-                        const message = this.type === 'number'
-                            ? `Value must be greater than or equal to ${this.min}, or smaller than or equal to ${this.max}`
-                            : `Value must be later than or equal to ${this.formatDate(this.min)}, or earlier than or equal to ${this.formatDate(this.max)}`
-
-                        this.internals_.setValidity({customError: true}, message, this.Input)
-                        return
-                    }
-                }
-
-                break
-            }
-            case (this.hasAttribute('min') && this.value !== '') : {
-                if (
-                    this.type === 'number' || this.type === 'month' || this.type === 'week' ||
-                    this.type === 'date'   || this.type === 'datetime-local' ||
-                    this.type === 'time'
-                ) {
-                    if (this.min > '0' && this.value < this.min) {
-                        const message = this.type === 'number'
-                            ? `Value must be greater than or equal to ${this.min}`
-                            : `Value must be later than or equal to ${this.formatDate(this.min)}`
-
-                        this.internals_.setValidity({customError: true}, message, this.Input)
-                        return
-                    }
-                }
-
-                break
-            }
-            case (this.hasAttribute('max') && this.value !== '') : {
-                if (
-                    this.type === 'number' || this.type === 'month' || this.type === 'week' ||
-                    this.type === 'date'   || this.type === 'datetime-local' ||
-                    this.type === 'time'
-                ) {
-                    if (this.max > '0' && this.value > this.max) {
-                        const message = this.type === 'number'
-                            ? `Value must be smaller than or equal to ${this.max}`
-                            : `Value must be earlier than or equal to ${this.formatDate(this.max)}`
-
-                        this.internals_.setValidity({customError: true}, message, this.Input)
-                        return
-                    }
-                }
-
-                break
-            }
-            default: {}
-        } // switch(true)
-
-        this.internals_.setValidity({})
-    } // validation()
+        this.internals_.setValidity(this.validity, this.validationMessage, this.Input)
+    }
 
     determineColors() {
         if (!this.hasAttribute('input_color')) {
@@ -495,24 +232,26 @@ class RWC_Input extends HTMLElement {
             this.validation()
         })
         this.Input.addEventListener('keydown', e => {
-            if (e.key.toUpperCase() === 'ENTER') {
-                if (!this.form) return
+            if (e.key.toUpperCase() !== 'ENTER') return
+            if (!this.form) return
 
-                // this.form.submit() doesn't trigger the form submit event. So we need to use this workaround
-                let submit = this.form.querySelector('[type="submit"]')
-                
-                if (submit) {
-                    submit.click()
-                    return
-                }
-
-                const submitBtn = document.createElement('button')
-                submitBtn.type = 'submit'
-                submitBtn.style.display = 'none'
-                this.form.appendChild(submitBtn)
-                submitBtn.click()
-                submitBtn.remove()
+            // this.form.submit() doesn't trigger the form submit event. So we need to use this workaround
+            let submit = this.form.querySelector('[type="submit"]')
+            
+            if (submit) {
+                submit.click()
+                return
             }
+
+            const submitBtn = document.createElement('button')
+            submitBtn.type = 'submit'
+            submitBtn.style.display = 'none'
+            this.form.appendChild(submitBtn)
+            submitBtn.click()
+            submitBtn.remove()
+        })
+        this.Input.addEventListener('keyup', e => {
+            if (e.key.toUpperCase().startsWith('ARROW')) this.validation()
         })
     }
 
@@ -629,9 +368,9 @@ window.customElements.define('rwc-input', RWC_Input)
 // button - Use a regular button[type="button"]
 // checkbox - Use rwc-checkbox or rwc-switch
 // color - // TODO
-// file - Use rwc-inputfile
+// file - Use rwc-inputfile or rwc-inputmediafile
 // hidden - Just use a normal hidden input
-// image - Use a regular button and set a background-image
+// image - Use a regular button[type="submit"] and set a background-image
 // radio - // TODO
 // range - // TODO
 // reset - Use a regular button[type="reset"]
