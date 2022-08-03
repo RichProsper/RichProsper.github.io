@@ -3,7 +3,7 @@ class RWC_Input extends HTMLElement {
 
     static get observedAttributes() {
         return [
-            'type', 'value', 'readonly', 'size', 'minlength', 'maxlength', 'min', 'max', 'multiple', 'pattern', 'title', 'placeholder', 'required', 'step', 'autofocus', 'input_size', 'input_color'
+            'type', 'value', 'readonly', 'size', 'minlength', 'maxlength', 'min', 'max', 'multiple', 'pattern', 'title', 'placeholder', 'required', 'step', 'input_size', 'input_color'
         ]        
     }
 
@@ -52,9 +52,6 @@ class RWC_Input extends HTMLElement {
 
     get step()  { return this.Input.step }
     set step(s) { s ? this.setAttribute('step', s) : this.removeAttribute('step') }
-
-    get autofocus()  { return this.Input.autofocus }
-    set autofocus(a) { a ? this.setAttribute('autofocus', '') : this.removeAttribute('autofocus') }
 
     get inputSize()   { return this.getAttribute('input_size') || '' }
     set inputSize(iS) {
@@ -344,12 +341,6 @@ class RWC_Input extends HTMLElement {
                     : this.Input.removeAttribute('step')
                 break
             }
-            case 'autofocus': {
-                this.hasAttribute('autofocus')
-                    ? this.Input.setAttribute('autofocus', '')
-                    : this.Input.removeAttribute('autofocus')
-                break
-            }
             case 'input_size':
             case 'input_color': {
                 this.updateSizeColor()
@@ -363,6 +354,8 @@ class RWC_Input extends HTMLElement {
 }
 
 window.customElements.define('rwc-input', RWC_Input)
+
+// ! Attributes: autocomplete & autofocus do not work
 
 // TODO These types are not supported. Default to text
 // button - Use a regular button[type="button"]
