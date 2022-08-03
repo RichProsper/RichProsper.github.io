@@ -136,6 +136,26 @@ class RWC_Input extends HTMLElement {
     }
 
     /**
+     * @param {String} dateString 
+     */
+    formatDate(dateString) {
+        switch (this.type) {
+            case 'month': {
+                let [year, month] = dateString.split('-')
+                year = +year
+                month = +month - 1
+
+                return new Date(year, month).toLocaleDateString('en-us', { year: 'numeric', month: 'long'})
+            }
+            case 'week': {
+                let [year, week] = dateString.split('-W')
+                return `Week ${week}, ${year}`
+            }
+            default: {console.error('Only dates allowed!')}
+        }
+    }
+
+    /**
      *  TODO Validation
      ** [max, min, step] <==> [number, month, week, date, datetime-local, time]
      */
@@ -256,7 +276,7 @@ class RWC_Input extends HTMLElement {
                     for (const val of vals) {
                         if (val.startsWith('@')) {
                             this.internals_.setValidity(
-                                {customError: true},
+                                {typeMismatch: true},
                                 `Please enter a part followed by '@'. '${val}' is incomplete`,
                                 this.Input
                             )
@@ -264,7 +284,7 @@ class RWC_Input extends HTMLElement {
                         }
                         else if (val.endsWith('@')) {
                             this.internals_.setValidity(
-                                {customError: true},
+                                {typeMismatch: true},
                                 `Please enter a part following '@'. '${val}' is incomplete`,
                                 this.Input
                             )
@@ -272,7 +292,7 @@ class RWC_Input extends HTMLElement {
                         }
                         else if (val.indexOf('@') === -1) {
                             this.internals_.setValidity(
-                                {customError: true},
+                                {typeMismatch: true},
                                 `Please include an '@' in the email address. '${val}' is missing an '@'.`,
                                 this.Input
                             )
@@ -284,7 +304,7 @@ class RWC_Input extends HTMLElement {
                 else {
                     if (this.value.startsWith('@')) {
                         this.internals_.setValidity(
-                            {customError: true},
+                            {typeMismatch: true},
                             `Please enter a part followed by '@'. '${this.value}' is incomplete`,
                             this.Input
                         )
@@ -292,7 +312,7 @@ class RWC_Input extends HTMLElement {
                     }
                     else if (this.value.endsWith('@')) {
                         this.internals_.setValidity(
-                            {customError: true},
+                            {typeMismatch: true},
                             `Please enter a part following '@'. '${this.value}' is incomplete`,
                             this.Input
                         )
@@ -300,7 +320,7 @@ class RWC_Input extends HTMLElement {
                     }
                     else if (this.value.indexOf('@') === -1) {
                         this.internals_.setValidity(
-                            {customError: true},
+                            {typeMismatch: true},
                             `Please include an '@' in the email address. '${this.value}' is missing an '@'.`,
                             this.Input
                         )
@@ -313,7 +333,7 @@ class RWC_Input extends HTMLElement {
             case (this.type === 'url' && this.value !== '') : {
                 if (!this.value.match(new RegExp('^(?:https?://.+)$', 'u'))) {
                     this.internals_.setValidity(
-                        {customError: true},
+                        {typeMismatch: true},
                         `Must start with 'http://' or 'https://' and be followed by at least one character`,
                         this.Input
                     )
@@ -323,13 +343,64 @@ class RWC_Input extends HTMLElement {
                 break
             }
             case (this.hasAttribute('min') && this.hasAttribute('max') && this.value !== '') : {
+                if (
+                    this.type === 'number' || this.type === 'month' || this.type === 'week' ||
+                    this.type === 'date'   || this.type === 'datetime-local' ||
+                    this.type === 'time'
+                ) {
+                    if (this.min > '0' && this.min < this.max && (this.value < this.min || this.value > this.max)) {
+                        const message = this.type === 'number'
+                            ? `Value must be greater than or equal to ${this.min}, or smaller than or equal to ${this.max}`
+                            : `Value must be later than or equal to ${this.formatDate(this.min)}, or earlier than or equal to ${this.formatDate(this.max)}`
+
+                        this.internals_.setValidity({customError: true}, message, this.Input)
+                        return
+                    }
+                }
+
+                break
+            }
+            case (this.hasAttribute('min') && this.value !== '') : {
+                if (
+                    this.type === 'number' || this.type === 'month' || this.type === 'week' ||
+                    this.type === 'date'   || this.type === 'datetime-local' ||
+                    this.type === 'time'
+                ) {
+                    if (this.min > '0' && this.value < this.min) {
+                        const message = this.type === 'number'
+                            ? `Value must be greater than or equal to ${this.min}`
+                            : `Value must be later than or equal to ${this.formatDate(this.min)}`
+
+                        this.internals_.setValidity({customError: true}, message, this.Input)
+                        return
+                    }
+                }
+
+                break
+            }
+            case (this.hasAttribute('max') && this.value !== '') : {
+                if (
+                    this.type === 'number' || this.type === 'month' || this.type === 'week' ||
+                    this.type === 'date'   || this.type === 'datetime-local' ||
+                    this.type === 'time'
+                ) {
+                    if (this.max > '0' && this.value > this.max) {
+                        const message = this.type === 'number'
+                            ? `Value must be smaller than or equal to ${this.max}`
+                            : `Value must be earlier than or equal to ${this.formatDate(this.max)}`
+
+                        this.internals_.setValidity({customError: true}, message, this.Input)
+                        return
+                    }
+                }
+
                 break
             }
             default: {}
-        }
+        } // switch(true)
 
         this.internals_.setValidity({})
-    }
+    } // validation()
 
     determineColors() {
         if (!this.hasAttribute('input_color')) {
