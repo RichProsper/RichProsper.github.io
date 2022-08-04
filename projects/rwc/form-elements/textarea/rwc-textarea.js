@@ -188,10 +188,16 @@ class RWC_Textarea extends HTMLElement {
     
     // TODO
     connectedCallback() {
+        this.Textarea.textContent = this.textContent
         // TODO this.updateSizeColor()
         this.setFormValue()
         this.validation()
         
+        this.addEventListener('DOMSubtreeModified', () => {
+            this.Textarea.textContent = this.textContent
+            this.setFormValue()
+            this.validation()
+        })
         this.Textarea.addEventListener('focus', () => this.TextareaContainer.classList.add('focused'))
         this.Textarea.addEventListener('blur', () => this.TextareaContainer.classList.remove('focused'))
         this.Textarea.addEventListener('input', () => {
@@ -282,5 +288,3 @@ class RWC_Textarea extends HTMLElement {
 }
 
 window.customElements.define('rwc-textarea', RWC_Textarea)
-
-// TODO addEventListener 'DOMSubtreeModified' to watch for textContent changes
