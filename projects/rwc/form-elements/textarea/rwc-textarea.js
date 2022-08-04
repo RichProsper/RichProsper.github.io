@@ -4,7 +4,7 @@ class RWC_Textarea extends HTMLElement {
     static get observedAttributes() {
         return [
             'rows', 'cols', 'dirname', 'minlength', 'maxlength', 'placeholder', 'readonly',
-            'required', 'wrap', 'textarea_size', 'textarea_color'
+            'required', 'wrap', 'resize', 'textarea_size', 'textarea_color'
         ]        
     }
 
@@ -48,6 +48,9 @@ class RWC_Textarea extends HTMLElement {
 
     get wrap()  { return this.Textarea.wrap }
     set wrap(w) { w ? this.setAttribute('wrap', w) : this.removeAttribute('wrap') }
+
+    get resize()  { return this.getAttribute('resize') || '' }
+    set resize(r) { r ? this.setAttribute('resize', r) : this.removeAttribute('resize') }
 
     get form()              { return this.internals_.form              }
     get name()              { return this.getAttribute('name')         }
@@ -93,14 +96,17 @@ class RWC_Textarea extends HTMLElement {
         this.Placeholder = this.shadowRoot.querySelector('span.placeholder')
     }
 
-    // TODO
     getTemplate() {
+        this.defaultTextareaSize = '1.6rem'
         this.defaultTextareaColor = { h: 207, s: 90, l: 77 }
-        this.css = `` // TODO
+        this.defaultResize = 'both'
+        this.css = `
+            *,*::before,*::after{margin:0;padding:0}div.textarea-container{--textarea-size: [[textarea_size]];--resize: [[resize]];--hue-white: 0, 0%;--white: hsl(var(--hue-white), 100%);--grey-1: hsl(var(--hue-white), 87%);--grey-2: hsl(var(--hue-white), 50%);--grey-3: hsla(var(--hue-white), 100%, .035);--color-1a: [[color_1a]];--color-1b: [[color_1b]];--color-2a: [[color_2a]];--color-2b: [[color_2b]];position:relative;color-scheme:dark;font-size:var(--textarea-size);display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-sizing:border-box;box-sizing:border-box}div.textarea-container *,div.textarea-container *::before,div.textarea-container *::after{-webkit-box-sizing:inherit;box-sizing:inherit}div.textarea-container textarea{position:relative;height:100%;display:block;width:100%;background-color:var(--color-2a);border:none;border-bottom:0.0625em solid var(--grey-1);color:var(--grey-1);font-size:1em;font-family:inherit;padding:0 .3125em;resize:var(--resize);-webkit-tap-highlight-color:transparent;-webkit-transition:background-color .2s;transition:background-color .2s}div.textarea-container textarea::-webkit-input-placeholder{color:transparent;-webkit-user-select:none;user-select:none}div.textarea-container textarea:-ms-input-placeholder{color:transparent;-ms-user-select:none;user-select:none}div.textarea-container textarea::-ms-input-placeholder{color:transparent;-ms-user-select:none;user-select:none}div.textarea-container textarea::placeholder{color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}div.textarea-container textarea:hover{background-color:var(--color-2b)}div.textarea-container textarea:hover ~ .hover{opacity:1}div.textarea-container textarea:focus{outline:none}div.textarea-container textarea:focus+.placeholder{color:var(--color-1a)}div.textarea-container textarea:focus+.placeholder,div.textarea-container textarea:not(:placeholder-shown)+.placeholder{opacity:1;-webkit-transform:translateY(-1.5em) scale(0.75);transform:translateY(-1.5em) scale(0.75)}div.textarea-container textarea:disabled{background-color:var(--grey-3)}div.textarea-container textarea:disabled,div.textarea-container textarea:disabled+.placeholder{color:var(--grey-2);pointer-events:none}div.textarea-container textarea:disabled ~ .hover{opacity:0}div.textarea-container .placeholder{position:absolute;top:0;left:.3125em;opacity:.7;line-height:2.5em;pointer-events:none;-webkit-transform-origin:top left;transform-origin:top left;-webkit-transition:.2s;transition:.2s}div.textarea-container .hover{position:absolute;bottom:0;left:0;width:100%;height:.125em;background-color:var(--white);opacity:0;-webkit-transition:opacity .2s;transition:opacity .2s;pointer-events:none}div.textarea-container::after{content:'';position:absolute;left:0;right:0;bottom:0;height:.125em;background-color:var(--color-1b);-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transition:300ms cubic-bezier(0, 0, 0.2, 1) 0ms;transition:300ms cubic-bezier(0, 0, 0.2, 1) 0ms;pointer-events:none}div.textarea-container.focused::after{-webkit-transform:scaleX(1);transform:scaleX(1)}
+        `
 
         const template = document.createElement('template')
         template.innerHTML = `
-            <link rel="stylesheet" href="style.min.css">
+            <style>${this.css}</style>
 
             <div class="textarea-container">
                 <textarea></textarea>
@@ -173,7 +179,7 @@ class RWC_Textarea extends HTMLElement {
         ]
     }
 
-    updateSizeColor() {
+    updateStyles() {
         const [color1a, color1b, color2a, color2b] = this.determineColors()
 
         this.Style.innerHTML = this.css
@@ -184,12 +190,12 @@ class RWC_Textarea extends HTMLElement {
             .replace('[[color_1b]]', color1b)
             .replace('[[color_2a]]', color2a)
             .replace('[[color_2b]]', color2b)
+            .replace('[[resize]]', this.getAttribute('resize') || this.defaultResize)
     }
     
-    // TODO
     connectedCallback() {
         this.Textarea.textContent = this.textContent
-        // TODO this.updateSizeColor()
+        this.updateStyles()
         this.setFormValue()
         this.validation()
         
@@ -206,7 +212,6 @@ class RWC_Textarea extends HTMLElement {
         })
     }
 
-    // TODO
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
             case 'rows': {
@@ -275,8 +280,9 @@ class RWC_Textarea extends HTMLElement {
                 break
             }
             case 'textarea_size':
-            case 'textarea_color': {
-                // TODO this.updateSizeColor()
+            case 'textarea_color':
+            case 'resize': {
+                this.updateStyles()
                 break
             }
             default: {}
