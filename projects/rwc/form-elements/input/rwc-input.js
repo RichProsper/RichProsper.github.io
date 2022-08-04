@@ -109,7 +109,6 @@ class RWC_Input extends HTMLElement {
 
     getTemplate() {
         this.defaultInputSize = '4rem'
-        this.defaultInputColor = 'hsl(207, 90%, 77%)'
         this.defaultInputColor = { h: 207, s: 90, l: 77 }
         this.supportedTypes = [
             'text', 'search', 'email', 'password', 'url', 'tel', 'number', 'month', 'week', 'date', 'datetime-local', 'time'
