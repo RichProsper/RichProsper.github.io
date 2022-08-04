@@ -9,8 +9,11 @@ class RWC_Textarea extends HTMLElement {
     }
 
     get value()  { return this.Textarea.value }
-    // TODO Fix rwc-input as well
-    set value(v) { this.Textarea.value = v, this.setFormValue(), this.validation() }
+    set value(v) {
+        this.Textarea.value = v
+        this.setFormValue()
+        this.validation()
+    }
 
     get rows()  { return this.Textarea.rows }
     set rows(r) { r ? this.setAttribute('rows', r) : this.removeAttribute('rows') }

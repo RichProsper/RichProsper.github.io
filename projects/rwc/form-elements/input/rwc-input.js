@@ -11,7 +11,11 @@ class RWC_Input extends HTMLElement {
     set type(t) { t ? this.setAttribute('type', t) : this.removeAttribute('type') }
 
     get value()  { return this.Input.value }
-    set value(v) { this.Input.value = v, this.setFormValue(), this.validation() }
+    set value(v) {
+        this.Input.value = v
+        this.setFormValue()
+        this.validation()
+    }
 
     get disabled()  { return this.Input.disabled }
     set disabled(d) { d ? this.setAttribute('disabled', '') : this.removeAttribute('disabled') }
