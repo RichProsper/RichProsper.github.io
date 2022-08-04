@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../../../global.min.css">
+    <script src="rwc-textarea.js" defer></script>
+    <style>
+        body {
+            padding: 1.333em;
+        }
+        h1 {
+            margin-bottom: 1.333em;
+        }
+        rwc-textarea {
+            display: inline-flex;
+            margin-bottom: 2.5em;
+        }
+        hr {
+            margin-bottom: 2.5em;
+        }
+    </style>
+    <title>Textarea Demo</title>
+</head>
+<body>
+    <h1>Textarea Demo</h1>
+
+    <form>
+        <rwc-textarea
+            name="minlength_maxlength" placeholder="Minlength & Maxlength..." minlength="10"
+            maxlength="20"
+        ></rwc-textarea>
+        <rwc-textarea name="minlength" placeholder="Minlength..." minlength="12">
+        </rwc-textarea>
+        <rwc-textarea name="maxlength" placeholder="Maxlength..." maxlength="24">
+        </rwc-textarea>
+        <hr>
+
+        <rwc-textarea name="required" placeholder="Required..." required>
+        </rwc-textarea>
+        <rwc-textarea name="readonly" placeholder="Readonly..." readonly>I am readonly.</rwc-textarea>
+        <rwc-textarea name="disabled" placeholder="Disabled..." disabled>
+        </rwc-textarea>
+        <hr>
+
+        <rwc-textarea textarea_size="7rem" placeholder="Input size: 7rem"></rwc-textarea>
+        <rwc-textarea textarea_size="6rem" placeholder="Input size: 6rem"></rwc-textarea>
+        <rwc-textarea textarea_size="5rem" placeholder="Input size: 5rem"></rwc-textarea>
+        <rwc-textarea textarea_size="3rem" placeholder="Input size: 3rem"></rwc-textarea>
+        <hr>
+
+        <rwc-textarea textarea_color="hsl(123, 38%, 57%)" placeholder="Input color: green">
+        </rwc-textarea>
+        <rwc-textarea textarea_color="orange" placeholder="Input color: orange"></rwc-textarea>
+        <rwc-textarea textarea_color="red" placeholder="Input color: red"></rwc-textarea>
+        <rwc-textarea textarea_color="violet" placeholder="Input color: violet"></rwc-textarea>
+        <hr>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault()
+                console.log(`Submitting at data:`)
+                
+                const data = new FormData(this)
+                
+                for (const datum of data) console.log(datum)
+            })
+        })
+    </script>
+</body>
+</html>
