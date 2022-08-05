@@ -290,7 +290,6 @@ class RWC_Textarea extends HTMLElement {
 
         this.validation()
     }
-
 }
 
 window.customElements.define('rwc-textarea', RWC_Textarea)
