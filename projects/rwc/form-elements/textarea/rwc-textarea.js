@@ -52,8 +52,8 @@ class RWC_Textarea extends HTMLElement {
     get resize()  { return this.getAttribute('resize') || '' }
     set resize(r) { r ? this.setAttribute('resize', r) : this.removeAttribute('resize') }
 
-    get form()              { return this.internals_.form              }
-    get name()              { return this.getAttribute('name')         }
+    get form()              { return this.internals_.form            }
+    get name()              { return this.getAttribute('name')       }
     get validity()          { return this.Textarea.validity          }
     get validationMessage() { return this.Textarea.validationMessage }
     get willValidate()      { return this.Textarea.willValidate      }
