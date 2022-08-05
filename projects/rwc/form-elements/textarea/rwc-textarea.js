@@ -52,6 +52,16 @@ class RWC_Textarea extends HTMLElement {
     get resize()  { return this.getAttribute('resize') || '' }
     set resize(r) { r ? this.setAttribute('resize', r) : this.removeAttribute('resize') }
 
+    get textareaSize()   { return this.getAttribute('textarea_size') || '' }
+    set textareaSize(tS) {
+        tS ? this.setAttribute('textarea_size', tS) : this.removeAttribute('textarea_size')
+    }
+
+    get textareaColor()   { return this.getAttribute('textarea_color') || '' }
+    set textareaColor(tC) {
+        tC ? this.setAttribute('textarea_color', tC) : this.removeAttribute('textarea_color')
+    }
+
     get form()              { return this.internals_.form            }
     get name()              { return this.getAttribute('name')       }
     get validity()          { return this.Textarea.validity          }
