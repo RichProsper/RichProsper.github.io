@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../../../global.min.css">
+    <script src="rwc-select.js" defer></script>
+    <style>
+        body {
+            padding: 1.333em;
+        }
+        h1 {
+            margin-bottom: 1.333em;
+        }
+        rwc-select {
+            display: inline-flex;
+            margin-bottom: 2.5em;
+        }
+        hr {
+            margin-bottom: 2.5em;
+        }
+    </style>
+    <title>Select Demo</title>
+</head>
+<body>
+    <h1>Select Demo</h1>
+
+    <form>
+        <rwc-select name="cars" label_text="Cars"></rwc-select>
+        <rwc-select name="cars_multiple" label_text="Cars multiple..." multiple></rwc-select>
+        <hr>
+
+        <rwc-select name="required" label_text="Required..." required></rwc-select>
+        <rwc-select name="disabled" label_text="Disabled..." disabled></rwc-select>
+        <rwc-select multiple name="disabled_multiple" label_text="Disabled multiple.." disabled>
+        </rwc-select>
+        <hr>
+
+        <rwc-select select_size="4rem" label_text="Select size: 4rem"></rwc-select>
+        <rwc-select select_size="3rem" label_text="Select size: 3rem"></rwc-select>
+        <rwc-select multiple select_size="2rem" label_text="Select size: 2rem"></rwc-select>
+        <rwc-select multiple select_size="1rem" label_text="Select size: 1rem"></rwc-select>
+        <hr>
+
+        <rwc-select select_color="hsl(123, 38%, 57%)" label_text="Select color: green"></rwc-select>
+        <rwc-select select_color="orange" label_text="Select color: orange"></rwc-select>
+        <rwc-select multiple select_color="red" label_text="Select color: red"></rwc-select>
+        <rwc-select multiple select_color="violet" label_text="Select color: violet"></rwc-select>
+        <hr>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault()
+                console.log(`Submitting at data:`)
+                
+                const data = new FormData(this)
+                
+                for (const datum of data) console.log(datum)
+            })
+        })
+    </script>
+</body>
+</html>
