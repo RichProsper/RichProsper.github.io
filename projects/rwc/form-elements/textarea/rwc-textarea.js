@@ -202,18 +202,18 @@ class RWC_Textarea extends HTMLElement {
             .replace('[[color_2b]]', color2b)
             .replace('[[resize]]', this.getAttribute('resize') || this.defaultResize)
     }
-    
-    connectedCallback() {
+
+    onDOMSubtreeModified() {
         this.Textarea.textContent = this.textContent
-        this.updateStyles()
         this.setFormValue()
         this.validation()
-        
-        this.addEventListener('DOMSubtreeModified', () => {
-            this.Textarea.textContent = this.textContent
-            this.setFormValue()
-            this.validation()
-        })
+    }
+    
+    connectedCallback() {
+        this.onDOMSubtreeModified()
+        this.updateStyles()
+                
+        this.addEventListener('DOMSubtreeModified', () => this.onDOMSubtreeModified())
         this.Textarea.addEventListener('focus', () => this.TextareaContainer.classList.add('focused'))
         this.Textarea.addEventListener('blur', () => this.TextareaContainer.classList.remove('focused'))
         this.Textarea.addEventListener('input', () => {
