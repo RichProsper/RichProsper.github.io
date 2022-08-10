@@ -138,7 +138,7 @@ class RWC_Textarea extends HTMLElement {
 
             return [
                 `hsl(${color.h}, ${color.s}%, ${color.l}%)`,
-                `hsl(${color.h}, ${color.s}%, ${color.l - 24}%)`,
+                `hsl(${color.h}, ${color.s}%, ${color.l * 0.6883}%)`,
                 `hsla(${color.h}, ${color.s}%, ${color.l}%, .035)`,
                 `hsla(${color.h}, ${color.s}%, ${color.l}%, .07)`
             ]
@@ -183,7 +183,7 @@ class RWC_Textarea extends HTMLElement {
 
         return [
             `hsl(${hue}, ${saturation}%, ${lightness}%)`,
-            `hsl(${hue}, ${saturation}%, ${lightness - 24}%)`,
+            `hsl(${hue}, ${saturation}%, ${lightness * 0.6883}%)`,
             `hsla(${hue}, ${saturation}%, ${lightness}%, .035)`,
             `hsla(${hue}, ${saturation}%, ${lightness}%, .07)`
         ]
