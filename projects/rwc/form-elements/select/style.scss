@@ -6,21 +6,19 @@
 }
 
 div.select-container {
-    --select-size : 4rem;
+    --select-size : [[select_size]];
 
     // White: hsl(0, 0%, 100%)
     --hue-white : 0, 0%;
     --white     : hsl(var(--hue-white), 100%);
-    --grey-1    : hsla(var(--hue-white), 100%, .035);
-    --grey-2    : hsl(var(--hue-white), 87%);
+    --grey-1    : hsl(var(--hue-white), 87%);
+    --grey-2    : hsl(var(--hue-white), 50%);
     --grey-3    : hsl(var(--hue-white), 10%);
-    --grey-4    : hsl(var(--hue-white), 50%);
-    --grey-5    : hsl(var(--hue-white), 43%);
-    --grey-6    : hsla(var(--hue-white), 100%, .055);
     // Light Blue : hsl(207, 90%, 77%)
-    --hue-blue   : 207;
-    --blue-1    : hsl(var(--hue-blue), 90%, 77%);
-    --blue-2    : hsl(var(--hue-blue), 90%, 53%);
+    --color-1a  : [[color_1a]];
+    --color-1b  : [[color_1b]];
+    --color-2a  : [[color_2a]];
+    --color-2b  : [[color_2b]];
     
 
     position: relative;
@@ -40,10 +38,10 @@ div.select-container {
         height: 100%;
         display: block;
         width: 100%;
-        background-color: var(--grey-1);
+        background-color: var(--color-2a);
         border: none;
-        border-bottom: .0625em solid var(--grey-2);
-        color: var(--grey-2);
+        border-bottom: .0625em solid var(--grey-1);
+        color: var(--grey-1);
         font-size: .4em;
         font-family: inherit;
         padding: 0 .3125em;
@@ -52,8 +50,7 @@ div.select-container {
         cursor: pointer;
 
         &:hover {
-            border-bottom-color: var(--white);
-            background-color: var(--grey-6);
+            background-color: var(--color-2b);
         }
         &:hover ~ .hover {
             opacity: 1;
@@ -62,13 +59,16 @@ div.select-container {
             outline: none;
 
             & + .label-text {
-                color: var(--blue-1);
+                color: var(--color-1a);
                 opacity: 1;
+            }
+            & ~ .focus {
+                transform: scaleX(1);
             }
         }
         &:disabled,
         &:disabled + .label-text {
-            color: var(--grey-4);
+            color: var(--grey-2);
             cursor: default;
             pointer-events: none;
         }
@@ -78,16 +78,15 @@ div.select-container {
         &[multiple] {
             height: auto;
             min-height: 6.25em;
-            background-color: var(--grey-3);
             outline: .125em solid transparent;
-            border: .0625em solid var(--grey-4);
+            border: .0625em solid var(--grey-2);
             transition: outline 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
 
             &:hover {
                 outline-color: var(--white);
             }
             &:focus {
-                outline-color: var(--blue-2);
+                outline-color: var(--color-1b);
             }
             optgroup, option {
                 background-color: unset;
@@ -95,12 +94,11 @@ div.select-container {
             option:hover,
             option:checked {
                 color: inherit;
-                background-color: var(--blue-2);
-
-                &:disabled {
-                    color: var(--grey-5);
-                    background-color: unset;
-                }
+                background-color: var(--color-1b);
+            }
+            & ~ .hover,
+            & ~ .focus {
+                display: none;
             }
         }
     }
@@ -126,18 +124,15 @@ div.select-container {
         transition: opacity .2s;
         pointer-events: none;
     }
-    &::after {
-        content: '';
+    .focus {
         position: absolute;
         left: 0;
         right: 0;
         bottom: 0;
+        height: .05em;
+        background-color: var(--color-1b);
         transform: scaleX(0);
         transition: 300ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-        border-bottom: .05em solid var(--blue-2);
         pointer-events: none;
-    }
-    &.focused::after {
-        transform: scaleX(1);
     }
 }
