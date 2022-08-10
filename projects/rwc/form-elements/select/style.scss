@@ -13,12 +13,12 @@ div.select-container {
     --white     : hsl(var(--hue-white), 100%);
     --grey-1    : hsl(var(--hue-white), 87%);
     --grey-2    : hsl(var(--hue-white), 50%);
-    --grey-3    : hsl(var(--hue-white), 10%);
     // Light Blue : hsl(207, 90%, 77%)
     --color-1a  : [[color_1a]];
     --color-1b  : [[color_1b]];
     --color-2a  : [[color_2a]];
     --color-2b  : [[color_2b]];
+    --color-3a  : [[color_3a]];
     
 
     position: relative;
@@ -73,7 +73,7 @@ div.select-container {
             pointer-events: none;
         }
         optgroup, option {
-            background-color: var(--grey-3);
+            background-color: var(--color-3a);
         }
         &[multiple] {
             height: auto;
