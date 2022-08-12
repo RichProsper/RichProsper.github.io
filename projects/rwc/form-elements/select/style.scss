@@ -107,8 +107,13 @@ div.select-container {
             option {
                 padding: 0 .3125em;
 
-                &:disabled:hover {
-                    background-color: unset;
+                &:disabled {
+                    &:hover {
+                        background-color: unset;
+                    }
+                    &:checked {
+                        background-color: unset;
+                    }
                 }
             }
         }
