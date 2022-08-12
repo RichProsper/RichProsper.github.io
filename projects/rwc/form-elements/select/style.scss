@@ -23,7 +23,6 @@ div.select-container {
 
     position: relative;
     width: 100%;
-    height: 1em;
     color-scheme: dark;
     font-size: var(--select-size);
     display: inline-flex;
@@ -36,7 +35,7 @@ div.select-container {
     }
     select {
         position: relative;
-        height: 100%;
+        height: 2.5em;
         display: block;
         width: 100%;
         background-color: var(--color-2a);
@@ -73,11 +72,16 @@ div.select-container {
             cursor: default;
             pointer-events: none;
         }
-        optgroup, option {
+        optgroup,
+        option {
             background-color: var(--color-3a);
         }
+        option:hover,
+        option:checked {
+            background-color: var(--color-1b);
+        }
         &[multiple] {
-            height: auto;
+            height: unset;
             min-height: 6.25em;
             outline: .125em solid transparent;
             border: .0625em solid var(--grey-2);
@@ -89,17 +93,18 @@ div.select-container {
             &:focus {
                 outline-color: var(--color-1b);
             }
-            optgroup, option {
-                background-color: unset;
-            }
-            option:hover,
-            option:checked {
-                color: inherit;
-                background-color: var(--color-1b);
-            }
             & ~ .hover,
             & ~ .focus {
                 display: none;
+            }
+            &:disabled {
+                optgroup,
+                option {
+                    background-color: unset;
+                }
+            }
+            option:disabled:hover {
+                background-color: unset;
             }
         }
     }
