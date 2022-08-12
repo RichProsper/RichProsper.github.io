@@ -15,9 +15,12 @@
         h1 {
             margin-bottom: 1.333em;
         }
-        rwc-select {
-            display: inline-flex;
+        div.flex {
+            display: flex;
             margin-bottom: 2.5em;
+        }
+        div.flex rwc-select {
+            margin-right: 1rem;
             min-width: 20rem;
         }
         hr {
@@ -30,114 +33,122 @@
     <h1>Select Demo</h1>
 
     <form>
-        <rwc-select name="cars" label_text="Cars">
-            <optgroup label="Group A">
+        <div class="flex">
+            <rwc-select name="cars" label_text="Cars">
+                <optgroup label="Group A">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab" selected>Saab</option>
+                    <option value="chevrolet" disabled>Chevrolet</option>
+                </optgroup>
+                <optgroup label="Group B">
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                    <option value="ford">Ford</option>
+                </optgroup>
+                <optgroup label="Group C" disabled>
+                    <option value="honda">Honda</option>
+                    <option value="hyundai">Hyundai</option>
+                    <option value="lexus">Lexus</option>
+                </optgroup>
+            </rwc-select>
+            <rwc-select name="cars_multiple" label_text="Cars multiple..." multiple>
+                <optgroup label="Group A">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab" selected>Saab</option>
+                    <option value="chevrolet" disabled>Chevrolet</option>
+                </optgroup>
+                <optgroup label="Group B">
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                    <option value="ford">Ford</option>
+                </optgroup>
+                <optgroup label="Group C" disabled>
+                    <option value="honda">Honda</option>
+                    <option value="hyundai">Hyundai</option>
+                    <option value="lexus">Lexus</option>
+                </optgroup>
+            </rwc-select>
+        </div>
+        <hr>
+
+        <div class="flex">
+            <rwc-select name="required" label_text="Required..." required>
+                <option value="">Select a car...</option>
                 <option value="volvo">Volvo</option>
-                <option value="saab" selected>Saab</option>
-                <option value="chevrolet" disabled>Chevrolet</option>
-            </optgroup>
-            <optgroup label="Group B">
+                <option value="saab">Saab</option>
                 <option value="mercedes">Mercedes</option>
                 <option value="audi">Audi</option>
-                <option value="ford">Ford</option>
-            </optgroup>
-            <optgroup label="Group C" disabled>
-                <option value="honda">Honda</option>
-                <option value="hyundai">Hyundai</option>
-                <option value="lexus">Lexus</option>
-            </optgroup>
-        </rwc-select>
-        <rwc-select name="cars_multiple" label_text="Cars multiple..." multiple>
-            <optgroup label="Group A">
+            </rwc-select>
+            <rwc-select name="disabled" label_text="Disabled..." disabled>
                 <option value="volvo">Volvo</option>
-                <option value="saab" selected>Saab</option>
-                <option value="chevrolet" disabled>Chevrolet</option>
-            </optgroup>
-            <optgroup label="Group B">
+                <option value="saab">Saab</option>
                 <option value="mercedes">Mercedes</option>
                 <option value="audi">Audi</option>
-                <option value="ford">Ford</option>
-            </optgroup>
-            <optgroup label="Group C" disabled>
-                <option value="honda">Honda</option>
-                <option value="hyundai">Hyundai</option>
-                <option value="lexus">Lexus</option>
-            </optgroup>
-        </rwc-select>
+            </rwc-select>
+            <rwc-select multiple name="disabled_multiple" label_text="Disabled multiple.." disabled>
+                <option value="">Select a car...</option>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </rwc-select>
+        </div>
         <hr>
 
-        <rwc-select name="required" label_text="Required..." required>
-            <option value="">Select a car...</option>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </rwc-select>
-        <rwc-select name="disabled" label_text="Disabled..." disabled>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </rwc-select>
-        <rwc-select multiple name="disabled_multiple" label_text="Disabled multiple.." disabled>
-            <option value="">Select a car...</option>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </rwc-select>
+        <div class="flex">
+            <rwc-select select_size="7rem" label_text="Select size...">
+                <option value="3rem">3rem</option>
+                <option value="5rem">5rem</option>
+                <option value="6rem">6rem</option>
+                <option value="7rem" selected>7rem</option>
+            </rwc-select>
+            <rwc-select select_size="6rem" label_text="Select size...">
+                <option value="3rem">3rem</option>
+                <option value="5rem">5rem</option>
+                <option value="6rem" selected>6rem</option>
+                <option value="7rem">7rem</option>
+            </rwc-select>
+            <rwc-select multiple select_size="5rem" label_text="Select size...">
+                <option value="3rem">3rem</option>
+                <option value="5rem" selected>5rem</option>
+                <option value="6rem">6rem</option>
+                <option value="7rem">7rem</option>
+            </rwc-select>
+            <rwc-select multiple select_size="3rem" label_text="Select size...">
+                <option value="3rem" selected>3rem</option>
+                <option value="5rem">5rem</option>
+                <option value="6rem">6rem</option>
+                <option value="7rem">7rem</option>
+            </rwc-select>
+        </div>
         <hr>
 
-        <rwc-select select_size="7rem" label_text="Select size...">
-            <option value="3rem">3rem</option>
-            <option value="5rem">5rem</option>
-            <option value="6rem">6rem</option>
-            <option value="7rem" selected>7rem</option>
-        </rwc-select>
-        <rwc-select select_size="6rem" label_text="Select size...">
-            <option value="3rem">3rem</option>
-            <option value="5rem">5rem</option>
-            <option value="6rem" selected>6rem</option>
-            <option value="7rem">7rem</option>
-        </rwc-select>
-        <rwc-select multiple select_size="5rem" label_text="Select size...">
-            <option value="3rem">3rem</option>
-            <option value="5rem" selected>5rem</option>
-            <option value="6rem">6rem</option>
-            <option value="7rem">7rem</option>
-        </rwc-select>
-        <rwc-select multiple select_size="3rem" label_text="Select size...">
-            <option value="3rem" selected>3rem</option>
-            <option value="5rem">5rem</option>
-            <option value="6rem">6rem</option>
-            <option value="7rem">7rem</option>
-        </rwc-select>
-        <hr>
-
-        <rwc-select select_color="hsl(123, 38%, 57%)" label_text="Select color...">
-            <option value="hsl(123, 38%, 57%)">Green</option>
-            <option value="orange">Orange</option>
-            <option value="red">Red</option>
-            <option value="violet">Violet</option>
-        </rwc-select>
-        <rwc-select select_color="orange" label_text="Select color...">
-            <option value="hsl(123, 38%, 57%)">Green</option>
-            <option value="orange" selected>Orange</option>
-            <option value="red">Red</option>
-            <option value="violet">Violet</option>
-        </rwc-select>
-        <rwc-select multiple select_color="red" label_text="Select color...">
-            <option value="hsl(123, 38%, 57%)">Green</option>
-            <option value="orange">Orange</option>
-            <option value="red" selected>Red</option>
-            <option value="violet">Violet</option>
-        </rwc-select>
-        <rwc-select multiple select_color="violet" label_text="Select color violet">
-            <option value="hsl(123, 38%, 57%)">Green</option>
-            <option value="orange">Orange</option>
-            <option value="red">Red</option>
-            <option value="violet" selected>Violet</option>
-        </rwc-select>
+        <div class="flex">
+            <rwc-select select_color="hsl(123, 38%, 57%)" label_text="Select color...">
+                <option value="hsl(123, 38%, 57%)">Green</option>
+                <option value="orange">Orange</option>
+                <option value="red">Red</option>
+                <option value="violet">Violet</option>
+            </rwc-select>
+            <rwc-select select_color="orange" label_text="Select color...">
+                <option value="hsl(123, 38%, 57%)">Green</option>
+                <option value="orange" selected>Orange</option>
+                <option value="red">Red</option>
+                <option value="violet">Violet</option>
+            </rwc-select>
+            <rwc-select multiple select_color="red" label_text="Select color...">
+                <option value="hsl(123, 38%, 57%)">Green</option>
+                <option value="orange">Orange</option>
+                <option value="red" selected>Red</option>
+                <option value="violet">Violet</option>
+            </rwc-select>
+            <rwc-select multiple select_color="violet" label_text="Select color violet">
+                <option value="hsl(123, 38%, 57%)">Green</option>
+                <option value="orange">Orange</option>
+                <option value="red">Red</option>
+                <option value="violet" selected>Violet</option>
+            </rwc-select>
+        </div>
         <hr>
 
         <button type="submit">Submit</button>
