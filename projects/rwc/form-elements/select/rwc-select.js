@@ -94,10 +94,24 @@ class RWC_Select extends HTMLElement {
     /**
      * This is called when the form is reset
      */
-    // TODO
     formResetCallback() {
-        // this.setFormValue()
-        // this.validation()
+        const options = this.Select.querySelectorAll('option')
+        const optionsWithSelectedAttribute = []
+
+        for (const option of options) {
+            if (option.hasAttribute('selected')) optionsWithSelectedAttribute.push(option)
+            option.selected = false
+        }
+
+        if (optionsWithSelectedAttribute.length === 0) options[0].selected = true
+        else {
+            for (const option of optionsWithSelectedAttribute) option.selected = true
+        }
+
+        this.Select.dispatchEvent(new Event('change'))
+
+        this.setFormValue()
+        this.validation()
     }
 
     constructor() {
