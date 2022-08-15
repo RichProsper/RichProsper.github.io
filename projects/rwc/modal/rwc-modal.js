@@ -57,7 +57,8 @@ class RWC_Modal extends HTMLElement {
         return template
     }
 
-    openModal = () => this.Modal.classList.add('open')
+    openModal  = () => this.Modal.classList.add('open')
+    closeModal = () => this.Modal.classList.remove('open')
 
     connectedCallback() {
         this.Modal.addEventListener('click', function(e) {
