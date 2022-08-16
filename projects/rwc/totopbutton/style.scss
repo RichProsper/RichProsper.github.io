@@ -6,13 +6,12 @@
 }
 
 .totopbutton {
-    --button-size: [[button_size]];
-
-    // Deep Pink : hsl(339, 100%, 48%)
-    --button-color          : [[button_color]];
-    --button-hover-color    : [[button_hover_color]];
-    --chevron-color         : [[chevron_color]];
-    --chevron-hover-color   : [[chevron_hover_color]];
+    --button-size         : [[button_size]];
+    --button-color        : [[button_color]];
+    --button-hover-color  : [[button_hover_color]];
+    --chevron-color       : [[chevron_color]];
+    --chevron-hover-color : [[chevron_hover_color]];
+    --z-index             : [[z_index]];
     
     
     box-sizing: border-box;
@@ -35,7 +34,7 @@
     pointer-events: none;
     cursor: pointer;
     border: none;
-    z-index: 9999;
+    z-index: var(--z-index);
     transition: .25s ease-out;
     
     &:hover {

@@ -1,6 +1,6 @@
 class RWC_ToTopButton extends HTMLElement {
     static get observedAttributes() {
-        return ['button_size', 'button_color', 'chevron_color', 'button_placement']
+        return ['button_size', 'button_color', 'chevron_color', 'button_placement', 'z_index']
     }
 
     get buttonSize()   { return this.getAttribute('button_size') || '' }
@@ -23,6 +23,11 @@ class RWC_ToTopButton extends HTMLElement {
         bP ? this.setAttribute('button_placement', bP) : this.removeAttribute('button_placement')
     }
 
+    get zIndex()   { return this.getAttribute('z_index') || '' }
+    set zIndex(zI) {
+        zI ? this.setAttribute('z_index', zI) : this.removeAttribute('z_index')
+    }
+
     constructor() {
         super()
         this.init()
@@ -38,13 +43,15 @@ class RWC_ToTopButton extends HTMLElement {
 
     getTemplate() {
         this.defaultButtonSize = '5rem'
+        // Deep Pink : hsl(339, 100%, 48%)
         this.defaultButtonColor = 'hsla(339, 100%, 48%, .8)'
         this.defaultButtonHoverColor = 'hsl(339, 100%, 48%)'
         this.defaultChevronColor = 'hsl(0, 0%, 80%)'
         this.defaultChevronHoverColor = 'hsl(0, 0%, 100%)'
         this.defaultButtonPlacement = 'bottom-right'
+        this.defaultZIndex = '9995'
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.totopbutton{--button-size: [[button_size]];--button-color: [[button_color]];--button-hover-color: [[button_hover_color]];--chevron-color: [[chevron_color]];--chevron-hover-color: [[chevron_hover_color]];-webkit-box-sizing:border-box;box-sizing:border-box;position:fixed;inset:btn-placement;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:1em;height:1em;-webkit-box-shadow:0 0.06em 0.1em -0.02em rgba(0,0,0,0.22),0 0.12em 0.2em 0 rgba(0,0,0,0.34),0 0.02em 0.36em 0 rgba(0,0,0,0.32);box-shadow:0 0.06em 0.1em -0.02em rgba(0,0,0,0.22),0 0.12em 0.2em 0 rgba(0,0,0,0.34),0 0.02em 0.36em 0 rgba(0,0,0,0.32);background-color:var(--button-color);border-radius:50%;font-size:var(--button-size);opacity:0;-webkit-transform:scale(0);transform:scale(0);visibility:hidden;pointer-events:none;cursor:pointer;border:none;z-index:9999;-webkit-transition:.25s ease-out;transition:.25s ease-out}.totopbutton:hover{background-color:var(--button-hover-color)}.totopbutton:hover svg{fill:var(--chevron-hover-color)}.totopbutton:focus{outline-offset:.1em;outline:-webkit-focus-ring-color auto 1px}.totopbutton.sticky{opacity:1;-webkit-transform:scale(1);transform:scale(1);visibility:visible;pointer-events:unset}.totopbutton *,.totopbutton *::before,.totopbutton *::after{-webkit-box-sizing:inherit;box-sizing:inherit}.totopbutton svg{width:.26em;fill:var(--chevron-color)}
+            *,*::before,*::after{margin:0;padding:0}.totopbutton{--button-size: [[button_size]];--button-color: [[button_color]];--button-hover-color: [[button_hover_color]];--chevron-color: [[chevron_color]];--chevron-hover-color: [[chevron_hover_color]];--z-index: [[z_index]];box-sizing:border-box;position:fixed;inset:btn-placement;display:flex;justify-content:center;align-items:center;width:1em;height:1em;box-shadow:0 .06em .1em -0.02em rgba(0,0,0,.22),0 .12em .2em 0 rgba(0,0,0,.34),0 .02em .36em 0 rgba(0,0,0,.32);background-color:var(--button-color);border-radius:50%;font-size:var(--button-size);opacity:0;transform:scale(0);visibility:hidden;pointer-events:none;cursor:pointer;border:none;z-index:var(--z-index);transition:.25s ease-out}.totopbutton:hover{background-color:var(--button-hover-color)}.totopbutton:hover svg{fill:var(--chevron-hover-color)}.totopbutton:focus{outline-offset:.1em;outline:-webkit-focus-ring-color auto 1px}.totopbutton.sticky{opacity:1;transform:scale(1);visibility:visible;pointer-events:unset}.totopbutton *,.totopbutton *::before,.totopbutton *::after{box-sizing:inherit}.totopbutton svg{width:.26em;fill:var(--chevron-color)}
         `
 
         const template = document.createElement('template')
@@ -140,7 +147,7 @@ class RWC_ToTopButton extends HTMLElement {
         }
     }
 
-    updateStyle() {
+    updateStyles() {
         const btnPlacement = this.getAttribute('button_placement') || this.defaultButtonPlacement
         
         const [buttonColor, buttonHoverColor] = this.determineBtnColors()
@@ -155,6 +162,7 @@ class RWC_ToTopButton extends HTMLElement {
             .replace('[[button_hover_color]]', buttonHoverColor)
             .replace('[[chevron_color]]', chevronColor)
             .replace('[[chevron_hover_color]]', chevronHoverColor)
+            .replace('[[z_index]]', this.getAttribute('z_index') || this.defaultZIndex)
 
         switch (true) {
             case (btnPlacement === 'top-left' || btnPlacement === 'top left'): {
@@ -177,7 +185,7 @@ class RWC_ToTopButton extends HTMLElement {
     }
 
     connectedCallback() {
-        this.updateStyle()
+        this.updateStyles()
         
         window.addEventListener('scroll', () => {
             this.ToTopButton.classList.toggle('sticky', window.scrollY > 100)
@@ -192,7 +200,7 @@ class RWC_ToTopButton extends HTMLElement {
 
     // This life cycle hook is run before connectedCallback()
     attributeChangedCallback() {
-        this.updateStyle()
+        this.updateStyles()
     }
 }
 
