@@ -77,9 +77,7 @@ class RWC_Modal extends HTMLElement {
             if (e.target === this) this.classList.remove('open')
         })
 
-        this.shadowRoot.querySelector('.close').addEventListener('click', () => {
-            this.Modal.classList.remove('open')
-        })
+        this.shadowRoot.querySelector('.close').addEventListener('click', () => this.closeModal())
 
         this.updateStyles()
     }
