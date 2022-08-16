@@ -37,19 +37,18 @@
         <h1>Alerts</h1>
 
         <button type="button">Toggle Success Alert</button>
-        <rwc-alert alert_color="#2be">
+        <button type="button">Toggle Failure Alert</button>
+        <button type="button">Toggle Notice Alert</button>
+
+        <rwc-alert alert_color="#bdd9a6">
             <span slot="status">Success!</span>
             <span slot="message">This is a success message</span>
         </rwc-alert>
-
-        <button type="button">Toggle Failure Alert</button>
-        <rwc-alert alert_color="#b2e">
+        <rwc-alert alert_color="#d9a6af" alert_size="1rem">
             <span slot="status">Failure!</span>
             <span slot="message">This is a failure message</span>
         </rwc-alert>
-
-        <button type="button">Toggle Notice Alert</button>
-        <rwc-alert alert_color="#b2e" z_index="15">
+        <rwc-alert alert_size="2.5rem" z_index="15">
             <span slot="status">Notice!</span>
             <span slot="message">This is a notice message</span>
         </rwc-alert>
@@ -61,7 +60,7 @@
             const alerts = document.querySelectorAll('rwc-alert')
 
             for (let i = 0; i < buttons.length; i++) {
-                console.log(buttons[i], alerts[i])
+                buttons[i].addEventListener('click', () => alerts[i].openAlert())
             }
         })
     </script>
