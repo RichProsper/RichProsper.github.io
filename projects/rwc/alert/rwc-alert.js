@@ -60,6 +60,7 @@ class RWC_Alert extends HTMLElement {
     }
 
     openAlert() {
+        clearTimeout(this.alertTimer)
         this.Alert.classList.add('open')
 
         this.alertTimer = setTimeout(() => {
