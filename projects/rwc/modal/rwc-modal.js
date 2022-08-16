@@ -105,7 +105,3 @@ class RWC_Modal extends HTMLElement {
 }
 
 window.customElements.define('rwc-modal', RWC_Modal)
-
-
-// TODO create rwc-alert default zIndex: 9999
-// TODO try using slots in rwc-select
