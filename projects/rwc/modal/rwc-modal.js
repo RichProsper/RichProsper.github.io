@@ -68,8 +68,8 @@ class RWC_Modal extends HTMLElement {
 
     updateStyles() {
         this.Style.innerHTML = this.css
-        .replace('[[modal_outline_color]]', this.getAttribute('modal_outline_color') || this.defaultModalOutlineColor)
-        .replace('[[z_index]]', this.getAttribute('z_index') || this.defaultZIndex)
+            .replace('[[modal_outline_color]]', this.getAttribute('modal_outline_color') || this.defaultModalOutlineColor)
+            .replace('[[z_index]]', this.getAttribute('z_index') || this.defaultZIndex)
     }
 
     connectedCallback() {
@@ -109,6 +109,5 @@ class RWC_Modal extends HTMLElement {
 window.customElements.define('rwc-modal', RWC_Modal)
 
 
-// TODO create rwc-alert
-// TODO add z_index attribute to rwc-modal, rwc-totopbutton & rwc-alert
-// TODO rwc-alert default zIndex: 9999, rwc-totopbutton default zIndex: 9995
+// TODO create rwc-alert default zIndex: 9999
+// TODO try using slots in rwc-select
