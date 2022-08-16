@@ -18,6 +18,11 @@ class RWC_Alert extends HTMLElement {
         zI ? this.setAttribute('z_index', zI) : this.removeAttribute('z_index')
     }
 
+    get alertDuration()   { return this.getAttribute('alert_duration') || '' }
+    set alertDuration(aD) {
+        aD ? this.setAttribute('alert_duration', aD) : this.removeAttribute('alert_duration')
+    }
+
     constructor() {
         super()
         this.init()
@@ -35,6 +40,8 @@ class RWC_Alert extends HTMLElement {
         this.defaultAlertColor = { h: 197, s: 71, l: 73 } // Light blue
         this.defaultAlertSize = '1.6rem'
         this.defaultZIndex = '9999'
+        this.defaultAlertDuration = 5 * 1000 //5 seconds
+        this.alertTimer = null
         this.css = `
             *,*::before,*::after{margin:0;padding:0}.alert{--color-1: [[color_1]];--color-2: [[color_2]];--color-3: [[color_3]];--alert-size: [[alert_size]];--z-index: [[z_index]];z-index:var(--z-index);font-size:var(--alert-size);position:fixed;top:0;left:0;width:100%;height:3.125em;transform:translateY(-3.125em);opacity:0;padding:.78125em 1.5625em;background-color:var(--color-1);color:var(--color-2);transition:.2s;box-sizing:border-box}.alert.open{transform:none;opacity:1}.alert *,.alert *::before,.alert *::after{box-sizing:inherit}.alert button{position:absolute;top:0;right:0;padding-top:.0667em;border:none;background-color:inherit;width:1.667em;height:1.667em;font-size:1.875em;font-weight:400;cursor:pointer}.alert button:hover,.alert button:focus{background-color:var(--color-3)}
         `
@@ -52,14 +59,17 @@ class RWC_Alert extends HTMLElement {
         return template
     }
 
-    // TODO
     openAlert() {
         this.Alert.classList.add('open')
+
+        this.alertTimer = setTimeout(() => {
+            this.Alert.classList.remove('open')
+        }, +this.alertDuration || this.defaultAlertDuration)
     }
 
-    // TODO
     closeAlert() {
         this.Alert.classList.remove('open')
+        clearTimeout(this.alertTimer)
     }
 
     determineColors() {
