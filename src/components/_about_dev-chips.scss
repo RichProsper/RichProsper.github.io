@@ -55,6 +55,10 @@
             img, svg {
                 width: calc(var(--chip-height) * .7);
                 height: calc(var(--chip-height) * .7);
+
+                &[alt="RobotFramework Icon"] {
+                    filter: brightness(0);
+                }
             }
         }
         .text {
