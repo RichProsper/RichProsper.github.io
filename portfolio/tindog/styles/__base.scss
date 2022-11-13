@@ -1,0 +1,64 @@
+:root {
+    --white-black-hs: 0deg 0%;
+    --grey-blue-hue: 210deg;
+
+    --site-bg-color: hsl(var(--white-black-hs) 13%);
+    --site-color: hsl(var(--white-black-hs) 87%);
+
+    --navbar-bg-color: hsl(var(--grey-blue-hue) 10% 23%);
+    --nav-link-color: hsl(var(--white-black-hs) 100% / .5);
+    --nav-link_hover_focus-color: hsl(var(--white-black-hs) 100% / .75)
+}
+html {
+    background-color: var(--site-bg-color);
+    height: 100%;
+    scroll-behavior: smooth;
+    font-size: 46.875%; /* 1rem = 7.5px */
+
+    @media only screen and (min-width: 900px) {
+        font-size: 62.5%; /* 1rem = 10px */
+    }
+    @media only screen and (min-width: 1800px) {
+        font-size: 78.125%; /* 1rem = 12.5px */
+    }
+    @media only screen and (min-width: 2700px) {
+        font-size: 93.75%; /* 1rem = 15px */
+    }
+}
+body {
+    height: 100%;
+    box-sizing: border-box;
+    color: var(--site-color);
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: .1rem;
+}
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+}
+*:focus {
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+
+    &-track, &-corner {
+        background: hsl(0, 0%, 5%);
+    }
+    &-thumb {
+        background: hsl(0, 0%, 53%);
+        border-radius: 9px;
+        border: 3px solid hsl(0, 0%, 5%);
+
+        &:hover {
+            background: hsl(0, 0%, 33%);
+        }
+    }
+}
