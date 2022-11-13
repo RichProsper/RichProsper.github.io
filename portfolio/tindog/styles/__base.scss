@@ -1,13 +1,15 @@
 :root {
     --white-black-hs: 0deg 0%;
     --grey-blue-hue: 210deg;
+    --pink-hue: 351deg;
 
     --site-bg-color: hsl(var(--white-black-hs) 13%);
     --site-color: hsl(var(--white-black-hs) 87%);
 
-    --navbar-bg-color: hsl(var(--grey-blue-hue) 10% 23%);
     --nav-link-color: hsl(var(--white-black-hs) 100% / .5);
-    --nav-link_hover_focus-color: hsl(var(--white-black-hs) 100% / .75)
+    --nav-link_hover_focus-color: hsl(var(--white-black-hs) 100% / .75);
+
+    --title-bg-color: hsl(var(--pink-hue) 100% 65%);
 }
 html {
     background-color: var(--site-bg-color);
