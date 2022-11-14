@@ -17,8 +17,6 @@ section.title {
             line-height: 1.5;
         }
         .button-group {
-            margin: 1em 0;
-
             button {
                 background: none;
                 border-radius: .25em;
@@ -28,6 +26,7 @@ section.title {
                 font-weight: 600;
                 font-size: 1em;
                 padding: .5em 1em;
+                margin-top: 1em;
 
                 &.app-store {
                     margin-right: .8em;
@@ -57,7 +56,8 @@ section.title {
         justify-content: center;
 
         img {
-            width: 60%;
+            width: 30%;
+            min-width: 17.5em;
             height: auto;
             transform-origin: center left;
             rotate: 30deg;
@@ -70,6 +70,11 @@ section.title {
         .img-box {
             display: unset;
             justify-content: unset;
+
+            img {
+                width: 60%;
+                max-width: 29.4em;
+            }
         }
     }
 }
