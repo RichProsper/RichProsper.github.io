@@ -6,10 +6,12 @@ nav.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1em;
+    padding: 0 2em;
+    background-color: var(--title-bg-color);
     
     .logo {
-        font-size: 1.5em;
+        font-size: 2em;
+        font-family: 'Ubuntu', sans-serif;
     }
     button {
         background: none;
@@ -42,6 +44,8 @@ nav.navbar {
         transform-origin: top;
         transform: scaleY(0);
         border-top: .1em solid transparent;
+        border-bottom: .1em solid transparent;
+        background-color: var(--title-bg-color);
 
         &.transition {
             transition: .25s;
@@ -49,13 +53,14 @@ nav.navbar {
         &.show {
             transform: scaleY(1);
             border-top-color: var(--nav-link-color);
+            border-bottom-color: var(--nav-link-color);
         }
         ul {
             list-style: none;
 
             li {
-                padding: 1em 0;
-                padding-left: 1em;
+                padding: 1.5em 0;
+                padding-left: 2em;
 
                 a {
                     text-decoration: none;
@@ -88,8 +93,8 @@ nav.navbar {
                 display: flex;
     
                 li {
-                    padding: 1em 0;
-                    padding-right: 1em;
+                    padding: 1.5em 0;
+                    padding-right: 2em;
 
                     &:last-child {
                         padding-right: 0;

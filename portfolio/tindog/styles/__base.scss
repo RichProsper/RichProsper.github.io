@@ -1,15 +1,21 @@
 :root {
-    --white-black-hs: 0deg 0%;
-    --grey-blue-hue: 210deg;
-    --pink-hue: 351deg;
+    --hue-sat: 0deg 0%;
+    --hue-1: 351deg;
+    --hue-2: 7deg;
+    // --hue-1: 251deg;
+    // --hue-2: 207deg;
 
-    --site-bg-color: hsl(var(--white-black-hs) 13%);
-    --site-color: hsl(var(--white-black-hs) 87%);
+    --site-bg-color: hsl(var(--hue-sat) 13%);
+    --site-color: hsl(var(--hue-sat) 87%);
 
-    --nav-link-color: hsl(var(--white-black-hs) 100% / .5);
-    --nav-link_hover_focus-color: hsl(var(--white-black-hs) 100% / .75);
+    --nav-link-color: hsl(var(--hue-sat) 100% / .5);
+    --nav-link_hover_focus-color: hsl(var(--hue-sat) 100% / .75);
 
-    --title-bg-color: hsl(var(--pink-hue) 100% 65%);
+    --title-bg-color: hsl(var(--hue-1) 100% 65%);
+    --app-store-bg-color: hsl(var(--hue-sat) 23%);
+
+    --features-i-color: hsl(var(--hue-2) 80% 69%);
+    --features-p-color: hsl(var(--hue-sat) 70%);
 }
 html {
     background-color: var(--site-bg-color);
@@ -32,7 +38,7 @@ body {
     box-sizing: border-box;
     color: var(--site-color);
     font-size: 1.6rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: .1rem;
 }
 *,

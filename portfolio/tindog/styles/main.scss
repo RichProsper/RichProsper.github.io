@@ -1,5 +1,5 @@
 // * Vendors * //
-@import url(../../../vendors/Poppins/Poppins.min.css);
+@import url(../../../vendors/all.min.css);
 
 // * Base * //
 @import "_base";
@@ -7,3 +7,4 @@
 // * Components * //
 @import "navbar";
 @import "title";
+@import "features";
