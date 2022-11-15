@@ -1,7 +1,7 @@
 import Navbar from "./navbar.min.js";
 // import Navbar from "./navbar.js";
-import Carousel from "./_carousel.min.js";
-// import Carousel from "./_carousel.js";
+import Carousel from "./carousel.min.js";
+// import Carousel from "./carousel.js";
 
 Navbar()
 Carousel()
