@@ -8,7 +8,8 @@ nav.navbar {
     align-items: center;
     padding: 0 2em;
     background-color: var(--title-bg-color);
-    z-index: 1;
+    border-bottom: .1em solid hsl(0 0% 100% / .25);
+    z-index: 2;
     
     .logo {
         font-size: 2em;
@@ -38,23 +39,21 @@ nav.navbar {
     }
     .navbar-collapse {
         position: absolute;
-        top: 100%;
+        top: calc(100% + .1em);
         left: 0;
         width: 100%;
         z-index: 1;
         transform-origin: top;
-        transform: scaleY(0);
-        border-top: .1em solid transparent;
+        scale: 1 0;
         border-bottom: .1em solid transparent;
         background-color: var(--title-bg-color);
 
         &.transition {
-            transition: .25s;
+            transition: scale .25s;
         }
         &.show {
-            transform: scaleY(1);
-            border-top-color: var(--nav-link-color);
-            border-bottom-color: var(--nav-link-color);
+            scale: 1 1;
+            border-bottom-color: hsl(0 0% 100% / .25);
         }
         ul {
             list-style: none;
@@ -87,7 +86,7 @@ nav.navbar {
             width: unset;
             z-index: unset;
             transform-origin: unset;
-            transform: none;
+            scale: none;
             border: none;
 
             ul {
