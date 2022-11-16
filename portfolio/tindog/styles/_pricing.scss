@@ -1,0 +1,107 @@
+section.pricing {
+    --border-color: hsl(var(--hue-sat) 33%);
+
+    padding: 15% 7.5%;
+    text-align: center;
+
+    .heading {
+        h2 {
+            font-size: 3em;
+            padding-bottom: .5em;
+        }
+        p {
+            color: var(--features-p-color);
+            font-weight: 500;
+        }
+    }
+    .cards {
+        margin-top: 3em;
+        display: flex;
+        justify-content: space-between;
+        gap: 3em;
+        flex-wrap: wrap;
+
+        .card {
+            width: 100%;
+            border-radius: .25em;
+            overflow: hidden;
+            border: .1em solid var(--border-color);
+
+            .header {
+                padding: .75em 0;
+                background-color: var(--card-header-bg-color);
+                border-bottom: .1em solid var(--border-color);
+            }
+            .body {
+                padding: .75em;
+
+                h2 {
+                    padding-bottom: .5em;
+                }
+                p {
+                    line-height: 1.5;
+                }
+                button {
+                    width: 100%;
+                    background: none;
+                    border-radius: .25em;
+                    cursor: pointer;
+                    transition: background-color .2s, border-color .2s, color .2s;
+                    font-weight: 600;
+                    font-size: 1em;
+                    padding: .5em 1em;
+                    margin-top: 1em;
+
+                    &.outline {
+                        color: inherit;
+                        border: .1em solid var(--site-color);
+
+                        &:hover,
+                        &:focus {
+                            color: var(--site-bg-color);
+                            background-color: var(--site-color);
+                        }
+                    }
+                    &.fill {
+                        color: var(--site-bg-color);
+                        background-color: var(--features-p-color);
+                        border: .1em solid var(--features-p-color);
+
+                        &:hover,
+                        &:focus {
+                            background-color: var(--site-color);
+                            border-color: var(--site-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width: 450px) {
+        .cards {
+            .card {
+                width: unset;
+
+                &:last-child {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width: 680px) {
+        .cards {
+            .card {
+                &:last-child {
+                    width: unset;
+                }
+                .body {
+                    button:not(.last) {
+                        margin-top: 2.5em;
+                    }
+                }
+            }
+        }
+    }
+}

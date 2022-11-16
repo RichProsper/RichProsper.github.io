@@ -20,6 +20,8 @@
     --carousel-numbers-bg-color: hsl(var(--hue-sat) 0% / .5);
     --carousel-buttons-color: hsl(var(--hue-sat) 87% / .75);
     --carousel-buttons_hover-bg-color: hsl(var(--hue-sat) 0% / .1);
+
+    --card-header-bg-color: hsl(var(--hue-sat) 23%);
 }
 html {
     background-color: var(--site-bg-color);
