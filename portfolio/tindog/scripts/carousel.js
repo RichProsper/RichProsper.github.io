@@ -18,8 +18,22 @@ export default () => {
         item.addEventListener('transitionend', function() { this.classList.remove('left') })
     }
 
+    const disableBtns = () => {
+        prevBtn.disabled = true
+        nextBtn.disabled = true
+
+        // 750 = slide animation (500) + 250
+        setTimeout(() => {
+            prevBtn.disabled = false
+            nextBtn.disabled = false
+        }, 750);
+    }
+
     prevBtn.addEventListener('click', () => {
         if (total === 1) return
+
+        // Prevents clicks while animation is ongoing
+        disableBtns()
 
         let i = +current.innerHTML
         items[i - 1].classList.replace('active', 'left')
@@ -33,6 +47,8 @@ export default () => {
 
     nextBtn.addEventListener('click', () => {
         if (total === 1) return
+
+        disableBtns()
         
         let i = +current.innerHTML
         items[i - 1].classList.replace('active', 'left')
