@@ -12,11 +12,20 @@ section.title {
         width: 100%;
     }
     .cta {
+        padding-top: 4em;
+
         h1 {
             font-size: 3em;
+            font-weight: 900;
             line-height: 1.5;
+            text-align: center;
         }
         .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: .8em;
+
             button {
                 background: none;
                 border-radius: .25em;
@@ -29,7 +38,6 @@ section.title {
                 margin-top: 1em;
 
                 &.app-store {
-                    margin-right: .8em;
                     background-color: var(--app-store-bg-color);
                     border: .1em solid var(--app-store-bg-color);
 
@@ -54,26 +62,38 @@ section.title {
     .img-box {
         display: flex;
         justify-content: center;
+        padding-top: 2em;
 
         img {
             width: 30%;
             min-width: 17.5em;
             height: auto;
-            transform-origin: center left;
-            rotate: 30deg;
         }
     }
 
     @media only screen and (min-width: 800px) {
+        position: relative;
+        margin-bottom: -16%;
         flex-direction: unset;
 
+        .cta {
+            h1 {
+                text-align: left;
+            }
+            .button-group {
+                justify-content: unset;
+                flex-wrap: unset;
+            }
+        }
         .img-box {
-            display: unset;
-            justify-content: unset;
+            padding-top: 0;
 
             img {
                 width: 60%;
                 max-width: 29.4em;
+                transform-origin: center left;
+                rotate: 25deg;
+                translate: 0 -2.5%;
             }
         }
     }
