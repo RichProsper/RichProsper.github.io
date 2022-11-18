@@ -4,6 +4,9 @@
 // * Base * //
 @import "_base";
 
+// * Utilities * //
+@import "_utilities";
+
 // * Components * //
 @import "navbar";
 @import "title";
@@ -13,3 +16,6 @@
 @import "pricing";
 @import "cta";
 @import "footer";
+
+// * Sub-components *//
+@import "download-btns";

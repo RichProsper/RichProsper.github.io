@@ -1,0 +1,38 @@
+.download-btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .8em;
+
+    button {
+        background: none;
+        border-radius: .25em;
+        cursor: pointer;
+        transition: background-color .2s, border-color .2s, color .2s;
+        color: inherit;
+        font-weight: 600;
+        font-size: 1em;
+        padding: .5em 1em;
+        margin-top: 1em;
+
+        &.app-store {
+            background-color: var(--app-store-bg-color);
+            border: .1em solid var(--app-store-bg-color);
+
+            &:hover,
+            &:focus {
+                background-color: var(--site-bg-color);
+                border-color: var(--site-bg-color);
+            }
+        }
+        &.play-store {
+            border: .1em solid var(--site-color);
+
+            &:hover,
+            &:focus {
+                color: var(--site-bg-color);
+                background-color: var(--site-color);
+            }
+        }
+    }
+}
