@@ -26,7 +26,7 @@
             width: var(--icon-height);
             height: var(--icon-height);
             @extend %flex_center;
-            border: calc(var(--icon-height) * .0375) solid #060606;
+            border: calc(var(--icon-height) * .0375) solid #333;
             border-radius: 50%;
             font-size: calc(var(--icon-height) / 2);
             color: #7f7f7f;
