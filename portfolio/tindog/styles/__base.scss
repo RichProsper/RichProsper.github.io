@@ -1,4 +1,4 @@
-:root {
+html {
     --hue-sat: 0deg 0%;
     --hue-1: 351deg;
     --hue-2: 7deg;
@@ -22,8 +22,8 @@
     --carousel-buttons_hover-bg-color: hsl(var(--hue-sat) 0% / .1);
 
     --card-header-bg-color: hsl(var(--hue-sat) 23%);
-}
-html {
+
+    
     background-color: var(--site-bg-color);
     height: 100%;
     scroll-behavior: smooth;
