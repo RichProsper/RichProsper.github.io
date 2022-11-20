@@ -82,7 +82,7 @@ class RWC_Modal extends HTMLElement {
         this.updateStyles()
     }
 
-    // This life cycle hook is run before connectedCallback()
+    // This life cycle hook is ran before connectedCallback()
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
             case 'modal_id': {
