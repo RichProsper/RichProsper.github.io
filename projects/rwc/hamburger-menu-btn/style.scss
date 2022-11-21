@@ -6,9 +6,15 @@
 }
 
 .hamburger-menu-btn {
+    --color: hsl(0 0% 87%);
+
     border: none;
     background: none;
     background-color: transparent;
     border-radius: 1em;
-    border: .625em solid;
+    border: .625em solid var(--color);
+
+    svg {
+        fill: var(--color);
+    }
 }

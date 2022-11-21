@@ -9,20 +9,26 @@
     <link rel="stylesheet" href="../../global.min.css">
     <script src="rwc-hamburger-menu-btn.min.js" defer></script>
     <style>
-        section {
+        body {
             padding: 2em;
         }
-        section h1 {
+        h1 {
             margin-bottom: 1em;
+        }
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
         }
     </style>
     <title>Hamburger Menu Button</title>
 </head>
 <body>
-    <section>
-        <h1>Hamburger Menu Button</h1>
+    <h1>Hamburger Menu Button</h1>
 
+    <section>  
         <rwc-hamburger-menu-btn></rwc-hamburger-menu-btn>
+        <rwc-hamburger-menu-btn title="A title"></rwc-hamburger-menu-btn>
     </section>
 </body>
 </html>
