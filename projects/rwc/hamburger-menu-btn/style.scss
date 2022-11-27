@@ -16,5 +16,10 @@
 
     svg {
         fill: var(--color);
+
+        .line {
+            transform-origin: center;
+            transition: 1s;
+        }
     }
 }

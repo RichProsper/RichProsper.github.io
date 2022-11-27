@@ -2,16 +2,44 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
     // TODO
     static get observedAttributes() {
         return [
-            'aria-controls', 'title', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color'
+            'aria-controls', 'title', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color', 'color-expanded', 'border-color-expanded', 'line-color-expanded', 'line-top-color-expanded', 'line-middle-color-expanded', 'line-bottom-color-expanded'
         ]
     }
 
-    get ariaControls() { return this.getAttribute('aria-controls') || '' }
+    get ariaControls()   { return this.getAttribute('aria-controls') || '' }
     set ariaControls(aC) {
         aC ? this.setAttribute('aria-controls', aC) : this.removeAttribute('aria-controls')
     }
 
     // No need to do get title() or set title(t)
+
+    get color()  { return this.getAttribute('color') || '' }
+    set color(c) { c ? this.setAttribute('color', c) : this.removeAttribute('color') }
+
+    get borderColor()   { return this.getAttribute('border-color') || '' }
+    set borderColor(bC) {
+        bC ? this.setAttribute('border-color', bC) : this.removeAttribute('border-color')
+    }
+
+    get lineColor()   { return this.getAttribute('line-color') || '' }
+    set lineColor(lC) {
+        lC ? this.setAttribute('line-color', lC) : this.removeAttribute('line-color')
+    }
+
+    get lineTopColor()    { return this.getAttribute('line-top-color') || '' }
+    set lineTopColor(lTC) {
+        lTC ? this.setAttribute('line-top-color', lTC) : this.removeAttribute('line-top-color')
+    }
+
+    get lineMiddleColor()    { return this.getAttribute('line-middle-color') || '' }
+    set lineMiddleColor(lMC) {
+        lMC ? this.setAttribute('line-middle-color', lMC) : this.removeAttribute('line-middle-color')
+    }
+
+    get lineBottomColor()   { return this.getAttribute('line-bottom-color') || '' }
+    set lineBottomColor(lBC) {
+        lBC ? this.setAttribute('line-bottom-color', lBC) : this.removeAttribute('line-bottom-color')
+    }
 
     // TODO
 
