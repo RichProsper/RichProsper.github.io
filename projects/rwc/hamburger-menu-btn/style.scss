@@ -13,13 +13,46 @@
     background-color: transparent;
     border-radius: 1em;
     border: .625em solid var(--color);
+    cursor: pointer;
+    transition: outline-offset .2s;
 
+    &:is(:hover, :focus) {
+        outline: -webkit-focus-ring-color auto 1px;
+        outline-offset: .5em;
+    }
     svg {
         fill: var(--color);
 
         .line {
             transform-origin: center;
-            transition: 1s;
+            transition:
+                rotate .2s ease-in,
+                y .2s ease-in .2s,
+                opacity .1s ease-in .2s
+            ;
+        }
+    }
+    &[aria-expanded="true"] {
+        svg {
+            .line {
+                transition:
+                    y .2s ease-in,
+                    rotate .2s ease-in .2s,
+                    opacity .1s ease-in .2s
+                ;
+            }
+            :is(.top, .bottom) {
+                y: 45;
+            }
+            .top {
+                rotate: 45deg;
+            }
+            .middle {
+                opacity: 0;
+            }
+            .bottom {
+                rotate: -45deg;
+            }
         }
     }
 }

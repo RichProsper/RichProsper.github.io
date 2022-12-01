@@ -41,6 +41,40 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
         lBC ? this.setAttribute('line-bottom-color', lBC) : this.removeAttribute('line-bottom-color')
     }
 
+    get colorExpanded()   { return this.getAttribute('color-expanded') || '' }
+    set colorExpanded(cE) {
+        cE ? this.setAttribute('color-expanded', cE) : this.removeAttribute('color-expanded')
+    }
+
+    get borderColorExpanded()    { return this.getAttribute('border-color-expanded') || '' }
+    set borderColorExpanded(bCE) {
+        bCE ? this.setAttribute('border-color-expanded', bCE) : this.removeAttribute('border-color-expanded')
+    }
+
+    get lineColorExpanded()    { return this.getAttribute('line-color-expanded') || '' }
+    set lineColorExpanded(lCE) {
+        lCE ? this.setAttribute('line-color-expanded', lCE) : this.removeAttribute('line-color-expanded')
+    }
+
+    get lineTopColorExpanded()     { return this.getAttribute('line-top-color-expanded') || '' }
+    set lineTopColorExpanded(lTCE) {
+        lTCE ? this.setAttribute('line-top-color-expanded', lTCE) : this.removeAttribute('line-top-color-expanded')
+    }
+
+    get lineMiddleColorExpanded() {
+        return this.getAttribute('line-middle-color-expanded') || ''
+    }
+    set lineMiddleColorExpanded(lMCE) {
+        lMCE ? this.setAttribute('line-middle-color-expanded', lMCE) : this.removeAttribute('line-middle-color-expanded')
+    }
+
+    get lineBottomColorExpanded()     {
+        return this.getAttribute('line-bottom-color-expanded') || ''
+    }
+    set lineBottomColorExpanded(lBCE) {
+        lBCE ? this.setAttribute('line-bottom-color-expanded', lBCE) : this.removeAttribute('line-bottom-color-expanded')
+    }
+
     // TODO
 
     constructor() {
@@ -67,11 +101,7 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
             <link rel="stylesheet" href="style.min.css">
             <style></style>
 
-            <button
-                type="button"
-                class="hamburger-menu-btn"
-                aria-expanded="false"
-            >
+            <button type="button" class="hamburger-menu-btn" aria-expanded="false">
                 <svg viewBox="0 0 100 100" width="250">
                     <rect class="line top" width="80" height="10" x="10" y="17.5" rx="5"></rect>
                     <rect class="line middle" width="80" height="10" x="10" y="45" rx="5"></rect>
@@ -92,6 +122,10 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
         if (!this.hasAttribute('aria-controls')) this.HamburgerMenuBtn.setAttribute('aria-controls', this.defaultAriaControls)
         if (!this.hasAttribute('title')) this.HamburgerMenuBtn.ariaLabel = this.defaultTitle
         if (!this.hasAttribute('title')) this.HamburgerMenuBtn.title = this.defaultTitle
+
+        this.HamburgerMenuBtn.addEventListener('click', function() {
+            this.ariaExpanded === 'true' ? this.ariaExpanded = 'false' : this.ariaExpanded = 'true'
+        })
     }
 
     // TODO
