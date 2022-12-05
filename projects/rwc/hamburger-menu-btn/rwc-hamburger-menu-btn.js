@@ -2,7 +2,7 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
     // TODO
     static get observedAttributes() {
         return [
-            'aria-controls', 'title', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color', 'color-expanded', 'border-color-expanded', 'line-color-expanded', 'line-top-color-expanded', 'line-middle-color-expanded', 'line-bottom-color-expanded'
+            'aria-controls', 'title', 'background-color', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color', 'color-expanded', 'border-color-expanded', 'line-color-expanded', 'line-top-color-expanded', 'line-middle-color-expanded', 'line-bottom-color-expanded', 'size'
         ]
     }
 
@@ -12,6 +12,11 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
     }
 
     // No need to do get title() or set title(t)
+
+    get backgroundColor()   { return this.getAttribute('background-color') || '' }
+    set backgroundColor(bC) {
+        bC ? this.setAttribute('background-color', bC) : this.removeAttribute('background-color')
+    }
 
     get color()  { return this.getAttribute('color') || '' }
     set color(c) { c ? this.setAttribute('color', c) : this.removeAttribute('color') }
@@ -74,6 +79,9 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
     set lineBottomColorExpanded(lBCE) {
         lBCE ? this.setAttribute('line-bottom-color-expanded', lBCE) : this.removeAttribute('line-bottom-color-expanded')
     }
+
+    get size()  { return this.getAttribute('size') || '' }
+    set size(s) { s ? this.setAttribute('size', s) : this.removeAttribute('size') }
 
     // TODO
 

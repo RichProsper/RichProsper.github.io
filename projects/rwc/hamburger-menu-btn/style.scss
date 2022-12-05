@@ -14,9 +14,12 @@
     border-radius: 1em;
     border: .625em solid var(--color);
     cursor: pointer;
-    transition: outline-offset .2s;
+    transition: outline-offset .2s, opacity .2s;
 
-    &:is(:hover, :focus) {
+    &:hover {
+        opacity: .75;
+    }
+    &:focus {
         outline: -webkit-focus-ring-color auto 1px;
         outline-offset: .5em;
     }
