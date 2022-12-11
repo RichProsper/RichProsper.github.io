@@ -6,13 +6,17 @@
 }
 
 .hamburger-menu-btn {
+    --background-color: none;
     --color: hsl(0 0% 87%);
+    --border-color: var(--color);
+    --line-color: var(--color);
+    // TODO
 
     border: none;
     background: none;
-    background-color: transparent;
+    background-color: var(--background-color);
     border-radius: 1em;
-    border: .625em solid var(--color);
+    border: .625em solid var(--border-color);
     cursor: pointer;
     transition: outline-offset .2s, opacity .2s;
 

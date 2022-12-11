@@ -1,11 +1,11 @@
 class RWC_HamburgerMenuBtn extends HTMLElement {
-    // TODO
     static get observedAttributes() {
         return [
-            'aria-controls', 'title', 'background-color', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color', 'color-expanded', 'border-color-expanded', 'line-color-expanded', 'line-top-color-expanded', 'line-middle-color-expanded', 'line-bottom-color-expanded', 'size'
+            'aria-controls', 'title', 'background-color', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color', 'background-color-expanded', 'color-expanded', 'border-color-expanded', 'line-color-expanded', 'line-top-color-expanded', 'line-middle-color-expanded', 'line-bottom-color-expanded', 'size'
         ]
     }
 
+    // #region Getters & Setters
     get ariaControls()   { return this.getAttribute('aria-controls') || '' }
     set ariaControls(aC) {
         aC ? this.setAttribute('aria-controls', aC) : this.removeAttribute('aria-controls')
@@ -46,6 +46,11 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
         lBC ? this.setAttribute('line-bottom-color', lBC) : this.removeAttribute('line-bottom-color')
     }
 
+    get backgroundColorExpanded()    { return this.getAttribute('background-color-expanded') || '' }
+    set backgroundColorExpanded(bCE) {
+        bCE ? this.setAttribute('background-color-expanded', bCE) : this.removeAttribute('background-color-expanded')
+    }
+
     get colorExpanded()   { return this.getAttribute('color-expanded') || '' }
     set colorExpanded(cE) {
         cE ? this.setAttribute('color-expanded', cE) : this.removeAttribute('color-expanded')
@@ -82,8 +87,7 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
 
     get size()  { return this.getAttribute('size') || '' }
     set size(s) { s ? this.setAttribute('size', s) : this.removeAttribute('size') }
-
-    // TODO
+    // #endregion
 
     constructor() {
         super()
@@ -102,7 +106,9 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
     getTemplate() {
         this.defaultAriaControls = 'some-content'
         this.defaultTitle = 'Toggle something'
-        this.defaultColor = 'black'
+        this.defaultBackgroundColor = 'none'
+        this.defaultColor = 'hsl(0 0% 87%)'
+        this.defaultSize = '4rem'
         this.css = ``
         const template = document.createElement('template')
         template.innerHTML = `
@@ -121,9 +127,39 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
         return template
     }
 
-    // TODO
     updateStyles() {
+        const backgroundColor = this.getAttribute('background-color') || this.defaultBackgroundColor
+        const color = this.getAttribute('color') || this.defaultColor
+        const borderColor = this.getAttribute('border-color') || color
+        const lineColor = this.getAttribute('line-color') || color
+        const lineTopColor = this.getAttribute('line-top-color') || lineColor
+        const lineMiddleColor = this.getAttribute('line-middle-color') || lineColor
+        const lineBottomColor = this.getAttribute('line-bottom-color') || lineColor
 
+        const backgroundColorExpanded = this.getAttribute('background-color-expanded') || backgroundColor
+        const colorExpanded = this.getAttribute('color-expanded') || color
+        const borderColorExpanded = this.getAttribute('border-color-expanded') || borderColor
+        const lineColorExpanded = this.getAttribute('line-color-expanded') || lineColor
+        const lineTopColorExpanded = this.getAttribute('line-top-color-expanded') || lineColorExpanded
+        const lineMiddleColorExpanded = this.getAttribute('line-middle-color-expanded') || lineColorExpanded
+        const lineBottomColorExpanded = this.getAttribute('line-bottom-color-expanded') || lineColorExpanded
+
+        this.Style.innerHTML = this.css
+            .replace('[[background-color]]', backgroundColor)
+            .replace('[[color]]', color)
+            .replace('[[border-color]]', borderColor)
+            .replace('[[line-color]]', lineColor)
+            .replace('[[line-top-color]]', lineTopColor)
+            .replace('[[line-middle-color]]', lineMiddleColor)
+            .replace('[[line-bottom-color]]', lineBottomColor)
+            .replace('[[background-color-expanded]]', backgroundColorExpanded)
+            .replace('[[color-expanded]]', colorExpanded)
+            .replace('[[border-color-expanded]]', borderColorExpanded)
+            .replace('[[line-color-expanded]]', lineColorExpanded)
+            .replace('[[line-top-color-expanded]]', lineTopColorExpanded)
+            .replace('[[line-middle-color-expanded]]', lineMiddleColorExpanded)
+            .replace('[[line-bottom-color-expanded]]', lineBottomColorExpanded)
+            .replace('[[size]]', this.getAttribute('size') || this.defaultSize)
     }
 
     connectedCallback() {
@@ -134,9 +170,10 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
         this.HamburgerMenuBtn.addEventListener('click', function() {
             this.ariaExpanded === 'true' ? this.ariaExpanded = 'false' : this.ariaExpanded = 'true'
         })
+
+        this.updateStyles()
     }
 
-    // TODO
     // This life cycle hook is ran before connectedCallback()
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
@@ -156,6 +193,24 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
                     this.HamburgerMenuBtn.removeAttribute('title')
                 )
 
+                break
+            }
+            case 'background-color':
+            case 'color':
+            case 'border-color':
+            case 'line-color':
+            case 'line-top-color':
+            case 'line-middle-color':
+            case 'line-bottom-color':
+            case 'background-color-expanded':
+            case 'color-expanded':
+            case 'border-color-expanded':
+            case 'line-color-expanded':
+            case 'line-top-color-expanded':
+            case 'line-middle-color-expanded':
+            case 'line-bottom-color-expanded':
+            case 'size': {
+                this.updateStyles()
                 break
             }
             default: {}
