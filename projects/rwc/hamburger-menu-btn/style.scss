@@ -6,11 +6,16 @@
 }
 
 .hamburger-menu-btn {
-    --background-color: none;
-    --color: hsl(0 0% 87%);
-    --border-color: var(--color);
-    --line-color: var(--color);
-    // TODO
+    --background-color: [[background-color]];
+    --border-color: [[border-color]];
+    --line-top-color: [[line-top-color]];
+    --line-middle-color: [[line-middle-color]];
+    --line-bottom-color: [[line-bottom-color]];
+    --background-color-expanded: [[background-color-expanded]];
+    --border-color-expanded: [[border-color-expanded]];
+    --line-top-color-expanded: [[line-top-color-expanded]];
+    --line-bottom-color-expanded: [[line-bottom-color-expanded]];
+    --size: [[size]];
 
     border: none;
     background: none;
@@ -18,7 +23,12 @@
     border-radius: 1em;
     border: .625em solid var(--border-color);
     cursor: pointer;
-    transition: outline-offset .2s, opacity .2s;
+    transition:
+        outline-offset .2s,
+        opacity .2s,
+        background-color .2s,
+        border-color .2s
+    ;
 
     &:hover {
         opacity: .75;
@@ -28,37 +38,53 @@
         outline-offset: .5em;
     }
     svg {
-        fill: var(--color);
-
         .line {
             transform-origin: center;
             transition:
                 rotate .2s ease-in,
                 y .2s ease-in .2s,
-                opacity .1s ease-in .2s
+                opacity .1s ease-in .2s,
+                fill .2s
             ;
+
+            &.top {
+                fill: var(--line-top-color);
+            }
+            &.middle {
+                fill: var(--line-middle-color);
+            }
+            &.bottom {
+                fill: var(--line-bottom-color);
+            }
         }
     }
     &[aria-expanded="true"] {
+        background-color: var(--background-color-expanded);
+        border-color: var(--border-color-expanded);
+        
         svg {
             .line {
                 transition:
                     y .2s ease-in,
                     rotate .2s ease-in .2s,
-                    opacity .1s ease-in .2s
+                    opacity .1s ease-in .2s,
+                    fill .2s
                 ;
-            }
-            :is(.top, .bottom) {
-                y: 45;
-            }
-            .top {
-                rotate: 45deg;
-            }
-            .middle {
-                opacity: 0;
-            }
-            .bottom {
-                rotate: -45deg;
+
+                &:is(.top, .bottom) {
+                    y: 45;
+                }
+                &.top {
+                    rotate: 45deg;
+                    fill: var(--line-top-color-expanded);
+                }
+                &.middle {
+                    opacity: 0;
+                }
+                &.bottom {
+                    rotate: -45deg;
+                    fill: var(--line-bottom-color-expanded);
+                }    
             }
         }
     }
