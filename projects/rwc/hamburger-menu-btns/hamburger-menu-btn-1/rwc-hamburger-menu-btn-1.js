@@ -1,7 +1,7 @@
-class RWC_HamburgerMenuBtn extends HTMLElement {
+class RWC_HamburgerMenuBtn1 extends HTMLElement {
     static get observedAttributes() {
         return [
-            'aria-controls', 'title', 'background-color', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color', 'background-color-expanded', 'color-expanded', 'border-color-expanded', 'line-color-expanded', 'line-top-color-expanded', 'line-bottom-color-expanded', 'size'
+            'aria-controls', 'title', 'background-color', 'color', 'border-color', 'line-color', 'line-top-color', 'line-middle-color', 'line-bottom-color', 'background-color-expanded', 'color-expanded', 'border-color-expanded', 'line-color-expanded', 'line-top-color-expanded', 'line-bottom-color-expanded', 'svg-size'
         ]
     }
 
@@ -78,8 +78,8 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
         lBCE ? this.setAttribute('line-bottom-color-expanded', lBCE) : this.removeAttribute('line-bottom-color-expanded')
     }
 
-    get size()  { return this.getAttribute('size') || '' }
-    set size(s) { s ? this.setAttribute('size', s) : this.removeAttribute('size') }
+    get svgSize()  { return this.getAttribute('svg-size') || '' }
+    set svgSize(sS) { sS ? this.setAttribute('svg-size', sS) : this.removeAttribute('svg-size') }
     // #endregion
 
     constructor() {
@@ -95,19 +95,17 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
         this.Style = this.shadowRoot.querySelector('style')
     }
 
-    // TODO size attribute
     getTemplate() {
         this.defaultAriaControls = 'some-content'
         this.defaultTitle = 'Toggle something'
         this.defaultBackgroundColor = 'none'
         this.defaultColor = 'hsl(0 0% 87%)'
-        this.defaultSize = '4rem'
+        this.defaultSVGSize = '4rem'
         this.css = `
-            *,*::before,*::after{margin:0;padding:0}.hamburger-menu-btn{--background-color: [[background-color]];--border-color: [[border-color]];--line-top-color: [[line-top-color]];--line-middle-color: [[line-middle-color]];--line-bottom-color: [[line-bottom-color]];--background-color-expanded: [[background-color-expanded]];--border-color-expanded: [[border-color-expanded]];--line-top-color-expanded: [[line-top-color-expanded]];--line-bottom-color-expanded: [[line-bottom-color-expanded]];--size: [[size]];border:none;background:none;background-color:var(--background-color);border-radius:1em;border:.625em solid var(--border-color);cursor:pointer;transition:outline-offset .2s,opacity .2s,background-color .2s,border-color .2s}.hamburger-menu-btn:hover{opacity:.75}.hamburger-menu-btn:focus{outline:-webkit-focus-ring-color auto 1px;outline-offset:.5em}.hamburger-menu-btn svg .line{transform-origin:center;transition:rotate .2s ease-in,y .2s ease-in .2s,opacity .1s ease-in .2s,fill .2s}.hamburger-menu-btn svg .line.top{fill:var(--line-top-color)}.hamburger-menu-btn svg .line.middle{fill:var(--line-middle-color)}.hamburger-menu-btn svg .line.bottom{fill:var(--line-bottom-color)}.hamburger-menu-btn[aria-expanded=true]{background-color:var(--background-color-expanded);border-color:var(--border-color-expanded)}.hamburger-menu-btn[aria-expanded=true] svg .line{transition:y .2s ease-in,rotate .2s ease-in .2s,opacity .1s ease-in .2s,fill .2s}.hamburger-menu-btn[aria-expanded=true] svg .line:is(.top,.bottom){y:45}.hamburger-menu-btn[aria-expanded=true] svg .line.top{rotate:45deg;fill:var(--line-top-color-expanded)}.hamburger-menu-btn[aria-expanded=true] svg .line.middle{opacity:0}.hamburger-menu-btn[aria-expanded=true] svg .line.bottom{rotate:-45deg;fill:var(--line-bottom-color-expanded)}
+            *,*::before,*::after{margin:0;padding:0}.hamburger-menu-btn{--background-color: [[background-color]];--border-color: [[border-color]];--line-top-color: [[line-top-color]];--line-middle-color: [[line-middle-color]];--line-bottom-color: [[line-bottom-color]];--background-color-expanded: [[background-color-expanded]];--border-color-expanded: [[border-color-expanded]];--line-top-color-expanded: [[line-top-color-expanded]];--line-bottom-color-expanded: [[line-bottom-color-expanded]];--svg-size: [[svg-size]];font-size:var(--svg-size);border:none;background:none;background-color:var(--background-color);border-radius:.1em;border:.05em solid var(--border-color);padding:.125em .25em;cursor:pointer;transition:outline-offset .2s,opacity .2s,background-color .2s,border-color .2s}.hamburger-menu-btn:hover{opacity:.75}.hamburger-menu-btn:focus{outline:-webkit-focus-ring-color auto 1px;outline-offset:.1em}.hamburger-menu-btn svg{display:flex;width:1em;height:1em}.hamburger-menu-btn svg .line{transform-origin:center;transition:rotate .2s ease-in,y .2s ease-in .2s,opacity .1s ease-in .2s,fill .2s}.hamburger-menu-btn svg .line.top{fill:var(--line-top-color)}.hamburger-menu-btn svg .line.middle{fill:var(--line-middle-color)}.hamburger-menu-btn svg .line.bottom{fill:var(--line-bottom-color)}.hamburger-menu-btn[aria-expanded=true]{background-color:var(--background-color-expanded);border-color:var(--border-color-expanded)}.hamburger-menu-btn[aria-expanded=true] svg .line{transition:y .2s ease-in,rotate .2s ease-in .2s,opacity .1s ease-in .2s,fill .2s}.hamburger-menu-btn[aria-expanded=true] svg .line:is(.top,.bottom){y:45}.hamburger-menu-btn[aria-expanded=true] svg .line.top{rotate:45deg;fill:var(--line-top-color-expanded)}.hamburger-menu-btn[aria-expanded=true] svg .line.middle{opacity:0}.hamburger-menu-btn[aria-expanded=true] svg .line.bottom{rotate:-45deg;fill:var(--line-bottom-color-expanded)}
         `
         const template = document.createElement('template')
         template.innerHTML = `
-            <!-- <link rel="stylesheet" href="style.min.css"> -->
             <style>${this.css}</style>
 
             <button type="button" class="hamburger-menu-btn" aria-expanded="false">
@@ -148,7 +146,7 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
             .replace('[[border-color-expanded]]', borderColorExpanded || color)
             .replace('[[line-top-color-expanded]]', lineTopColorExpanded)
             .replace('[[line-bottom-color-expanded]]', lineBottomColorExpanded)
-            .replace('[[size]]', this.getAttribute('size') || this.defaultSize)
+            .replace('[[svg-size]]', this.getAttribute('svg-size') || this.defaultSVGSize)
     }
 
     connectedCallback() {
@@ -197,7 +195,7 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
             case 'line-color-expanded':
             case 'line-top-color-expanded':
             case 'line-bottom-color-expanded':
-            case 'size': {
+            case 'svg-size': {
                 this.updateStyles()
                 break
             }
@@ -206,4 +204,4 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
     }
 }
 
-window.customElements.define('rwc-hamburger-menu-btn', RWC_HamburgerMenuBtn)
+window.customElements.define('rwc-hmb-1', RWC_HamburgerMenuBtn1)
