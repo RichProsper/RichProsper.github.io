@@ -15,15 +15,19 @@
     --border-color-expanded: [[border-color-expanded]];
     --line-top-color-expanded: [[line-top-color-expanded]];
     --line-bottom-color-expanded: [[line-bottom-color-expanded]];
-    --svg-size: [[svg-size]];
+    --size: [[size]];
 
-    font-size: var(--svg-size);
+    box-sizing: border-box;
+    display: flex;
+    width: 1em;
+    height: 1em;
+    font-size: var(--size);
     border: none;
     background: none;
     background-color: var(--background-color);
     border-radius: .1em;
     border: .05em solid var(--border-color);
-    padding: .125em .25em;
+    padding: 0 .1em;
     cursor: pointer;
     transition: 
         outline-offset .2s,
@@ -39,10 +43,14 @@
         outline: -webkit-focus-ring-color auto 1px;
         outline-offset: .1em;
     }
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
     svg {
-        display: flex;
-        width: 1em;
-        height: 1em;
+        width: 100%;
+        height: 100%;
     
         .line {
             transform-origin: center;
