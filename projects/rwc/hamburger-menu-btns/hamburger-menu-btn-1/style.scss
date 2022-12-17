@@ -30,10 +30,10 @@
     padding: 0 .1em;
     cursor: pointer;
     transition: 
-        outline-offset .2s,
-        opacity .2s,
-        background-color .2s,
-        border-color .2s
+        outline-offset .4s,
+        opacity .4s,
+        background-color .4s,
+        border-color .4s
     ;
 
     &:hover {
@@ -58,7 +58,7 @@
                 rotate .2s ease-in,
                 y .2s ease-in .2s,
                 opacity .1s ease-in .2s,
-                fill .2s
+                fill .4s
             ;
 
             &.top {
@@ -82,7 +82,7 @@
                     y .2s ease-in,
                     rotate .2s ease-in .2s,
                     opacity .1s ease-in .2s,
-                    fill .2s
+                    fill .4s
                 ;
 
                 &:is(.top, .bottom) {
