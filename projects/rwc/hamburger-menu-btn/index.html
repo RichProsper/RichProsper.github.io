@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevents favicon.ico requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../../global.min.css">
+    <script src="rwc-hamburger-menu-btn.min.js" defer></script>
+    <style>
+        body {
+            padding: 2em;
+        }
+        h1, h2, section {
+            margin-bottom: 1em;
+        }
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+        }
+    </style>
+    <title>Hamburger Menu Button</title>
+</head>
+<body>
+    <h1>Hamburger Menu Button</h1>
+
+    <h2>Animation Style 1</h2>
+    <section>  
+        <rwc-hmb size="3rem"></rwc-hmb>
+        <rwc-hmb
+            title="A title"
+            background-color-expanded="hsla(210 100% 48% / .2)"
+            color-expanded="hsl(210 100% 48%)"
+        >
+        </rwc-hmb>
+        <rwc-hmb
+            title="A title"
+            background-color-expanded="hsla(210 100% 48% / .2)"
+            border-color="hsl(210 100% 48%)"
+            line-bottom-color-expanded="hsl(210 100% 48%)"
+            size="6rem"
+        >
+        </rwc-hmb>
+    </section>
+
+    <h2>Animation Style 2</h2>
+    <section>  
+        <rwc-hmb size="6rem" animation-style="2"></rwc-hmb>
+        <rwc-hmb
+            title="A title"
+            background-color-expanded="hsla(339 100% 48% / .2)"
+            color-expanded="hsl(339 100% 48%)"
+            size="8rem"
+            animation-style="2"
+        >
+        </rwc-hmb>
+        <rwc-hmb
+            title="A title"
+            background-color-expanded="hsla(339 100% 48% / .2)"
+            border-color="hsl(339 100% 48%)"
+            line-bottom-color-expanded="hsl(339 100% 48%)"
+            size="10rem"
+            animation-style="2"
+        >
+        </rwc-hmb>
+    </section>
+</body>
+</html>
