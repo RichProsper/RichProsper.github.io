@@ -51,6 +51,7 @@
     svg {
         width: 100%;
         height: 100%;
+        transition: rotate .25s ease-in .25s;
     
         .line {
             stroke-width: 10;
@@ -59,7 +60,7 @@
             stroke-dashoffset: 0;
             transform-origin: center;
             transition:
-                opacity .25s ease-in .2s,
+                opacity .2s ease-in .2s,
                 stroke .5s,
             ;
 
@@ -92,9 +93,11 @@
         border-color: var(--border-color-expanded);
         
         svg {
+            rotate: .25turn;
+
             .line {
                 transition:
-                    opacity ease-in .25s,
+                    opacity .2s ease-in .2s,
                     stroke .5s
                 ;
 
