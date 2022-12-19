@@ -161,20 +161,23 @@ class RWC_HamburgerMenuBtn extends HTMLElement {
             .replace('[[size]]', this.getAttribute('size') || this.defaultSize)
     }
 
+    open() {
+        this.HamburgerMenuBtn.ariaExpanded = 'true',
+        this.SVG2.classList.remove('closed')
+    }
+    close() {
+        this.HamburgerMenuBtn.ariaExpanded = 'false',
+        this.SVG2.classList.add('closed')
+    }
+
     connectedCallback() {
         if (!this.hasAttribute('aria-controls')) this.HamburgerMenuBtn.setAttribute('aria-controls', this.defaultAriaControls)
         if (!this.hasAttribute('title')) this.HamburgerMenuBtn.ariaLabel = this.defaultTitle
         if (!this.hasAttribute('title')) this.HamburgerMenuBtn.title = this.defaultTitle
 
-        const SVG2 = this.SVG2
+        const menu = this
         this.HamburgerMenuBtn.addEventListener('click', function() {
-            this.ariaExpanded === 'true' ? (
-                this.ariaExpanded = 'false',
-                SVG2.classList.add('closed')
-            ) : (
-                this.ariaExpanded = 'true',
-                SVG2.classList.remove('closed')
-            )
+            this.ariaExpanded === 'true' ? menu.close() : menu.open()
         })
 
         this.updateStyles()
