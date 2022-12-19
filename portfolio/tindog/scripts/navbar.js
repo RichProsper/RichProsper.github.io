@@ -5,15 +5,13 @@ export default () => {
         this.classList.remove('transition')
     })
 
-    document.querySelector('nav.navbar button').addEventListener('click', function() {
-        this.ariaExpanded === "false" ? (
+    document.querySelector('nav.navbar rwc-hmb').addEventListener('click', function() {
+        this.HamburgerMenuBtn.ariaExpanded === 'true' ? (
             navlinks.classList.add('transition'),
-            navlinks.classList.add('show'),
-            this.ariaExpanded = "true"
+            navlinks.classList.add('show')
         ) : (
             navlinks.classList.add('transition'),
-            navlinks.classList.remove('show'),
-            this.ariaExpanded = "false"
+            navlinks.classList.remove('show')
         )
     })
 }
