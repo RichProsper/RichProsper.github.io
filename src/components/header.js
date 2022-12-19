@@ -26,6 +26,7 @@ export default () => {
     const lis = header.children[1].children
     for (let i = 0; i < lis.length; i++) {
         lis[i].children[0].addEventListener('click', toggle)
+        lis[i].children[0].addEventListener('click', () => menu.close())
     }
     menu.addEventListener('click', toggle)
 }
