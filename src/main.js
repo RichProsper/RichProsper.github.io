@@ -1,4 +1,4 @@
-import Header from './components/header.js'
+import Header from './components/header.min.js'
 import Portfolio from './components/portfolio.js'
 
 (() => {

@@ -1,6 +1,6 @@
 export default () => {
     const header = document.getElementById('header')
-    const menuClose = document.getElementsByClassName('menu-close')[0]
+    const menu = document.querySelector('rwc-hmb')
 
     window.addEventListener('scroll', () => {
         // Add/remove sticky, depending on test conditional, scrollY greater than 0
@@ -11,7 +11,7 @@ export default () => {
         // to bigger. This avoids some styling issues.
         if (window.innerWidth >= 993 && header.classList.contains('active')) {
             header.classList.remove('active')
-            menuClose.classList.remove('close')
+            menu.close()
         }
     })
 
@@ -20,7 +20,6 @@ export default () => {
     const toggle = () => {
         if (window.innerWidth < 993) {
             header.classList.toggle('active')
-            menuClose.classList.toggle('close')
         }
     }
 
@@ -28,5 +27,5 @@ export default () => {
     for (let i = 0; i < lis.length; i++) {
         lis[i].children[0].addEventListener('click', toggle)
     }
-    menuClose.addEventListener('click', toggle)
+    menu.addEventListener('click', toggle)
 }

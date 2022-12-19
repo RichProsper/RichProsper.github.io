@@ -11,7 +11,7 @@ header {
     z-index: 1;
     transition: .4s ease-in;
 
-    & .logo {
+    .logo {
         position: relative;
         width: 5rem;
         height: 5rem;
@@ -21,7 +21,7 @@ header {
         filter: grayscale(100%);
         transition: .4s ease-in;
     }
-    & ul {
+    ul {
         visibility: hidden;
         opacity: 0;
         position: absolute;
@@ -35,11 +35,11 @@ header {
         border-top: .2rem solid transparent;
         transition: .2s;
 
-        & li {
+        li {
             position: relative;
             list-style: none;
 
-            & a {
+            a {
                 position: relative;
                 text-decoration: none;
                 color: #ccc;
@@ -54,7 +54,7 @@ header {
         padding-top: 2rem;
         border-top: .2rem solid #aaa;
 
-        & li a {
+        li a {
             display: inline-block;
             width: 100%;
             padding: 1rem 0;
@@ -71,23 +71,22 @@ header {
 
     /* Apply styles if screen width is 993px or more */
     @media only screen and (min-width: 993px) {
-        & {
-            background-color: rgba(0,0,0,.1);
-            backdrop-filter: blur(1rem);
-            padding: 2rem 10rem;
-        }
+        background-color: rgba(0,0,0,.1);
+        backdrop-filter: blur(1rem);
+        padding: 2rem 10rem;
+        
         &.sticky {
             padding: .5rem 10rem;
             background-color: var(--white-primary);
 
-            & .logo {
+            .logo {
                 filter: grayscale(100%);
             }    
         }
-        & .logo {
+        .logo {
             filter: unset;
         }
-        & ul {
+        ul {
             position: relative;
             display: flex;
             justify-content: center;
@@ -102,8 +101,8 @@ header {
             overflow: unset;
             background-color: unset;
 
-            & li {
-                & a {
+            li {
+                a {
                     margin: 0 1.5rem;
                     color: var(--white-primary);
                     font-weight: 300;
@@ -137,7 +136,7 @@ header {
                 border-color: var(--black-primary);
             }
         }
-        & .menu-close {
+        rwc-hmb {
             display: none;
         }
     }
