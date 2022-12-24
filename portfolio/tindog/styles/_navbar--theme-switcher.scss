@@ -1,14 +1,73 @@
 nav.navbar .navbar-collapse ul li.theme-switcher {
+    --border-color: hsla(var(--hue-sat) 100% / .25);
+    --bg-color: hsla(var(--hue-sat) 13% / .75);
+
     position: relative;
 
     form {
         position: absolute;
+        top: calc(100% + .1em);
+        right: 0;
+        width: max-content;
+        padding: .667em;
+        border: .1em solid var(--border-color);
+        border-top: none;
+        border-bottom-left-radius: .333em;
+        border-bottom-right-radius: .333em;
+        background-color: var(--bg-color);
+        z-index: 1;
 
         &.hidden {
             display: none;
         }
         fieldset {
             border: none;
+            font-size: .8em;
+
+            .container {
+                display: flex;
+                gap: .75em;
+
+                &:not(:last-of-type) {
+                    margin-bottom: 1em;
+                }
+                * {
+                    cursor: pointer;
+                }
+                input {
+                    appearance: none;
+                    width: 1em;
+                    height: 1em;
+                    border-radius: 50%;
+                    outline: .2em solid var(--radio-color);
+                    outline-offset: .2em;
+                    transition:
+                        opacity .2s,
+                        background-color .2s
+                    ;
+
+                    &#pink {
+                        --radio-color: var(--pink-theme);
+                    }
+                    &#blue {
+                        --radio-color: var(--blue-theme);
+                    }
+                    &#sea {
+                        --radio-color: var(--sea-theme);
+                    }
+                    &#gold {
+                        --radio-color: var(--gold-theme);
+                    }
+                    &:checked {
+                        background-color: var(--radio-color);
+                    }
+                }
+                &:hover {
+                    input {
+                        opacity: .75;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,9 +1,18 @@
 html {
     --hue-sat: 0deg 0%;
-    --hue-1: 351deg;
-    --hue-2: 7deg;
-    // --hue-1: 251deg;
-    // --hue-2: 267deg;
+    --pink-hue-1: 351deg;
+    --pink-hue-2: 7deg;
+    --blue-hue-1: 251deg;
+    --blue-hue-2: 267deg;
+    --sea-hue-1: 151deg;
+    --sea-hue-2: 167deg;
+    --gold-hue-1: 51deg;
+    --gold-hue-2: 67deg;
+
+    --pink-theme: hsl(var(--pink-hue-1) 100% 65%);
+    --blue-theme: hsl(var(--blue-hue-1) 100% 65%);
+    --sea-theme: hsl(var(--sea-hue-1) 100% 33.3%);
+    --gold-theme: hsl(var(--gold-hue-1) 100% 33.3%);
 
     --site-bg-color: hsl(var(--hue-sat) 13%);
     --site-color: hsl(var(--hue-sat) 87%);
@@ -11,10 +20,10 @@ html {
     --nav-link-color: hsl(var(--hue-sat) 100% / .75);
     --nav-link_hover_focus-color: hsl(var(--hue-sat) 100%);
 
-    --title-bg-color: hsl(var(--hue-1) 100% 65%);
+    --title-bg-color: hsl(var(--pink-hue-1) 100% 65%);
     --app-store-bg-color: hsl(var(--hue-sat) 23%);
 
-    --features-i-color: hsl(var(--hue-2) 80% 65%);
+    --features-i-color: hsl(var(--pink-hue-2) 80% 65%);
     --features-p-color: hsl(var(--hue-sat) 70%);
 
     --carousel-numbers-bg-color: hsl(var(--hue-sat) 0% / .5);
@@ -37,6 +46,18 @@ html {
     }
     @media only screen and (min-width: 2700px) {
         font-size: 93.75%; /* 1rem = 15px */
+    }
+    &.blue {
+        --title-bg-color: hsl(var(--blue-hue-1) 100% 65%);
+        --features-i-color: hsl(var(--blue-hue-2) 80% 65%);
+    }
+    &.sea {
+        --title-bg-color: hsl(var(--sea-hue-1) 100% 33.3%);
+        --features-i-color: hsl(var(--sea-hue-2) 80% 33.3%);
+    }
+    &.gold {
+        --title-bg-color: hsl(var(--gold-hue-1) 100% 33.3%);
+        --features-i-color: hsl(var(--gold-hue-2) 80% 33.3%);
     }
 }
 body {
