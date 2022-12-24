@@ -1,0 +1,14 @@
+nav.navbar .navbar-collapse ul li.theme-switcher {
+    position: relative;
+
+    form {
+        position: absolute;
+
+        &.hidden {
+            display: none;
+        }
+        fieldset {
+            border: none;
+        }
+    }
+}
