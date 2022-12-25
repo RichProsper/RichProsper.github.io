@@ -20,7 +20,7 @@ html {
     --nav-link-color: hsl(var(--hue-sat) 100% / .75);
     --nav-link_hover_focus-color: hsl(var(--hue-sat) 100%);
 
-    --title-bg-color: hsl(var(--pink-hue-1) 100% 65%);
+    --title-bg-color: var(--pink-theme);
     --app-store-bg-color: hsl(var(--hue-sat) 23%);
 
     --features-i-color: hsl(var(--pink-hue-2) 80% 65%);
@@ -48,15 +48,15 @@ html {
         font-size: 93.75%; /* 1rem = 15px */
     }
     &.blue {
-        --title-bg-color: hsl(var(--blue-hue-1) 100% 65%);
+        --title-bg-color: var(--blue-theme);
         --features-i-color: hsl(var(--blue-hue-2) 80% 65%);
     }
     &.sea {
-        --title-bg-color: hsl(var(--sea-hue-1) 100% 33.3%);
+        --title-bg-color: var(--sea-theme);
         --features-i-color: hsl(var(--sea-hue-2) 80% 33.3%);
     }
     &.gold {
-        --title-bg-color: hsl(var(--gold-hue-1) 100% 33.3%);
+        --title-bg-color: var(--gold-theme);
         --features-i-color: hsl(var(--gold-hue-2) 80% 33.3%);
     }
 }

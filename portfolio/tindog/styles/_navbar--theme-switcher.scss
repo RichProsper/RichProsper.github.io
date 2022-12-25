@@ -6,31 +6,24 @@ nav.navbar .navbar-collapse ul li.theme-switcher {
 
     form {
         position: absolute;
-        top: calc(100% + .1em);
-        right: 0;
-        width: max-content;
-        padding: .667em;
-        border: .1em solid var(--border-color);
-        border-top: none;
-        border-bottom-left-radius: .333em;
-        border-bottom-right-radius: .333em;
+        width: 100%;
+        padding: 1.5em 2em;
+        border-bottom: .1em solid var(--border-color);
         background-color: var(--bg-color);
         z-index: 1;
 
-        &.hidden {
-            display: none;
-        }
         fieldset {
             border: none;
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5em;
+            flex-wrap: wrap;
             font-size: .8em;
 
             .container {
                 display: flex;
-                gap: .75em;
+                transition: opacity .2s;
 
-                &:not(:last-of-type) {
-                    margin-bottom: 1em;
-                }
                 * {
                     cursor: pointer;
                 }
@@ -41,10 +34,7 @@ nav.navbar .navbar-collapse ul li.theme-switcher {
                     border-radius: 50%;
                     outline: .2em solid var(--radio-color);
                     outline-offset: .2em;
-                    transition:
-                        opacity .2s,
-                        background-color .2s
-                    ;
+                    transition: background-color .2s;
 
                     &#pink {
                         --radio-color: var(--pink-theme);
@@ -63,8 +53,35 @@ nav.navbar .navbar-collapse ul li.theme-switcher {
                     }
                 }
                 &:hover {
-                    input {
-                        opacity: .75;
+                    opacity: .75;
+                }
+                label {
+                    padding-left: 1em;
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width: 500px) {
+        form {
+            top: calc(100% + .1em);
+            right: 0;
+            width: max-content;
+            padding: .75em;
+            border: .1em solid var(--border-color);
+            border-top: none;
+            border-bottom-left-radius: .333em;
+            border-bottom-right-radius: .333em;
+    
+            fieldset {
+                display: block;
+                justify-content: unset;
+                gap: unset;
+                flex-wrap: unset;
+    
+                .container {    
+                    &:not(:last-of-type) {
+                        margin-bottom: 1.25em;
                     }
                 }
             }

@@ -1,17 +1,25 @@
 export default () => {
     const li = document.querySelector('nav.navbar li.theme-switcher')
     const atag = li.querySelector('a')
+    const chevronRight = atag.querySelector('.fa-chevron-right')
+    const chevronDown = atag.querySelector('.fa-chevron-down')
     const form = li.querySelector('form')
     const themes = form.querySelectorAll('input')
 
+    const closeThemeSwitcher = () => {
+        form.classList.add('hidden')
+        chevronDown.classList.add('hidden')
+        chevronRight.classList.remove('hidden')
+        window.removeEventListener('click', cleanup)
+    }
+
     /**
-     * Close theme switcher dropdown
+     * Close theme switcher dropdown and removes the window click event listener
      * @param {MouseEvent} e Click Event
      */
-    const closeThemeSwitcher = e => {
+    const cleanup = e => {
         if (!li.contains(e.target)) {
-            form.classList.add('hidden')
-            window.removeEventListener('click', closeThemeSwitcher)
+            closeThemeSwitcher()
         }
     }
     
@@ -20,10 +28,11 @@ export default () => {
         
         form.classList.contains('hidden') ? (
             form.classList.remove('hidden'),
-            window.addEventListener('click', closeThemeSwitcher)
+            chevronRight.classList.add('hidden'),
+            chevronDown.classList.remove('hidden'),
+            window.addEventListener('click', cleanup)
         ) : (
-            form.classList.add('hidden'),
-            window.removeEventListener('click', closeThemeSwitcher)
+            closeThemeSwitcher()
         )
     })
 
