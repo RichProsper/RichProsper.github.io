@@ -63,6 +63,11 @@ nav.navbar .navbar-collapse ul li.theme-switcher {
     }
 
     @media only screen and (min-width: 500px) {
+        a {
+            i {
+                width: 1em;
+            }
+        }
         form {
             top: calc(100% + .1em);
             right: 0;
