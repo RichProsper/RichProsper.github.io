@@ -17,6 +17,11 @@ class RWC_Carousel extends HTMLElement {
         this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))
 
         this.Carousel = this.shadowRoot.querySelector('.carousel')
+        this.Items = this.children
+        this.Total = this.Carousel.querySelector('.total')
+        this.Current = this.Carousel.querySelector('.current')
+        this.PrevBtn = this.Carousel.querySelector('.prev')
+        this.NextBtn = this.Carousel.querySelector('.next')
         this.Style = this.shadowRoot.querySelector('style')
     }
 
@@ -69,7 +74,8 @@ class RWC_Carousel extends HTMLElement {
 
     // TODO
     connectedCallback() {
-        
+        this.Total.textContent = this.Items.length
+        this.Items[0].classList.add('active')
     }
 
     // TODO
