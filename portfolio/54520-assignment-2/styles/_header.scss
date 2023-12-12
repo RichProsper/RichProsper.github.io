@@ -1,0 +1,121 @@
+header {
+    --border-bottom-color: hsl(var(--hue-sat) 0% / .25);
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--nav-bgcolor--primary);
+    border-bottom: .1rem solid var(--border-bottom-color);
+    padding: .5rem 5rem;
+    z-index: 2;
+
+    .logo {
+        position: relative;
+        width: 5rem;
+        height: 5rem;
+        background-image: url(../images/logo/apple-touch-icon.png);
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        filter: grayscale(100%);
+    }
+    nav {
+        position: absolute;
+        top: calc(100% + .1rem);
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        transform-origin: top;
+        scale: 1 0; /* Hides the nav links by scaling height to 0. */
+        border-bottom: .1rem solid transparent;
+        background-color: inherit;
+
+        &.transition {
+            transition: scale .25s;
+        }
+        &.show {
+            scale: 1 1; /* Unhides the nav links by scaling height to 100%. */
+            border-color: var(--border-bottom-color);
+        }
+        ul {
+            list-style: none;
+
+            li {
+                a {
+                    display: block;
+                    padding: 1.5rem 0;
+                    padding-left: 5rem;    
+                    text-decoration: none;
+                    color: var(--nav-link-color);
+                    font-weight: 600;
+                    transition: color .2s, background-color .2s;
+
+                    &:hover,
+                    &:focus {
+                        color: var(--nav-link_hover_focus-color);
+                        background-color: var(--nav-bgcolor--secondary);
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (width >= 993px) {
+        background-color: var(--nav-bgcolor--secondary);
+        backdrop-filter: blur(1rem);
+        padding: 2rem 10rem;
+        transition: .4s ease-in;
+        border: none;
+
+        .logo {
+            filter: unset;
+            transition: .4s ease-in;
+        }
+        nav {
+            position: unset;
+            top: unset;
+            left: unset;
+            width: unset;
+            z-index: unset;
+            transform-origin: unset;
+            scale: none;
+            border: none;
+            background: none;
+
+            ul {
+                display: flex;
+
+                li {
+                    padding: 1.5rem 0;
+                    padding-right: 2rem;
+
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                    a {
+                        display: inline;
+                        color: var(--nav-bgcolor--primary);
+                        font-weight: 300;
+                        padding: 0;
+                        padding-bottom: 1rem;
+                        border-bottom: .1em solid transparent;
+
+                        &:hover,
+                        &:focus {
+                            color: var(--nav-bgcolor--primary);
+                            background-color: unset;
+                            border-color: var(--nav-bgcolor--primary);
+                        }
+                    }
+                }
+            }
+        }
+        rwc-hmb {
+            display: none;
+        }
+    }
+}

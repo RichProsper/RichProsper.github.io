@@ -1,0 +1,127 @@
+[data-carousel] {
+    --height: min(50rem, 80vh);
+    --height: min(50rem, 80svh);
+
+    position: relative;
+    
+    .items {
+        position: relative;
+        height: var(--height);
+        overflow: hidden;
+
+        .item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--height);
+            text-align: center;
+            translate: 100%;
+            transition: translate .5s;
+
+            &.active {
+                z-index: 1;
+                background-color: var(--site-bgcolor); // Corrects some animation issues
+                translate: 0;
+            }
+            &.left {
+                translate: -100%;
+            }
+            h3 {
+                font-size: 2rem;
+            }
+            h3,
+            h4 {
+                margin-bottom: 1em;
+            }
+            img {
+                width: 100%;
+                height: auto;
+            }
+            iframe {
+                width: 80%;
+                height: 70%;
+            }
+            &.facebook {
+                overflow-y: auto;
+
+                iframe {
+                    width: calc(80% - 12px);
+                    padding-left: 6px;
+                    height: 61rem;
+                }
+                &::-webkit-scrollbar {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+        }
+    }
+    .numbers {
+        position: absolute;
+        top: 2em;
+        right: 1em;
+        z-index: 1;
+        padding: .75em .5em .75em 1em;
+        border-radius: 40%;
+        font-size: .8125em;
+        letter-spacing: .4em;
+        background-color: hsl(0deg 0% 0% / .5);
+    }
+    button {
+        background: transparent;
+        border: none;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 10%;
+        z-index: 1;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: hsl(var(--hue-sat) 87% / .75);
+        transition: color .2s, background-color .2s;
+
+        &.prev {
+            left: 0;
+        }
+        &.next {
+            right: 0;
+        }
+        &:hover,
+        &:focus {
+            color: inherit;
+
+            i {
+                scale: 1.25;
+            }
+        }
+        &:hover {
+            background-color: var(--nav-bgcolor--secondary);
+        }
+        i {
+            transition: scale .2s;
+        }
+    }
+
+    @media only screen and (width >= 500px) {
+        .items .item.facebook iframe {
+            height: 82rem;
+        }
+        button {
+            font-size: 2em;
+        }
+    }
+    @media only screen and (width >= 900px) {
+        .items .item.facebook iframe {
+            height: 61rem;
+        }
+    }
+    @media only screen and (width >= 1200px) {
+        --height: min(62.5rem, 80vh);
+        --height: min(62.5rem, 80svh);
+    }
+    @media only screen and (width >= 1500px) {
+        --height: min(75rem, 80vh);
+        --height: min(75rem, 80svh);
+    }
+}

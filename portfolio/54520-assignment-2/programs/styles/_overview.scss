@@ -1,0 +1,104 @@
+section.overview {
+    padding: 10%;
+    padding-top: calc(5% + 6.1rem);
+
+    h1 {
+        text-align: center;
+        font-size: 4rem;
+        margin-bottom: 1em;
+        animation: MoveInTop .8s ease-out .2s backwards;
+    }
+    .wrapper {
+        position: relative;
+        float: right;
+        width: 20rem; 
+        height: 20rem;
+        margin: 3rem; 
+        border-radius: 50%;
+        shape-outside: circle();
+        animation: MoveInRight .8s ease-out .2s backwards;
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0.3rem 0.5rem -0.1rem hsl(0deg 0% 0% / .22),
+                        0 0.6rem 1rem 0 hsl(0deg 0% 0% / .34),
+                        0 0.1rem 1.8rem 0 hsl(0deg 0% 0% / .32);
+        }
+        svg {
+            position: absolute;
+            top: -1.5rem;
+            left: -1.5rem;
+            width: calc(100% + 3rem);
+            stroke: hsl(160, 85%, 30%);
+            fill: none;
+            stroke-width: .4rem;
+            
+            path {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: -1000;
+                animation: DrawHalfCircle .8s ease-out 1s forwards;
+            }
+        }
+    }
+    p {
+        font-weight: 500;
+        text-align: justify;
+        word-spacing: .1rem;
+        line-height: 1.5;
+        animation: MoveInLeft .8s ease-out .2s backwards;
+    }
+
+    @media only screen and (width >= 993px) {
+        padding-top: calc(5% + 9rem);
+    }
+}
+
+@keyframes MoveInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-10rem);
+    }
+    80% {
+        opacity: .5;
+        transform: translateY(2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes MoveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        opacity: .5;
+        transform: translateX(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes MoveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        opacity: .5;
+        transform: translateX(-1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes DrawHalfCircle {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}

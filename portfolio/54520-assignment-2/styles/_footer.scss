@@ -1,0 +1,38 @@
+footer {
+    padding: 0 10% 5%; /* top | left and right | bottom */
+    background-color: hsl(216deg, 28%, 7%);
+
+    .socials {
+        margin-bottom: 1em;
+        text-align: center;
+        font-size: 3rem;
+
+        i {
+            margin: 0 1em;
+            cursor: pointer;
+            transform-origin: bottom left;
+            transition: .2s;
+
+            &:hover,
+            &:focus {
+                transform: scale(1.5);
+            }
+            &.blue:hover,
+            &.blue:focus {
+                color: hsl(207deg 90% 53%);
+            }
+            &.pink:hover,
+            &.pink:focus {
+                color: hsl(340, 82%, 52%);
+            }
+            &.red:hover,
+            &.red:focus {
+                color: hsl(348, 100%, 55%);
+            }
+        }
+    }
+    small {
+        display: block;
+        text-align: center;
+    }
+}

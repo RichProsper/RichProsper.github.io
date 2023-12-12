@@ -1,0 +1,40 @@
+@import "../../styles/grid-programs";
+
+section.programs {
+    position: relative;
+
+    &#graduate {
+        padding-top: calc(5% + 6.1rem);
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 66.667%;
+        height: .1rem;
+        translate: -50%;
+        background-color: hsl(0 0% 100% / .5);
+    }
+    .container {
+        gap: 4rem;
+
+        a {
+            scale: 1.05;
+            box-shadow: 0 0.3rem 0.5rem -0.1rem hsl(0deg 0% 0% / .22),
+                        0 0.6rem 1rem 0 hsl(0deg 0% 0% / .34),
+                        0 0.1rem 1.8rem 0 hsl(0deg 0% 0% / .32);
+            
+            &:hover,
+            &:focus {
+                scale: 1;
+            }
+        }
+    }
+
+    @media only screen and (width >= 993px) {
+        &#graduate {
+            padding-top: calc(5% + 9rem);
+        }
+    }
+}

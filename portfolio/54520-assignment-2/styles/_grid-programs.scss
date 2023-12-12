@@ -1,0 +1,102 @@
+section.programs {
+    padding: 10%;
+
+    h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1em;
+    }
+    h3 {
+        margin-bottom: 1em;
+
+        &:last-of-type  {
+            margin-top: 1em;
+        }
+    }
+    h4 {
+        margin-bottom: .8em;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+
+        a {
+            position: relative;
+            width: 35rem;
+            height: 12rem;
+            text-decoration: none;
+            color: inherit;
+            padding: 2rem;
+            border: .1rem solid hsl(0deg 0% 100% / .5);
+            transform-origin: bottom left;
+            transition: .2s;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: .8rem;
+                height: 100%;
+                background-color: hsl(353, 85%, 52%);
+            }
+            &:hover,
+            &:focus {
+                opacity: .7;
+                scale: 1.05;
+            }
+        }
+        &.graduate {
+            a:nth-child(4n+2)::before {
+                background-color: hsl(179, 100%, 34%);
+            }
+            a:nth-child(4n+3)::before {
+                background-color: hsl(65deg 71% 51%);
+            }
+            a:nth-child(4n+4)::before {
+                background-color: hsl(41, 97%, 54%);
+            }
+        }
+        &.undergraduate {
+            a:nth-child(4n+1)::before {
+                background-color: hsl(212, 70%, 61%);
+            }
+            a:nth-child(4n+2)::before {
+                background-color: hsl(50, 100%, 59%);
+            }
+            a:nth-child(4n+3)::before {
+                background-color: hsl(188, 62%, 59%);
+            }
+            a:nth-child(4n+4)::before {
+                background-color: hsl(293, 29%, 64%);
+            }
+        }
+    }
+    a.all-programs {
+        display: inline-block;
+        margin-top: 2.5rem;
+        text-decoration: none;
+        color: currentColor;
+        padding: .75rem 2rem;
+        border: .2rem solid hsl(353, 85%, 40%);
+        font-weight: 500;
+        transition: background-color .2s;
+
+        &:hover,
+        &:focus {
+            background-color: hsl(353, 85%, 40%);
+        }
+    }
+
+    @media only screen and (width >= 350px) {
+        .container a {
+            width: 40rem;
+        }
+    }
+    @media only screen and (width >= 750px) {
+        padding: 5%;
+    }
+}

@@ -1,0 +1,179 @@
+.grid {
+    display: grid;
+
+    aside {
+        h3 {
+            padding: 10%;
+            padding-bottom: 3rem;
+            text-align: center;
+        }
+        ul {
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            list-style: none;
+            padding-bottom: 3rem;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 66.67%;
+                height: .1rem;
+                translate: -50%;
+                background-color: hsl(0 0% 100% / .5);
+            }
+            li a {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                text-decoration: none;
+                color: inherit;
+                padding: 1rem 2rem;
+                font-weight: 600;
+                transition: background-color .2s;
+
+                &:hover,
+                &:focus {
+                    background-color: hsl(0deg 0% 0% / .2);
+                }
+                span {
+                    width: 3rem;
+                    height: 3rem;
+                    background-size: cover;
+                    background-position: center;
+                    filter: drop-shadow(.3rem .2rem .1rem hsl(0deg 0% 0% / .5));
+
+                    // Partnered Universities
+                    &.unicaf {
+                        background-image: url(../images/unicaf-logo.png);
+                    }
+                    &.harvard {
+                        background-image: url(../images/harvard-logo.webp);
+                    }
+                    &.waterloo {
+                        background-image: url(../images/waterloo-logo.webp);
+                    }
+                    &.mit {
+                        background-image: url(../images/mit-logo.png);
+                    }
+                    &.cambridge {
+                        background-image: url(../images/cambridge-logo.webp);
+                    }
+                    &.stanford {
+                        background-image: url(../images/stanford-logo.png);
+                    }
+                    &.icl {
+                        background-image: url(../images/icl-logo.webp);
+                        height: 1.25rem;
+                        margin: .875rem 0;
+                    }
+                    &.eth {
+                        background-image: url(../images/eth-logo.png);
+                    }
+                    &.nus {
+                        background-image: url(../images/nus-logo.png);
+                        width: 2.5rem;
+                        margin: 0 .25rem;
+                    }
+                    &.princeton {
+                        background-image: url(../images/princeton-logo.webp);
+                        width: 2.5rem;
+                        margin: 0 .25rem;
+                    }
+                    // Partnered Hiring Companies
+                    &.google {
+                        background-image: url(../images/google-logo.webp);
+                    }
+                    &.microsoft {
+                        background-image: url(../images/microsoft-logo.png);
+                    }
+                    &.amazon {
+                        background-image: url(../images/amazon-logo.webp);
+                    }
+                    &.apple {
+                        background-image: url(../images/apple-logo.webp);
+                        width: 2.5rem;
+                        margin: 0 .25rem;
+                        filter: grayscale(1);
+                    }
+                    &.nvidia {
+                        background-image: url(../images/nvidia-logo.png);
+                        height: 2rem;
+                        margin: .5rem 0;
+                    }
+                    &.facebook {
+                        background-image: url(../images/facebook-logo.webp);
+                    }
+                    &.tesla {
+                        background-image: url(../images/tesla-logo.png);
+                    }
+                    &.tsmc {
+                        background-image: url(../images/tsmc-logo.webp);
+                    }
+                    &.broadcom {
+                        background-image: url(../images/broadcom-logo.png);
+                    }
+                    &.oracle {
+                        background-image: url(../images/oracle-logo.webp);
+                        height: 1.89rem;
+                        margin: .555rem 0;
+                    }
+                }
+            }
+        }
+    }
+    .sections {
+        background-color: hsl(216deg, 28%, 7%);
+
+        section {
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 66.667%;
+                height: .1rem;
+                translate: -50%;
+                background-color: hsl(0 0% 100% / .5);
+            }
+        }
+    }
+
+    @media only screen and (width >= 750px) {
+        grid-template-columns: 1fr 3fr 1fr;
+
+        aside {
+            h3 {
+                padding: 1rem;
+            }
+            ul {
+                display: block;
+                justify-content: unset;
+                flex-wrap: unset;
+
+                &::after {
+                    width: 66.67%;
+                }
+                li a {
+                    gap: .75rem;
+                    padding: .75rem 1rem;
+                }
+            }
+        }
+        .sections {
+            max-height: max(80vh, 57rem);
+            max-height: max(80svh, 57rem);
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+}
