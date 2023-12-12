@@ -1,0 +1,51 @@
+.careers {
+    display: block;
+    padding: 10%;
+
+    h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1em;
+    }
+    .container {
+        border: .1em solid hsl(0deg 0% 31.76%);
+        border-radius: 1rem;
+        overflow: hidden;
+
+        table {
+            font-size: 2rem;
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+            text-align: left;
+
+            thead tr,
+            tbody tr:last-child {
+                border: none;
+            }
+            thead tr:hover {
+                background-color: unset;
+            }
+            tr {
+                border-top: .1em solid hsl(0deg 0% 31.76%);
+                border-bottom: .1em solid hsl(0deg 0% 31.76%);
+
+                &:hover {
+                    background-color: hsl(0deg 0% 100% / 8%);
+                }
+            }
+            th, td {
+                padding: 1em .5em;
+            }
+            a {
+                color: inherit;
+                transition: .2s;
+
+                &:hover,
+                &:focus {
+                    opacity: .7;
+                }
+            }
+        }
+    }
+}

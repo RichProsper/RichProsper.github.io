@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Banking Register">
+    <link rel="icon" href="../images/logo/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/public-main.min.css">
+    <!-- JS -->
+    <script defer src="../vendors/RWC/rwc-combined-2.min.js"></script>
+    <script defer type="module" src="scripts/register.min.js"></script>
+    <!-- Page Title -->
+    <title>Register</title>
+</head>
+<body class="hidden">
+    <!-- Header -->
+    <header id="header">
+        <!-- Logo -->
+        <span class="logo"></span>
+
+        <!-- Main Navigation -->
+        <nav id="navbarSupportedContent">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="forgotpassword.html">Forgot Password</a></li>
+            </ul>
+        </nav>
+        <!-- Hamburger Menu Button -->
+        <rwc-hmb color="black" title="Toggle navigation" aria-controls="navbarSupportedContent">
+        </rwc-hmb>
+    </header>
+
+    <main>
+        <div class="banner"></div>
+        <h1>Register</h1>
+
+        <!-- Register Form Card -->
+        <form>
+            <div class="controls">
+                <rwc-input type="text" name="name" placeholder="Name on Credit Card *" pattern="[A-Za-z\-\s]{1,}" title="Name must only contain letters, spaces and hyphens" required></rwc-input>
+
+                <rwc-input type="text" name="creditcard" placeholder="Credit Card Number *" pattern="\d{16}" title="Credit Card Number must be exactly 16 digits" required></rwc-input>
+
+                <rwc-input type="email" name="email" placeholder="Email *" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required></rwc-input>
+
+                <rwc-input type="password" name="password" placeholder="Password *" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required></rwc-input>
+
+                <rwc-input type="password" name="confirmPassword" placeholder="Confirm Password *" required></rwc-input>
+            </div>
+            <div class="action">
+                <button type="submit">Register</button>
+            </div>
+
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </form>
+    </main>
+
+    <rwc-alert alert_color="#d9a6af" id="failure">
+        <span slot="status">Failure!</span>
+        <span slot="message"></span>
+    </rwc-alert>
+    <rwc-alert alert_color="#bdd9a6" id="success">
+        <span slot="status">Registration Successful!</span>
+        <span slot="message">You will be redirected to the All Transactions Page in 5 seconds.</span>
+    </rwc-alert>
+</body>
+</html>

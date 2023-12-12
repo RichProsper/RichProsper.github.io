@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Banking login">
+    <link rel="icon" href="../images/logo/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/public-main.min.css">
+    <!-- JS -->
+    <script defer src="../vendors/RWC/rwc-combined-2.min.js"></script>
+    <script defer type="module" src="scripts/login.min.js"></script>
+    <!-- Page Title -->
+    <title>Login</title>
+</head>
+<body class="hidden">
+    <!-- Header -->
+    <header id="header">
+        <!-- Logo -->
+        <span class="logo"></span>
+
+        <!-- Main Navigation -->
+        <nav id="navbarSupportedContent">
+            <ul>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="forgotpassword.html">Forgot Password</a></li>
+            </ul>
+        </nav>
+        <!-- Hamburger Menu Button -->
+        <rwc-hmb color="black" title="Toggle navigation" aria-controls="navbarSupportedContent">
+        </rwc-hmb>
+    </header>
+
+    <main>
+        <div class="banner"></div>
+        <h1>Login</h1>
+
+        <!-- Login Form Card -->
+        <form>
+            <div class="controls">
+                <rwc-input type="text" name="userId" placeholder="User ID *" required></rwc-input>
+                <rwc-input type="password" name="password" placeholder="Password *"  required></rwc-input>
+            </div>
+            <div class="action">
+                <button type="submit">Login</button>
+            </div>
+
+            <p>Don't have an account? <a href="register.html">Register</a></p>
+            <p>Forgot Password? Click <a href="forgotpassword.html">Here</a> to reset.</p>    
+        </form>
+    </main>
+
+    <rwc-alert alert_color="#d9a6af">
+        <span slot="status">Failure!</span>
+        <span slot="message">User ID or Password or Both are incorrect.</span>
+    </rwc-alert>
+</body>
+</html>

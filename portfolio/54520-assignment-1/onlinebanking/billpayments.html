@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Banking Bill Payments">
+    <link rel="icon" href="../images/logo/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/private-main.min.css">
+    <!-- JS -->
+    <script defer src="../vendors/RWC/rwc-combined-2.min.js"></script>
+    <script defer type="module" src="scripts/billpayments.min.js"></script>
+    <!-- Page Title -->
+    <title>Bill Payments</title>
+</head>
+<body class="hidden">
+    <!-- Header -->
+    <header id="header">
+        <!-- Logo -->
+        <span class="logo"></span>
+
+        <!-- Main Navigation -->
+        <nav id="navbarSupportedContent">
+            <ul>
+                <li><a href="index.html">All Transactions</a></li>
+                <li><a href="transfers.html">Transfers</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+        <!-- Hamburger Menu Button -->
+        <rwc-hmb color="black" title="Toggle navigation" aria-controls="navbarSupportedContent">
+        </rwc-hmb>
+    </header>
+
+    <main>
+        <div class="banner"></div>
+        <h1>Bill Payments</h1>
+        <h3 class="user-info">
+            <div>User: <span id="name"></span></div>
+            <div>Balance: <span id="balance"></span></div>
+        </h3>
+
+        <div class="container">
+            <!-- Pay a Bill -->
+            <section class="new-item">
+                <form>
+                    <h3>Pay a Bill</h3>
+
+                    <div class="controls">
+                        <rwc-input type="text" name="name" placeholder="Billing Company *" required></rwc-input>
+                        <rwc-input id="amount" type="number" name="amount" placeholder="Amount *" min="0" step="0.01" required></rwc-input>
+                    </div>
+                    <div class="action">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Lists the User's Bill Payments -->
+            <section class="list-items">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Billing Company</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="billPayments"></tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <rwc-alert alert_color="#bdd9a6">
+        <span slot="status">Transfer Successful!</span>
+        <span slot="message">Funds will be transfered in 5 seconds.</span>
+    </rwc-alert>
+</body>
+</html>

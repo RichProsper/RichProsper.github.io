@@ -1,0 +1,122 @@
+main {
+    position: relative;
+    min-height: 100vh;
+    padding: 0 4%;
+    padding-top: 10rem;
+    overflow-y: auto;
+
+    .banner {
+        position: absolute;
+        inset: 0;
+        background-attachment: fixed;
+
+        // Image by starline (https://www.freepik.com/free-vector/digital-money-transfer-technology-background_4025865.htm#query=banking%20background&position=2&from_view=keyword&track=ais) on Freepik
+        background-image: url(../../images/background.webp);
+    
+        background-size: cover;
+        filter: brightness(.5);
+        z-index: -1;
+    }
+    h1 {
+        letter-spacing: .2rem;
+        padding: 1.5rem 0;
+        text-align: center;
+        color: var(--nav-bgcolor--primary);
+    }
+    .user-info {
+        font-size: 2.4rem;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-around;
+    }
+    .container {
+        border-radius: 1rem;
+        box-shadow: 0 0.2rem 0.8rem hsl(0, 0% ,0%, .85) inset,
+                    0 -0.2rem 0.8rem hsl(0, 0% ,0%, .85) inset;
+        margin-top: 2rem;
+        padding: 2rem;
+        background-color: hsl(0deg 0% 12.94% / 90%);
+        margin: 4rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+        
+        .new-item {
+            .controls {
+                margin-top: 2.2rem;
+
+                rwc-input {
+                    display: block;
+                    margin-bottom: 3.2rem;
+                }
+            }
+            .action {
+                button {
+                    background-color: transparent;
+                    border: 0.2rem solid hsl(207deg 90% 53%);
+                    border-radius: 0.5rem;
+                    color: var(--color);
+                    cursor: pointer;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    line-height: 4rem;
+                    opacity: .7;
+                    padding: 0 2rem;
+                    transform-origin: bottom left;
+                    transition: .2s;
+    
+                    &:hover,
+                    &:focus {
+                        opacity: 1;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+        .list-items {
+            border: .1em solid hsl(0deg 0% 31.76%);
+            border-radius: 1rem;
+            overflow: hidden;
+
+            &.alone {
+                width: 100%;
+            }
+
+            table {
+                font-size: 2rem;
+                width: 100%;
+                height: 100%;
+                border-collapse: collapse;
+                text-align: left;
+
+                thead tr,
+                tbody tr:last-child {
+                    border: none;
+                }
+                thead tr:hover {
+                    background-color: unset;
+                }
+                tr {
+                    border-top: .1em solid hsl(0deg 0% 31.76%);
+                    border-bottom: .1em solid hsl(0deg 0% 31.76%);
+
+                    &:hover {
+                        background-color: hsl(0deg 0% 100% / 8%);
+                    }
+                }
+                th, td {
+                    padding: 1em .5em;
+                }
+            }
+        }
+
+        @media only screen and (width >= 750px) {
+            flex-direction: unset;
+
+            .new-item,
+            .list-items {
+                width: 50%;
+            }
+        }
+    }
+}

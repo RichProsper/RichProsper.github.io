@@ -1,0 +1,49 @@
+.banking-services {
+    display: block;
+    text-align: center;
+    padding: 5%;
+
+    h2 {
+        font-size: 3rem;
+        margin-bottom: 1em;
+    }
+    .services {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+
+        .service {
+            width: 50rem;
+            line-height: 1.5;
+            padding: 0 1%;
+
+            i {
+                color: hsl(207deg 90% 53%);
+                transition: color .2s;
+
+                &:hover {
+                    color: hsl(223deg 70% 53%);
+                }
+            }
+            h3 {
+                margin: 1em 0 .5em 0;
+                
+                a {
+                    color: inherit;
+                    transition: .2s;
+
+                    &:hover,
+                    &:focus {
+                        opacity: .7;
+                    }
+                }
+            }
+            p {
+                color: hsl(var(--hue-sat) 70%);
+                font-weight: 500;
+            }
+        }
+    }
+}

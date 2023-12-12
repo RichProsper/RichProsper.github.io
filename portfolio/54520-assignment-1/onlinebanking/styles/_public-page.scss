@@ -1,0 +1,115 @@
+main {
+    position: relative;
+    min-height: 100vh;
+    padding: 0 5%;
+    padding-top: 10rem;
+
+    .banner {
+        position: absolute;
+        inset: 0;
+        background-attachment: fixed;
+
+        // Image by starline (https://www.freepik.com/free-vector/digital-money-transfer-technology-background_4025865.htm#query=banking%20background&position=2&from_view=keyword&track=ais) on Freepik
+        background-image: url(../../images/background.webp);
+    
+        background-size: cover;
+        filter: brightness(.8);
+        z-index: -1;
+    }
+    h1 {
+        letter-spacing: .2rem;
+        padding: 1.5rem 0;
+        text-align: center;
+        color: var(--nav-bgcolor--primary);
+    }
+    form {
+        --blue-hue-sat: 207deg 90%;
+        --color: hsl(var(--blue-hue-sat) 77%);
+
+        background-color: hsl(0deg 0% 12.94% / 80%);
+        border-radius: 1rem;
+        box-shadow: 0 0.2rem 0.8rem hsl(0, 0% ,0%, .75) inset,
+                    0 -0.2rem 0.8rem hsl(0, 0% ,0%, .75) inset;
+        margin-top: 2rem;
+        padding: 2rem;
+
+        .controls {
+            margin-top: 1.2rem;
+
+            rwc-input {
+                display: block;
+                margin-bottom: 3.2rem;
+            }
+        }
+        .action {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                background-color: transparent;
+                border: 0.2rem solid hsl(var(--blue-hue-sat) 53%);
+                border-radius: 0.5rem;
+                color: var(--color);
+                cursor: pointer;
+                font-size: 1.6rem;
+                font-weight: 500;
+                line-height: 4rem;
+                opacity: .7;
+                padding: 0 2rem;
+                transform-origin: bottom right;
+                transition: .2s;
+
+                &:hover,
+                &:focus {
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+            }
+        }
+        p {
+            border-top: 0.1rem solid hsl(0deg 0% 53%);
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+
+            a {
+                color: inherit;
+                font-size: 2rem;
+                opacity: .75;
+                padding: 0.2rem 0.4rem;
+                position: relative;
+                text-decoration: none;
+                transition: .2s;
+
+                &::after {
+                    background-color: var(--nav-bgcolor--primary);
+                    bottom: -0.2rem;
+                    content: "";
+                    height: 0.2rem;
+                    left: 0.4rem;
+                    pointer-events: none;
+                    position: absolute;
+                    transition: .2s;
+                    width: calc(100% - 0.8rem);
+                }
+                &:hover,
+                &:focus {
+                    color: var(--color);
+                    opacity: 1;
+
+                    &::after {
+                        background-color: var(--color);
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (width >= 500px) {
+        padding: 0 10%;
+        padding-top: 10rem;
+    }
+    @media only screen and (width >= 900px) {
+        padding: 0 20%;
+        padding-top: 10rem;
+    }
+}

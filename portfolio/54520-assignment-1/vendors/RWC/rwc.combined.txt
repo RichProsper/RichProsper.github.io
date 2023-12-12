@@ -1,0 +1,8 @@
+rwc-combined.min.js contains:
+- rwc-totopbutton.min.js
+- rwc-hamburger-menu-btn.min.js
+
+rwc-combined-2.min.js contains:
+- rwc-hamburger-menu-btn.min.js
+- rwc-input.min.js
+- rwc-alert.min.js
