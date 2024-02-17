@@ -1,0 +1,20 @@
+section.contact {
+    padding: 10%;
+    /* padding-bottom: 0; */
+    background-color: hsl(var(--hue-sat) 13%);
+
+    h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1em;
+    }
+    .wrapper {
+        padding-bottom: 4em;
+
+        span {
+            display: block;
+            font-size: 2rem;
+            line-height: 1.5;
+        }
+    }
+}
