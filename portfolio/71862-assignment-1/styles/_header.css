@@ -23,6 +23,7 @@ header {
         background-position: center;
         border-radius: 50%;
     }
+    /* Navigation Links */
     nav {
         ul {
             display: flex;
