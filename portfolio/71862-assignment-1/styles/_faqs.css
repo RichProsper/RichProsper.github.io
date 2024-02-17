@@ -20,9 +20,4 @@ section.faqs {
             font-weight: 900;
         }
     }
-
-    @media only screen and (width >= 750px) {
-        padding: 5%;
-        padding-top: 0;
-    }
 }

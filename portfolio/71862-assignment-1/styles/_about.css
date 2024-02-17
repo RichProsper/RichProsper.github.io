@@ -1,6 +1,6 @@
 section.about {
     padding: 10%;
-    padding-top: 12rem;
+    padding-top: 15rem;
 
     h2 {
         text-align: center;
@@ -19,10 +19,5 @@ section.about {
         b {
             font-weight: 900;
         }
-    }
-
-    @media only screen and (width >= 750px) {
-        padding: 5%;
-        padding-top: 12rem;
     }
 }
