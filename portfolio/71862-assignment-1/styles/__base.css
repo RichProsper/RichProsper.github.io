@@ -1,0 +1,65 @@
+html {
+    /* Build basic site colors */
+    --hue-sat: 0deg 0%;
+    --bg-hue-sat: 216deg 28%;
+
+    --site-bgcolor: hsl(var(--bg-hue-sat) 7%);
+    --site-color: hsl(var(--hue-sat) 87%);
+
+    --nav-bgcolor--primary: hsl(var(--hue-sat) 100%);
+    --nav-bgcolor--secondary: hsl(var(--hue-sat) 0% / .2);
+    --nav-link-color: hsl(var(--hue-sat) 0% / .75);
+    --nav-link_hover_focus-color: hsl(var(--hue-sat) 0%);
+
+    
+    background-color: var(--site-bgcolor);
+    height: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    font-size: 46.875%; /* 1rem = 7.5px */
+
+    @media only screen and (width >= 900px) {
+        font-size: 62.5%; /* 1rem = 10px */
+    }
+    @media only screen and (width >= 1800px) {
+        font-size: 78.125%; /* 1rem = 12.5px */
+    }
+    @media only screen and (width >= 2700px) {
+        font-size: 93.75%; /* 1rem = 15px */
+    }
+}
+body {
+    height: 200%;
+    box-sizing: border-box;
+    color: var(--site-color);
+    font-size: 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: .1rem;
+}
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+}
+*:focus {
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 15px; /* Width of Vertical Scrollbar */
+    height: 15px; /* Height of Horizontal Scrollbar */
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+    background: hsl(0, 0%, 5%);
+}
+::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 53%);
+    border-radius: 9px;
+    border: 3px solid hsl(0, 0%, 5%);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, 33%);
+}
