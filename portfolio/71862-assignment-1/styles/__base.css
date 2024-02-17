@@ -6,10 +6,10 @@ html {
     --site-bgcolor: hsl(var(--bg-hue-sat) 7%);
     --site-color: hsl(var(--hue-sat) 87%);
 
-    --nav-bgcolor--primary: hsl(var(--hue-sat) 100%);
-    --nav-bgcolor--secondary: hsl(var(--hue-sat) 0% / .2);
-    --nav-link-color: hsl(var(--hue-sat) 0% / .75);
-    --nav-link_hover_focus-color: hsl(var(--hue-sat) 0%);
+    --nav-bgcolor--primary: hsl(var(--hue-sat) 100%); /* White */
+    --nav-bgcolor--secondary: hsl(var(--hue-sat) 0% / .2); /* Black 20% Opaque */
+    --nav-link-color: hsl(var(--hue-sat) 0% / .75); /* Black 75% Opaque */
+    --nav-link_hover_focus-color: hsl(var(--hue-sat) 0%); /* Black */
 
     
     background-color: var(--site-bgcolor);
