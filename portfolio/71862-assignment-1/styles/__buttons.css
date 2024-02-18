@@ -1,0 +1,30 @@
+button {
+    background: none;
+    border-radius: .25em;
+    cursor: pointer;
+    transition: background-color .2s, border-color .2s, color .2s;
+    color: inherit;
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: .5em 1em;
+
+    &.fill {
+        background-color: hsl(var(--hue-sat) 23%);
+        border: .1em solid hsl(var(--hue-sat) 23%);
+
+        &:hover,
+        &:focus {
+            background-color: hsl(var(--bg-hue-sat) 23%);
+            border-color: hsl(var(--bg-hue-sat) 23%);
+        }
+    }
+    &.outline {
+        border: .1em solid var(--site-color);
+
+        &:hover,
+        &:focus {
+            color: hsl(var(--bg-hue-sat) 23%);
+            background-color: var(--site-color);
+        }
+    }
+}
