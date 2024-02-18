@@ -78,7 +78,7 @@
 
                     <div class="input-container">
                         <label for="address">Address *</label>
-                        <textarea name="address" id="address" rows="5" placeholder="Levy Hall, Sadzu Road, Lusaka, Zambia" required></textarea>
+                        <textarea name="address" id="address" rows="5" placeholder="Levy Hall, Sadzu Road, Lusaka, Zambia" minlength="5" required></textarea>
                     </div>
 
                     <div class="input-container">
@@ -129,12 +129,12 @@
 
                     <div class="input-container">
                         <label for="additional-requests">Additional Requests</label>
-                        <textarea name="additional-requests" id="additional-requests" rows="10" placeholder="I would like..."></textarea>
+                        <textarea name="additional-requests" id="additional-requests" rows="10" placeholder="I would like..." minlength="5"></textarea>
                     </div>
 
                     <div class="btns">
-                        <button type="submit">Submit</button>
-                        <button type="reset">Reset</button>
+                        <button class="outline" type="submit">Submit</button>
+                        <button class="outline" type="reset">Reset</button>
                     </div>
                 </form>
             </div>

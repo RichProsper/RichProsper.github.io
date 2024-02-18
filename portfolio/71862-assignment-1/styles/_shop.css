@@ -4,8 +4,8 @@ section.shop {
 
     display: flex;
     padding: 10%;
-    max-height: calc(100vh - 9rem);
-    max-height: calc(100svh - 9rem);
+    max-height: calc(100vh + 9rem);
+    max-height: calc(100svh + 9rem);
 
     h3 {
         font-size: 2.2rem;
@@ -81,6 +81,14 @@ section.shop {
                     &:last-child {
                         padding-left: .5rem;
                     }
+                }
+            }
+            .btns {
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    width: 45%;
                 }
             }
         }
