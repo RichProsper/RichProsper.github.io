@@ -1,5 +1,4 @@
 footer {
-    position: relative;
     padding: 0 10% 5%; /* top | left and right | bottom */
     background-color: hsl(var(--hue-sat) 13%);
 
