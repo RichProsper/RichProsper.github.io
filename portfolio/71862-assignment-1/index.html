@@ -78,7 +78,7 @@
 
                     <div class="input-container">
                         <label for="address">Address *</label>
-                        <input type="text" id="address" name="address" placeholder="Levy Hall, Sadzu Road, Lusaka, Zambia" required>
+                        <textarea name="address" id="address" rows="5" placeholder="Levy Hall, Sadzu Road, Lusaka, Zambia" required></textarea>
                     </div>
 
                     <div class="input-container">
@@ -86,24 +86,50 @@
                         <input type="tel" id="mobile" name="mobile" placeholder="260-222-555544" pattern="[0-9]{3}-[0-9]{3}-[0-9]{6}" title="Mobile Number must be in the format of 123-456-789012" required>
                     </div>
 
+                    <div class="form-inputs">
+                        <div class="input-container">
+                            <label for="choice">Flower Choice *</label>
+                            <select name="choice" id="choice" required>
+                                <option value="">Choose a flower...</option>
+                                <optgroup label="Valentine's Day">
+                                    <option>Classic Dozen</option>
+                                    <option>Cupid's Bow</option>
+                                    <option>Little Lady</option>
+                                </optgroup>
+                                <optgroup label="Birthday">
+                                    <option>Love spell</option>
+                                    <option>Adorbs</option>
+                                </optgroup>
+                                <optgroup label="Get Well">
+                                    <option>Pastel Baby</option>
+                                    <option>Paradise Punch</option>
+                                    <option>Breathe Easy</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="quantity">Quantity *</label>
+                            <input type="number" name="quantity" id="quantity" placeholder="3" min="1" max="100" step="1" title="Quantity must be a whole number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-inputs">
+                        <div class="input-container">
+                            <label for="date">Delivery Date *</label>
+                            <input type="date" name="date" id="date" min="2024-03-01" max="2024-06-30" step="7" title="Delivery is only on Fridays" required>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="time">Delivery Time *</label>
+                            <!-- 3600 seconds = 1 hour -->
+                            <input type="time" name="time" id="time" min="08:00" max="18:00" step="3600" title="Delivery is done on an hour basis between 8AM and 6PM" required>
+                        </div>
+                    </div>
+
                     <div class="input-container">
-                        <label for="choice">Flower Choice *</label>
-                        <select name="choice" id="choice" required>
-                            <optgroup label="Valentine's Day">
-                                <option>Classic Dozen</option>
-                                <option>Cupid's Bow</option>
-                                <option>Little Lady</option>
-                            </optgroup>
-                            <optgroup label="Birthday">
-                                <option>Love spell</option>
-                                <option>Adorbs</option>
-                            </optgroup>
-                            <optgroup label="Get Well">
-                                <option>Pastel Baby</option>
-                                <option>Paradise Punch</option>
-                                <option>Breathe Easy</option>
-                            </optgroup>
-                        </select>
+                        <label for="additional-requests">Additional Requests</label>
+                        <textarea name="additional-requests" id="additional-requests" rows="10" placeholder="I would like..."></textarea>
                     </div>
 
                     <div class="btns">
