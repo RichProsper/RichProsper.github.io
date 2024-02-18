@@ -1,4 +1,7 @@
 section.shop {
+    --light-grey: hsl(var(--hue-sat), 70%);
+    --red: 348deg;
+
     display: flex;
     padding: 10%;
     max-height: calc(100vh - 9rem);
@@ -17,7 +20,7 @@ section.shop {
         padding-right: 2rem;
 
         form {
-            border-right: .2rem solid hsl(var(--hue-sat), 70%);
+            border-right: .2rem solid var(--light-grey);
             padding-right: 2rem;
 
             .input-container {
@@ -25,6 +28,9 @@ section.shop {
                 flex-direction: column;
                 margin-bottom: 2rem;
                 
+                label {
+                    margin-bottom: .5rem;
+                }
                 input,
                 select {
                     height: 4rem;
@@ -32,17 +38,31 @@ section.shop {
                 input,
                 textarea,
                 select {
-                    /* color-scheme: dark; */
-                    /* font-size: inherit;
-                    color: inherit;
+                    font-size: inherit;
                     padding: .5rem;
-                    background: none;
+                    background-color: hsl(var(--hue-sat), 15%);
                     border: none;
-                    border-bottom: .2rem solid currentColor; */
+                    border-bottom: .2rem solid currentColor;
                     resize: none;
+                    transition: .2s;
 
                     &::placeholder {
                         font-size: 1.6rem;
+                        color: var(--light-grey);
+                    }
+                    &:hover,
+                    &:focus {
+                        background-color: hsl(var(--hue-sat), 23%);
+                    }
+                    /* Visual alert when form data is invalid */
+                    &:invalid {
+                        background-color: hsl(var(--red) 15% 15%);
+                        border-color: hsl(var(--red) 100% 55%);
+
+                        &:hover,
+                        &:focus {
+                            background-color: hsl(var(--red) 23% 23%);
+                        }
                     }
                 }
             }
