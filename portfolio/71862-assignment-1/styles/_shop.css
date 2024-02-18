@@ -14,6 +14,7 @@ section.shop {
     }
     .request {
         width: 40%;
+        padding-right: 2rem;
     }
     .flowers {
         width: 60%;
@@ -61,5 +62,9 @@ section.shop {
                 }
             }
         }
+    }
+
+    @media only screen and (width <= 799px) {
+        /* display: unset; */
     }
 }

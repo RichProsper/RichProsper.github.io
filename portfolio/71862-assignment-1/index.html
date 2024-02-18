@@ -69,6 +69,48 @@
             <!-- Request Form -->
             <div class="request">
                 <h3>Request Form</h3>
+
+                <form action="request.html" method="get">
+                    <div class="input-container">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" pattern="[A-Za-z\-\s]{1,}" title="Name must only contain letters, spaces and hyphens" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="address">Address *</label>
+                        <input type="text" id="address" name="address" placeholder="Levy Hall, Sadzu Road, Lusaka, Zambia" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="mobile">Mobile Number *</label>
+                        <input type="tel" id="mobile" name="mobile" placeholder="260-222-555544" pattern="[0-9]{3}-[0-9]{3}-[0-9]{6}" title="Mobile Number must be in the format of 123-456-789012" required>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="choice">Flower Choice *</label>
+                        <select name="choice" id="choice" required>
+                            <optgroup label="Valentine's Day">
+                                <option>Classic Dozen</option>
+                                <option>Cupid's Bow</option>
+                                <option>Little Lady</option>
+                            </optgroup>
+                            <optgroup label="Birthday">
+                                <option>Love spell</option>
+                                <option>Adorbs</option>
+                            </optgroup>
+                            <optgroup label="Get Well">
+                                <option>Pastel Baby</option>
+                                <option>Paradise Punch</option>
+                                <option>Breathe Easy</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="btns">
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                    </div>
+                </form>
             </div>
 
             <!-- Flowers Section -->
