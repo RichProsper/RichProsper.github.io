@@ -21,7 +21,6 @@ header {
         background-image: url(../images/logo/logo.png);
         background-size: cover;
         background-position: center;
-        border-radius: 50%;
     }
     /* Navigation Links */
     nav {

@@ -46,6 +46,8 @@ section.hero {
         font-size: 1.2rem;
         padding-right: 1.6rem;
         opacity: .75;
+        width: 30svw;
+        max-width: 18.4rem;
 
         a {
             color: inherit;
