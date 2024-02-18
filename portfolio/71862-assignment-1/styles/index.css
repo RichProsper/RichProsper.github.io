@@ -2,12 +2,12 @@
 @import url(../vendors/all.min.css);
 
 /** Base **/
-@import url(__base.css);
+@import url(special/base.css);
 
 /** Components **/
-@import url(__buttons.css);
-@import url(_header.css);
-@import url(_hero.css);
-@import url(_shop.css);
-@import url(_terms.css);
-@import url(_footer.css);
+@import url(special/buttons.css);
+@import url(components/header.css);
+@import url(components/hero.css);
+@import url(components/shop.css);
+@import url(components/terms.css);
+@import url(components/footer.css);

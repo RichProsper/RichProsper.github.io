@@ -1,5 +1,5 @@
 /** Base **/
-@import url(__base.css);
+@import url(special/base.css);
 
 /** Page CSS **/
 section.hero {

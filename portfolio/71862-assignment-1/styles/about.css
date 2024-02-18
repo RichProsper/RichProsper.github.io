@@ -2,11 +2,11 @@
 @import url(../vendors/all.min.css);
 
 /** Base **/
-@import url(__base.css);
+@import url(special/base.css);
 
 /** Components **/
-@import url(_header.css);
-@import url(_about.css);
-@import url(_faqs.css);
-@import url(_contact.css);
-@import url(_footer.css);
+@import url(components/header.css);
+@import url(components/about.css);
+@import url(components/faqs.css);
+@import url(components/contact.css);
+@import url(components/footer.css);

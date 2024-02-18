@@ -18,7 +18,7 @@ header {
         position: relative;
         width: 5rem;
         height: 5rem;
-        background-image: url(../images/logo/logo.png);
+        background-image: url(../../images/logo/logo.png);
         background-size: cover;
         background-position: center;
     }
