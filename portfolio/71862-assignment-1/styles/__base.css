@@ -15,7 +15,7 @@ html {
     background-color: var(--site-bgcolor);
     height: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 9rem;
     font-size: 46.875%; /* 1rem = 7.5px */
 
     @media only screen and (width >= 900px) {

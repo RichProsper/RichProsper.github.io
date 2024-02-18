@@ -1,6 +1,8 @@
 section.shop {
     display: flex;
     padding: 10%;
+    max-height: calc(100vh - 9rem);
+    max-height: calc(100svh - 9rem);
 
     h3 {
         font-size: 2.2rem;
@@ -15,7 +17,12 @@ section.shop {
     }
     .flowers {
         width: 60%;
+        overflow: auto;
 
+        &::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -31,6 +38,14 @@ section.shop {
                 img {
                     width: 100%;
                     height: auto;
+                    transform-origin: bottom left;
+                    transition: .2s opacity, .2s scale;
+                    box-shadow: .2rem .2rem .2rem .3rem hsla(0, 0%, 0%, 0.5);
+
+                    &:hover {
+                        opacity: .5;
+                        scale: .95;
+                    }
                 }
                 span {
                     font-size: 1.4rem;
