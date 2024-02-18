@@ -25,9 +25,11 @@ section.shop {
                 display: flex;
                 gap: .4rem;
                 flex-direction: column;
+                width: 20rem;
+                margin-bottom: 2rem;
 
                 img {
-                    width: 20rem;
+                    width: 100%;
                     height: auto;
                 }
                 span {
@@ -35,7 +37,7 @@ section.shop {
                 }
                 small.attribution {
                     font-size: 1.2rem;
-                    opacity: .75;
+                    opacity: .8;
 
                     a {
                         color: inherit;
