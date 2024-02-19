@@ -3,7 +3,7 @@ section.hero {
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    background-color: hsl(var(--hue-sat) 1%);
+    background-color: hsl(var(--hue-sat) 0%);
     padding: 3.2rem;
     padding-top: 12rem;
     overflow: hidden;
