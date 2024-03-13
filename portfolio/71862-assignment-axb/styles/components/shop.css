@@ -1,7 +1,4 @@
 section.shop {
-    --light-grey: hsl(var(--hue-sat), 70%);
-    --red: 348deg;
-
     display: flex;
     padding: 10%;
     max-height: max(120rem, calc(100vh - 9rem));
@@ -18,80 +15,6 @@ section.shop {
     .request {
         width: 40%;
         padding-right: 2rem;
-
-        form {
-            border-right: .2rem solid var(--light-grey);
-            padding-right: 2rem;
-
-            .input-container {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 2rem;
-                
-                label {
-                    margin-bottom: .5rem;
-                }
-                input,
-                select {
-                    height: 4rem;
-                }
-                input,
-                textarea,
-                select {
-                    font-size: inherit;
-                    padding: .5rem;
-                    background-color: hsl(var(--hue-sat), 15%);
-                    border: none;
-                    border-bottom: .2rem solid currentColor;
-                    resize: none;
-                    transition: .2s;
-
-                    &::placeholder {
-                        font-size: 1.6rem;
-                        color: var(--light-grey);
-                    }
-                    &:hover,
-                    &:focus {
-                        background-color: hsl(var(--hue-sat), 23%);
-                    }
-                    /* Visual alert when form data is invalid */
-                    &:invalid {
-                        background-color: hsl(var(--red) 15% 15%);
-                        border-color: hsl(var(--red) 100% 55%);
-
-                        &:hover,
-                        &:focus {
-                            background-color: hsl(var(--red) 23% 23%);
-                        }
-                    }
-                }
-            }
-            .form-inputs {
-                display: flex;
-                flex-wrap: wrap;
-                margin-bottom: 2rem;
-
-                .input-container {
-                    width: 50%;
-                    margin-bottom: 0;
-
-                    &:first-child {
-                        padding-right: .5rem;
-                    }
-                    &:last-child {
-                        padding-left: .5rem;
-                    }
-                }
-            }
-            .btns {
-                display: flex;
-                justify-content: space-between;
-
-                button {
-                    width: 45%;
-                }
-            }
-        }
     }
     .flowers {
         width: 60%;
