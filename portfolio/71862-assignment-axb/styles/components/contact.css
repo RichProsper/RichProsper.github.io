@@ -8,22 +8,26 @@ section.contact {
         font-size: 3rem;
         margin-bottom: 1em;
     }
-    /* Wrapper for Contact Info */
-    .wrapper {
-        padding-bottom: 4em;
+    .container {
+        display: flex;
 
-        span {
-            display: block;
-            font-size: 2rem;
-            line-height: 1.5;
+        /* Wrapper for Company Detail */
+        .company-details {
+            padding-bottom: 4em;
 
-            a {
-                text-decoration: none;
-                transition: opacity .2s;
+            span {
+                display: block;
+                font-size: 2rem;
+                line-height: 1.5;
 
-                &:hover,
-                &:focus {
-                    opacity: .8;
+                a {
+                    text-decoration: none;
+                    transition: opacity .2s;
+
+                    &:hover,
+                    &:focus {
+                        opacity: .8;
+                    }
                 }
             }
         }

@@ -82,20 +82,53 @@
         <section id="contact" class="contact">
             <h2>Contact Us</h2>
 
-            <div class="wrapper">
-                <span>H7PP+864</span>
-                <span>Levy Mall</span>
-                <span>Sadzu Road</span>
-                <span>Lusaka</span>
-                <span>Zambia</span>
-                <span>Tel: +260-222-555544</span>
-                <span>Fax: +260-222-444455</span>
-                <span>
-                    Email: <a href="mailto:contact@flowers4u.co.zm">contact@flowers4u.co.zm</a>
-                </span>
-                <br>
-                <span>Opening Hours</span>
-                <span>Mon - Sat: 8:00 a.m. to 6:00 p.m.</span>
+            <div class="container">
+                <!-- Company Details -->
+                <div class="company-details">
+                    <span>H7PP+864</span>
+                    <span>Levy Mall</span>
+                    <span>Sadzu Road</span>
+                    <span>Lusaka</span>
+                    <span>Zambia</span>
+                    <span>Tel: +260-222-555544</span>
+                    <span>Fax: +260-222-444455</span>
+                    <span>
+                        Email: <a href="mailto:contact@flowers4u.co.zm">contact@flowers4u.co.zm</a>
+                    </span>
+                    <br>
+                    <span>Opening Hours</span>
+                    <span>Mon - Sat: 8:00 a.m. to 6:00 p.m.</span>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <form action="request.html" method="get">
+                        <div class="input-container">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="your_email@email.com" title="Please enter a valid email" required>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="topic">Topic *</label>
+                            <select name="topic" id="topic" required>
+                                <option value="">Choose a topic...</option>
+                                <option>Order Support</option>
+                                <option>Technical Support</option>
+                                <option>General Support</option>
+                            </select>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="message">Message *</label>
+                            <textarea name="message" id="message" rows="5" placeholder="Message..." minlength="5" required></textarea>
+                        </div>
+
+                        <div class="btns">
+                            <button class="outline" type="submit">Submit</button>
+                            <button class="outline" type="reset">Reset</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
 
