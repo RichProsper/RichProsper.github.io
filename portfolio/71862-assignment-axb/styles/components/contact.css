@@ -16,6 +16,16 @@ section.contact {
             display: block;
             font-size: 2rem;
             line-height: 1.5;
+
+            a {
+                text-decoration: none;
+                transition: opacity .2s;
+
+                &:hover,
+                &:focus {
+                    opacity: .8;
+                }
+            }
         }
     }
 }
