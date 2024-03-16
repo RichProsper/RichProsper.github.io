@@ -1,9 +1,33 @@
 /******** Base ********/
+/* Valentines Variables */
+body {
+    --pink-hue: 339deg;
+}
+
 .valentines {
     display: initial;
 }
 
 /***** All Pages *****/
 .bg-heart {
-    
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: hsl(var(--pink-hue) 92% 58%);
+    font-size: 500vmin;
+    opacity: 0;
+    animation: ShrinkIn 1.6s ease-out .1s forwards;
+}
+
+@keyframes ShrinkIn {
+    25% {
+        font-size: 50vmin;
+    }
+    100% {
+        opacity: 1;
+        font-size: 50vmin;
+    }
 }
