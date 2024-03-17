@@ -31,6 +31,16 @@ section.hero {
         i {
             animation: Glow 1.5s ease-in-out .45s infinite alternate;
         }
+
+        &.index {
+            font-size: 0;
+            opacity: .125;
+            animation: GrowIn .8s ease-out .1s forwards;
+
+            i {
+                animation: Glow 1.5s ease-in-out .2s infinite alternate;
+            }
+        }
     }
 }
 
@@ -55,6 +65,11 @@ section.hero {
         font-size: 50vmin;
     }
 }
+@keyframes GrowIn {
+    100% {
+        font-size: 30vmin;
+    }
+}
 @keyframes Glow {
     from {
         text-shadow:
@@ -76,4 +91,4 @@ section.hero {
             0 0 .28em hsl(var(--pink-hs) 65%),
             0 0 .32em hsl(var(--pink-hs) 65%);
     }
-  }
+}
