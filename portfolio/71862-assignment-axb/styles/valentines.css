@@ -1,4 +1,4 @@
-/******** Base ********/
+/********* Base *********/
 /* Valentines Variables */
 body {
     /* Pink: hsl(339 92% 58%) */
@@ -9,24 +9,43 @@ body {
     display: initial;
 }
 
-/***** All Pages *****/
-.bg-heart {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: hsl(var(--pink-hs) 90%);
-    font-size: 500vmin;
-    opacity: 0;
-    animation: ShrinkIn 1.6s ease-out .1s forwards;
+/***** Hero Section *****/
+section.hero {
+    animation: HueRotate 10s ease-in-out .45s infinite alternate;
 
-    i {
-        animation: Glow 1.5s ease-in-out .45s infinite alternate;
+    a {
+        color: hsl(var(--pink-hs) 75%);
+    }
+    .bg-heart {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: hsl(var(--pink-hs) 90%);
+        font-size: 500vmin;
+        opacity: 0;
+        animation: ShrinkIn 1.6s ease-out .1s forwards;
+    
+        i {
+            animation: Glow 1.5s ease-in-out .45s infinite alternate;
+        }
     }
 }
 
+/****** Animations ******/
+@keyframes HueRotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    75% {
+        filter: hue-rotate(-10deg);
+    }
+    100% {
+        filter: hue-rotate(-90deg);
+    }
+}
 @keyframes ShrinkIn {
     25% {
         font-size: 50vmin;
@@ -38,23 +57,23 @@ body {
 }
 @keyframes Glow {
     from {
-      text-shadow:
-        0 0 .04em #fff,
-        0 0 .08em #fff,
-        0 0 .12em hsl(var(--pink-hs) 45%),
-        0 0 .16em hsl(var(--pink-hs) 45%),
-        0 0 .20em hsl(var(--pink-hs) 45%),
-        0 0 .24em hsl(var(--pink-hs) 45%),
-        0 0 .28em hsl(var(--pink-hs) 45%);
+        text-shadow:
+            0 0 .04em #fff,
+            0 0 .08em #fff,
+            0 0 .12em hsl(var(--pink-hs) 45%),
+            0 0 .16em hsl(var(--pink-hs) 45%),
+            0 0 .20em hsl(var(--pink-hs) 45%),
+            0 0 .24em hsl(var(--pink-hs) 45%),
+            0 0 .28em hsl(var(--pink-hs) 45%);
     }
     to {
-      text-shadow:
-        0 0 .08em #fff,
-        0 0 .12em hsl(var(--pink-hs) 65%),
-        0 0 .16em hsl(var(--pink-hs) 65%),
-        0 0 .20em hsl(var(--pink-hs) 65%),
-        0 0 .24em hsl(var(--pink-hs) 65%),
-        0 0 .28em hsl(var(--pink-hs) 65%),
-        0 0 .32em hsl(var(--pink-hs) 65%);
+        text-shadow:
+            0 0 .08em #fff,
+            0 0 .12em hsl(var(--pink-hs) 65%),
+            0 0 .16em hsl(var(--pink-hs) 65%),
+            0 0 .20em hsl(var(--pink-hs) 65%),
+            0 0 .24em hsl(var(--pink-hs) 65%),
+            0 0 .28em hsl(var(--pink-hs) 65%),
+            0 0 .32em hsl(var(--pink-hs) 65%);
     }
   }
