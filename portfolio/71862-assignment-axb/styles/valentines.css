@@ -1,12 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap');
+
 /********* Base *********/
-/* Valentines Variables */
 body {
     /* Pink: hsl(339 92% 58%) */
     --pink-hs: 335deg 96%;
 }
-
+h1, h2, h3 {
+    font-family: "Rouge Script", cursive;
+    letter-spacing: .2rem;
+}
 .valentines {
     display: initial;
+}
+
+/******** Button ********/
+button.outline {
+    &:hover,
+    &:focus {
+        background-color: hsl(var(--pink-hs) 80%);
+        border-color: hsl(var(--pink-hs) 80%);
+    }
 }
 
 /***** Hero Section *****/
