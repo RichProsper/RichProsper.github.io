@@ -1,7 +1,4 @@
-/*
- * Croissant One
- */
-@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Rochester&family=Rouge+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Croissant+One&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /********* Base *********/
 body {
@@ -10,7 +7,6 @@ body {
 }
 h1, h2, h3, b, strong {
     font-family: "Croissant One", cursive;
-    /* letter-spacing: .133em; */
     color: hsl(var(--pink-hs) 80%);
 }
 .valentines {
