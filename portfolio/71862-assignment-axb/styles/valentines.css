@@ -9,6 +9,13 @@ h1, h2, h3, b, strong {
     font-family: "Croissant One", cursive;
     color: hsl(var(--pink-hs) 80%);
 }
+section {
+    &.terms,
+    &.about,
+    &.faqs {
+        position: relative;
+    }
+}
 .valentines {
     display: initial;
 }
@@ -21,6 +28,34 @@ button.outline {
         background-color: hsl(var(--pink-hs) 80%);
         border-color: hsl(var(--pink-hs) 80%);
     }
+}
+
+/*** Background Flower ***/
+.bg-flower {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    pointer-events: none;
+    background-repeat: round;
+    opacity: .125;
+    filter: blur(.2rem);
+    animation:
+        Opacity 15s ease-in-out .2s infinite alternate,
+        HueRotate2 45s ease-in-out .2s infinite alternate;
+
+    &.flower-1 {
+        /* Image By Gayla Keesic on Pinterest: https://www.pinterest.com/pin/422281207662268/ */
+        background-image: url(../images/Flower_bg1.jpg);
+    }
+    &.flower-2 {
+        /* Image by Mich Till on Pinterest: https://www.pinterest.com/pin/1688918603975225/ */
+        background-image: url(../images/Flower_bg2.jpg);
+    }
+}
+
+/* Correct Padding */
+section.terms + footer {
+    padding-top: 5%;
 }
 
 /***** Hero Section *****/
@@ -57,7 +92,9 @@ section.hero {
 
             i {
                 opacity: .125;
-                animation: Glow2 1.5s ease-in-out .2s infinite alternate;
+                animation: 
+                    Glow 1.5s ease-in-out .2s infinite alternate,
+                    Opacity 1.5s ease-in-out .2s infinite alternate;
             }
         }
     }
@@ -118,27 +155,19 @@ section.contact {
             0 0 .32em hsl(var(--pink-hs) 65%);
     }
 }
-@keyframes Glow2 {
+@keyframes Opacity {
     from {
         opacity: .125;
-        text-shadow:
-            0 0 .04em #fff,
-            0 0 .08em #fff,
-            0 0 .12em hsl(var(--pink-hs) 45%),
-            0 0 .16em hsl(var(--pink-hs) 45%),
-            0 0 .20em hsl(var(--pink-hs) 45%),
-            0 0 .24em hsl(var(--pink-hs) 45%),
-            0 0 .28em hsl(var(--pink-hs) 45%);
     }
     to {
         opacity: .2;
-        text-shadow:
-            0 0 .08em #fff,
-            0 0 .12em hsl(var(--pink-hs) 65%),
-            0 0 .16em hsl(var(--pink-hs) 65%),
-            0 0 .20em hsl(var(--pink-hs) 65%),
-            0 0 .24em hsl(var(--pink-hs) 65%),
-            0 0 .28em hsl(var(--pink-hs) 65%),
-            0 0 .32em hsl(var(--pink-hs) 65%);
+    }
+}
+@keyframes HueRotate2 {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
     }
 }
