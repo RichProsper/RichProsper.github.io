@@ -52,13 +52,21 @@ section.hero {
 
         &.index {
             font-size: 0;
-            opacity: .125;
+            opacity: 1;
             animation: GrowIn .8s ease-out .1s forwards;
 
             i {
-                animation: Glow 1.5s ease-in-out .2s infinite alternate;
+                opacity: .125;
+                animation: Glow2 1.5s ease-in-out .2s infinite alternate;
             }
         }
+    }
+}
+
+/** Contact Us Section **/
+section.contact {
+    a {
+        color: hsl(var(--pink-hs) 75%);
     }
 }
 
@@ -67,7 +75,7 @@ section.hero {
     0% {
         filter: hue-rotate(0deg);
     }
-    75% {
+    70% {
         filter: hue-rotate(-10deg);
     }
     100% {
@@ -100,6 +108,30 @@ section.hero {
             0 0 .28em hsl(var(--pink-hs) 45%);
     }
     to {
+        text-shadow:
+            0 0 .08em #fff,
+            0 0 .12em hsl(var(--pink-hs) 65%),
+            0 0 .16em hsl(var(--pink-hs) 65%),
+            0 0 .20em hsl(var(--pink-hs) 65%),
+            0 0 .24em hsl(var(--pink-hs) 65%),
+            0 0 .28em hsl(var(--pink-hs) 65%),
+            0 0 .32em hsl(var(--pink-hs) 65%);
+    }
+}
+@keyframes Glow2 {
+    from {
+        opacity: .125;
+        text-shadow:
+            0 0 .04em #fff,
+            0 0 .08em #fff,
+            0 0 .12em hsl(var(--pink-hs) 45%),
+            0 0 .16em hsl(var(--pink-hs) 45%),
+            0 0 .20em hsl(var(--pink-hs) 45%),
+            0 0 .24em hsl(var(--pink-hs) 45%),
+            0 0 .28em hsl(var(--pink-hs) 45%);
+    }
+    to {
+        opacity: .2;
         text-shadow:
             0 0 .08em #fff,
             0 0 .12em hsl(var(--pink-hs) 65%),
