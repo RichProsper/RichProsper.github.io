@@ -6,7 +6,7 @@ body {
     --pink-hs: 335deg 96%;
 }
 h1, h2, h3, b, strong {
-    font-family: "Croissant One", cursive;
+    font-family: "Croissant One", serif;
     color: hsl(var(--pink-hs) 80%);
 }
 section {
