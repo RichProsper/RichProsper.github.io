@@ -8,6 +8,7 @@ section.hero {
     align-items: flex-end;
     overflow: hidden;
 
+    /* Fullscreen background video */
     .hero-video {
         position: absolute;
         inset: 0;
@@ -24,7 +25,7 @@ section.hero {
         }
     }
     .cta {
-        --size: 4.8rem;
+        --size: 4.8rem; /* Allows CTA Elements to scale uniformly */
 
         width: 100%;
         padding: calc(var(--size) / 2.4);

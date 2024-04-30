@@ -8,6 +8,7 @@ aside.sidenav {
     overflow: hidden;
     z-index: 1;
 
+    /* Navigation Links */
     nav ul {
         list-style: none;
 
