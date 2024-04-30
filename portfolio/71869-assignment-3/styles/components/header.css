@@ -8,7 +8,7 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: var(--nav-bgcolor--secondary);
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(2rem);
     padding: 2rem 10rem;
     z-index: 1;
 
