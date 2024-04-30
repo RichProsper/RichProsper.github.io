@@ -19,12 +19,13 @@ button {
         }
     }
     &.outline {
-        border: .1em solid var(--site-color);
+        color: var(--primary-color);
+        border: .125em solid var(--primary-color);
 
         &:hover,
         &:focus {
             color: hsl(var(--bg-hue-sat) 23%);
-            background-color: var(--site-color);
+            background-color: var(--primary-color);
         }
     }
 }

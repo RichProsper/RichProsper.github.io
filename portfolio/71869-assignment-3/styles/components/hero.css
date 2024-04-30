@@ -34,6 +34,12 @@ section.hero {
             font-weight: 900;
             line-height: 1.5;
             text-align: center;
+
+            span {
+                color: transparent;
+                background-image: linear-gradient(to right, var(--primary-color), var(--site-color));
+                background-clip: text;
+            }
         }
         .wrapper {
             margin-top: 1.2rem;
@@ -45,7 +51,7 @@ section.hero {
     @media only screen and (width >= 675px) {
         .cta {
             width: unset;
-            padding: 2rem 4rem;
+            padding: 3rem 4rem;
             border-radius: 1.6rem;
         }
     }
