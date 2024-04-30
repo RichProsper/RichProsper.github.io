@@ -5,7 +5,7 @@ section.hero {
     min-height: 100svh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     overflow: hidden;
 
     .hero-video {
@@ -24,13 +24,15 @@ section.hero {
         }
     }
     .cta {
+        --size: 4.8rem;
+
         width: 100%;
-        padding: 2rem;
+        padding: calc(var(--size) / 2.4);
         background-color: var(--nav-bgcolor--secondary);
         backdrop-filter: blur(2rem);
 
         h1 {
-            font-size: 4.8rem;
+            font-size: var(--size);
             font-weight: 900;
             line-height: 1.5;
             text-align: center;
@@ -42,20 +44,28 @@ section.hero {
             }
         }
         .wrapper {
-            margin-top: 1.2rem;
+            margin-top: calc(var(--size) / 4);
             display: flex;
             justify-content: center;
         }
     }
 
-    @media only screen and (width >= 675px) {
+    @media (width >= 900px) and (height <= 450px) {
+        .cta {
+            --size: 3.6rem;
+        }
+    }
+    @media (width >= 675px) or (height >= 675px) {
+        align-items: center;
+    }
+    @media (width >= 675px) {
         .cta {
             width: unset;
-            padding: 3rem 4rem;
+            padding: calc(var(--size) / 1.6) calc(var(--size) / 1.2);
             border-radius: 1.6rem;
         }
     }
-    @media only screen and (height >= 480px) {
+    @media (height >= 480px) {
         .hero-video video {
             object-fit: cover;
         }

@@ -1,0 +1,82 @@
+aside.sidenav {
+    position: fixed;
+    top: 18.9rem;
+    left: 0;
+    background-color: var(--nav-bgcolor--secondary);
+    backdrop-filter: blur(2rem);
+    border-bottom-right-radius: 1rem;
+    overflow: hidden;
+    z-index: 1;
+
+    nav ul {
+        list-style: none;
+
+        li a {
+            --link-color: var(--nav-bgcolor--primary);
+
+            position: relative;
+            display: block;
+            padding: 1.2rem 2.4rem;
+            text-decoration: none;
+            color: var(--link-color);
+            font-weight: 300;
+            transition: background-color .2s;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: .2rem;
+                height: 4.3rem;
+                background-color: var(--link-color);
+                opacity: 0;
+                transition: opacity .2s;
+            }
+            &:hover,
+            &:focus {
+                background-color: var(--nav-bgcolor--secondary);
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    /* Mobile devices won't have a scrollbar so minus 15px*/
+    @media only screen and (width >= 385px) {
+        top: 13.9rem;
+    }
+    @media only screen and (width >= 425px) {
+        top: 8.9rem;
+    }
+}
+
+/* Ensures the link of the current page is highlighted */
+body {
+    &#indexPg aside.sidenav nav a[href="#hero"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+
+        &::before {
+            width: .3rem;
+        }
+    }
+    &#portfolioPg aside.sidenav nav a[href="portfolio.html"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+
+        &::before {
+            width: .3rem;
+        }
+    }
+    &#contactPg aside.sidenav nav a[href="contact.html"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+
+        &::before {
+            width: .3rem;
+        }
+    }
+}
