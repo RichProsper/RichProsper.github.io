@@ -21,6 +21,11 @@ header {
         background-image: url(../../images/logo.jpg);
         background-size: cover;
         background-position: center;
+        transition: opacity .2s;
+
+        &:hover {
+            opacity: .667;
+        }
     }
     /* Navigation Links */
     nav {        
@@ -61,6 +66,17 @@ header {
 body {
     &#indexPg header nav a[href="#hero"] {
         --link-color: var(--primary-color);
-        font-weight: 500;
+        font-weight: 600;
+        border-bottom-width: .125em;
+    }
+    &#portfolioPg header nav a[href="portfolio.html"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+        border-bottom-width: .125em;
+    }
+    &#contactPg header nav a[href="contact.html"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+        border-bottom-width: .125em;
     }
 }
