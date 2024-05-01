@@ -1,0 +1,36 @@
+section.tours {
+    padding: 10%;
+
+    h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1em;
+    }
+    .cards {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        .card {
+            width: 35rem;
+            border-radius: 1.2rem;
+            overflow: hidden;
+
+            .img {
+                height: 35rem;
+            }
+            .details {
+                padding: 2.5rem;
+
+                h3 {
+                    font-size: 2rem;
+                    text-transform: uppercase;
+                    margin-bottom: 1.25em;
+                }
+                .wrapper {
+                    margin-bottom: 2.5rem;
+                }
+            }
+        }
+    }
+}
