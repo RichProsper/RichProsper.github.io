@@ -75,7 +75,7 @@ body {
             width: .3rem;
         }
     }
-    &#aboutPg aside.sidenav nav a[href="about.html"] {
+    &#aboutPg aside.sidenav nav a[href="#about"] {
         --link-color: var(--primary-color);
         font-weight: 600;
 
