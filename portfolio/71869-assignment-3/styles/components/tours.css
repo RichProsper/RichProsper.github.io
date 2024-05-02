@@ -64,6 +64,7 @@ section.tours {
                         flex-direction: column;
                         line-height: 1.5;
 
+                        /* Creates the dot in between the day and the time */
                         .when span {
                             position: relative;
                             margin-left: 1rem;
