@@ -71,7 +71,12 @@ body {
         font-weight: 600;
         border-bottom-width: .125em;
     }
-    &#portfolioPg header nav a[href="portfolio.html"] {
+    &#portfolioPg header nav a[href="#gallery"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+        border-bottom-width: .125em;
+    }
+    &#aboutPg header nav a[href="about.html"] {
         --link-color: var(--primary-color);
         font-weight: 600;
         border-bottom-width: .125em;

@@ -67,7 +67,15 @@ body {
             width: .3rem;
         }
     }
-    &#portfolioPg aside.sidenav nav a[href="portfolio.html"] {
+    &#portfolioPg aside.sidenav nav a[href="#gallery"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+
+        &::before {
+            width: .3rem;
+        }
+    }
+    &#aboutPg aside.sidenav nav a[href="about.html"] {
         --link-color: var(--primary-color);
         font-weight: 600;
 
