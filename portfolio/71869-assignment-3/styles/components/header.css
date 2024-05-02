@@ -9,7 +9,7 @@ header {
     align-items: center;
     background-color: var(--nav-bgcolor--secondary);
     backdrop-filter: blur(2rem);
-    padding: 2rem 10rem;
+    padding: 1.75rem 5rem;
     z-index: 1;
 
     .logo {
@@ -57,6 +57,10 @@ header {
                 }
             }
         }
+    }
+
+    @media (width >= 600px) {
+        padding: 2rem 10rem;
     }
 }
 
