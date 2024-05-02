@@ -4,18 +4,25 @@ section.tours {
     h2 {
         text-align: center;
         font-size: 3rem;
-        margin-bottom: 1em;
+        margin-bottom: 2em;
     }
     .cards {
         display: flex;
-        gap: 1rem;
+        gap: 4rem;
         flex-wrap: wrap;
+        justify-content: center;
 
         .card {
             width: 35rem;
             border-radius: 1.2rem;
             overflow: hidden;
+            transform-origin: bottom left;
+            transition: .2s;
 
+            &:hover {
+                scale: .95;
+                opacity: .85;
+            }
             .img {
                 height: 35rem;
 
@@ -26,6 +33,7 @@ section.tours {
             }
             .details {
                 padding: 2.5rem;
+                background-color: hsl(var(--hue-sat) 13%);
 
                 h3 {
                     font-size: 2rem;
@@ -33,7 +41,53 @@ section.tours {
                     margin-bottom: 1.25em;
                 }
                 .wrapper {
+                    display: flex;
+                    gap: 2rem;
+                    color: hsl(var(--hue-sat) 65%);
                     margin-bottom: 2.5rem;
+
+                    .date {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+
+                        .month {
+                            text-transform: uppercase;
+                        }
+                        .day {
+                            font-size: 2.2rem;
+                        }
+                    }
+                    .when-where {
+                        display: flex;
+                        flex-direction: column;
+                        line-height: 1.5;
+
+                        .when span {
+                            position: relative;
+                            margin-left: 1rem;
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                left: -1rem;
+                                width: 0.4rem;
+                                height: 0.4rem;
+                                border-radius: 50%;
+                                background-color: currentcolor;
+                                transform: translateY(-50%);
+                            }
+                        }
+                        .where {
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+                a {
+                    display: inline-block;
                 }
             }
         }
