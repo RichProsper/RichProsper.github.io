@@ -1,6 +1,6 @@
 aside.sidenav {
     position: fixed;
-    top: 18.9rem;
+    top: 18.4rem;
     left: 0;
     background-color: var(--nav-bgcolor--secondary);
     backdrop-filter: blur(2rem);
@@ -46,10 +46,13 @@ aside.sidenav {
     }
 
     /* Mobile devices won't have a scrollbar so minus 15px*/
-    @media only screen and (width >= 385px) {
-        top: 13.9rem;
+    @media only screen and (width >= 285px) {
+        top: 13.4rem;
     }
-    @media only screen and (width >= 425px) {
+    @media only screen and (width >= 325px) {
+        top: 8.4rem;
+    }
+    @media only screen and (width >= 600px) {
         top: 8.9rem;
     }
 }
