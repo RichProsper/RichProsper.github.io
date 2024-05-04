@@ -12,6 +12,7 @@
 @import url(components/footer.css);
 
 /** Common Stlyes **/
+/* Circular centered image with orange border */
 .bg-img {
     display: flex;
     justify-content: center;

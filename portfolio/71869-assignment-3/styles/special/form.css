@@ -45,6 +45,7 @@ form {
             }
         }
     }
+    /* This class is used when grouping multiple form inputs */
     .form-inputs {
         display: flex;
         flex-wrap: wrap;

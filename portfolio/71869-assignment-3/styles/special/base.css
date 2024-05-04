@@ -54,6 +54,7 @@ body {
 *:focus {
     outline: none;
 }
+/* Styling the scrollbar */
 ::-webkit-scrollbar {
     width: 15px; /* Width of Vertical Scrollbar */
     height: 15px; /* Height of Horizontal Scrollbar */

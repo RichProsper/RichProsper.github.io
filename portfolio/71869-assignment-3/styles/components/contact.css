@@ -2,6 +2,7 @@ section.contact {
     padding: 15rem 10% 2.5%;
     background-color: hsl(var(--hue-sat) 13%);
 
+    /* Circular centered image with orange border */
     .bg-img {
         display: flex;
         justify-content: center;
