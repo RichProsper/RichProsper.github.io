@@ -1,9 +1,6 @@
 form {
     --light-grey: hsl(var(--hue-sat), 70%);
     --red: 348deg;
-
-    border-right: .2rem solid var(--light-grey);
-    padding-right: 2rem;
     
     .input-container {
         display: flex;

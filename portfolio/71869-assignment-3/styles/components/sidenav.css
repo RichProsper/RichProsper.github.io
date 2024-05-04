@@ -83,7 +83,7 @@ body {
             width: .3rem;
         }
     }
-    &#contactPg aside.sidenav nav a[href="contact.html"] {
+    &#contactPg aside.sidenav nav a[href="#contact"] {
         --link-color: var(--primary-color);
         font-weight: 600;
 

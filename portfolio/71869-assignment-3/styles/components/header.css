@@ -81,7 +81,7 @@ body {
         font-weight: 600;
         border-bottom-width: .125em;
     }
-    &#contactPg header nav a[href="contact.html"] {
+    &#contactPg header nav a[href="#contact"] {
         --link-color: var(--primary-color);
         font-weight: 600;
         border-bottom-width: .125em;
