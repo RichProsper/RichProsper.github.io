@@ -10,3 +10,34 @@
 @import url(components/about.css);
 @import url(components/faqs.css);
 @import url(components/footer.css);
+
+/** Common Stlyes **/
+.bg-img {
+    display: flex;
+    justify-content: center;
+    height: 20rem;
+    margin-bottom: 3rem;
+    
+    img {
+        width: 20rem;
+        height: 100%;
+        border-radius: 50%;
+        border: .4rem solid hsl(var(--primary-hue-sat) 30%);
+        transform-origin: center;
+        transition: .2s;
+
+        &:hover {
+            opacity: .75;
+            scale: .95;
+        }
+    }
+
+    @media (width >= 600px) {
+        height: 25rem;
+        margin-bottom: 3.5rem;
+
+        img {
+            width: 25rem;
+        }
+    }
+}

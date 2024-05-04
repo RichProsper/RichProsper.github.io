@@ -26,6 +26,7 @@ section.tours {
             .img {
                 height: 35rem;
 
+                /* Helps the image to display correctly on phones  */
                 img {
                     width: 100%;
                     height: 100%;
