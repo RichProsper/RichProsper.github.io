@@ -37,6 +37,8 @@ section.hero {
             font-weight: 900;
             line-height: 1.5;
             text-align: center;
+            transform-origin: center;
+            animation: MoveInTop .8s ease-out 0s backwards;
 
             span {
                 color: transparent;
@@ -48,6 +50,8 @@ section.hero {
             margin-top: calc(var(--size) / 4);
             display: flex;
             justify-content: center;
+            transform-origin: center;
+            animation: MoveInBottom .8s ease-out .8s backwards;
         }
     }
 
@@ -70,5 +74,41 @@ section.hero {
         .hero-video video {
             object-fit: cover;
         }
+    }
+}
+
+@keyframes MoveInTop {
+    0% {
+        opacity: 0;
+        translate: 0 -10rem;
+        scale: .9
+    }
+    80% {
+        opacity: .5;
+        translate: 0 2rem;
+        scale: 1.02;
+    }
+    100% {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+    }
+}
+
+@keyframes MoveInBottom {
+    0% {
+        opacity: 0;
+        translate: 0 10rem;
+        scale: .9
+    }
+    80% {
+        opacity: .5;
+        translate: 0 -2rem;
+        scale: 1.02;
+    }
+    100% {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
     }
 }
