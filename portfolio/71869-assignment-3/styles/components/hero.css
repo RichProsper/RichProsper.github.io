@@ -94,7 +94,6 @@ section.hero {
         scale: 1;
     }
 }
-
 @keyframes MoveInBottom {
     0% {
         opacity: 0;
