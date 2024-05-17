@@ -40,8 +40,9 @@
     &:hover {
         background-color: var(--button-hover-color);
         
-        & svg {
+        svg {
             fill: var(--chevron-hover-color);
+            transition: .25s ease-out;
         }
     }
     &:focus {
