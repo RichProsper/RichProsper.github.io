@@ -1,0 +1,79 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--nav-bgcolor--secondary);
+    backdrop-filter: blur(2rem);
+    padding: 1.75rem 5rem;
+    z-index: 1;
+
+    .logo {
+        position: relative;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        border: .2rem solid var(--primary-color);
+        background-image: url(../../images/logo.jpg);
+        background-size: cover;
+        background-position: center;
+        transition: opacity .2s;
+
+        &:hover {
+            opacity: .667;
+        }
+    }
+    /* Navigation Links */
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+
+        li {
+            padding: 1.5rem 0;
+            padding-right: 2rem;
+
+            &:last-child {
+                padding-right: 0;
+            }
+            a {
+                --link-color: var(--nav-bgcolor--primary);
+
+                display: inline;
+                padding-bottom: 1rem;   
+                text-decoration: none;
+                color: var(--link-color);
+                font-weight: 300;
+                border-bottom: .1em solid transparent;
+                transition: border-color .2s;
+
+                &:hover,
+                &:focus {
+                    border-color: var(--link-color);
+                }
+            }
+        }
+    }
+
+    @media (width >= 600px) {
+        padding: 2rem 10rem;
+    }
+}
+
+/* Ensures the link of the current page is highlighted */
+body {
+    &#indexPg header nav a[href="#hero"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+        border-bottom-width: .125em;
+    }
+    &#aboutPg header nav a[href="#about"] {
+        --link-color: var(--primary-color);
+        font-weight: 600;
+        border-bottom-width: .125em;
+    }
+}
