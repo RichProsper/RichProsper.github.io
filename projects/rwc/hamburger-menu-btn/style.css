@@ -64,19 +64,27 @@
                 transform-origin: center;
                 transition:
                     rotate .2s ease-in,
-                    y .2s ease-in .2s,
                     opacity .1s ease-in .2s,
                     fill .4s
                 ;
     
                 &.top {
+                    --translate-1: 0 20px;
+                    --translate-2: -20px 20px;
                     fill: var(--line-top-color);
                 }
                 &.middle {
                     fill: var(--line-middle-color);
                 }
                 &.bottom {
+                    --translate-1: 0 -20px;
+                    --translate-2: -20px -20px;
                     fill: var(--line-bottom-color);
+                }
+            }
+            &.closed {
+                .line:is(.top, .bottom) {
+                    animation: close-icon-1 .4s ease-in forwards;
                 }
             }
         }
@@ -107,10 +115,8 @@
                 }
             }
             &.closed {
-                .line {
-                    &:is(.top, .bottom) {
-                        animation: open-icon .5s forwards;
-                    }
+                .line:is(.top, .bottom) {
+                    animation: open-icon-2 .5s forwards;
                 }
             }
         }
@@ -125,14 +131,13 @@
             &.style-1 {
                 .line {
                     transition:
-                        y .2s ease-in,
                         rotate .2s ease-in .2s,
                         opacity .1s ease-in .2s,
                         fill .4s
                     ;
     
                     &:is(.top, .bottom) {
-                        y: 45;
+                        animation: open-icon-1 .4s ease-in forwards;
                     }
                     &.top {
                         rotate: .125turn;
@@ -155,7 +160,7 @@
                     ;
     
                     &:is(.top, .bottom) {
-                        animation: close-icon .5s forwards;
+                        animation: close-icon-2 .5s forwards;
                     }
                     &.top {
                         stroke: var(--line-top-color-expanded);
@@ -172,7 +177,29 @@
     }
 }
 
-@keyframes open-icon {
+@keyframes open-icon-1 {
+    0% {
+        translate: 0 0;
+    }
+    50% {
+        translate: var(--translate-1);
+    }
+    100% {
+        translate: var(--translate-2);
+    }
+}
+@keyframes close-icon-1 {
+    0% {
+        translate: var(--translate-2);
+    }
+    50% {
+        translate: var(--translate-1);
+    }
+    100% {
+        translate: 0 0;
+    }
+}
+@keyframes open-icon-2 {
     0% {
         stroke-dashoffset: 0;
         translate: var(--translate);
@@ -190,7 +217,7 @@
         stroke-dashoffset: 0;
     }
 }
-@keyframes close-icon {
+@keyframes close-icon-2 {
     0% {
         stroke-dashoffset: 0;
     }
