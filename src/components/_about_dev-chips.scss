@@ -56,8 +56,12 @@
                 width: calc(var(--chip-height) * .7);
                 height: calc(var(--chip-height) * .7);
 
-                &[alt="RobotFramework Icon"] {
+                &[alt="Remix Icon"] {
                     filter: brightness(0);
+                }
+                &[alt="Joomla Icon"] {
+                    width: calc(var(--chip-height) * .5);
+                    height: calc(var(--chip-height) * .5);
                 }
             }
         }
