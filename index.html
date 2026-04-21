@@ -51,7 +51,7 @@
         <div class="content">
             <h3>About Me</h3>
             <p>
-                I'm a Software Engineer with over <span id="exp">7</span> years of experience developing/upgrading websites, microapps and microservices utilizing various frameworks and cloud technologies. My interests over the next two years (<span id="from">2022</span> - <span id="to">2024</span>) are:
+                I'm a Software Engineer with over <span id="exp">8</span> years of experience developing/upgrading websites, microapps and microservices utilizing various frameworks and cloud technologies. My interests over the next two years (<span id="from">2022</span> - <span id="to">2024</span>) are:
                 <span class="new-line">- Continuing to improve upon CI/CD on Azure DevOps</span>
                 <span class="new-line">- Continuing to improve on Solana blockchain development with Anchor</span>
                 <span class="new-line">- Learning mobile app development with Flutter or ReactNative</span>
@@ -357,15 +357,10 @@
 
     <script>
         const yr = new Date().getFullYear()
-        const exp = yr - 2018
-        // const metaDesc = document.querySelector("meta[name='description']")
-
         document.getElementById('copy_yr').textContent = yr
         document.getElementById('from').textContent = yr
         document.getElementById('to').textContent = yr + 2
-        document.getElementById('exp').textContent = exp
-
-        // metaDesc.content = metaDesc.content.replace("{{exp}}", exp)
+        document.getElementById('exp').textContent = yr - 2018
     </script>
 </body>
 </html>
