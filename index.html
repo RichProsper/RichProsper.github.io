@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta 
         name="description"
-        content="Rich Prosper is a Full Stack Developer with over 4 years experience creating websites and is open to freelance jobs and projects."
+        content="Rich Prosper is a Full Stack Developer with over {{exp}} years experience creating websites and is open to freelance jobs and projects."
     >
     <meta property="og:image" content="https://richprosper.github.io/images/background.jpg">
     <link rel="icon" href="images/logo/favicon.ico" type="image/x-icon">
@@ -357,10 +357,15 @@
 
     <script>
         const yr = new Date().getFullYear()
+        const exp = yr - 2018
+        const metaDesc = document.querySelector("meta[name='description']")
+
         document.getElementById('copy_yr').textContent = yr
         document.getElementById('from').textContent = yr
         document.getElementById('to').textContent = yr + 2
-        document.getElementById('exp').textContent = yr - 2018
+        document.getElementById('exp').textContent = exp
+
+        metaDesc.content = metaDesc.content.replace("{{exp}}", exp)
     </script>
 </body>
 </html>
